@@ -2414,6 +2414,17 @@ tld_kill_or_wounded_triggers = (ti_on_agent_killed_or_wounded, 0, 0, [
     (try_end),
   ])
 
+troll_unkillable_trigger = (ti_on_agent_killed_or_wounded, 0, 0, [],
+    [
+        (store_trigger_param_1, ":agent"),
+        (agent_get_troop_id, ":troop_id", ":agent"),
+        (troop_get_type, ":race", ":troop_id"),
+        (try_begin),
+            (eq, ":race", tf_troll),
+            (set_trigger_result,2),
+        (try_end),
+    ])
+
 
 #Batching Triggers:
 

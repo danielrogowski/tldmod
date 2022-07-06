@@ -867,7 +867,7 @@ or
 
   field_ai_triggers + order_weapon_type_triggers +
   utility_triggers + extended_battle_menu + common_division_data + division_order_processing + real_deployment + formations_triggers_moto + AI_triggers_moto + battle_encounters_effects + [
-  tld_kill_or_wounded_triggers,
+  tld_kill_or_wounded_triggers, troll_unkillable_trigger
 ])
 
 ## MadVader deathcam end
