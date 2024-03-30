@@ -3790,12 +3790,12 @@ scripts = [
 # This script is called from the game engine when the prisoner limit is needed for main party.
 # INPUT: arg1 = party_no
 # OUTPUT: reg0 = prisoner_limit
-# formula: 1 prisoner per management level + (management lvl) * (party size wo prisoners) / 20
+# formula: 5 prisoner per management level + (management lvl) * (party size wo prisoners) / 20
 ("game_get_party_prisoner_limit",
     [
       (assign, ":troop_no", "trp_player"),
       (store_skill_level, ":skill", "skl_prisoner_management", ":troop_no"),
-      (assign, ":limit", ":skill"),
+      (store_mul, ":limit", 5, ":skill"),
       (store_party_size_wo_prisoners, ":player_party_size", "p_main_party"),
       (store_mul, ":lvl_times_size", ":player_party_size", ":skill"),
       (store_div, ":party_managed_size", ":lvl_times_size", 20),
