@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|Eoarl Bewaker van Rohan
 trp_c6_rider_guard_of_rohan_pl|Eorl Bewakers van Rohan
 trp_i6_2h_guard_of_rohan|Roer Bewaker van Rohan
 trp_i6_2h_guard_of_rohan_pl|Roer Bewakers van Rohan
-trp_dismounted_veteran_skirmisher_of_rohan|Ervaren Schermutselaar van Rohan
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Ervaren Schermutselaren van Rohan
-trp_dismounted_elite_skirmisher_of_rohan|Elite Schermutselaar van Rohan
-trp_dismounted_elite_skirmisher_of_rohan_pl|Elite Schermutselaren van Rohan
-trp_dismounted_thengel_guard_of_rohan|Thengel Bewaker van Rohan
-trp_dismounted_thengel_guard_of_rohan_pl|Thengel Bewakers van Rohan
+trp_ac3_dism_skirmisher_of_rohan2|Schermutselaar van Rohan
+trp_ac3_dism_skirmisher_of_rohan2_pl|Schermutselaren van Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Ervaren Schermutselaar van Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Ervaren Schermutselaren van Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2|Elite Schermutselaar van Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Elite Schermutselaren van Rohan
 trp_i1_harad_levy|Harad Dienstplichtige
 trp_i1_harad_levy_pl|Harad Dienstplichtigen
 trp_i3_harad_infantry|Harad Lichte Voetman
@@ -887,14 +887,13 @@ trp_walker_man_gondor_green|stedeling
 ; trp_walker_woman_gondor_b|Gondor Woman
 ; trp_walker_woman_gondor_bw|Gondor Woman
 trp_walker_woman_gondor_w|Gondor Edelman
-; trp_ramun_the_slave_trader|Ramun the slave trader
-; trp_guide|Quick Jimmy
-; trp_galeas|Galeas
-trp_farmer_from_bandit_village|Boer
-trp_farmer_from_bandit_village_pl|Boeren
-trp_trainer_1|Trainer
-trp_trainer_2|Trainer
-trp_trainer_3|Trainer
+; trp_mirkwood_walker_1|Greenwood Elf
+; trp_mirkwood_walker_2|Greenwood Elf
+; trp_lorien_walker_1|Lothlorien Elf
+; trp_lorien_walker_2|Lothlorien Elf
+trp_dwarf_walker|Dwerg
+; trp_beorn_walker|Peasant Man
+; trp_beorn_walker_fem|Peasant Woman
 trp_trainer_4|Trainer
 trp_trainer_gondor|Trainer
 trp_trainer_rohan|Trainer
@@ -984,10 +983,6 @@ trp_dwarf_lord_pl|Koning
 ; trp_beorn_lord|Chief Grimbeorn the Old
 ; trp_beorn_lord_pl|Chief
 ; trp_lorien_marshall|Celeborn
-; trp_pippin_notmet|halfling
-; trp_merry_notmet|halfling
-; trp_pippin|Pippin
-; trp_merry|Merry
 ; trp_knight_1_1|Angbor the Fearless
 ; trp_knight_1_2|Húrin of the Keys
 ; trp_knight_1_3|Prince Imrahil
@@ -1511,6 +1506,7 @@ trp_elder_ironhill_pl|het kamp
 ; trp_gandalf_pl|Home-grown Gandalves
 ; trp_nazgul|Nazgul
 ; trp_nazgul_pl|Domesticated Nazgul
+; trp_radagast|Radagast
 ; trp_barman|Barman
 ; trp_elder|Center Elder
 ; trp_gear_merchant|Gear Merchant
@@ -1528,8 +1524,8 @@ trp_elder_ironhill_pl|het kamp
 ; trp_uruk_hai_sentry_pl|uruk hai sentry
 ; trp_black_numenorean_sorcerer|Black Numenorean Sorcerer
 ; trp_black_numenorean_sorcerer_pl|Black numenorean sorcerer
-; trp_black_numenorean_acolyte|Black Numenorean Acolyte
-; trp_black_numenorean_acolyte_pl|Black Numenorean Acolytes
+; trp_evil_priest|Evil Priest
+; trp_evil_priest_pl|Evil Priests
 ; trp_wolf_rider_of_mirkwood|Wolf Rider of Mirkwood
 ; trp_wolf_rider_of_mirkwood_pl|Wolf Riders of Mirkwood
 ; trp_warg_rider_of_mirkwood|Warg Rider of Mirkwood
@@ -1636,3 +1632,18 @@ trp_tribal_orc_pl|Stammen Orks
 ; trp_tribal_orc_warrior_pl|Tribal Orc Warriors
 ; trp_tribal_orc_chief|Tribal Orc Chief
 ; trp_tribal_orc_chief_pl|Tribal Orc Chiefs
+trp_a3_dism_skirmisher_of_rohan|Schermutselaar van Rohan
+trp_a3_dism_skirmisher_of_rohan_pl|Schermutselaren van Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan|Ervaren Schermutselaar van Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Ervaren Schermutselaren van Rohan
+trp_a5_dism_elite_skirmisher_of_rohan|Elite Schermutselaar van Rohan
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Elite Schermutselaren van Rohan
+; trp_ac5_camel_rider|Harad Camel Rider
+; trp_ac5_camel_rider_pl|Harad Camel Riders
+; trp_aragorn|Aragorn
+; trp_legolas|Legolas
+; trp_gimli|Gimli
+; trp_pippin_notmet|halfling
+; trp_merry_notmet|halfling
+; trp_pippin|Pippin
+; trp_merry|Merry

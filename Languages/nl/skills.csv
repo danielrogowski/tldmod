@@ -1,9 +1,9 @@
 skl_trade|Onderhandelaar
 skl_trade_desc|Zorgt ervoor dat smeden en voorraad meesters beter meewerken en betere uitrusting aanbieden. (Groep vaardigheid)
 skl_leadership|Leiderschap
-skl_leadership_desc|Elk punt verhoogd het maximaal aantal troepen dat je kan bevelen met 5, verhoogd het moraal van je groep en verlaagd het loon van je troepen met 5%%. Zorgt er ook voor dat meer en sterkere vrijwilligers je willen volgen. (Leider vaardigheid)
+; skl_leadership_desc|Every point increases maximum number of troops you can command by 5, increases your party morale and coherence in battle. Makes more and stronger volunteers willing to follow you. (Leader skill)
 skl_prisoner_management|Gevangenen Beheer
-skl_prisoner_management_desc|Elk punt voor deze vaardigheid vergroot het maximum aantal gevangenen met %d (Leider vaardigheid)
+; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
 skl_persuasion|Planten Vaardigheid
 skl_persuasion_desc|Het vermogen om te overleven in de wildernis en het naar je zin te buigen. Deze vaardigheid beïnvloedt het vermogen van de groep om zich voor de vijand te verbergen en de snelheid van de groep wanneer de groep zich op een bebost terrein bevindt. (groepsvaardigheid)
 skl_engineer|-----
@@ -15,7 +15,7 @@ skl_surgery_desc|Elk punt voor deze vaardigheid geeft een 4%% kans dat een dodel
 skl_wound_treatment|Wondverzorging
 skl_wound_treatment_desc|De snelheid waarmee je groep weer heelt gaat omhoog met 20%% per punt voor deze vaardigheid. (groep's vaardigheid)
 skl_inventory_management|inventaris Beheer
-skl_inventory_management_desc|vergroot inventaris capaciteit met +6 vakken per punt voor deze vaardigheid (leider vaardigheid)
+; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
 skl_spotting|Spotten
 skl_spotting_desc|Je groep kan 10%% verder zien per punt voor deze vaardigheid (groep's vaardigheid)
 skl_pathfinding|Padvinden

@@ -98,18 +98,19 @@ khams_custom_player_camera = ((is_a_wb_mt==1) and [
   ]),
 
  # Piggyback on Camera Code for Displaying Agent Labels.
+ #InVain: Disabled
 
-  (ti_battle_window_opened, 0, 0, [(ge, "$g_display_agent_labels", 1),],
-    [(start_presentation, "prsnt_display_agent_labels")]),
+  # (ti_battle_window_opened, 0, 0, [(ge, "$g_display_agent_labels", 1),],
+    # [(start_presentation, "prsnt_display_agent_labels")]),
 
-  (0,0,0, [(ge, "$g_display_agent_labels", 1), (key_clicked, key_y),],
-    [(try_begin),
-      (eq, "$show_hide_labels",1),
-      (assign, "$show_hide_labels", 0),
-     (else_try),
-      (assign, "$show_hide_labels",1),
-      (start_presentation, "prsnt_display_agent_labels"),
-     (try_end)]),
+  # (0,0,0, [(ge, "$g_display_agent_labels", 1), (key_clicked, key_y),],
+    # [(try_begin),
+      # (eq, "$show_hide_labels",1),
+      # (assign, "$show_hide_labels", 0),
+     # (else_try),
+      # (assign, "$show_hide_labels",1),
+      # (start_presentation, "prsnt_display_agent_labels"),
+     # (try_end)]),
 
   #-- camera_mode
   (0, 0, 0, [],
@@ -289,8 +290,8 @@ khams_custom_player_camera = ((is_a_wb_mt==1) and [
       (eq,     "$cam_mode", 2),
       (assign, "$cam_mode", 1),
       (display_message, "@Free-Mode Custom Camera"),
-      (display_message, "@Use +/- to zoom in/out"),
-      (display_message, "@Use Up/Down arrow keys to tilt up/down"),
+      (display_message, "@Press Ctrl and +/- to zoom in/out"),
+      (display_message, "@Press Ctrl and Up/Down arrow keys to tilt up/down"),
 
     (else_try),
       (eq, "$cam_mode", 1),
@@ -1057,6 +1058,11 @@ tld_common_battle_scripts = ((is_a_wb_mt==1) and [
     #Batching
     batching_agent_spawn_human,
     batching_agent_spawn_mount,
+    
+    tld_place_inventory_backup, 
+    tld_ai_fadeout_spheres,
+    tld_ai_melee_spheres,
+    tld_calculate_wounded    
 
 ] + beorning_shapeshift   #Chaning into bear
 + tld_bow_shield
@@ -1080,15 +1086,19 @@ or [] ) + [
   reset_fog,
   horse_whistle_init,
   horse_whistle,
-] + tld_morale_triggers + fade + khams_custom_player_camera + custom_troll_hitting_new + tld_fallen_riders_get_damaged + bright_nights + tld_spawn_battle_animals + tld_warg_leap_attack + reward_birds_wb
+] + tld_morale_triggers + fade + khams_custom_player_camera + custom_troll_hitting_new + tld_fallen_riders_get_damaged + bright_nights + tld_spawn_battle_animals + tld_warg_leap_attack + reward_birds_wb + nazgul_flying
 
 
 tld_siege_battle_scripts =  ((is_a_wb_mt==1) and [
 
   health_restore_on_kill, #Testing if this will be resource intensive.
   common_battle_init_banner,
+  tld_melee_ai,
   hp_shield_init,
   hp_shield_trigger,
+  tld_ai_fadeout_spheres,
+  tld_ai_melee_spheres,
+  tld_calculate_wounded  
 
   ] + tld_bow_shield
   or [] ) + [
@@ -1098,8 +1108,7 @@ tld_siege_battle_scripts =  ((is_a_wb_mt==1) and [
 	custom_track_companion_casualties,
 	common_battle_healing,
 	custom_troll_hitting,
-	tld_remove_galadriel,
-  tld_remove_volunteer_troops,
+  tld_assign_special_troops,
 	#common_battle_kill_underwater,
   reset_fog,
 ] + fade + bright_nights + khams_custom_player_camera + bright_nights
@@ -1110,7 +1119,7 @@ tld_common_peacetime_scripts = [
 	tld_player_cant_ride,
 	dungeon_darkness_effect,
   reset_fog,
-] + custom_tld_bow_to_kings + bright_nights + fade + reward_birds_wb + khams_custom_player_camera +((is_a_wb_mt==1) and tld_bow_shield or [] )#Custom Cam triggers
+] + custom_tld_bow_to_kings + bright_nights + fade + reward_birds_wb + khams_custom_player_camera + nazgul_flying +((is_a_wb_mt==1) and tld_bow_shield + tld_animated_town_agents + tld_positional_sound_props + tld_points_of_interest or [] )#Custom Cam triggers
 
 
 tld_common_wb_muddy_water = ((is_a_wb_mt==1) and [
@@ -1359,7 +1368,8 @@ mission_templates = [ # not used in game
 			 (else_try),                              (call_script, "script_music_set_situation_with_culture", mtf_sit_town), #MV: was mtf_sit_travel
 			(try_end),
 
-			(try_begin),
+			(assign, "$play_ambient_sounds", 1), 
+            (try_begin),
 				(eq, "$bs_day_sound", 0),
 				(party_get_slot, ":a","$current_town",slot_center_ambient_sound_always),
 				(try_begin),(gt,":a",0),(play_sound, ":a", sf_looping),(try_end),
@@ -1374,7 +1384,139 @@ mission_templates = [ # not used in game
 			(else_try),
 				(play_sound, "$bs_night_sound", sf_looping),
 			(try_end),
+            (assign, "$temp_2", 0), #for spawn control on scene props, particle effects etc.
 			]),
+
+ ] + ((is_a_wb_mt==1) and [
+  (20, 0, 0, [], [ # messenger props WB only
+        (scene_prop_get_num_instances, ":num_messengers", "spr_troop_messenger"),
+        (scene_prop_get_num_instances, ":num_messenger_exits", "spr_troop_messenger_exit"),
+        (set_fixed_point_multiplier, 100),
+        
+        (try_for_range, ":count", 0, ":num_messengers"),
+            (scene_prop_get_instance, ":instance_no", "spr_troop_messenger", ":count"),
+            
+            (try_begin), #spawn messenger at a exit point, send to destination
+                (store_random_in_range, ":chance", 0, 10),
+                (ge, ":chance", 8),
+                (store_faction_of_party, ":faction", "$current_town"),
+                (faction_get_slot, ":troop", ":faction", slot_faction_rider_troop),
+                (prop_instance_get_scale, pos2, ":instance_no"),
+                (position_get_scale_y, ":tier", pos2),
+                (val_sub, ":tier", 100),
+                (val_div, ":tier", 10),
+                (store_random_in_range, ":tier_randomizer", 0, 2),
+                (val_sub, ":tier", ":tier_randomizer"),
+                (try_begin),
+                    (ge, ":tier", 1),
+                    (try_for_range, ":unused", 0, ":tier"),
+                        (troop_get_upgrade_troop, ":upgrade_troop", ":troop", 0),
+                        (gt, ":upgrade_troop", 0),
+                        (assign, ":troop", ":upgrade_troop"),
+                    (try_end),
+                (try_end),
+                        
+                (store_random_in_range, ":rand_exit", 0, ":num_messenger_exits"),
+                (scene_prop_get_instance, ":instance_no_target", "spr_troop_messenger_exit", ":rand_exit"),
+                (prop_instance_get_position, pos1, ":instance_no_target"),
+                (set_spawn_position, pos1),  (spawn_agent, ":troop"),
+                (lt, "$g_encountered_party_2", 0), #don't spawn riders in siege battles
+                (agent_set_team, reg0, 0),
+                (agent_set_slot, reg0, slot_agent_walker_type, 3), #messenger  
+                (prop_instance_get_position, pos2, ":instance_no"),
+                (agent_set_slot, reg0, slot_agent_is_running_away, 0),
+                (agent_set_scripted_destination, reg0, pos2),
+            (try_end),
+            
+            #find a random messenger exit point, send them out
+            (prop_instance_get_position, pos1, ":instance_no"),
+            (try_for_agents, ":agent_no", pos1, 500),
+                (agent_slot_eq, ":agent_no", slot_agent_walker_type, 3),
+                (store_random_in_range, ":chance", 0, 10),
+                (ge, ":chance", 3),
+                (gt, ":num_messenger_exits", 0),
+                (store_random_in_range, ":rand_exit", 0, ":num_messenger_exits"),
+                (scene_prop_get_instance, ":instance_no_target", "spr_troop_messenger_exit", ":rand_exit"),
+                (prop_instance_get_position, pos2, ":instance_no_target"),
+                (agent_set_scripted_destination, ":agent_no", pos2),
+                (agent_set_slot, ":agent_no", slot_agent_is_running_away, 1), #needed for tracking
+            (try_end),
+
+        (try_end),
+      ]),
+
+  (3, 0, 0, [], [ #slow down or speed up at city entrance
+    (entry_point_get_position, pos1, 2), #player spawn on foot
+    (set_fixed_point_multiplier, 100),
+    (try_for_agents, ":agent_no", pos1, 1500),
+        (agent_slot_eq, ":agent_no", slot_agent_walker_type, 3),
+        (agent_slot_eq, ":agent_no", slot_agent_is_running_away, 1),
+        (store_random_in_range, ":speed_limit", 60, 80),
+        (agent_set_speed_limit, ":agent_no", ":speed_limit"),
+    (else_try),
+        (agent_slot_eq, ":agent_no", slot_agent_walker_type, 3),
+        (store_random_in_range, ":speed_limit", 6, 17),
+        (agent_set_speed_limit, ":agent_no", ":speed_limit"),
+    (try_end),
+      ]),
+
+  (3, 0, 0, [], [ #messengers leaving the scene
+    #(entry_point_get_position, pos1, 1),
+    (set_fixed_point_multiplier, 100),
+    (scene_prop_get_num_instances, ":num_messenger_exits", "spr_troop_messenger_exit"),
+    (try_for_range, ":count", 0, ":num_messenger_exits"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_messenger_exit", ":count"),
+        (prop_instance_get_position, pos1, ":instance_no"),
+        (try_for_agents, ":agent_no", pos1, 600),
+            (agent_slot_eq, ":agent_no", slot_agent_walker_type, 3),
+            (agent_slot_eq, ":agent_no", slot_agent_is_running_away, 1),
+            (agent_start_running_away, ":agent_no"),
+            (this_or_next|eq, "$current_town", "p_town_moria"), #indoor scenes
+            (this_or_next|eq, "$current_town", "p_town_goblin_north_outpost"), 
+            (eq, "$current_town", "p_town_erebor"),
+            (agent_fade_out, ":agent_no"),
+        (try_end),
+    (try_end),
+      ]),
+
+  ### town patrols (separate triggers, maybe shift the load of the nested prop loops) WB only
+  (15, 0, 0, [], [ 
+    (call_script, "script_town_guard_patrols", "spr_troop_guard"),
+      ]),
+
+  (9, 0, 0, [], [ 
+    (call_script, "script_town_guard_patrols", "spr_troop_archer"),
+      ]),
+      
+  (20, 0, 0, [], [ 
+    (call_script, "script_town_guard_patrols", "spr_troop_rider"),
+      ]),      
+
+    ###walker props    WB only
+  (3, 0, 0, [], [ 
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (scene_prop_get_num_instances, ":num_walker_props", "spr_troop_civ_walker"),
+    (try_for_range, ":count", 0, ":num_walker_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_civ_walker", ":count"),
+        (prop_instance_get_position, pos1, ":instance_no"),
+            (try_for_agents, ":agent_no", pos1, 200),
+                (neq, ":agent_no", ":player_agent"),
+                (agent_slot_eq, ":agent_no", slot_agent_walker_type, 1),
+                (store_random_in_range, ":chance", 0, 10),
+                (lt, ":chance", 4),
+                (store_random_in_range, ":rand_target", 0, ":num_walker_props"),
+                (scene_prop_get_instance, ":instance_no_target", "spr_troop_civ_walker", ":rand_target"),
+                (prop_instance_get_position, pos2, ":instance_no_target"),
+                (agent_set_scripted_destination, ":agent_no", pos2),
+                (store_random_in_range, ":speed", 2, 6), 
+                (agent_set_speed_limit, ":agent_no", ":speed"),
+            (try_end),
+    (try_end),
+      ]),
+
+  ] or []) + [
+
   (10, 0, ti_once, [], [ # Kham - Set Tutorial Message RE: Rumours
       (try_begin),
         (eq, "$first_time_town", 0),(neq, "$cheat_mode", 1),
@@ -1533,7 +1675,22 @@ mission_templates = [ # not used in game
 			(store_faction_of_party, ":faction", "$current_town"),
 			(call_script, "script_increase_rank", ":faction", 2),
 			(call_script, "script_change_player_relation_with_center", "$current_town", 3),
-		(try_end)]),
+		(try_end),
+        (try_begin),
+			(party_slot_eq, "$current_town", slot_barracks_visited, 0),
+			(neg|party_slot_eq, "$current_town", slot_barracks_visited, "trp_no_troop"),
+			(entry_point_get_position, pos2, 24),
+			(get_distance_between_positions, ":dist", pos2, pos1),
+			(lt, ":dist", 300),
+			(party_set_slot, "$current_town", slot_barracks_visited, 1),
+			(party_set_slot, "$current_town", slot_center_visited, 1), # assume visited when found at least 1 merchant
+			(display_message, "@You_have_found_the_captain_of_the_garrison."),
+			#(add_xp_as_reward, 50),
+			(store_faction_of_party, ":faction", "$current_town"),
+			(call_script, "script_increase_rank", ":faction", 2),
+			(call_script, "script_change_player_relation_with_center", "$current_town", 3),
+		(try_end), 
+        ]),
 
   (ti_on_agent_spawn, 0, 0, [ (store_trigger_param_1, ":agent"), 
                               (agent_get_troop_id, ":troop", ":agent"),
@@ -1577,38 +1734,39 @@ mission_templates = [ # not used in game
           (call_script, "script_music_set_situation_with_culture", 0), #prison
         (try_end)]),
 
- ] + (is_a_wb_mt==1 and [
-  #Henneth Anun at Dusk Scene Prop
-  (2, 0, 0, 
-    [
-      (eq, "$current_town", "p_town_henneth_annun"),
-      (store_time_of_day, ":time"),
-      (assign, reg5, ":time"),
-      #(display_message, "@Time: {reg5}"),
-      (is_between, ":time", 18, 21),
-    ],    
-    [
-      (get_player_agent_no, "$current_player_agent"),
-      (agent_get_position, pos1, "$current_player_agent"),
-      (assign, reg3, 80),
-      (try_begin),
-        (entry_point_get_position, pos2, 13),
-        (try_begin),
-          (eq, "$temp_2", 0),
-          #(display_message, "@Scene Prop Spawned"),
-          (set_spawn_position, pos2),
-          (spawn_scene_prop, "spr_moon_beam"),
-          (assign, "$temp_2", 1),
-        (try_end),
-        (get_distance_between_positions, ":dist", pos2, pos1),
-        (lt, ":dist", 400),
-        (tutorial_message, "@You look through Henneth Annun, the Window of the Sunset. The beautiful sight restores your faith in the West and the Powers beyond.", 0 , 10),
-        (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
-        (add_xp_as_reward, reg3),
-        (party_set_slot, "$current_town", slot_exploration_point_1, 1),
-      (try_end),
-  ]),
- ] or []) + [	  
+#replaced by tld_points_of_interest
+ # ] + (is_a_wb_mt==1 and [
+  # #Henneth Anun at Dusk Scene Prop
+  # (2, 0, 0, 
+    # [
+      # (eq, "$current_town", "p_town_henneth_annun"),
+      # (store_time_of_day, ":time"),
+      # (assign, reg5, ":time"),
+      # #(display_message, "@Time: {reg5}"),
+      # (is_between, ":time", 18, 21),
+    # ],    
+    # [
+      # (get_player_agent_no, "$current_player_agent"),
+      # (agent_get_position, pos1, "$current_player_agent"),
+      # (assign, reg3, 80),
+      # (try_begin),
+        # (entry_point_get_position, pos2, 13),
+        # (try_begin),
+          # (eq, "$temp_2", 0),
+          # #(display_message, "@Scene Prop Spawned"),
+          # (set_spawn_position, pos2),
+          # (spawn_scene_prop, "spr_moon_beam"),
+          # (assign, "$temp_2", 1),
+        # (try_end),
+        # (get_distance_between_positions, ":dist", pos2, pos1),
+        # (lt, ":dist", 400),
+        # (tutorial_message, "@You look through Henneth Annun, the Window of the Sunset. The beautiful sight restores your faith in the West and the Powers beyond.", 0 , 10),
+        # (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+        # (add_xp_as_reward, reg3),
+        # (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+      # (try_end),
+  # ]),
+ # ] or []) + [	  
 ]),
 
 # review troops (mtarini)
@@ -1771,12 +1929,12 @@ mission_templates = [ # not used in game
 	(try_begin),
 		(gt, reg20, 0),
 		
-		(call_script, "script_party_remove_party_from_prisoners", "p_main_party", "p_enemy_casualties"), # remove prisoners
+		(call_script, "script_party_remove_party_from_prisoners", "p_main_party", "p_enemy_casualties"), # remove prisoners, returns removed number in reg0
 		
 		(try_begin), # add as many human meat pieces as number of removed prisoners
 			(neg|faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good), # unless good
 
-      #Butcher trait gets 1.2x more human meat - Kham
+      #Butcher trait gets 2x more human meat - Kham
 
       (try_begin),
         (troop_slot_eq, "trp_traits", slot_trait_butcher, 1),
@@ -1784,8 +1942,8 @@ mission_templates = [ # not used in game
           (le, reg0, 0),
           (assign, reg0,1),
         (try_end),
-        (val_mul, reg0, 10),
-        (val_div, reg0, 8),
+        (val_mul, reg0, 2),
+        #(val_div, reg0, 8),
         
       #Butcher mod ends
 
@@ -1796,10 +1954,10 @@ mission_templates = [ # not used in game
 		(try_end),
 
     (try_begin),
-      (lt, "$butcher_trait_kills",35),
       (val_add, "$butcher_trait_kills", reg0),
-    (else_try),
       (ge, "$butcher_trait_kills", 35),
+      (store_random_in_range, ":chance", 0, 500), #0,2% per butcher kill
+      (lt, ":chance", "$butcher_trait_kills"),
       (call_script, "script_cf_gain_trait_butcher"),
     (try_end),
 		
@@ -1931,6 +2089,8 @@ mission_templates = [ # not used in game
 			(agent_get_horse,"$horse_player","$current_player_agent"), #checks for horse lameness in mission
 			(troop_get_inventory_slot_modifier,"$horse_mod","trp_player",8),
 			]),
+
+    #reinforcements
 	(1, 0, 5,  [
 			(lt,"$defender_reinforcement_stage",8),
 			(store_mission_timer_a,":mission_time"),
@@ -1939,7 +2099,31 @@ mission_templates = [ # not used in game
 			(lt,":num_defenders",10)
 			],[
 			(add_reinforcements_to_entry,0,10),
-			(val_add,"$defender_reinforcement_stage",1)]),
+			(val_add,"$defender_reinforcement_stage",1),
+            
+            #temporary coherence boost
+            (ge, "$tld_option_morale", 1),
+            (store_sub, ":morale_effect", 10, "$defender_reinforcement_stage"),
+            (val_mul, ":morale_effect", 2),
+            (get_player_agent_no, ":player"),
+            (agent_get_team, ":player_team", ":player"),
+            (try_begin),
+                (teams_are_enemies, 0, ":player_team"),
+                (val_add, "$enemies_coh_modifier", ":morale_effect"),
+            (else_try), 
+                (val_add, "$allies_coh_modifier", ":morale_effect"),
+            (try_end),
+
+            (try_begin), #if coherence has reached 0, stop reinforcements
+                (teams_are_enemies, 0, ":player_team"),
+                (lt, "$enemies_coh", 1),
+                (assign,"$defender_reinforcement_stage",20),
+            (else_try), 
+                (lt, "$allies_coh", 1),
+                (assign,"$defender_reinforcement_stage",20),
+            (try_end), 
+            ]),
+            
 	(1, 0, 5, [
 			(lt,"$attacker_reinforcement_stage",8),
 			(store_mission_timer_a,":mission_time"),
@@ -1948,7 +2132,30 @@ mission_templates = [ # not used in game
 			(lt,":num_attackers",10)
 			],[
 			(add_reinforcements_to_entry,3,10),
-			(val_add,"$attacker_reinforcement_stage",1)]),
+			(val_add,"$attacker_reinforcement_stage",1),
+            
+            #temporary coherence boost
+            (ge, "$tld_option_morale", 1),
+            (store_sub, ":morale_effect", 10, "$defender_reinforcement_stage"),
+            (val_mul, ":morale_effect", 2),
+            (get_player_agent_no, ":player"),
+            (agent_get_team, ":player_team", ":player"),
+            (try_begin),
+                (teams_are_enemies, 0, ":player_team"),
+                (val_add, "$enemies_coh_modifier", ":morale_effect"),
+            (else_try), 
+                (val_add, "$allies_coh_modifier", ":morale_effect"),
+            (try_end),
+            
+            (try_begin), #if coherence has reached 0, stop reinforcements
+                (teams_are_enemies, 0, ":player_team"),
+                (lt, "$enemies_coh", 1),
+                (assign,"$attacker_reinforcement_stage",20),
+            (else_try), 
+                (lt, "$allies_coh", 1),
+                (assign,"$attacker_reinforcement_stage",20),
+            (try_end),              
+            ]),
   
   #(0,0,0, [(key_clicked, key_b)],[(display_message, "@Mordor Cloud added"),(call_script, "script_set_mordor_cloud_scene_prop")]),
 
@@ -1966,7 +2173,7 @@ mission_templates = [ # not used in game
         (eq, "$formations_tutorial", 1),
         (tutorial_message, "@You can also order your troops to cycle through the type of weapon you want them to use.^^ Press O to cycle between Weapon Order types. Press P to cycle between Shield Order types.", 0 , 10),
        (else_try),
-        (tutorial_message, "@The Last Days of the Third Age has implemented a Custom Camera in order to bypass the current camera limitation with regards to shorter races (e.g Orcs and Dwarves).^^Press CTRL + END to cycle through the 2 camera modes: Fixed Position and Free-Mode.^^Fixed position is the optimal position for all races, however it cannot be configured. You can press CTRL+Left/Right Arrow Keys to switch shoulders.^^Free-Mode Camera puts the character in the middle of the screen. You can press CTRL+Up/Down arrow keys to tilt the camera and CTRL+ Numpad +/- to zoom.^^See Info Pages for how to control the different camera modes.", 0 , 15),
+        (tutorial_message, "@The Last Days of the Third Age has implemented a Custom Camera in order to bypass the current camera limitation with regards to shorter races (e.g Orcs and Dwarves).^^See Info Pages for how to control the different camera modes.", 0 , 15),
       (try_end),
       (val_add, "$formations_tutorial", 1),
       ]),
@@ -2003,28 +2210,45 @@ mission_templates = [ # not used in game
      (40,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(41,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(42,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(43,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),
      (44,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(45,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(46,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(47,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),
      ],
-     tld_common_wb_muddy_water +
-    [ (ti_on_agent_spawn,0,0,[],[(store_trigger_param_1, ":agent_no"),
-								(agent_get_troop_id, ":troop_no", ":agent_no"),
-								(neq, ":troop_no", "trp_player"),
-								(agent_set_team, ":agent_no", 1),
-                ] + (is_a_wb_mt==1 and [
-                (agent_set_is_alarmed, ":agent_no", 1),
-                ] or []) + [
-                ]),
+     tld_common_wb_muddy_water + 
+
+    [ (ti_on_agent_spawn,0,0,[],
+        [(store_trigger_param_1, ":agent_no"),
+        (agent_get_troop_id, ":troop_no", ":agent_no"),
+        (try_begin),
+            (neq, ":troop_no", "trp_player"),
+            (agent_set_team, ":agent_no", 1),
+            ] + (is_a_wb_mt==1 and [
+            (agent_set_is_alarmed, ":agent_no", 1),
+            ] or []) + [
+        (else_try),
+            (entry_point_get_position, pos1, 29),
+            (agent_set_position, ":agent_no", pos1),
+        (try_end),
+        ]),
+  
       (ti_before_mission_start, 0, 0,[],[(team_set_relation, 1, 0, 0),(team_set_relation, 2, 0, 0),  #MV: both player and bandits neutral to guards
         #remove cabbage guard spawn points
-        (replace_scene_props, "spr_troop_prison_guard", "spr_empty"),
+        (replace_scene_props, "spr_troop_archer", "spr_empty"),
         (replace_scene_props, "spr_troop_castle_guard", "spr_empty"),
         (replace_scene_props, "spr_troop_guard", "spr_empty"),
 		(replace_scene_props, "spr_troop_guard_sitting", "spr_empty"), # (CppCoder) These are what cause the "unable to finish" bugs.
 		(replace_scene_props, "spr_troop_human_prisoner", "spr_empty"),
-		(replace_scene_props, "spr_troop_moria_troll", "spr_empty"),	
+		(replace_scene_props, "spr_troop_troll", "spr_empty"),	
 		(replace_scene_props, "spr_troop_civilian", "spr_empty"),
-		(replace_scene_props, "spr_troop_civilian_sitting_ground", "spr_empty"),
-		(replace_scene_props, "spr_troop_civilian_sitting_chair", "spr_empty"),	
+		(replace_scene_props, "spr_troop_civ_sitting_ground", "spr_empty"),
+		(replace_scene_props, "spr_troop_civ_sitting_chair", "spr_empty"),	
+        (replace_scene_props, "spr_troop_rider", "spr_empty"),	
+        (replace_scene_props, "spr_troop_civ_walker", "spr_empty"),
+        (replace_scene_props, "spr_troop_messenger", "spr_empty"),
+        (try_for_range, ":prop", spr_troop_civ_lying, spr_troop_priest+1), #remove town agents
+            (replace_scene_props, ":prop", "spr_empty"),
+        (try_end),        
       ]),
-      common_inventory_not_available,
+ 
+      common_inventory_not_available,       
+      ] + (is_a_wb_mt==1 and [ hp_shield_init, hp_shield_trigger, ] or []) + [
+
       (ti_tab_pressed  , 0, 0,[(display_message, "@Cannot leave now.")], []),
       (ti_on_leave_area, 0, 0,[(try_begin),(eq, "$g_defending_against_siege", 0),(assign,"$g_leave_town",1),(try_end)], []),
       (0, 0, ti_once,[],[(call_script, "script_music_set_situation_with_culture", mtf_sit_ambushed),(set_party_battle_mode)]),
@@ -2084,17 +2308,22 @@ mission_templates = [ # not used in game
 	(ti_before_mission_start, 0, 0, [], [
 			(call_script, "script_change_banners_and_chest"),
 			(mission_disable_talk),
-			#remove some cabbage guard spawn points, so castle and prison guards don't spawn
-			(replace_scene_props, "spr_troop_prison_guard", "spr_empty"),
-			(replace_scene_props, "spr_troop_castle_guard", "spr_empty"),
-			# remove all other guards except the first five - doesn't work!
-			# (init_position, pos1),
-			# (position_move_z, pos1, -1000000),
-			# (scene_prop_get_num_instances, ":num_guards", "spr_troop_guard"),
-			# (try_for_range, ":count", 5, ":num_guards"),
-			  # (scene_prop_get_instance, ":guard_instance", "spr_troop_guard", ":count"),
-			  # (prop_instance_set_position, ":guard_instance", pos1), #does this work?? how do you remove a single prop? (GA: you can't)
-			# (try_end),
+			#remove all troop spawn props
+            (replace_scene_props, "spr_troop_archer", "spr_empty"),
+            (replace_scene_props, "spr_troop_castle_guard", "spr_empty"),
+            (replace_scene_props, "spr_troop_guard", "spr_empty"),
+            (replace_scene_props, "spr_troop_guard_sitting", "spr_empty"),
+            (replace_scene_props, "spr_troop_human_prisoner", "spr_empty"),
+            (replace_scene_props, "spr_troop_troll", "spr_empty"),	
+            (replace_scene_props, "spr_troop_civilian", "spr_empty"),
+            (replace_scene_props, "spr_troop_civ_sitting_ground", "spr_empty"),
+            (replace_scene_props, "spr_troop_civ_sitting_chair", "spr_empty"),	
+            (replace_scene_props, "spr_troop_rider", "spr_empty"),	
+            (replace_scene_props, "spr_troop_civ_walker", "spr_empty"),
+            (replace_scene_props, "spr_troop_messenger", "spr_empty"),
+                    (try_for_range, ":prop", spr_troop_civ_lying, spr_troop_priest+1), #remove town agents
+            (replace_scene_props, ":prop", "spr_empty"),
+        (try_end),
 			]),
 	common_inventory_not_available,
 	(ti_tab_pressed  , 0, 0,[(display_message, "@Cannot leave now.")], []),
@@ -2987,7 +3216,7 @@ mission_templates = [ # not used in game
   
 
   common_battle_on_player_down,
-  tld_remove_volunteer_troops,
+  tld_assign_special_troops,
 
   # Make the teams enemies... and disable morale
   (ti_before_mission_start, 0, 0, [], [(team_set_relation, 0, 1, -1),(assign, "$battle_won", 0), (assign, "$tld_option_morale", 0),]),
@@ -3172,7 +3401,7 @@ mission_templates = [ # not used in game
     (set_rain,1,100),
     (team_set_relation, 0, 1, -1),
     (team_set_relation, 6,1, -1),
-    (assign, "$gate_aggravator_agent", -1),
+    (assign, "$gate_aggravator_agent", 1),
     (assign, "$battle_won", 0)
   ]),
 
@@ -3556,7 +3785,21 @@ mission_templates = [ # not used in game
       (store_random_in_range, ":ran_time", 5, 15),
       (ge, ":mission_time_b", ":ran_time"), #Random time between 10 - 20 secs
       (reset_mission_timer_b),
-      (lt,"$enemy_reinforcement_stage", 8), #up to 8 reinforcements     
+      (lt,"$enemy_reinforcement_stage", 8), #up to 8 reinforcements
+      (set_fixed_point_multiplier, 100),
+      
+      (get_player_agent_no, ":player"),
+      (agent_get_position, pos6, ":player"),
+      
+      (try_for_range, ":unused", 0, 5),
+          (store_random_in_range, ":enemy_entry", 12, 21), #This just randomizes the entry points the enemy comes from.
+          (entry_point_get_position, pos5, ":enemy_entry"),
+          (get_distance_between_positions, ":dist", pos5, pos6), #don't spawn next to player
+          (ge, ":dist", 1000),
+          (set_spawn_position, pos5),
+          (assign, ":unused", 5),
+      (try_end),
+      
       (val_add, "$enemy_reinforcement_stage", 1), 
       #This checks the faction of the quest giver.
       (quest_get_slot, ":troop", "qst_blank_quest_03", slot_quest_object_center),
@@ -3623,11 +3866,6 @@ mission_templates = [ # not used in game
         (assign, ":troop_pic", ":enemy_ranged_troop"),
       (try_end),
       (call_script, "script_troop_talk_presentation", ":troop_pic", 7, 0),
-
-      (store_random_in_range, ":enemy_entry", 12, 21), #This just randomizes the entry points the enemy comes from.
-      (entry_point_get_position, pos5, ":enemy_entry"),
-      (set_spawn_position, pos5), 
-      
       #This spawns the troops, coin flip on whether troops are ranged / melee, as per the above troop assignments.
       (try_for_range, ":unused", 0, ":num_enemies"),
           (store_random_in_range, ":rnd_troop", 0,100),
@@ -3749,6 +3987,22 @@ mission_templates = [ # not used in game
   (call_script, "script_count_mission_casualties_from_agents"),
   (jump_to_menu, "mnu_sea_battle_quest_results"),
   (finish_mission, 1),]),
+
+
+] + ((is_a_wb_mt==1) and [
+
+(3, 0, 0, [], [ #agent fadeout if under sea level
+   (set_fixed_point_multiplier, 100),
+    (try_for_agents, ":agent"),
+        (agent_get_position, pos1, ":agent"),
+        (position_get_z, ":height", pos1),
+        (lt, ":height", -3),
+        (agent_fade_out, ":agent"),
+    (try_end),
+    ]),
+
+  health_restore_on_kill,
+] or []) + [
  
   common_inventory_not_available, 
   common_music_situation_update,
@@ -3978,7 +4232,20 @@ mission_templates = [ # not used in game
       (store_random_in_range, ":ran_time", 5, 15),
       (ge, ":mission_time_c", ":ran_time"), #Random time between 25 - 40 secs
       (reset_mission_timer_c),
-      (lt,"$enemy_reinforcement_stage", 8),      
+      (lt,"$enemy_reinforcement_stage", 8),
+      
+      (get_player_agent_no, ":player"),
+      (agent_get_position, pos6, ":player"),
+
+      (try_for_range, ":unused", 0, 5),
+          (store_random_in_range, ":enemy_entry", 12, 21), #This just randomizes the entry points the enemy comes from.
+          (entry_point_get_position, pos5, ":enemy_entry"),
+          (get_distance_between_positions, ":dist", pos5, pos6), #don't spawn next to player
+          (ge, ":dist", 1000),
+          (set_spawn_position, pos5),
+          (assign, ":unused", 5),
+      (try_end),
+      
       (val_add, "$enemy_reinforcement_stage", 1),
       (quest_get_slot, ":troop", "qst_blank_quest_03", slot_quest_object_center),
       (store_faction_of_party, ":faction", ":troop"),      
@@ -4035,9 +4302,7 @@ mission_templates = [ # not used in game
         (assign, ":troop_pic", ":ally_ranged_troop"),
       (try_end),
       (call_script, "script_troop_talk_presentation", ":troop_pic", 7, 0),
-      (store_random_in_range, ":ally_entry", 2, 11),
-      (entry_point_get_position, pos4, ":ally_entry"),
-      (set_spawn_position, pos4), 
+
       (try_for_range, ":unused", 0, ":num_enemies"),
           (store_random_in_range, ":rnd_troop", 0,100),
           (le, ":rnd_troop", 50),
@@ -4073,6 +4338,22 @@ mission_templates = [ # not used in game
   (call_script, "script_count_mission_casualties_from_agents"),
   (jump_to_menu, "mnu_sea_battle_quest_results"),
   (finish_mission, 1),]),
+
+] + ((is_a_wb_mt==1) and [
+
+(3, 0, 0, [], [ #agent fadeout if under sea level
+   (set_fixed_point_multiplier, 100),
+    (try_for_agents, ":agent"),
+        (agent_get_position, pos1, ":agent"),
+        (position_get_z, ":height", pos1),
+        (lt, ":height", -3),
+        (agent_fade_out, ":agent"),
+    (try_end),
+    ]),
+
+  health_restore_on_kill,
+
+] or []) + [
  
   common_inventory_not_available, 
   common_music_situation_update,
@@ -4154,9 +4435,9 @@ mission_templates = [ # not used in game
      (48,mtef_attackers|mtef_team_3,af_override_horse,aif_start_alarmed,3,[]),
      
      # Initial defender spawn point (was 11)  - Split this into 3 and distribute teams   																								  
-     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,3,[]),
-     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,3,[]),
-     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,3,[]),
+     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,2,[]),
+     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,2,[]),
+     (40,mtef_defenders|mtef_team_2|mtef_infantry_first,af_override_horse,aif_start_alarmed,2,[]),
 
      # Defender choke points (was 10)
      (41,mtef_defenders|mtef_team_0|mtef_infantry_first,af_override_horse,aif_start_alarmed,8,[]), # team left flank
@@ -4174,16 +4455,16 @@ mission_templates = [ # not used in game
      (49,mtef_attackers|mtef_team_5,af_override_horse,aif_start_alarmed,7,[]),
 
      # defender archer target positions (was 40-43)
-     (50,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]), # team left flank
-     (51,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
-     (52,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
-   (53,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
-   (54,mtef_defenders|mtef_team_2|mtef_archers_first,af_override_horse,aif_start_alarmed,3,[]), # team center
-     (55,mtef_defenders|mtef_team_2|mtef_archers_first,af_override_horse,aif_start_alarmed,3,[]),
-     (56,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]), # team right flank
-   (57,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
-     (58,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
-     (59,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
+     (50,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]), # team left flank
+     (51,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
+     (52,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
+   (53,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
+   (54,mtef_defenders|mtef_team_2|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]), # team center
+     (55,mtef_defenders|mtef_team_2|mtef_archers_first,af_override_horse,aif_start_alarmed,2,[]),
+     (56,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]), # team right flank
+   (57,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
+     (58,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
+     (59,mtef_defenders|mtef_team_4|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
   ],
    tld_common_wb_muddy_water+
     common_deathcam_triggers+
@@ -4194,10 +4475,10 @@ mission_templates = [ # not used in game
     (team_set_relation, 7, 0, 1),(team_set_relation, 7, 2, 1),(team_set_relation, 7, 4, 1), # TLD gate aggravator team
     (team_set_relation, 7, 1, -1),(team_set_relation, 7, 3, -1),(team_set_relation, 7, 5, -1),
     (team_set_relation, 6, 1, 0),(team_set_relation, 6, 3, 0),(team_set_relation, 6, 5, 0), # player team starts neutral until player side is assigned
-	(team_set_relation, 6, 0, 0),(team_set_relation, 6, 2, 0),(team_set_relation, 6, 4, 0), # 
-    (assign, "$gate_breached",0), #for scenes without gates, just to make sure it's 0
+	(team_set_relation, 6, 0, 0),(team_set_relation, 6, 2, 0),(team_set_relation, 6, 4, 0), #
     (call_script, "script_change_banners_and_chest"),
-    (call_script, "script_remove_siege_objects")]),
+    (call_script, "script_remove_siege_objects"),
+    (assign, "$gate_aggravator_agent", 1),]),
 
   # Siege Tutorial
 
@@ -4214,6 +4495,7 @@ mission_templates = [ # not used in game
       (val_add, "$formations_tutorial", 1),
       ]),
 
+# mission start triggers
   (0, 0, ti_once, [],[
     (assign,"$battle_won",0),
     (assign,"$defender_reinforcement_stage",0),
@@ -4248,6 +4530,48 @@ mission_templates = [ # not used in game
       (finish_mission,0),
     ]),
 
+
+   ] + (is_a_wb_mt==1 and [    
+  #find and open retreat gates
+  (1, 0, ti_once, [],[
+            (scene_prop_get_num_instances,":max_gates","spr_gate_destructible_retreat"), 
+            (try_begin), #gates start
+              (gt, ":max_gates",0),
+              (try_for_range,":count",0,":max_gates"), #gates loop
+                (scene_prop_get_instance,":gate_no", "spr_gate_destructible_retreat", ":count"),
+                (scene_prop_set_slot, ":gate_no", scene_prop_open_or_close_slot, 1),
+                (prop_instance_get_starting_position, pos1, ":gate_no"),
+                (prop_instance_get_scale, pos2, ":gate_no"),
+                (position_get_scale_x, ":orientation", pos2),
+                (try_begin),
+                    (lt, ":orientation", 0), #mirrored?
+                    (position_rotate_z, pos1, -85),
+                (else_try),
+                    (position_rotate_z, pos1, 85), 
+                (try_end),
+                (prop_instance_animate_to_position, ":gate_no", pos1, 200), #animate in 2 second
+                          
+                #find dependent barriers, move them underground
+                (scene_prop_get_num_instances,":max_barriers","spr_ai_limiter_gate_breached"), 
+                (try_begin), # barriers start
+                  (gt, ":max_barriers",0),
+                  (try_for_range,":count",0,":max_barriers"), #barriers loop
+                    (scene_prop_get_instance,":barrier_no", "spr_ai_limiter_gate_breached", ":count"),
+                    (prop_instance_get_starting_position, pos1, ":barrier_no"),
+                    (prop_instance_get_variation_id, ":var1", ":barrier_no"),
+                    (prop_instance_get_variation_id, ":var1_gate", ":gate_no"),
+                    (eq, ":var1", ":var1_gate"),
+                    #(display_message, "@barrier found"),
+                    (position_move_z,pos1,-1000),
+                    (prop_instance_set_position,":barrier_no",pos1),
+                  (try_end), # barriers loop
+                (try_end), # barriers end
+              (try_end), # gates loop
+            (try_end), # gates end
+    ]),
+
+        ] or []) + [
+
   ## WB Only - When a horse archer spawns, we set them to Archers, instead of Cavalry.
 
   ] + (is_a_wb_mt==1 and [
@@ -4270,10 +4594,9 @@ mission_templates = [ # not used in game
    (4, 0, ti_once, [], #assign initial teams
    [(try_for_agents, ":agent_no"),
 	(get_player_agent_no, ":player_agent"),
-	#(neq, ":agent_no", ":player_agent"),
-	(neq, ":agent_no", "$gate_aggravator_agent"),
 	(agent_get_party_id, ":party_no", ":agent_no"),
 	(agent_get_troop_id, ":troop_id", ":agent_no"),
+    (agent_slot_eq, ":agent_no", slot_agent_is_not_reinforcement, 0),
 	(str_store_troop_name,s1, ":troop_id"),
 	(agent_get_entry_no, ":entry", 	":agent_no"), # spawn records, not actual entry number
         (try_begin),
@@ -4360,7 +4683,11 @@ mission_templates = [ # not used in game
     (assign,":entry",11), #iterate through 8 9 10 - changed to 12,13,14
     (store_normalized_team_count,":num_attackers",":atkteam"),
     (lt,":num_attackers",15),
-    
+
+      ] + (is_a_wb_mt==1 and [
+        (call_script, "script_siege_adjust_battle_size"),
+      ] or []) + [
+
     (store_random_in_range, ":attack_flank", 0, 4), #store attack flank, there's also a chance that there's no attack flank
     
     (try_for_range,":flank",0,3), #cycle through attacker teams and reinforce
@@ -4413,9 +4740,24 @@ mission_templates = [ # not used in game
     (try_end),   
     ]),
 
-  (0, 0, 10, [(lt,"$defender_reinforcement_stage", 100),(store_mission_timer_a,":mission_time"),(ge,":mission_time",30)],[ 
-    (assign, reg77, "$defender_reinforcement_stage"),
-    #(display_message, "@defender reinforcement stage: {reg77}"),
+  (0, 0, 10, [  (assign, ":continue", 1), 
+                (store_mission_timer_a,":mission_time"),
+                (ge,":mission_time",30),
+                (try_begin), #limit defender reinforcements if player is attacker, so sieges don't drag on
+                    (get_player_agent_no, ":player"),
+                    (neg|agent_is_defender, ":player"),
+                    (gt,"$defender_reinforcement_stage", 25),
+                    (assign, ":continue", 0),
+                (try_end),
+                (eq, ":continue", 1),
+                ],[ 
+    
+      ] + (is_a_wb_mt==1 and [
+        (call_script, "script_siege_adjust_battle_size"),
+      ] or []) + [    
+    
+    # (assign, reg77, "$defender_reinforcement_stage"),
+    # (display_message, "@defender reinforcement stage: {reg77}"),
     (assign,":defteam","$defender_team"),
     (assign,":entry",8), #Changed to 9,10,11 --> spawn entry
     (assign,":entry_number", 43), # 44,45,46 --> actual entry point
@@ -4423,12 +4765,14 @@ mission_templates = [ # not used in game
     (assign, ":spawn_point_blocked", 0),
     (get_player_agent_no, ":player_agent"),
     (try_for_range,":team",0,3), #cycle through defender teams, check if depleted and reinforce
+        (assign, ":reinforcements", 0),
         (try_begin),
           (neg|troop_slot_eq,"trp_no_troop",":team",-1), #team 0 slot number, choke point not taken yet
           (neg|troop_slot_ge,"trp_no_troop",":team",15), #if choke point not taken, we check for choke point guards
           #(lt,":num_defenders",14),
-          (assign, ":reinforcements", 1), # defender reinforcements trickling in.
+          (assign, ":reinforcements", 1), # defender reinforcements trickle in.
         (else_try), #if choke point is taken, we check overall defender number
+          (troop_slot_eq,"trp_no_troop",":team",-1),
           (store_normalized_team_count,":num_defenders",":defteam"), #note: gets overall defender number, not actual team size
           (lt,":num_defenders",30),
           (assign, ":reinforcements", 9), #1.5x attackers, to push them back.
@@ -4496,7 +4840,7 @@ mission_templates = [ # not used in game
   
     ### DESPERATE CHARGE ###
 
-    (try_begin),
+    (try_begin), #desparate charge begin
       (store_mission_timer_a,":mission_time"),
       (gt, ":mission_time", 180),
       (ge, "$attacker_reinforcement_stage", 18),
@@ -4516,8 +4860,39 @@ mission_templates = [ # not used in game
       (team_give_order, "$defender_team_3", grc_everyone, mordr_charge),
       (set_show_messages, 1),
       #(display_message,"@Defenders: everyone CHARGE!!"),
-    (try_end),
+
+        ] + (is_a_wb_mt==1 and [ 
+        #find and open retreat gates
+      (scene_prop_get_num_instances,":max_gates","spr_gate_destructible_retreat"), 
+        (try_begin), #gates start
+          (gt, ":max_gates",0),
+          (try_for_range,":count",0,":max_gates"), #gates loop
+            (scene_prop_get_instance,":gate_no", "spr_gate_destructible_retreat", ":count"),
+            (scene_prop_slot_eq, ":gate_no", scene_prop_open_or_close_slot, 0),
+            (scene_prop_set_slot, ":gate_no", scene_prop_open_or_close_slot, 1),
+            (prop_instance_get_starting_position, pos1, ":gate_no"),
+            (position_rotate_z, pos1, 85), 
+            (prop_instance_animate_to_position, ":gate_no", pos1, 200), #animate in 2 second                             
+            #find dependent barriers, move them underground
+            (scene_prop_get_num_instances,":max_barriers","spr_ai_limiter_gate_breached"), 
+            (try_begin), # barriers start
+              (gt, ":max_barriers",0),
+              (try_for_range,":count",0,":max_barriers"), #barriers loop
+                (scene_prop_get_instance,":barrier_no", "spr_ai_limiter_gate_breached", ":count"),
+                (prop_instance_get_starting_position, pos1, ":barrier_no"),
+                (prop_instance_get_variation_id, ":var1", ":barrier_no"),
+                (prop_instance_get_variation_id, ":var1_gate", ":gate_no"),
+                (eq, ":var1", ":var1_gate"),
+                (position_move_z,pos1,-1000),
+                (prop_instance_set_position,":barrier_no",pos1),
+              (try_end), # barriers loop
+            (try_end), # barriers end
+          (try_end), # gates loop
+        (try_end), # gates end
+        ] or []) + [
+    (try_end), #desparate charge end
     ]),
+
 
     #update player team
     ] + (is_a_wb_mt==1 and [
@@ -4590,6 +4965,7 @@ mission_templates = [ # not used in game
             (try_for_agents, ":agent_no"),
                 (agent_is_alive, ":agent_no"),
                 (neg|agent_is_defender, ":agent_no"),
+                (neq, ":agent_no", ":player_agent"),
             ] + (is_a_wb_mt==1 and [
                 (agent_fade_out, ":agent_no"),
             ] or [
@@ -4637,7 +5013,7 @@ mission_templates = [ # not used in game
   ## We check the troop slot of trp_no_troop (defenders: 0,1,2) which corresponds to each choke point (entry 41,42,43)
   ## If we find less than 2 defenders near the chokepoint, we consider that chokepoint taken and the team that is assigned to that choke point is asked to charge.
 
-  (10, 0, 0,[(gt, "$defender_reinforcement_stage", 2)], [# check if targets are captured by attackers;
+  (10, 0, 0,[(gt, "$defender_reinforcement_stage", -1)], [# check if targets are captured by attackers;
     (try_for_range, ":slot",0,6),
       (neg|troop_slot_eq,"trp_no_troop",":slot",-1), # -1 in slot means this flank defeated its choke and proceeds with charge
       (troop_set_slot,"trp_no_troop",":slot",0),
@@ -4654,7 +5030,7 @@ mission_templates = [ # not used in game
 				# (get_distance_between_positions, ":dist", pos0, pos10),
 				# (lt,":dist", 500),
 	(set_fixed_point_multiplier, 100),
-	(try_for_range, ":entry",41,44), 
+	(try_for_range, ":entry",41,44), # entry loop
 		
 		(entry_point_get_position, pos90, ":entry"),
         
@@ -4691,7 +5067,7 @@ mission_templates = [ # not used in game
 
 
 ## Step 2: Now, check slot counts
-		(try_begin),
+		(try_begin), # slot counts start
 			(store_sub,":slot_defender",":entry",41), #0, 1, 2
 			
 			#debug
@@ -4705,9 +5081,65 @@ mission_templates = [ # not used in game
 		  (store_mul,":defteam",":slot_defender",2),(store_add,":atkteam",":defteam",1), #this just calls the relevant team numbers from the slot number
 		  (team_give_order, ":defteam", grc_infantry, mordr_charge),
 		  (team_give_order, ":defteam", grc_cavalry, mordr_charge),
-		  (team_give_order, ":atkteam", grc_archers, mordr_charge),     
-		(try_end),
-	(try_end),
+		  (team_give_order, ":atkteam", grc_archers, mordr_charge),
+
+    ] + (is_a_wb_mt==1 and [ 
+          #find and close retreat gates
+            (scene_prop_get_num_instances,":max_gates","spr_gate_destructible_retreat"), 
+            (try_begin), #gates start
+              (gt, ":max_gates",0),
+              (try_for_range,":count",0,":max_gates"), #gates loop
+                (scene_prop_get_instance,":gate_no", "spr_gate_destructible_retreat", ":count"),
+                (prop_instance_get_variation_id_2, ":var2", ":gate_no"),
+                (eq, ":var2", ":entry"),                
+                (scene_prop_slot_eq, ":gate_no", scene_prop_open_or_close_slot, 1),
+                (scene_prop_set_slot, ":gate_no", scene_prop_open_or_close_slot, 0),
+                (prop_instance_get_starting_position, pos1, ":gate_no"),
+                (position_rotate_z, pos1, 0), #back to starting position
+                (prop_instance_animate_to_position, ":gate_no", pos1, 200), #animate in 2 second
+                
+                #spawn gate aggravator
+                (position_move_z, pos1, 50,1), #safeguard against aggravators spawning underground
+                (prop_instance_get_scale, pos2, ":gate_no"),
+                (position_get_scale_x, ":x", pos2),
+                (val_mul, ":x", -2),
+                (position_move_x, pos1, ":x",0), 
+                # (try_begin), #move them slightly into the middle so they're easier to hit
+                    # (lt, ":orientation", 0), #mirrored?
+                    # (position_move_x, pos1, 100,0), 
+                # (else_try),
+                    # (position_move_x, pos1, -100,0), 
+                # (try_end),
+                (set_spawn_position, pos1),
+                #(spawn_scene_prop, spr_banner_stand_a), #debug
+                (spawn_agent,"trp_gate_aggravator"),
+                (assign, ":gate_aggravator", reg0),
+                (scene_prop_set_slot, ":gate_no", slot_prop_agent_1, ":gate_aggravator"),
+                (agent_set_speed_limit, ":gate_aggravator", 0),
+                (agent_set_team, ":gate_aggravator", 2),
+                (agent_set_no_dynamics, ":gate_aggravator",1),
+                (agent_set_no_death_knock_down_only, ":gate_aggravator", 1),
+                (agent_set_position, ":gate_aggravator", pos1),
+                 
+                #find dependent barriers, move them into place
+                (scene_prop_get_num_instances,":max_barriers","spr_ai_limiter_gate_breached"), 
+                (try_begin), # barriers start
+                  (gt, ":max_barriers",0),
+                  (try_for_range,":count",0,":max_barriers"), #barriers loop
+                    (scene_prop_get_instance,":barrier_no", "spr_ai_limiter_gate_breached", ":count"),
+                    (prop_instance_get_starting_position, pos1, ":barrier_no"),
+                    (prop_instance_get_variation_id, ":var1", ":barrier_no"),
+                    (prop_instance_get_variation_id, ":var1_gate", ":gate_no"),
+                    (eq, ":var1", ":var1_gate"),
+                    (position_move_z,pos1,0), #back to starting position
+                    (prop_instance_set_position,":barrier_no",pos1),
+                  (try_end), # barriers loop
+                (try_end), # barriers end
+              (try_end), # gates loop
+            (try_end), # gates end
+    ] or []) + [
+		(try_end), # slot counts end
+	(try_end), # entry loop
    ]),
 
 
@@ -4792,7 +5224,6 @@ mission_templates = [ # not used in game
     (team_set_relation, 7, 1, -1),(team_set_relation, 7, 3, -1),(team_set_relation, 7, 5, -1),
     (team_set_relation, 6, 1, 0),(team_set_relation, 6, 3, 0),(team_set_relation, 6, 5, 0), # player team starts neutral until player side is assigned
 	(team_set_relation, 6, 0, 0),(team_set_relation, 6, 2, 0),(team_set_relation, 6, 4, 0), # 
-    (assign, "$gate_breached",0), #for scenes without gates, just to make sure it's 0
     (call_script, "script_change_banners_and_chest"),
     (call_script, "script_remove_siege_objects")]),
 
@@ -5415,6 +5846,16 @@ mission_templates = [ # not used in game
 	  (26,mtef_visitor_source|mtef_team_2, af_override_horse, 0, 1, []),(27,mtef_visitor_source|mtef_team_2, af_override_horse, 0, 1, []),(28,mtef_visitor_source|mtef_team_2, af_override_horse, 0, 1, []),(29,mtef_visitor_source|mtef_team_2, af_override_horse, 0, 1, []),
     ],tld_common_wb_muddy_water+[
 	common_inventory_not_available,
+    
+     ] + (is_a_wb_mt==1 and [
+    tld_move_ai,
+    tld_ai_kicking,
+    tld_ai_is_kicked,
+    tld_melee_ai,
+    tld_improved_horse_archer_ai,
+    hp_shield_init,
+    hp_shield_trigger,
+    ] or []) + [
 #	(ti_tab_pressed, 0, 0, [(display_message, "@Cannot leave now.")], []),
 			
 	(ti_tab_pressed,0,0,[],[
@@ -5687,7 +6128,7 @@ mission_templates = [ # not used in game
     custom_battle_check_victory_condition,
     common_battle_victory_display,
     custom_battle_check_defeat_condition,
-	(ti_before_mission_start,0,0,[],[(set_rain,1,100),(team_set_relation,6,0,1),(team_set_relation,6,2,1),(assign,"$gate_aggravator_agent",-1)]),
+	(ti_before_mission_start,0,0,[],[(set_rain,1,100),(team_set_relation,6,0,1),(team_set_relation,6,2,1),(assign,"$gate_aggravator_agent",1)]),
     (0, 0, ti_once,[],[
 		(assign, "$defender_team", 0),
 		(assign, "$attacker_team", 1),
@@ -5835,10 +6276,13 @@ mission_templates = [ # not used in game
 ]),
 ("legendary_place_visit",0,-1,
  "You visit a legendary place.",
-    [(0,mtef_scene_source|mtef_team_0,0,0,1,[]),(1,mtef_scene_source|mtef_team_0,0,0,1,[]),(16,mtef_scene_source|mtef_team_0,0,0,1,[]),
+    [(0,mtef_scene_source|mtef_team_0,0,0,1,[]),(1,mtef_scene_source|mtef_team_0,af_override_horse,0,1,[]),(16,mtef_scene_source|mtef_team_0,0,0,1,[]),
      (17,mtef_scene_source|mtef_team_0,0,0,1,[]),(18,mtef_scene_source|mtef_team_0,0,0,1,[]),(19,mtef_scene_source|mtef_team_0,0,0,1,[]),
-     ],tld_common_wb_muddy_water+[
+     ],tld_common_wb_muddy_water+fade+tld_common_peacetime_scripts+[
+    
     (ti_tab_pressed, 0, 0, [],[(finish_mission,0)]),
+    (0,0,ti_once,[],[(music_set_situation, 0),]), #no music
+    (2, 0, 0, [(call_script, "script_center_ambiance_sounds")], []),
 	  
     (0,0,ti_once,[],
       [(try_begin),
@@ -5846,7 +6290,10 @@ mission_templates = [ # not used in game
         (play_sound, "$bs_night_sound", sf_looping),
 			 (else_try),
          (play_sound, "$bs_day_sound",   sf_looping),
-			 (try_end)]),
+			 (try_end),
+        (assign, "$temp_2", 0), #for spawn control on scene props, particle effects etc.    
+        ]),
+
      (10, 0, ti_once, [], [ # Kham - Give legendary place description
         (try_begin),
           (eq, "$g_encountered_party", "p_legend_amonhen"),
@@ -5953,7 +6400,11 @@ mission_templates = [ # not used in game
     [(0 ,mtef_visitor_source|mtef_team_0,0,aif_start_alarmed,1,[]),(1 ,mtef_visitor_source|mtef_team_2,0,aif_start_alarmed,1,[]),(4 ,mtef_visitor_source|mtef_team_2,0,aif_start_alarmed,1,[])
 	],tld_common_wb_muddy_water+[
 	(ti_tab_pressed, 0, 0, [],[(finish_mission,0)]),
-	(ti_before_mission_start, 0, 0, [], [(assign, "$dungeons_in_scene",1)]),	
+	(ti_before_mission_start, 0, 0, [], [(assign, "$dungeons_in_scene",1), 
+       ] + (is_a_wb_mt==1 and [
+        (scene_set_day_time, 12),
+       ] or []) + [
+    ]),	
 	dungeon_darkness_effect,
 ]),
 
@@ -5974,7 +6425,19 @@ mission_templates = [ # not used in game
 	],tld_common_wb_muddy_water+[
     (ti_tab_pressed, 0, 0, [],[(question_box,"@Trace back your steps and go back in the open now?")]),
 	(ti_question_answered, 0, 0, [], [ (store_trigger_param_1,":answer"), (eq,":answer",0), (finish_mission)]),
-	(ti_before_mission_start, 0, 0, [], [(assign, "$dungeons_in_scene",1), (play_sound, "snd_moria_ambiance", sf_looping), ]),
+	(ti_before_mission_start, 0, 0, [], [
+        (assign, "$dungeons_in_scene",1), 
+        (play_sound, "snd_moria_ambiance", sf_looping), 
+        (replace_scene_props, "spr_troop_archer", "spr_empty"),
+        (replace_scene_props, "spr_troop_castle_guard", "spr_empty"),
+        (replace_scene_props, "spr_troop_guard", "spr_troop_civilian"),
+		(replace_scene_props, "spr_troop_guard_sitting", "spr_empty"), # (CppCoder) These are what cause the "unable to finish" bugs.
+		(replace_scene_props, "spr_troop_human_prisoner", "spr_empty"),
+		(replace_scene_props, "spr_troop_troll", "spr_empty"),
+        (try_for_range, ":prop", spr_troop_civ_lying, spr_troop_priest+1), #remove town agents
+            (replace_scene_props, ":prop", "spr_empty"),
+        (try_end),
+        ]),
 	dungeon_darkness_effect,
 ]),
 ( "dungeon_crawl_moria_deep",mtf_battle_mode,-1,
@@ -5985,6 +6448,7 @@ mission_templates = [ # not used in game
 	(ti_question_answered, 0, 0, [], [ 
 		(store_trigger_param_1,":answer"), (eq,":answer",0), (troop_remove_item, "trp_player","itm_book_of_moria"), (assign, "$recover_after_death_menu", "mnu_recover_after_death_moria"), (jump_to_menu,"mnu_tld_player_defeated"), (finish_mission)]),
 	(ti_before_mission_start, 0, 0, [], [ (set_fog_distance,18,0x000001),(assign, "$dungeons_in_scene",1),(play_sound, "snd_moria_ambiance", sf_looping),]),
+    (0,0,ti_once,[],[(entry_point_get_position, pos1, 1), (set_spawn_position, pos1),(spawn_item, "itm_orc_throwing_arrow"),]),
 	dungeon_darkness_effect,
 ]),
 
@@ -6118,7 +6582,7 @@ mission_templates = [ # not used in game
 	(5,0,0,[(store_mission_timer_a, ":time"),(ge, ":time", 25)],[ 
 	  (try_begin),
         (ge, "$meta_alarm", 10),
-        (display_message, "@You have been to slow: The alarm has spread, and the sorcerer made his escape before you could get close."),
+        (display_message, "@You have been too slow: The alarm has spread, and the sorcerer made his escape before you could get close."),
         (finish_mission, 5),
         (fail_quest, "qst_mirkwood_sorcerer"),
       (else_try),
@@ -6241,7 +6705,7 @@ mission_templates = [ # not used in game
         (set_visitor, 21, "$guard_troop6", 0),(set_visitor, 22, "$guard_troop7", 0),(set_visitor, 23, "$guard_troop8", 0),(set_visitor, 24, "$guard_troop9", 0),(set_visitor, 25, "$guard_troop10", 0),
     (else_try),
         (ge, "$meta_alarm", 8),
-        (display_message, "@You have been to slow: The alarm has spread, and the sorcerer made his escape before you could get close."),
+        (display_message, "@You have been too slow: The alarm has spread, and the sorcerer made his escape before you could get close."),
         (finish_mission, 7),
         (fail_quest, "qst_mirkwood_sorcerer"),
     (try_end),
@@ -6898,16 +7362,15 @@ tld_remove_riderless_animals,
       (1,mtef_visitor_source|mtef_team_0,0,aif_start_alarmed,1,[]),
      
       # Player:
-      (4,mtef_team_1|mtef_attackers|mtef_use_exact_number,0,aif_start_alarmed,8,[]),
-      (4,mtef_team_1|mtef_attackers|mtef_use_exact_number,0,aif_start_alarmed,8,[]),
+      (4,mtef_team_1|mtef_attackers|mtef_use_exact_number|mtef_infantry_first|af_override_horse,0,aif_start_alarmed,8,[]),
+      (4,mtef_team_1|mtef_attackers|mtef_use_exact_number|mtef_infantry_first|af_override_horse,0,aif_start_alarmed,8,[]),
      
 
    ],
   # Triggers
   tld_common_wb_muddy_water+
   tld_common_battle_scripts+
-  common_deathcam_triggers +
-  moto_formations_triggers +  [
+  common_deathcam_triggers + [
   
 
   common_battle_on_player_down,

@@ -511,25 +511,65 @@ tld_slow_wounded  = (1, 0, 0, [(eq, "$slow_when_wounded", 1),],
 			
 	
 
-# CC: This trigger prevents galadriel (maybe other non-battle heroes?) from fighting in battles.
-tld_remove_galadriel = 	(0.1,0,0,
-			[(eq, "$current_town", "p_town_caras_galadhon")], 
-			[
-			(try_for_agents, ":cur_agent"),
-				(agent_get_troop_id,":troop", ":cur_agent"),
-				(eq, ":troop", "trp_lorien_lord"),
-				(call_script, "script_remove_agent", ":cur_agent"),
-			(try_end),
-			])
+# CC: This trigger prevents galadriel (maybe other non-battle heroes?) from fighting in battles. #InVain: Combined with trigger below
+# tld_remove_galadriel = 	(10,0,0,
+			# [(eq, "$current_town", "p_town_caras_galadhon")], 
+			# [
+			# (try_for_agents, ":cur_agent"),
+                # (agent_is_alive),
+				# (agent_get_troop_id,":troop", ":cur_agent"),
+				# (eq, ":troop", "trp_lorien_lord"),
+            # ] + (is_a_wb_mt==1 and [
+                # (agent_fade_out, ":cur_agent"),
+            # ] or [
+				# (call_script, "script_remove_agent", ":cur_agent"),
+            # ]) + [
+                # (display_message, "@galadriel removed?"),
+			# (try_end),
+			# ])
 
-tld_remove_volunteer_troops = (0.1,0,0, [(is_between, "$current_town", centers_begin, centers_end)], 
-			[
-			(try_for_agents, ":cur_agent"),
+tld_assign_special_troops = (ti_on_agent_spawn, 1, 0, [(is_between, "$current_town", centers_begin, centers_end)], #handles troops to be removed and battle companions
+			[  (store_trigger_param_1, ":cur_agent"),
+                (gt, ":cur_agent", 0), #avoids script errors for some reason
+                (agent_is_alive, ":cur_agent"),
 				(agent_get_troop_id,":troop", ":cur_agent"),
-				(this_or_next|eq, ":troop", "trp_volunteers"), #Kham - remove 'volunteer' agent
-				(eq, ":troop", "trp_werewolf"), # Kham - Remove Werewolves from Sieges
-				(call_script, "script_remove_agent", ":cur_agent"),
-			(try_end),
+                
+                (try_begin),
+                    (this_or_next|eq, ":troop", "trp_volunteers"),
+                    (this_or_next|eq, ":troop", "trp_lorien_lord"),
+                    (this_or_next|eq, ":troop", "trp_isengard_lord"),
+                    (eq, ":troop", "trp_werewolf"),
+                ] + (is_a_wb_mt==1 and [
+                    (agent_fade_out, ":cur_agent"),
+                ] or [
+                    (call_script, "script_remove_agent", ":cur_agent"),
+                ]) + [
+                (try_end),
+            
+            (try_begin), #handle Aragorn, Legolas, Gimli
+                (check_quest_active, "qst_guardian_party_quest"),
+                (quest_slot_eq, qst_guardian_party_quest, slot_quest_target_center, "$current_town"),
+                (this_or_next|eq, ":troop", "trp_aragorn"),
+                (this_or_next|eq, ":troop", "trp_legolas"),
+				(eq, ":troop", "trp_gimli"),
+                (agent_set_slot, ":cur_agent", slot_agent_is_not_reinforcement, 1),
+                (get_player_agent_no, ":player_agent"),
+                (set_fixed_point_multiplier, 100),
+                (agent_get_position, pos20, ":player_agent"),
+                (position_move_z, pos1, 200),
+                (agent_set_position, ":cur_agent", pos20),
+                (agent_get_team, ":player_team", ":player_agent"),
+                (agent_set_team, ":cur_agent", ":player_team"),
+                (agent_clear_scripted_mode, ":cur_agent"),
+                 ] + (is_a_wb_mt==1 and [
+                (agent_force_rethink, ":cur_agent"),
+                (le, "$original_savegame_version", 34), #bugfix for old savegames
+                (eq, ":troop", "trp_aragorn"),
+                (agent_equip_item, ":cur_agent", itm_arnor_light_b, ek_body, imod_lordly),
+                (agent_equip_item, ":cur_agent", itm_riv_bas_sword, 0, imod_lordly),
+                (agent_equip_item, ":cur_agent", itm_leather_boots, ek_foot, imod_lordly),
+                ] or []) + [
+            (try_end)
 			])
 	
 
@@ -1353,6 +1393,7 @@ formations_triggers = [
 			(class_is_listening_order, "$fplayer_team_no", reg0),
 			(val_add, ":num_bgroups", 1),
 		(try_end),		
+        (get_player_agent_no, "$fplayer_agent_no"), #can prevent script errors in rare cases
 		(agent_get_position, pos22, "$fplayer_agent_no"),		
 		(try_begin),
 			(neq, "$infantry_formation_type", formation_none),
@@ -3390,64 +3431,159 @@ or
 
 )
 
+#InVain: Adjusted for all monsters: Camels, bears etc, also player
 custom_tld_horses_hate_trolls = ((is_a_wb_mt==1) and (
-	1,0,1, [(eq,"$trolls_in_battle",1)],[
-                (get_player_agent_no, ":player_agent"),
-		(try_for_agents,":troll"),          # horse rearing near troll
-			(agent_is_alive, ":troll"), #GA: horses hate dead trolls too - Removed (kham)
-			(agent_get_troop_id,":troop_race",":troll"),
-			(try_begin), # CC: Change string if it is an ent and not a troll			
-				(assign, reg73, 0),
-				(eq, ":troop_race", "trp_ent"),
-				(assign, reg73, 1),
-			(try_end),
-			(troop_get_type, ":type", ":troop_race"),
-			(try_begin),
-				(eq, ":type", tf_troll),
-				(agent_get_position,pos1,":troll"),
-				(agent_ai_get_num_cached_enemies, ":num_nearby_agents", ":troll"),
-				(assign, reg10, ":num_nearby_agents"),
-				(gt, ":num_nearby_agents", 0),
+	1,0,2, [],[
+        (get_player_agent_no, ":player_agent"),
+        (set_fixed_point_multiplier, 100),
+        (store_mission_timer_a, ":timer"),
+		(try_for_agents,":monster"),          # horse rearing near troll
+			(agent_is_alive, ":monster"),
+            (agent_is_human, ":monster"),
+			(agent_get_troop_id,":troop_no",":monster"),
+            (str_clear, s5),
+            (str_clear, s6),
+            (assign, ":monster_horse_type", 0),            
+			(troop_get_type, ":type", ":troop_no"),
+            (agent_get_horse, ":monster_horse", ":monster"),
+            
+            (try_begin), 
+                (ge, ":monster_horse", 1),
+                (agent_get_item_id, ":monster_horse_type", ":monster_horse"),
+                #(str_store_item_name, s5, ":monster_horse_type"),  
+            (try_end),
+            
+            (try_begin),
+                (neg|troop_is_hero, ":troop_no"),
+                
+                (this_or_next|eq, ":type", tf_troll),
+                (this_or_next|eq, ":monster_horse_type", itm_camel),
+                (this_or_next|eq, ":monster_horse_type", itm_bear),
+                (eq, ":monster_horse_type", itm_werewolf),
+                (str_store_agent_name, s5, ":monster"),
 
-				(try_for_range, ":nearby_agent_no", 0, ":num_nearby_agents"),
-					(agent_ai_get_cached_enemy, ":rider", ":troll", ":nearby_agent_no"),
-					(agent_is_active, ":rider"),
-					(agent_get_horse, ":horse", ":rider"),
-					(agent_is_alive,":rider"),
-					(gt, ":horse", 1),
-					(agent_get_position,pos2,":rider"),
-					(get_distance_between_positions,":dist",pos1,pos2),
-					(lt,":dist",700),
-					(agent_get_troop_id, ":rider_troop", ":rider"), #Riding skill helps avoid (InVain)
-                                        # Arsakes: exclude all invisible riders (animals + wargs + bearshifter)
-                                        (neg|is_between, ":rider_troop", warg_ghost_begin, warg_ghost_end),
-                                        (neg|is_between, ":rider_troop", "trp_spider", "trp_dorwinion_sack"),
-                                        (neq, ":rider_troop", "trp_werewolf"),
-                                        (neq, ":rider_troop", "trp_multiplayer_profile_troop_male"),
+                (try_begin),
+                    (ge, ":monster_horse", 1),
+                    (agent_get_item_id, ":monster_horse_type", ":monster_horse"),
+                    (str_store_item_name, s5, ":monster_horse_type"),  
+                (try_end),
 
-					(store_skill_level, ":riding", "skl_riding", ":rider_troop"),
-					(store_add, ":riding_chance", ":riding", 6),
-						#(assign, reg5, ":riding_chance"),
-						#(display_message, "@chance = {reg5}"),
-					(store_random_in_range, ":random", 0, ":riding_chance"),
-						#(assign, reg6, ":random"),
-						#(display_message, "@random = {reg6}"),
-					(try_begin),(le,":random",1),(agent_set_animation,":horse","anim_horse_rear"      ),(agent_play_sound,":horse","snd_neigh"),
-					 #(else_try),(eq,":random",1),(agent_set_animation,":horse","anim_horse_turn_right"),(agent_play_sound,":horse","snd_horse_low_whinny"), #these animations don't seem to bring the horse to a stop
-					 #(else_try),(eq,":random",2),(agent_set_animation,":horse","anim_horse_turn_left"),(agent_play_sound,":horse","snd_horse_low_whinny"),
-					(try_end),
+                (agent_get_position,pos1,":monster"),
+                (agent_ai_get_num_cached_enemies, ":num_nearby_agents", ":monster"),
+                (assign, reg10, ":num_nearby_agents"),
+                (gt, ":num_nearby_agents", 0),
+
+                (try_for_range, ":nearby_agent_no", 0, ":num_nearby_agents"),
+                    (agent_ai_get_cached_enemy, ":rider", ":monster", ":nearby_agent_no"),
+                    (agent_is_active, ":rider"),
+                    (agent_is_alive,":rider"),
+                    (agent_is_human, ":rider"),
+                    (agent_get_horse, ":horse", ":rider"),                        
+                    (gt, ":horse", 1),
+                    (agent_get_item_id, ":victim_horse_type", ":horse"),
+                    (agent_get_position,pos2,":rider"),
+                    (get_distance_between_positions,":dist",pos1,pos2),
+                    (lt,":dist",700),
+                    (agent_get_troop_id, ":rider_troop", ":rider"), 
+
+                    #never scared
+                    (neg|is_between, ":rider_troop", "trp_spider", "trp_dorwinion_sack"),
+                    (neq, ":rider_troop", "trp_werewolf"),
+                    (neq, ":rider_troop", "trp_multiplayer_profile_troop_male"),
+                    (neq, ":victim_horse_type", "itm_mearas_reward"),
+
+                    #conditionally scared
+                    (assign, ":scare_check", 1),
+                    (try_begin), #wargs not scared by trolls
+                        (eq, ":type", tf_troll), (is_between, ":victim_horse_type", item_warg_begin, item_warg_end),
+                        (assign, ":scare_check", 0),
+                    (else_try),
+                        (eq, ":monster_horse_type", itm_camel), (this_or_next|eq, ":victim_horse_type", itm_camel), (is_between, ":victim_horse_type", item_warg_begin, item_warg_end),
+                        (assign, ":scare_check", 0),
+                    (else_try),
+                        (eq, ":monster_horse_type", itm_bear), (eq, ":victim_horse_type", itm_bear),
+                        (assign, ":scare_check", 0),                    
+                    (try_end),
+
+                    (eq, ":scare_check", 1),
+                    (agent_get_slot, ":last_stun", ":horse", slot_agent_last_knockdown_time), #use a slot to avoid stunlocking (also affected by trolls)
+                    (gt, ":timer", ":last_stun"), 
+                    (val_add, ":timer", 6), #six seconds cooldown between stuns
+                    (agent_set_slot, ":horse", slot_agent_last_knockdown_time, ":timer"),                        
+                    (store_skill_level, ":riding", "skl_riding", ":rider_troop"), #Riding skill helps avoid (InVain)
+                    (val_add, ":riding", 2),
+                    (store_random_in_range, ":scare_chance", 0, 12),
+                    (try_begin),
+                        (ge,":scare_chance",":riding"),
+                        (agent_set_animation,":horse","anim_horse_rear"),
+                        (agent_play_sound,":horse","snd_neigh"), 
+                    (try_end),                    
                     # let the player know what happened
-					(try_begin),
+                    (try_begin),
                         (eq, ":rider", ":player_agent"),
-                        (is_between, ":random", 0, 2),
-                        (display_message, "@Your mount is scared by the {reg73?ent:troll}!",color_bad_news),
-					   (else_try),
-					    (eq, ":rider", ":player_agent"),
-                        (ge, ":random", 6),
-                        (display_message, "@Your mount is scared by the {reg73?ent:troll}, but you can master it!",color_bad_news),
-					(try_end),
-				(try_end),
-			(try_end),
+                        (ge,":scare_chance",":riding"),
+                        (display_message, "@Your mount is scared by the {s5}!",color_bad_news),
+                       (else_try),
+                        (eq, ":rider", ":player_agent"),
+                        (lt,":scare_chance",":riding"),
+                        (display_message, "@Your mount is scared by the {s5}, but you can master it!",color_bad_news),
+                    (try_end),  
+                (try_end),
+            
+            (else_try), #for players and NPCs, we use agent loops
+                (agent_is_alive, ":monster"),               
+                (agent_is_human, ":monster"),
+                (this_or_next|troop_is_hero, ":troop_no"),
+                (eq, ":troop_no", trp_player),
+                (agent_get_team, ":monster_team", ":monster"),
+                
+                (this_or_next|eq, ":type", tf_troll),
+                (eq, ":monster_horse_type", itm_camel),
+                          
+                (agent_get_position,pos1,":monster"),
+                (try_for_agents, ":victim", pos1, 700),
+                    (agent_is_active, ":victim"),
+                    (agent_is_alive,":victim"),
+                    (agent_is_human, ":victim"),
+                    (agent_get_horse, ":horse", ":victim"),  
+                    (gt, ":horse", 1),
+                    (agent_get_team, ":victim_team", ":victim"),
+                    (teams_are_enemies, ":monster_team", ":victim_team"),
+                    (agent_get_troop_id, ":rider_troop", ":victim"), #Riding skill helps avoid (InVain)
+                    
+                    #never scared
+                    (neg|is_between, ":rider_troop", "trp_spider", "trp_dorwinion_sack"),
+                    (neq, ":rider_troop", "trp_werewolf"),
+                    (neq, ":rider_troop", "trp_multiplayer_profile_troop_male"),
+
+                    #conditionally scared
+                    (assign, ":scare_check", 1),
+                    (try_begin), #wargs not scared by trolls
+                        (eq, ":type", tf_troll), (is_between, ":victim_horse_type", item_warg_begin, item_warg_end),
+                        (assign, ":scare_check", 0),
+                    (else_try), #camels only scare horses
+                        (eq, ":monster_horse_type", itm_camel), (this_or_next|eq, ":victim_horse_type", itm_camel), (is_between, ":victim_horse_type", item_warg_begin, item_warg_end),
+                        (assign, ":scare_check", 0),
+                    (else_try),
+                        (eq, ":monster_horse_type", itm_bear), (eq, ":victim_horse_type", itm_bear),
+                        (assign, ":scare_check", 0),                    
+                    (try_end),
+
+                    (eq, ":scare_check", 1),
+                    (agent_get_slot, ":last_stun", ":horse", slot_agent_last_knockdown_time), #use a slot to avoid stunlocking (also affected by trolls)
+                    (gt, ":timer", ":last_stun"), 
+                    (val_add, ":timer", 6), #six seconds cooldown between stuns
+                    (agent_set_slot, ":horse", slot_agent_last_knockdown_time, ":timer"),                        
+                    (store_skill_level, ":riding", "skl_riding", ":rider_troop"), #Riding skill helps avoid (InVain)
+                    (val_add, ":riding", 2),
+                    (store_random_in_range, ":scare_chance", 0, 12),
+                    (try_begin),
+                        (ge,":scare_chance",":riding"),
+                        (agent_set_animation,":horse","anim_horse_rear"),
+                        (agent_play_sound,":horse","snd_neigh"), 
+                    (try_end),    
+                (try_end),
+            (try_end),
 		(try_end),
 	])
 
@@ -3589,13 +3725,23 @@ custom_warg_sounds = (1,0,0, [(store_mission_timer_a,reg1),(ge,reg1,5),], # warg
 			(try_begin), 						#sounds for alive horses
 				(agent_is_alive, ":mount"),
 				(store_random_in_range, ":random", 1, 101), 
-				(try_begin),(le, ":random", 7),(agent_play_sound, ":mount", "snd_horse_snort1"),(try_end),
+				(try_begin),(le, ":random", 3),(agent_play_sound, ":mount", "snd_horse_snort1"),(try_end),
 			(else_try), 						#sounds for dying horses
 				(agent_slot_eq, ":mount", slot_agent_mount_dead, 0),
 				(agent_play_sound, ":mount", "snd_neigh1"),
 				(agent_set_slot,":mount", slot_agent_mount_dead, 1),
 			(try_end),
 		(else_try),
+			(eq, ":item", "itm_camel"),		
+			(try_begin), 	
+				(agent_is_alive, ":mount"),
+				(store_random_in_range, ":random", 1, 101), 
+				(try_begin),(le, ":random", 7),(agent_play_sound, ":mount", "snd_camel_sounds"),(try_end),
+			(else_try), 						
+				(agent_slot_eq, ":mount", slot_agent_mount_dead, 0),
+				(agent_play_sound, ":mount", "snd_camel_death"),
+				(agent_set_slot,":mount", slot_agent_mount_dead, 1),
+			(try_end),		(else_try),
 			(eq, ":item", "itm_spider"),			# CppCoder: Spider sounds
 			(try_begin), 	
 				(agent_is_alive, ":mount"),
@@ -3611,7 +3757,7 @@ custom_warg_sounds = (1,0,0, [(store_mission_timer_a,reg1),(ge,reg1,5),], # warg
 				(agent_is_alive, ":mount"),
 				(is_between, ":item", item_warg_begin ,item_warg_end),
 				(val_add, "$wargs_in_battle", 1), #  wargs_in_battle++
-				(store_random_in_range, ":random", 1, 101), (le, ":random", 4),  # 4% of time
+				(store_random_in_range, ":random", 1, 101), (le, ":random", 2),  # 2% of time
 				#(display_message,"@warg says: 'woof, woof!'"),
 				(agent_play_sound, ":mount", "snd_warg_lone_woof"),
 			(else_try), 						#sounds for dying wargs
@@ -4324,139 +4470,153 @@ reward_birds_wb = ((is_a_wb_mt==1) and [
 	(try_end),
 	]),
 
-    (0.1, 0, 0,  #change refresh rate to alter wing speed - copy trigger for separate bird speeds 
-    [
-	(store_mission_timer_b_msec, ":cur_time"),
-	(gt, ":cur_time", 500), #1/2 second grace period 
-      (set_fixed_point_multiplier, 100),
-      (assign, ":var0", 0),
-      (try_begin), 
-        #using global var for bird prop; if we validate player_has_item here it will stop animating if they discard it!
-        #(assign, ":var1", "$birdprop"),
-		(try_for_range, ":var1", "spr_birds_crebain", "spr_birds_end"), #InVain: So it also detects pre-palced bird props in scenes, not only those spawned from reward items
-            
-        (scene_prop_get_num_instances, ":var2", ":var1"),
-        (ge, ":var2", 1),
-        (try_for_range, ":var3", 0, ":var2"),
-          (scene_prop_get_instance, ":var4", ":var1", ":var3"),
-          (scene_prop_slot_eq, ":var4", 41, 0),
-          (scene_prop_get_slot, ":var5", ":var4", 37),
-          (prop_instance_deform_to_time, ":var4", ":var5"),
-          (val_add, ":var5", 1),
-          (try_begin),
-            (ge, ":var5", 26),
-            (assign, ":var5", 1),
-          (try_end),
-          (scene_prop_set_slot, ":var4", 37, ":var5"),
-        (try_end),
-      (else_try),
-        (assign, ":var0", 1),
-      (try_end),
-      (eq, ":var0", 1),
-       (try_begin),
-       # # (eq, "$cheat_mode_sa", 1),
-         #(display_message, "@{!}DEBUG -- vertex keys woron END (stage no animated crows)"),
-       (try_end),
-	   (try_end),
-    ],
-    []),
+    ##InVain: Got rid of this trigger, we can do it all via prop_instance_deform_in_cycle_loop within the scene prop entry
+    # (0.1, 0, 0,  #change refresh rate to alter wing speed - copy trigger for separate bird speeds 
+    # #slot 37 = animation progress
+    # #slot 41: 0=alive; 1=dead; 2=?
+    # [
+    # (store_mission_timer_b_msec, ":cur_time"),
+    # (gt, ":cur_time", 500), #1/2 second grace period 
+    # (set_fixed_point_multiplier, 100),
+    # (assign, ":check", 0), #what's this for?
+    # (try_begin), 
+        # (try_for_range, ":birdprop", "spr_birds_crebain", "spr_birds_end"), #InVain: So it also detects pre-palced bird props in scenes, not only those spawned from reward items
+            # (scene_prop_get_num_instances, ":num_instances", ":birdprop"),
+            # (ge, ":num_instances", 1),
+            # (try_for_range, ":count", 0, ":num_instances"),
+                # (scene_prop_get_instance, ":instance_no", ":birdprop", ":count"),
+                # (scene_prop_slot_eq, ":instance_no", 41, 0),
+                # (scene_prop_get_slot, ":progress", ":instance_no", 37),
+                # (prop_instance_deform_to_time, ":instance_no", ":progress"),
+                # (val_add, ":progress", 1),
+                # (try_begin),
+                    # (ge, ":progress", 26),
+                    # (assign, ":progress", 1),
+                # (try_end),
+                # (scene_prop_set_slot, ":instance_no", 37, ":progress"),
+            # (try_end),
+        # (else_try),
+            # (assign, ":check", 1),
+        # (try_end),
+        # (eq, ":check", 1),
+    # (try_end),
+    # ],
+    # []),
 
 
-    (0.1, 0, ti_once, 
+    (0.4, 0, 0, 
+    #slot 41: 0=alive; 1=dead; 2=?
+    #slot 38 = rotation 
+    #slot 39 = ideal height
+    #pos1 = destination
+    [    ],
     [
-	(store_mission_timer_b_msec, ":cur_time"),
+    (store_mission_timer_b_msec, ":cur_time"),
 	(gt, ":cur_time", 500), #1/2 second grace period 
       (set_fixed_point_multiplier, 100),
-      (assign, ":var0", 1),
       (try_begin),
         # (eq, "$g_disable_flying_birds", 1),
       # (else_try),
-        (try_for_range, ":var1", "spr_birds_crebain", "spr_birds_end"), 
-          (scene_prop_get_num_instances, ":var2", ":var1"),
-          (ge, ":var2", 1),
-          (assign, ":var0", 0),
-          (try_for_range, ":var3", 0, ":var2"),
-            (scene_prop_get_instance, ":var4", ":var1", ":var3"),
+        (try_for_range, ":birdprop", "spr_birds_crebain", "spr_birds_end"), 
+          (scene_prop_get_num_instances, ":num_instances", ":birdprop"),
+          (ge, ":num_instances", 1),
+          (try_for_range, ":count", 0, ":num_instances"),
+            (scene_prop_get_instance, ":instance_no", ":birdprop", ":count"),
             (try_begin),
-              (scene_prop_slot_eq, ":var4", 41, 0),
-              (try_begin),
-                (try_begin),
-                  (scene_prop_get_slot, ":var5", ":var4", 44),
-                  (ge, ":var5", 0),
-                  (prop_instance_get_position, pos1, ":var5"),
-                (else_try),
-                  (prop_instance_get_starting_position, pos1, ":var4"),
-                (try_end),
-                (try_begin),
-                  (prop_instance_get_position, pos2, ":var4"),
-                  (get_distance_between_positions, ":var6", pos2, pos1),
-                  (le, ":var6", 200),
+              (scene_prop_slot_eq, ":instance_no", 41, 0), #bird not shot or dead
+              
+              #(try_begin),
+                # (try_begin), #unused, probably: find initial destination pos, if slot not set, use prop starting pos
+                  # (scene_prop_get_slot, ":var5", ":instance_no", 44),
+                  # (ge, ":var5", 0),
+                  # (prop_instance_get_position, pos1, ":var5"),
+                # (else_try),
+                  (prop_instance_get_starting_position, pos1, ":instance_no"),
+                # (try_end),
+                
+                (try_begin), #if destination = starting pos, move prop away 
+                  (prop_instance_get_position, pos2, ":instance_no"),
+                  (get_distance_between_positions, ":dist_1", pos2, pos1),
+                  (le, ":dist_1", 200),
                   (try_begin),
-                    (neg|scene_prop_slot_eq, ":var4", 45, 1),
+                    (neg|scene_prop_slot_eq, ":instance_no", 45, 1),
                     (position_move_z, pos2, 700),
                   (try_end),
-                  (position_move_x, 2, 4000),
-                  (prop_instance_set_position, ":var4", pos2),
-                  (prop_instance_enable_physics, ":var4", 1),
+                  (position_move_x, pos2, 4000),
+                  (prop_instance_set_position, ":instance_no", pos2),
+                  (prop_instance_enable_physics, ":instance_no", 1),
                 (try_end),
-                (assign, ":var7", 1),
-                (try_begin),
-                  (prop_instance_is_animating, ":var8", ":var4"),
-                  (eq, ":var8", 1),
-                  (assign, ":var7", 0),
-                  (prop_instance_get_position, pos3, ":var4"),
-                  (prop_instance_get_animation_target_position, 2, ":var4"),
-                  (get_distance_between_positions, ":var9", pos2, pos3),
-                  (le, ":var9", 50),
-                  (assign, ":var7", 1),
+                
+                (assign, ":is_close", 1),
+                (try_begin), #check if prop is animating and if close to destination
+                  (prop_instance_is_animating, ":is_animating", ":instance_no"),
+                  (eq, ":is_animating", 1),
+                  (assign, ":is_close", 0),
+                  (prop_instance_get_position, pos3, ":instance_no"),
+                  (prop_instance_get_animation_target_position, pos2, ":instance_no"),
+                  (get_distance_between_positions, ":dist_2", pos2, pos3),
+                  (le, ":dist_2", 600),
+                  (assign, ":is_close", 1),
                 (try_end),
-                (eq, ":var7", 1),
-                (scene_prop_get_slot, ":var10", ":var4", 38),
-                (scene_prop_get_slot, ":var11", ":var4", 39),
-                (val_add, ":var10", 30),
-                (position_rotate_z, pos1, ":var10"),
-                (position_move_x, 1, 4000),
-                (try_begin),
-                  (neg|scene_prop_slot_eq, ":var4", 45, 1),
-                  (store_add, ":var12", 700, ":var11"),
+                
+                (eq, ":is_close", 1),
+                (scene_prop_get_slot, ":slot_38", ":instance_no", 38), #rotation
+                (scene_prop_get_slot, ":slot_39", ":instance_no", 39), #height offset ..or something
+
+                (val_add, ":slot_38", 30), #add rotation
+                (position_rotate_z, pos1, ":slot_38"),
+                (position_move_x, pos1, 4000), #move destination forward
+
+                (try_begin), #get ideal height from slot
+                  (neg|scene_prop_slot_eq, ":instance_no", 45, 1),
+                  (store_add, ":ideal_height", 700, ":slot_39"),
                 (else_try),
-                  (assign, ":var12", ":var11"),
+                  (assign, ":ideal_height", ":slot_39"),
                 (try_end),
-                (position_move_z, pos1, ":var12"),
-                (try_begin),
-                  (position_get_distance_to_terrain, ":var13", pos1),
-                  (store_div, ":var14", 700, 2),
-                  (this_or_next|ge, 0, ":var13"),
-                  (ge, ":var14", ":var13"),
+                (position_move_z, pos1, ":ideal_height"),
+
+                (try_begin), #if pos1 is too low, add ideal height
+                  (position_get_distance_to_terrain, ":height", pos1),
+                  (store_div, ":var14", 700, 2), #=350?
+                  (this_or_next|ge, 0, ":height"),
+                  (ge, ":var14", ":height"),
                   (position_set_z_to_ground_level, pos1),
-                  (position_move_z, pos1, ":var12"),
+                  (position_move_z, pos1, ":ideal_height"),
                 (try_end),
-                (prop_instance_get_position, pos2, ":var4"),
-                (get_distance_between_positions, ":var15", pos2, pos1),
-                (val_div, ":var15", 9),
-                (prop_instance_animate_to_position, ":var4", pos1, ":var15"),
-                (try_begin),
-                  (ge, ":var10", 360),
-                  (assign, ":var10", 0),
-                  (store_random_in_range, ":var11", 0, 16),
-                  (val_mul, ":var11", 80),
-                  (scene_prop_set_slot, ":var4", 39, ":var11"),
+                
+                #calculate speed and send them off
+                (prop_instance_get_position, pos2, ":instance_no"),
+                (get_distance_between_positions, ":dist_3", pos2, pos1),
+                (val_div, ":dist_3", 9), #speed is dist/9
+                (prop_instance_animate_to_position, ":instance_no", pos1, ":dist_3"), #send them on their way
+
+                # debug, for tracking
+                # (set_spawn_position, pos1), 
+                # (spawn_scene_prop, spr_banner_stand_a),
+
+                (try_begin), #assign new rotation and height slots, one could also add some randomness here, instead of flying in circles
+                  (ge, ":slot_38", 360), #only change height if it's flown a full circle already
+                  (assign, ":slot_38", 0),
+                  (store_random_in_range, ":slot_39", 0, 16),
+                  (val_mul, ":slot_39", 80),
+                  (scene_prop_set_slot, ":instance_no", 39, ":slot_39"),
                 (try_end),
-                (scene_prop_set_slot, ":var4", 38, ":var10"),
-              (try_end),
+                (scene_prop_set_slot, ":instance_no", 38, ":slot_38"),
+              #(try_end),
+              
             (else_try), #Dead birds - currently unused 
-              (scene_prop_slot_eq, ":var4", 41, 1),
+              (scene_prop_slot_eq, ":instance_no", 41, 1),
               (set_fixed_point_multiplier, 100),
               (position_set_x, pos0, 2500),
               (position_set_y, pos0, 80),
               (position_set_z, pos0, 0),
-              (prop_instance_dynamics_set_properties, ":var4", 0),
+              (prop_instance_dynamics_set_properties, ":instance_no", 0),
               (position_set_x, pos0, 0),
               (position_set_y, pos0, 0),
               (position_set_z, pos0, -800),
-              (prop_instance_dynamics_set_omega, ":var4", 0),
+              (prop_instance_dynamics_set_omega, ":instance_no", 0),
               (try_begin),
-                (prop_instance_get_position, pos1, ":var4"),
+                (prop_instance_get_position, pos1, ":instance_no"),
                # (particle_system_burst, "psys_hit_bird_blood", pos1, 1),
                # (particle_system_burst, "psys_hit_bird_feathers", pos1, 1),
                 (position_get_distance_to_terrain, ":var15", pos1),
@@ -4465,28 +4625,263 @@ reward_birds_wb = ((is_a_wb_mt==1) and [
                 #(position_align_to_ground, pos1, 1, 1),
                 (position_rotate_x, pos1, -90),
                 (position_rotate_z, pos1, ":var10"),
-                (prop_instance_enable_physics, ":var4", 0),
-                (prop_instance_set_position, ":var4", pos1),
+                (prop_instance_enable_physics, ":instance_no", 0),
+                (prop_instance_set_position, ":instance_no", pos1),
                 (position_move_z, pos1, -1),
-                (prop_instance_animate_to_position, ":var4", pos1, 100000000),
-                (scene_prop_set_slot, ":var4", 41, 2),
-                (scene_prop_get_slot, ":var16", ":var4", 43),
-                (prop_instance_deform_to_time, ":var4", ":var16"),
+                (prop_instance_animate_to_position, ":instance_no", pos1, 100000000),
+                (scene_prop_set_slot, ":instance_no", 41, 2),
+                (scene_prop_get_slot, ":var16", ":instance_no", 43), #dead frame
+                (prop_instance_deform_to_time, ":instance_no", ":var16"),
               (try_end),
             (try_end),
+            
           (try_end),
         (try_end),
       (try_end),
-      (eq, ":var0", 1),
-      # (try_begin),
-       # # (eq, "$cheat_mode_sa", 1),
-        # (assign, "$g_mission_cam_set_bird_target", -2),
-        # (display_message, "@{!}DEBUG -- animation of flight END (stage no animated birds)", 0x00005500),
-      # (try_end),
-    ],
-    [])
+    ])
 	] or [])
-	
+
+nazgul_flying = ((is_a_wb_mt==1) and [ 
+
+    (0.4, 0, 0, 
+    #slot 41: 0=alive; 1=dead; 2=?
+    #slot 38 = rotation 
+    #slot 39 = ideal height
+    #pos1 = destination
+    [(ge, "$nazgul_in_battle", 1)],
+    [
+    (store_mission_timer_b_msec, ":cur_time"),
+	(gt, ":cur_time", 500), #1/2 second grace period 
+      (set_fixed_point_multiplier, 100),
+      (try_begin),
+        # (eq, "$g_disable_flying_birds", 1),
+      # (else_try),
+          (scene_prop_get_num_instances, ":num_instances", "spr_fellbeast"),
+          (ge, ":num_instances", 1),
+          (try_for_range, ":count", 0, ":num_instances"),
+            (scene_prop_get_instance, ":instance_no", "spr_fellbeast", ":count"),
+            (try_begin),
+                (scene_prop_slot_eq, ":instance_no", 41, 0), #bird not shot or dead
+                #(prop_instance_get_starting_position, pos1, ":instance_no"),
+                
+               
+                # (try_begin), #if destination = starting pos, move prop away 
+                    # (prop_instance_get_position, pos2, ":instance_no"),
+                    # (get_distance_between_positions, ":dist_1", pos2, pos1),
+                    # (le, ":dist_1", 200),
+                    # (try_begin),
+                        # (neg|scene_prop_slot_eq, ":instance_no", 45, 1),
+                        # (position_move_z, pos2, 700),
+                    # (try_end),
+                    # (position_move_x, pos2, 12000),
+                    # (prop_instance_set_position, ":instance_no", pos2),
+                    # (prop_instance_enable_physics, ":instance_no", 1),
+                # (try_end),
+                
+                (assign, ":is_close", 1),
+                (try_begin), #check if prop is animating and if close to destination
+                  (prop_instance_is_animating, ":is_animating", ":instance_no"),
+                  (eq, ":is_animating", 1),
+                  (assign, ":is_close", 0),
+                  (prop_instance_get_position, pos3, ":instance_no"),
+                  (prop_instance_get_animation_target_position, pos2, ":instance_no"),
+                  (get_distance_between_positions, ":dist_2", pos2, pos3),
+                  (le, ":dist_2", 1200),
+                  (assign, ":is_close", 1), 
+                (try_end),
+                
+                (eq, ":is_close", 1),
+                (store_random_in_range, ":chance", 0, 100), #make it screech from time to time
+                (try_begin),
+                    (ge, ":chance", 95),
+                    (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_long" ),
+                (else_try),
+                    (ge, ":chance", 90),
+                    (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_short" ),
+                (try_end),
+
+                #calculate destination based on current position
+                (prop_instance_get_position, pos3, ":instance_no"),
+                (init_position, pos1), #set new target pos
+                (init_position, pos4), #set directions           
+                
+                #(scene_prop_get_slot, ":slot_38", ":instance_no", 38), #rotation
+                (scene_prop_get_slot, ":slot_39", ":instance_no", 39), #height offset ..or something
+
+                #(val_add, ":slot_38", 30), #add rotation
+                (position_rotate_z, pos4, 30),
+                (position_move_y, pos4, 18000), #move destination forward
+                (position_transform_position_to_parent, pos1, pos3, pos4),
+                (position_get_rotation_around_x, ":tilt", pos1), #reset x rotation incase there is any
+                (val_mul, ":tilt", -1),
+                (position_rotate_x, pos1, ":tilt"),
+
+                (try_begin), #get ideal height from slot
+                  (neg|scene_prop_slot_eq, ":instance_no", 45, 1),
+                  (store_add, ":ideal_height", 700, ":slot_39"),
+                (else_try),
+                  (assign, ":ideal_height", ":slot_39"),
+                (try_end),
+                (position_move_z, pos1, ":ideal_height"),
+
+                (try_begin), #if pos1 is too low, add ideal height
+                  (position_get_distance_to_terrain, ":height", pos1),
+                  (store_div, ":var14", 700, 2), #=350?
+                  (this_or_next|ge, 0, ":height"),
+                  (ge, ":var14", ":height"),
+                  (position_set_z_to_ground_level, pos1),
+                  (position_move_z, pos1, ":ideal_height"),
+                (try_end),  
+                
+                #calculate speed and send them off
+                (prop_instance_get_position, pos2, ":instance_no"),
+                (get_distance_between_positions, ":speed", pos2, pos1),
+                (val_div, ":speed", 30), #speed is dist/9
+                (prop_instance_animate_to_position, ":instance_no", pos1, ":speed"), #send them on their way
+
+                #debug, for tracking
+                # (set_spawn_position, pos1), 
+                # (spawn_scene_prop, spr_banner_stand_a),
+
+                # (try_begin), #assign new rotation and height slots, one could also add some randomness here, instead of flying in circles
+                  # (ge, ":slot_38", 360), #only change height if it's flown a full circle already
+                  # (assign, ":slot_38", 0),
+                  # (store_random_in_range, ":slot_39", 0, 16),
+                  # (val_mul, ":slot_39", 80),
+                  # (scene_prop_set_slot, ":instance_no", 39, ":slot_39"),
+                # (try_end),
+                # (scene_prop_set_slot, ":instance_no", 38, ":slot_38"),
+              #(try_end),
+              
+            (else_try), #Dead birds - currently unused 
+              (scene_prop_slot_eq, ":instance_no", 41, 1),
+              (set_fixed_point_multiplier, 100),
+              (position_set_x, pos0, 2500),
+              (position_set_y, pos0, 80),
+              (position_set_z, pos0, 0),
+              (prop_instance_dynamics_set_properties, ":instance_no", 0),
+              (position_set_x, pos0, 0),
+              (position_set_y, pos0, 0),
+              (position_set_z, pos0, -800),
+              (prop_instance_dynamics_set_omega, ":instance_no", 0),
+              (try_begin),
+                (prop_instance_get_position, pos1, ":instance_no"),
+               # (particle_system_burst, "psys_hit_bird_blood", pos1, 1),
+               # (particle_system_burst, "psys_hit_bird_feathers", pos1, 1),
+                (position_get_distance_to_terrain, ":var15", pos1),
+                (le, ":var15", 100),
+                (position_get_rotation_around_z, ":var10", pos1),
+                #(position_align_to_ground, pos1, 1, 1),
+                (position_rotate_x, pos1, -90),
+                (position_rotate_z, pos1, ":var10"),
+                (prop_instance_enable_physics, ":instance_no", 0),
+                (prop_instance_set_position, ":instance_no", pos1),
+                (position_move_z, pos1, -1),
+                (prop_instance_animate_to_position, ":instance_no", pos1, 100000000),
+                (scene_prop_set_slot, ":instance_no", 41, 2),
+                (scene_prop_get_slot, ":var16", ":instance_no", 43), #dead frame
+                (prop_instance_deform_to_time, ":instance_no", ":var16"),
+              (try_end),
+            (try_end),
+            
+          (try_end),
+      (try_end),
+    ]),
+
+    #Nazgul attack
+    # slot 41: fellbeast mode: circle, attack, retreat
+    # slot 42: target agent
+    (4, 0, 0, 
+    [(key_is_down, key_n),
+    (display_message, "@key clicked"),
+    ],
+    [(get_player_agent_no, ":player_agent"),
+    (scene_prop_get_num_instances, ":num_instances", "spr_fellbeast"),
+    (ge, ":num_instances", 1),
+    (scene_prop_get_instance, ":instance_no", "spr_fellbeast", 0), #assume there's always only one
+    (prop_instance_is_valid, ":instance_no"),
+    (scene_prop_slot_eq, ":instance_no", 41, 0),
+    (scene_prop_set_slot, ":instance_no", 41, 2), #attack
+    (scene_prop_set_slot, ":instance_no", 42, ":player_agent"), #target
+    (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_1, 50), #reset temp hp before attack
+    
+    (agent_get_position, pos3, ":player_agent"),
+    (prop_instance_get_position, pos2, ":instance_no"),
+    (get_distance_between_positions, ":speed", pos2, pos3),
+    (val_div, ":speed", 40), #speed is dist/9
+    (prop_instance_animate_to_position, ":instance_no", pos3, ":speed"),
+	]),
+
+    #Nazgul attack abort
+    (0.5, 0, 0, 
+    [
+    ],
+    [
+    (set_fixed_point_multiplier, 100),
+    #(get_player_agent_no, ":player_agent"),
+    (scene_prop_get_num_instances, ":num_instances", "spr_fellbeast"),
+    (ge, ":num_instances", 1),
+    (scene_prop_get_instance, ":instance_no", "spr_fellbeast", 0),
+    (prop_instance_is_valid, ":instance_no"),
+    (neg|scene_prop_slot_eq, ":instance_no", 41, 0), #not patrolling
+    
+    (try_begin), #attack direction and trigger retreat
+        (scene_prop_slot_eq, ":instance_no", 41, 2), #attacking
+        (scene_prop_get_slot, ":target_agent", ":instance_no", 42),  
+        
+        #pos2: beast; pos3: target
+        (agent_get_position, pos3, ":target_agent"), #readjust if target is moving
+        (prop_instance_get_position, pos2, ":instance_no"),   
+        (call_script, "script_lookat", pos2, pos3), #make fellbeast always look at (y axis) the target, overwrites pos1
+        (prop_instance_stop_animating, ":instance_no"), #this is necessary in order to adjust the rotation
+        (prop_instance_set_position, ":instance_no", pos2),
+        (position_copy_rotation, pos3, pos2), #so it doesn't take into account the target's rotation
+        (position_get_z, ":height", pos3),
+        (val_add, ":height", 200),
+        (position_set_z, pos3, ":height"),      
+        (get_distance_between_positions, ":dist", pos2, pos3),
+        (store_div, ":speed", ":dist", 30), #speed is dist/9
+        (prop_instance_animate_to_position, ":instance_no", pos3, ":speed"), 
+        
+        (le, ":dist", 1200),   #closed in? attack!
+        (agent_get_position, pos3, ":target_agent"), #reset roation
+        (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_short" ),
+        (copy_position, pos69, pos3), #needed for script
+        (call_script, "script_aoe_pushback", 50, 400), #50 damage, 4m radius
+        
+        (scene_prop_set_slot, ":instance_no", 41, 3), #retreat
+        # (init_position, pos2), #set new target pos
+        # (init_position, pos4), #set directions
+        # (position_set_z, pos4, 4000),
+        # (position_set_y, pos4, 2000),
+        #(position_rotate_x, pos4, -30),
+        #(position_transform_position_to_parent, pos2, pos3, pos4),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        #(copy_position, pos2, pos3),
+        (position_get_rotation_around_x, ":tilt", pos2), #reset x rotation
+        (val_mul, ":tilt", -1),
+        (position_rotate_x, pos2, ":tilt"),
+        (position_move_y, pos2, 7000),
+        (position_set_z_to_ground_level, pos2),
+        (position_move_z, pos2, 5000, 1),
+        (position_rotate_x, pos2, 45),
+        #(position_rotate_z, pos2, 180),
+        (prop_instance_animate_to_position, ":instance_no", pos2, 300), 
+        #debug, for tracking
+        # (set_spawn_position, pos2), 
+        # (spawn_scene_prop, spr_banner_stand_b),
+    
+    (else_try), #back to patrolling
+        (scene_prop_slot_eq, ":instance_no", 41, 3), #retreating
+        (prop_instance_get_animation_target_position, pos2, ":instance_no"),
+        (prop_instance_get_position, pos3, ":instance_no"),
+        (get_distance_between_positions, ":dist", pos2, pos3),
+        (le, ":dist", 1200),        
+        (scene_prop_set_slot, ":instance_no", 41, 0), #patrol
+    (try_end),
+	]),
+    
+	] or [])	
 # ( "custom_battle_football",mtf_battle_mode,-1,
     # "The match starts in a minute!",
     # [

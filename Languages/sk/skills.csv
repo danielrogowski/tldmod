@@ -1,9 +1,9 @@
 skl_trade|Obchodník
 skl_trade_desc|Kováči a obchodníci ti poskytnú nižšie ceny a zároveň ponúknu lepší tovar a vybavenie. (Schopnosť družiny)
 skl_leadership|Vodcovstvo
-skl_leadership_desc|Každý bod navyšuje najvyšší možný počet jednotiek, ktorým môžeš veliť, o 5, zvyšuje morálku tvojej družiny a znižuje mzdu jednotiek o 5 %%. Tiež je väčšia šanca, že pri výbere regrútov ťa budú ochotní nasledovať viacerí a zároveň zdatnejší. (Schopnosť vodcu)
+; skl_leadership_desc|Every point increases maximum number of troops you can command by 5, increases your party morale and coherence in battle. Makes more and stronger volunteers willing to follow you. (Leader skill)
 skl_prisoner_management|Väznenie
-skl_prisoner_management_desc|Každá úroveň tejto schopnosti zvyšuje maximálny počet väzňov o %d. (Schopnosť vodcu.)
+; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
 skl_persuasion|Zbojníctvo
 skl_persuasion_desc|Schopnosť prežiť v divočine a podvoliť si ju. Ovplyvní schopnosť tvojej družiny schovať sa pred nepriateľom a tiež rýchlosť tvojej družiny v lesnatom teréne. (Schopnosť družiny)
 skl_engineer|-----
@@ -15,7 +15,7 @@ skl_surgery_desc|Každý bod tejto schopnosti zvyšuje šancu o 4%% na to, že s
 skl_wound_treatment|Liečenie zranení
 skl_wound_treatment_desc|Liečenie zranení v družine sa zvýši o 20%% za každú úroveň tejto schopnosti. (Schopnosť družiny)
 skl_inventory_management|Veľkosť inventára
-skl_inventory_management_desc|Zvyšuje kapacitu inventára +6 za každú úroveň tejto schopnosti. (Schopnosť vodcu)
+; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
 skl_spotting|Pozorovanie
 skl_spotting_desc|Vzdialenosť na ktorú družina vidí je zvýšená o 10%% za každú úroveň tejto schopnosti. (Schopnosť družiny)
 skl_pathfinding|Cestovanie

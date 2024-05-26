@@ -139,16 +139,77 @@ simple_triggers = [
       (try_end),
       (try_for_range, ":troop_no", kingdom_heroes_begin, kingdom_heroes_end),  # TLD clear rumors in lords
         (troop_set_slot, ":troop_no", slot_troop_rumor_check, 0),
+        #Friendship Rewards Begin
+        (try_begin),
+                #Give some friendship reward progress for lords who already like the player
+                (call_script, "script_troop_get_player_relation", ":troop_no"),
+                (assign, ":player_relation", reg0),
+                #Must have at least 20 relation to get friendship reward
+                (ge, ":player_relation", 20),
+                (val_div, ":player_relation", 10),
+                (call_script, "script_lord_friendship_reward_progress", ":troop_no", ":player_relation"),
+        (try_end),
+        #Friendship Rewards End
       (try_end),
       (try_for_range, ":troop_no", weapon_merchants_begin, mayors_end), # TLD clear rumors in merchants/elders
         (troop_set_slot, ":troop_no", slot_troop_rumor_check, 0),
       (try_end),
+
   ]),
   # (9)
-  (4.15,[(try_begin),
+  (4.15,[ #unpaid troops leaving, desertion, prisoners escape
+    (try_begin),
         (store_random_in_range, ":dieroll", 1,101), (lt,":dieroll",10),
         (call_script, "script_make_unpaid_troop_go"),
-      (try_end),
+    
+        #desertion
+        (store_skill_level, ":player_leadership", "skl_leadership", "trp_player"),
+        (party_get_morale, ":morale", "p_main_party"),
+        (val_mul, ":player_leadership", 2),
+        (store_sub, ":desertion_check", 40, ":player_leadership"),
+        (try_begin),
+            (lt, ":morale", ":desertion_check"),
+            (val_mul, ":morale", 2),
+            (store_random_in_range, ":rand", 0, 100),
+            (gt, ":rand", ":morale"),
+            (dialog_box, "@Party morale is low. Troops desert from your party.", "@Desertion"),
+            (val_div, ":rand", 10),
+            (try_for_range, ":unused", 0, ":rand"),
+                (call_script, "script_cf_party_remove_random_regular_troop", "p_main_party"),
+                (str_store_troop_name, s1, reg0),
+                (display_message, "@{s1} has deserted from your party."),
+            (try_end),
+        (try_end),
+        
+        #prisoners escape
+        (party_get_skill_level, ":prs_management", "p_main_party", "skl_prisoner_management"),
+        (party_get_num_prisoners, ":num_prisoners", "p_main_party"),
+        (call_script, "script_game_get_party_prisoner_limit"),
+        (assign, ":max_prisoners", reg0),
+        
+        (store_mul, ":chance", ":num_prisoners", 50),
+        (val_div, ":chance", ":max_prisoners"),
+
+        (try_begin),
+            (party_get_num_companions, ":num_companions", "p_main_party"),
+            (gt, ":num_prisoners", ":num_companions"),
+            (val_mul, ":chance", ":num_prisoners"),
+            (val_div, ":chance", ":num_companions"),
+            (display_message, "@You don't have enough troops to guard all your prisoners. Their chance of escaping is increased."),
+            #(dialog_box, "@You don't have enough troops to guard all your prisoners. Their chance of escaping is increased.", "@Too many prisoners"),
+        (try_end),
+
+
+        (gt, ":num_prisoners", ":prs_management"),
+        (store_random_in_range, ":rolls", ":prs_management", ":num_prisoners"),
+        (try_for_range, ":unused", 0, ":rolls"),
+            (store_random_in_range, ":rand", 0, 1000),
+            (lt, ":rand", ":chance"),
+            (call_script, "script_cf_party_remove_random_prisoner", "p_main_party"),
+            (str_store_troop_name, s1, reg0),
+            (display_message, "@{s1} has escaped from your party."),
+        (try_end),
+    (try_end),        
   ]),
   
   # (10) Reducing luck by 1 in every 180 hours #No luck in TLD, still keeping this trigger to avoid "global variable never used" warning
@@ -175,7 +236,7 @@ simple_triggers = [
   ]),
   
   # (12) keep track of main party region ("$current_player_region"),
-  # and display log messages keey player informed of what region is he in,   (mtarini)
+  # and display log messages keey player informed of what region is he in,   (mtarini) // Reset battle size if changed for siege
   (0.5,[(call_script,"script_get_region_of_party", "p_main_party"),
       (assign, ":new_region", reg1),
       (neq, "$current_player_region", ":new_region"), # region change!
@@ -213,6 +274,11 @@ simple_triggers = [
         (try_end),
       (try_end),
       (assign, "$current_player_region", ":new_region"),
+      
+      
+      ] + (is_a_wb_trigger==1 and [
+        (call_script, "script_reset_battle_size"),
+      ] or []) + [      
   ]),
   
   # (13) Party AI: pruning some of the prisoners in each center (once a week) - Kham: Changed from 72 to 46 hours
@@ -282,15 +348,17 @@ simple_triggers = [
 				(val_div, ":garrison_limit", 100),
 			(try_end),
         (party_get_num_companions, ":garrison_size", ":center_no"),
-        
-        (store_random_in_range, ":chance", 0, 100), #InVain Reduce reinforcements for centers
+ 
+        (faction_get_slot, ":fac_strength", ":faction", slot_faction_strength), #InVain Scale center reinforcements with fac strength
+        (val_div, ":fac_strength", 250), #up to 32
+        (store_random_in_range, ":chance", 0, 100), 
         (try_begin),
           (gt, ":garrison_limit", ":garrison_size"),
             (try_begin),
                 (is_between, ":center_no", advcamps_begin, advcamps_end), #advance camps reinforce slightly faster, because they have low garrison
                 (lt, ":chance", 30),
             (else_try),
-                (lt, ":chance", 20),
+                (lt, ":chance", ":fac_strength"),
             (try_end),
           (call_script, "script_cf_reinforce_party", ":center_no"),
 		  (str_store_party_name, s1, ":center_no"),
@@ -476,13 +544,24 @@ simple_triggers = [
   
   # (18) MAIN AI STARTING POINT
   # Decide faction ai by default every 36 hours
-  (36,[(assign, "$g_recalculate_ais", 1)]),
+  (36,[
+  (assign, "$g_recalculate_ais", 2),
+  #(display_message, "@recalculate all trigger"),
+  ]),
   
   # (19) Decide faction ai whenever flag is set
-  (0,[(eq, "$g_recalculate_ais", 1),(ge,"$tld_war_began",1),
-      (assign, "$g_recalculate_ais", 0),
-      (call_script, "script_recalculate_ais"),
+  (0,[(gt, "$g_recalculate_ais", 0),(ge,"$tld_war_began",1),
+        # (try_begin),
+            # (eq, "$g_recalculate_ais", 2),
+            # (display_message, "@recalculate all theaters"),
+        # (else_try),
+            # (call_script, "script_theater_name_to_s15", "$g_recalculate_ais"),
+            # (display_message, "@recalculate theater {s15}"),
+        # (try_end),
+      (call_script, "script_recalculate_ais", "$g_recalculate_ais"), #g_recalculate_ais also stores the theater to be recalculated
+      (assign, "$g_recalculate_ais", 0),     
   ]),
+  
   # (20) Count faction armies
   (24,[ (try_for_range, ":faction_no", kingdoms_begin, kingdoms_end),
         (call_script, "script_faction_recalculate_strength", ":faction_no"),
@@ -544,22 +623,23 @@ simple_triggers = [
                     (store_relation, ":player_relation", ":faction_no", "fac_player_supporters_faction"),
                     (gt, ":player_relation", 0),
                     (assign, ":campaign_ai", "$tld_campaign_diffulty"),
-                    (val_add, ":campaign_ai", 3),
+                    (val_add, ":campaign_ai", 4),
                     (val_mul, ":strength_income", ":campaign_ai"),
-                    (val_div, ":strength_income", 4), 
+                    (val_div, ":strength_income", 5), 
                 (try_end),
                 #] or []) + [
          
           (val_add, ":strength", ":strength_income"),
           (val_add, ":debug_gain", ":strength_income"), #debug
         (try_end),
-        #one more evil handicap: Gondor and Rohan get +20.. cheaters!
+        #one more evil handicap: Gondor and Rohan get +20.. cheaters! #InVain: Actually, give it to all factions for more fun
         (try_begin),
           (gt, "$tld_war_began", 0),
           (eq, "$tld_option_regen_rate", 0), #Normal
           (neg|faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good),
-          (this_or_next|eq, ":faction_no", "fac_gondor"),
-          (eq, ":faction_no", "fac_rohan"),
+          (faction_slot_eq, ":faction_no", slot_faction_side, faction_side_good),
+          # (this_or_next|eq, ":faction_no", "fac_gondor"),
+          # (eq, ":faction_no", "fac_rohan"),
           (val_add, ":strength", 20), #tweakable
         (try_end),
         (val_min, ":strength", fac_str_max), #limit max strength
@@ -729,7 +809,8 @@ simple_triggers = [
           (try_begin), #:random_up_limit is the chance to decide for attack
             (store_random_in_range, ":rand", 0, 100),
             (val_add, ":random_up_limit", 20), #kham - lets start sieges earlier
-            (lt, ":rand", ":random_up_limit"),
+            (this_or_next|lt, ":rand", ":random_up_limit"),
+            (faction_slot_ge, ":besieger_faction", slot_faction_scripted_until, ":cur_hours"), #always attack if in scripted mode
             (gt, ":siege_begin_hours", 24),#initial preparation
             (assign, ":launch_attack", 1),
           (else_try), #if not, :random_down_limit is the chance to give up siege
@@ -813,8 +894,15 @@ simple_triggers = [
   ]),
   
   # (29) Check escape chances of hero prisoners.
-  (48,[  (call_script, "script_randomly_make_prisoner_heroes_escape_from_party", "p_main_party", 50),
-      (try_for_range, ":center_no", centers_begin, centers_end),
+  (24,[  
+      (assign, ":hero_escape_chance", 210), #player party, scale chance with prisoner management
+      (party_get_skill_level, ":prs_management", "p_main_party", "skl_prisoner_management"),
+      (val_mul, ":prs_management", 20),
+      (val_sub, ":hero_escape_chance", ":prs_management"),
+      (assign, reg78, ":hero_escape_chance"),
+      (call_script, "script_randomly_make_prisoner_heroes_escape_from_party", "p_main_party", ":hero_escape_chance"),
+      
+      (try_for_range, ":center_no", centers_begin, centers_end), #towns, maybe unneeded in TLD?
         ##         (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
         (party_is_active, ":center_no"), #TLD
         (party_slot_eq, ":center_no", slot_center_destroyed, 0), #TLD
@@ -834,6 +922,15 @@ simple_triggers = [
         (neg|troop_slot_ge, ":troop_no", slot_troop_prisoner_of_party, 0),
         (neg|troop_slot_ge, ":troop_no", slot_troop_leaded_party, 1),
         (neg|troop_slot_eq, ":troop_no", slot_troop_wound_mask, wound_death),
+
+        (store_current_day, ":cur_day"), #set a minimal respawn time
+        (troop_get_slot, ":day_of_defeat", ":troop_no", slot_troop_respawn_timer),
+        (val_sub, ":cur_day", ":day_of_defeat"),
+        (ge, ":cur_day", 2),
+        
+        (store_random_in_range, ":chance", 0, 7), #chance increases with waiting time, one week maximum
+        (le, ":chance", ":cur_day"),
+        
         
         (store_troop_faction, ":cur_faction", ":troop_no"),
         (try_begin),
@@ -1262,6 +1359,13 @@ simple_triggers = [
       (assign, ":consumption_amount", ":num_men"),	  
 	  #(assign, reg2, ":consumption_amount"),
 	  #(display_message, "@food_consumption: {reg2}"),
+      
+      (party_get_skill_level, reg0, "p_main_party", "skl_inventory_management"),
+      (val_mul, reg0, 5),
+      (store_sub, ":consumption_reduce", 100, reg0),
+      (val_mul, ":consumption_amount", ":consumption_reduce"),
+      (val_div, ":consumption_amount", 100),
+      
       (assign, ":no_food_displayed", 0),
       (try_for_range, ":unused", 0, ":consumption_amount"),
         (assign, ":available_food", 0),
@@ -1525,7 +1629,7 @@ simple_triggers = [
               (troop_slot_eq, ":troop_no", slot_troop_wound_mask, wound_death), # Is the troop dead?
               (str_store_troop_name, s1, ":troop_no"),
               (display_message, "@{s1} was killed on the battlefield. Mission canceled.", color_bad_news),
-              (call_script, "script_abort_quest", ":cur_quest", 1),
+              (call_script, "script_cancel_quest", ":cur_quest", 1),
             (try_end),
             (try_begin),
               (check_quest_active, ":cur_quest"),
@@ -1557,6 +1661,9 @@ simple_triggers = [
                 (eq, ":cur_quest", "qst_defend_village"),
                 (call_script, "script_safe_remove_party", "$qst_defend_village_party"),
                 (call_script, "script_fail_quest", ":cur_quest"),
+              (else_try),
+                (eq, ":cur_quest", "qst_guardian_party_quest"),
+                (call_script, "script_cf_isengard_guardian_quest_fail"),
               (else_try),
                 (eq, ":cur_quest", "qst_raid_village"),
                 (call_script, "script_safe_remove_party", "$qst_raid_village_party"),
@@ -1592,6 +1699,7 @@ simple_triggers = [
       (neg|faction_slot_eq, "$players_kingdom", slot_faction_ai_state, sfai_default),
       (neg|check_quest_active, "qst_report_to_army"),
       (neg|check_quest_active, "qst_follow_army"),
+      (neg|check_quest_active, "qst_guardian_party_quest"), #not during story quests      
       (neg|quest_slot_ge, "qst_report_to_army", slot_quest_dont_give_again_remaining_days, 1),
       (faction_get_slot, ":faction_marshall", "$players_kingdom", slot_faction_marshall),
       (gt, ":faction_marshall", 0),
@@ -2343,31 +2451,31 @@ simple_triggers = [
         
         # Kham - Removed crushed condition and added Last Stand Event
 
-        (assign, ":has_guardian", 0),
-        (assign, ":guardian_party_defeated", 0),
-        (try_begin),
-          (this_or_next|eq, ":cur_kingdom", "fac_isengard"),
-          (eq, ":cur_kingdom", "fac_woodelf"),
-          (assign, ":has_guardian", 1),
-        (try_end),
+        # (assign, ":has_guardian", 0),
+        # (assign, ":guardian_party_defeated", 0),
+        # (try_begin),
+          # (this_or_next|eq, ":cur_kingdom", "fac_isengard"),
+          # (eq, ":cur_kingdom", "fac_woodelf"),
+          # (assign, ":has_guardian", 1),
+        # (try_end),
 
         (try_begin),
-          (eq, ":has_guardian", 0),
+          #(eq, ":has_guardian", 0),
           (neg|faction_slot_ge, ":cur_kingdom", slot_faction_strength, 1), # TLD or faction strength down
           (faction_slot_eq, ":cur_kingdom", slot_faction_last_stand, 0),
           (faction_set_slot, ":cur_kingdom", slot_faction_last_stand, 1),
           #(str_store_faction_name, s10, ":cur_kingdom"),
           #(display_message, "@DEBUG: {s10} is now in Last Stand mode", color_neutral_news),
-        (else_try),
-          (eq, ":has_guardian", 1),
-          (faction_slot_eq, ":cur_kingdom", slot_faction_guardian_party_spawned, 1), #Guardian party has spawned
-          (faction_get_slot, ":guardian_party", ":cur_kingdom", slot_faction_guardian_party),
-          (neg|party_is_active, ":guardian_party"),
-          (assign, ":guardian_party_defeated", 1),
+        # (else_try),
+          # (eq, ":has_guardian", 1),
+          # (faction_slot_eq, ":cur_kingdom", slot_faction_guardian_party_spawned, 1), #Guardian party has spawned
+          # (faction_get_slot, ":guardian_party", ":cur_kingdom", slot_faction_guardian_party),
+          # (neg|party_is_active, ":guardian_party"),
+          # (assign, ":guardian_party_defeated", 1),
         (try_end),
 
         (this_or_next|neq, ":cur_kingdom", ":capital_faction"), # TLD capital captured
-        (this_or_next|eq, ":guardian_party_defeated", 1),
+        #(this_or_next|eq, ":guardian_party_defeated", 1),
         (neg|party_slot_eq, ":capital", slot_center_destroyed,0), #TLD or capital destroyed
 
         
@@ -2532,6 +2640,16 @@ simple_triggers = [
             (eq, ":defeated_lord_faction", ":cur_kingdom"),
             (troop_set_slot, ":defeated_lord", slot_troop_occupation, 0),
           (try_end),
+
+         #remove any prisoner lords from defeated faction
+         (party_get_num_prisoner_stacks, ":num_stacks", "p_main_party"),
+         (try_for_range, ":i_stack", 0, ":num_stacks"),
+           (party_prisoner_stack_get_troop_id, ":stack_troop", "p_main_party", ":i_stack"),
+           (troop_is_hero, ":stack_troop"),
+           (store_troop_faction, ":stack_faction", ":stack_troop"),
+           (eq, ":cur_kingdom", ":stack_faction"),
+           (party_remove_prisoners, "p_main_party",  ":stack_troop", 1),
+         (try_end),
           
           # check if all good factions are defeated, to start the eye-hand war
           (try_begin), #check wott
@@ -2619,7 +2737,7 @@ simple_triggers = [
           (call_script, "script_update_active_theaters"),
           
           # rethink strategies
-          (assign, "$g_recalculate_ais", 1),
+          (assign, "$g_recalculate_ais", 2),
           
           (assign, ":faction_removed", 1),
           
@@ -2650,9 +2768,11 @@ simple_triggers = [
           (try_begin),
             (faction_slot_ge, ":cur_kingdom", slot_faction_last_stand, 1),
             (try_for_range, ":scripted_ai_lords", kingdom_heroes_begin, kingdom_heroes_end),
-              (troop_get_slot, ":scripted_ai_lords", ":lords", slot_troop_leaded_party),
-              (party_slot_ge, ":scripted_ai_lords", slot_party_scripted_ai, 1),
-              (party_set_slot, ":scripted_ai_lords", slot_party_scripted_ai, 0),
+              (troop_get_slot, ":lord_party", ":scripted_ai_lords", slot_troop_leaded_party),
+              (gt, ":lord_party", 0),
+              (party_is_active, ":lord_party"),
+              (party_slot_ge, ":lord_party", slot_party_scripted_ai, 1),
+              (party_set_slot, ":lord_party", slot_party_scripted_ai, 0),
               (str_store_troop_name, s30, ":scripted_ai_lords"),
               #(display_message, "@{s30} scripted AI cleared", color_neutral_news),
             (try_end),
@@ -2738,7 +2858,7 @@ simple_triggers = [
   
   # (56) TLD Messages about faction strength changes
   (5,[(gt, "$tld_war_began", 0),
-		(try_for_range,":faction",kingdoms_begin,kingdoms_end),
+	  (try_for_range,":faction",kingdoms_begin,kingdoms_end),
         (faction_slot_eq, ":faction", slot_faction_state, sfs_active),
         (faction_get_slot,":strength",":faction",slot_faction_strength),
         (ge, ":strength", 1), #additional check for above
@@ -2835,68 +2955,69 @@ simple_triggers = [
         (try_end),
         
         #MV: spawn a guardian party (once) when faction strength below fac_str_guardian
+        # InVain: Disabled
         #this is a fun quick fix to defeat dying factions and avoid grinding
-        (try_begin),
-          #MV: disabled in 3.15, not needed anymore except for factions with unsiegable capitals like Isengard and Woodelves
-          (eq, ":faction", "fac_isengard"),
-          #(             eq, ":faction", "fac_woodelf"),
-          (neg|faction_slot_ge, ":faction", slot_faction_strength, fac_str_guardian),
-          (faction_slot_eq, ":faction", slot_faction_guardian_party, 0),
+        # (try_begin),
+          # #MV: disabled in 3.15, not needed anymore except for factions with unsiegable capitals like Isengard and Woodelves
+          # (eq, ":faction", "fac_isengard"),
+          # #(             eq, ":faction", "fac_woodelf"),
+          # (neg|faction_slot_ge, ":faction", slot_faction_strength, fac_str_guardian),
+          # (faction_slot_eq, ":faction", slot_faction_guardian_party, 0),
           
-          (faction_get_slot, ":capital", ":faction", slot_faction_capital),
-          (set_spawn_radius, 1),
-          (spawn_around_party, ":capital", "pt_none"),
-          (assign, ":guard_party", reg0),
-          (faction_set_slot, ":faction", slot_faction_guardian_party, ":guard_party"),
-          (faction_set_slot, ":faction", slot_faction_guardian_party_spawned, 1),
+          # (faction_get_slot, ":capital", ":faction", slot_faction_capital),
+          # (set_spawn_radius, 1),
+          # (spawn_around_party, ":capital", "pt_none"),
+          # (assign, ":guard_party", reg0),
+          # (faction_set_slot, ":faction", slot_faction_guardian_party, ":guard_party"),
+          # (faction_set_slot, ":faction", slot_faction_guardian_party_spawned, 1),
           
-          #party slots
-          (str_store_faction_name, s6, ":faction"),
-          (try_begin),
-            (faction_slot_eq, ":faction", slot_faction_side, faction_side_good),
-            (party_set_name, ":guard_party", "@Guardians of {s6}"),
-          (else_try),
-            (party_set_name, ":guard_party", "@Guard Legion of {s6}"),
-          (try_end),
-          # CC bugfix: set the icons to properly match the party
-          (try_begin),
-            (eq, ":faction", "fac_isengard"),
-            (party_set_icon, ":guard_party", icon_wargrider_walk_x4),
+          # #party slots
+          # (str_store_faction_name, s6, ":faction"),
+          # (try_begin),
+            # (faction_slot_eq, ":faction", slot_faction_side, faction_side_good),
+            # (party_set_name, ":guard_party", "@Guardians of {s6}"),
           # (else_try),
-            # (eq, ":faction", "fac_woodelf"),
-            # (party_set_icon, ":guard_party", icon_mirkwood_elf_x3),
-          (try_end),
-          (party_set_slot, ":guard_party", slot_party_type, spt_guardian),
-          (party_set_slot, ":guard_party", slot_party_victory_value, ws_guard_vp), # huge victory points for party kill
-          (party_set_slot, ":guard_party", slot_party_home_center, ":capital"),
-          (party_set_faction, ":guard_party", ":faction"),
-          (party_set_slot, ":guard_party", slot_party_ai_object, ":capital"),
-          (party_set_slot, ":guard_party", slot_party_ai_state, spai_undefined),
-          (party_set_ai_behavior, ":guard_party", ai_bhvr_patrol_location),
-          (party_set_ai_patrol_radius, ":guard_party", 3), #must be tight radius
+            # (party_set_name, ":guard_party", "@Guard Legion of {s6}"),
+          # (try_end),
+          # # CC bugfix: set the icons to properly match the party
+          # (try_begin),
+            # (eq, ":faction", "fac_isengard"),
+            # (party_set_icon, ":guard_party", icon_wargrider_walk_x4),
+          # # (else_try),
+            # # (eq, ":faction", "fac_woodelf"),
+            # # (party_set_icon, ":guard_party", icon_mirkwood_elf_x3),
+          # (try_end),
+          # (party_set_slot, ":guard_party", slot_party_type, spt_guardian),
+          # (party_set_slot, ":guard_party", slot_party_victory_value, ws_guard_vp), # huge victory points for party kill
+          # (party_set_slot, ":guard_party", slot_party_home_center, ":capital"),
+          # (party_set_faction, ":guard_party", ":faction"),
+          # (party_set_slot, ":guard_party", slot_party_ai_object, ":capital"),
+          # (party_set_slot, ":guard_party", slot_party_ai_state, spai_undefined),
+          # (party_set_ai_behavior, ":guard_party", ai_bhvr_patrol_location),
+          # (party_set_ai_patrol_radius, ":guard_party", 3), #must be tight radius
           
-          #fill it up with lord army reinforcements and upgrade a lot
-          (store_random_in_range, ":reinforcement_waves", 50, 60), #average about 8 troops per reinf
-          (try_for_range, ":unused", 0, ":reinforcement_waves"),
-            (call_script, "script_cf_reinforce_party", ":guard_party"),
-          (try_end),
-          (try_for_range, ":unused", 0, 40), #lords get initially about 14x4000, we do 40x6000 (about 4-5x more)
-            (party_upgrade_with_xp, ":guard_party", 6000, 0),
-          (try_end),
+          # #fill it up with lord army reinforcements and upgrade a lot
+          # (store_random_in_range, ":reinforcement_waves", 80, 100), #average about 8 troops per reinf
+          # (try_for_range, ":unused", 0, ":reinforcement_waves"),
+            # (call_script, "script_cf_reinforce_party", ":guard_party"),
+          # (try_end),
+          # (try_for_range, ":unused", 0, 40), #lords get initially about 14x4000, we do 40x6000 (about 4-5x more)
+            # (party_upgrade_with_xp, ":guard_party", 6000, 0),
+          # (try_end),
           
-          #tell the player what happened
-          (try_begin),
-            (store_relation, ":rel", "$players_kingdom", ":faction"),
-            (gt, ":rel", 0),
-            (assign, ":news_color", color_good_news),
-          (else_try),
-            (assign, ":news_color", color_bad_news),
-          (try_end),
-          (str_store_party_name, s7, ":capital"),
-          (assign, reg70, ":faction"),
-          (jump_to_menu, "mnu_guardian_party_spawned"),
-          (display_log_message, "@Scouts report that {s6} gathered a large army in the vicinity of {s7}, in a last ditch attempt to defend the capital.", ":news_color"),
-        (try_end),
+          # #tell the player what happened
+          # (try_begin),
+            # (store_relation, ":rel", "$players_kingdom", ":faction"),
+            # (gt, ":rel", 0),
+            # (assign, ":news_color", color_good_news),
+          # (else_try),
+            # (assign, ":news_color", color_bad_news),
+          # (try_end),
+          # (str_store_party_name, s7, ":capital"),
+          # (assign, reg70, ":faction"),
+          # (jump_to_menu, "mnu_guardian_party_spawned"),
+          # (display_log_message, "@Scouts report that {s6} gathered a large army in the vicinity of {s7}, in a last ditch attempt to defend the capital.", ":news_color"),
+        # (try_end),
       (try_end),
   ]),
   
@@ -3401,7 +3522,7 @@ simple_triggers = [
   
   
   
-  ## Kham Gondor Reinforcement Event - Via script_succeed_quest
+  ## Kham Gondor Reinforcement Event - Via script_succeed_quest #unused
   
   (24,
     [
@@ -3443,7 +3564,7 @@ simple_triggers = [
   ]),
   
   
-  (12,
+  (12, #unused
     [
       #(eq, "$cheat_mode",1),
       (eq, "$tld_war_began", 1),
@@ -3477,40 +3598,41 @@ simple_triggers = [
   
   
   ## Kham - War Council + Siege Reports Trigger + Check Followers
+   ##InVain: disabled reports, not really necessary and buggy
   
   (12,[
-      (try_for_range, ":faction_wc", kingdoms_begin, kingdoms_end),
-        (neq, "$g_fast_mode", 1),
-        (faction_slot_eq, ":faction_wc", slot_faction_state, sfs_active), #Needs to be alive
-        (call_script, "script_get_faction_rank", ":faction_wc"),
-        (assign, ":rank", reg0), #rank points to rank number 0-9
-        (try_begin),
-          (faction_slot_eq, ":faction_wc", slot_faction_war_council, 0),
-          (ge, ":rank",8),
-          (jump_to_menu, "mnu_player_added_to_war_council"),
-          (faction_set_slot, ":faction_wc", slot_faction_war_council, 1),
-        (else_try),
-          (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 2),
-          (ge, ":rank",7),
-          (jump_to_menu, "mnu_player_added_to_allow_follow"),
-          (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 3),
-        (else_try),
-          (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 1),
-          (ge, ":rank",5),
-          (jump_to_menu, "mnu_player_added_to_allow_follow"),
-          (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 2),
-        (else_try),
-          (faction_slot_eq, ":faction_wc", slot_faction_siege_reports, 0),
-          (ge, ":rank", 4),
-          (faction_set_slot, ":faction_wc", slot_faction_siege_reports, 1),
-          (jump_to_menu, "mnu_player_added_to_siege_reports"),
-        (else_try),
-          (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 0),
-          (ge, ":rank",3),
-          (jump_to_menu, "mnu_player_added_to_allow_follow"),
-          (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 1),
-        (try_end),
-      (try_end), #End Range
+      # (try_for_range, ":faction_wc", kingdoms_begin, kingdoms_end),
+        # (neq, "$g_fast_mode", 1),
+        # (faction_slot_eq, ":faction_wc", slot_faction_state, sfs_active), #Needs to be alive
+        # (call_script, "script_get_faction_rank", ":faction_wc"),
+        # (assign, ":rank", reg0), #rank points to rank number 0-9
+        # (try_begin),
+          # (faction_slot_eq, ":faction_wc", slot_faction_war_council, 0),
+          # (ge, ":rank",8),
+          # (jump_to_menu, "mnu_player_added_to_war_council"),
+          # (faction_set_slot, ":faction_wc", slot_faction_war_council, 1),
+        # (else_try),
+          # (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 2),
+          # (ge, ":rank",7),
+          # (jump_to_menu, "mnu_player_added_to_allow_follow"),
+          # (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 3),
+        # (else_try),
+          # (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 1),
+          # (ge, ":rank",5),
+          # (jump_to_menu, "mnu_player_added_to_allow_follow"),
+          # (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 2),
+        # (else_try),
+          # (faction_slot_eq, ":faction_wc", slot_faction_siege_reports, 0),
+          # (ge, ":rank", 4),
+          # (faction_set_slot, ":faction_wc", slot_faction_siege_reports, 1),
+          # (jump_to_menu, "mnu_player_added_to_siege_reports"),
+        # (else_try),
+          # (faction_slot_eq, ":faction_wc", slot_faction_allowed_follow, 0),
+          # (ge, ":rank",3),
+          # (jump_to_menu, "mnu_player_added_to_allow_follow"),
+          # (faction_set_slot, ":faction_wc", slot_faction_allowed_follow, 1),
+        # (try_end),
+      # (try_end), #End Range
       
       
       (try_begin),
@@ -3779,102 +3901,28 @@ simple_triggers = [
       (quest_set_slot, "qst_tld_introduction", slot_quest_current_state, 1),]
   ),
   
-  #Guardian Party Quest Trigger
+  #lore events trigger
   
-  (1, [
-      #(troop_slot_eq, "trp_player", slot_troop_home, 22), #Kham Test
-      (faction_get_slot, ":guardian_party_exists", "fac_isengard", slot_faction_guardian_party), # Guardian Party spawned
-      #(assign, reg70, ":guardian_party_exists"),
-      (gt, ":guardian_party_exists", 0),
-      #(display_message, "@{reg70} - Qst GP Trigger 0"),
-      (faction_get_slot, ":side", "$players_kingdom", slot_faction_side),
-      (eq, ":side", faction_side_good),
-      
-      (assign, ":continue", 0),
-      (try_begin),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 0),
-        (assign, ":continue", 1),
-      (else_try),
-        (quest_slot_ge, "qst_guardian_party_quest", slot_quest_current_state, 2), #Good guys attack Guardian Party W/O Player
-        (neg|quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 5), #When party is defeated, end all AI
-        (assign, ":continue", 1),
-      (else_try),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 5), #When party is defeated, end all AI
-        (faction_slot_eq, "fac_isengard", slot_faction_state, sfs_active),
-        (quest_get_slot, ":attacking_faction", "qst_guardian_party_quest", slot_quest_object_center),
-        (gt, ":attacking_faction", 0),
-        (try_for_range, ":lords", kingdom_heroes_begin, kingdom_heroes_end),
-          (store_troop_faction, ":lord_fac", ":lords"),
-          (eq, ":lord_fac", ":attacking_faction"),
-          (troop_get_slot, ":lord_party", ":lords", slot_troop_leaded_party),
-          (ge, ":lord_party", 1), #for some reason, this can be -1
-          (party_set_slot, ":lord_party", slot_party_scripted_ai, 0),
+  (7, [
+      (faction_get_slot, ":player_side", "$players_kingdom", slot_faction_side),
+      (try_for_range, ":faction_no", kingdoms_begin, kingdoms_end),
+        (faction_get_slot, ":fac_strength", ":faction_no", slot_faction_strength),
+        (neg|faction_slot_eq, ":faction_no", slot_faction_state, sfs_defeated),
+        
+        (try_begin), #Isengard Last Stand
+            (eq, "$lore_mode", 1),
+            (eq, ":faction_no", fac_isengard),
+            (le, ":fac_strength", fac_str_guardian),
+            (neg|check_quest_active, qst_guardian_party_quest),
+            (neg|check_quest_finished, qst_guardian_party_quest),
+            (eq, ":player_side", faction_side_good),
+            (faction_slot_ge, fac_rohan, fac_str_ok), #Rohan still okay?
+            (call_script, "script_find_theater", "p_main_party"),
+            (eq, reg0, theater_SW), #player in Rohan?
+            (call_script, "script_send_on_conversation_mission", tld_cc_gandalf_rohan_quest_start),
         (try_end),
-      (try_end),
-      
-      (eq, ":continue", 1),
-      (faction_slot_eq, "fac_isengard", slot_faction_state, sfs_active),
-      
-      #(display_message, "@{reg70} - Qst GP Trigger 1"),
-      #Good Guys attack Guardian Party gets resolved here:
-      
-      (try_begin),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 2),
-        (call_script, "script_cf_gp_quest_accompany_marshall"),
-      (else_try),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 3),
-        (call_script, "script_cf_gp_marshall_travel_to_position"),
-        (call_script, "script_cf_gp_quest_accompany_marshall"),
-      (else_try),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 4),
-        (call_script, "script_cf_gp_quest_attack_guardian"), #Wait time is checked here.
-        (call_script, "script_cf_gp_quest_accompany_marshall"),
-      (try_end),
-      
-      #Good Guys attack Guardian Party gets resolved ENDs here
-      
-      #Check when to show menu
-      (try_begin),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 0),
-        (faction_slot_eq, "fac_rohan", slot_faction_state, sfs_active), #Rohan still active,
-        (faction_slot_ge, "fac_rohan", slot_faction_strength, fac_str_ok),
-        (call_script, "script_get_faction_rank", "fac_rohan"), (assign, ":rank", reg0), #rank points to rank number 0-9
-        (gt, ":rank", 5), #Rank 6 with Rohan
-        (jump_to_menu, "mnu_guardian_party_quest"),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_current_state, 1),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_object_center, "fac_rohan"),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_target_troop, "trp_rohan_lord"),
-      (else_try),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 0),
-        (faction_slot_eq, "fac_rohan", slot_faction_state, sfs_defeated), #Rohan defeated,
-        (faction_slot_eq, "fac_gondor", slot_faction_state, sfs_active), #Gondor still active,
-        (faction_slot_ge, "fac_gondor", slot_faction_strength, fac_str_ok),
-        (call_script, "script_get_faction_rank", "fac_gondor"), (assign, ":rank", reg0), #rank points to rank number 0-9
-        (gt, ":rank", 5), #Rank 6 with Gondor
-        (jump_to_menu, "mnu_guardian_party_quest"),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_current_state, 1),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_object_center, "fac_gondor"),
-        (quest_set_slot, "qst_guardian_party_quest", slot_quest_target_troop, "trp_knight_1_3"),
-      (else_try),
-        (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 0),
-        (faction_slot_eq, "fac_rohan", slot_faction_state, sfs_defeated), #Rohan defeated,
-        (faction_slot_eq, "fac_gondor", slot_faction_state, sfs_defeated), #Gondor defeated,
-        (try_for_range, ":surviving_good", kingdoms_begin, kingdoms_end),
-          (store_relation, ":relation", ":surviving_good", "$players_kingdom"),
-          (gt, ":relation", 0),
-          (faction_slot_eq, ":surviving_good", slot_faction_active_theater, theater_SW), #In Rohan
-          (faction_slot_eq, ":surviving_good", slot_faction_state, sfs_active),
-          (faction_slot_ge, ":surviving_good", slot_faction_strength, fac_str_ok),
-          (call_script, "script_get_faction_rank", ":surviving_good"), (assign, ":rank", reg0), #rank points to rank number 0-9
-          (gt, ":rank", 4), #Rank 5 with whoever is still alive
-          (quest_slot_eq, "qst_guardian_party_quest", slot_quest_current_state, 0),
-          (jump_to_menu, "mnu_guardian_party_quest"),
-          (quest_set_slot, "qst_guardian_party_quest", slot_quest_current_state, 1),
-          (faction_get_slot, ":marshall", ":surviving_good", slot_faction_marshall),
-          (quest_set_slot, "qst_guardian_party_quest", slot_quest_target_troop, ":marshall"),
-          (quest_set_slot, "qst_guardian_party_quest", slot_quest_object_center, ":surviving_good"),
-        (try_end),
-      (try_end),
+
+      (try_end), #end faction loop
   ]),
   
   # Encounter Effects Trigger - InVain & Kham

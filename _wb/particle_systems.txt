@@ -1,5 +1,5 @@
 particle_systemsfile version 1
-69
+70
 psys_game_rain 274 prtcl_rain  500 0.5 0.33 1 10 0 
 1 0.3   1 0.3
 1 1   1 1
@@ -288,14 +288,14 @@ psys_bug_fly_1 530 prt_mesh_snow_dust_1  5 5 1.2 0 50 20
 0 0.05   1 0.05
 20 20 0.5   0 0 0   5 
 100 0.5 
-psys_moon_beam_1 8722 prt_mesh_moon_beam  2 4 1.2 0 0 0 
+psys_moon_beam_1 8722 prt_mesh_moon_beam  1 2 1.2 0 0 0 
 0.5 1   1 0
 0 0.4   1 0.4
 0 0.5   1 0.5
 0 0.6   1 0.6
 0 2   1 2.2
-1 1 0.2   0 0 -2   0 
-100 0.5 
+1 1 0.2   0 0 -1   0 
+20 0.5 
 psys_moon_beam_paricle_1 8722 prt_sparks_mesh_1  10 1.5 1.5 0 10 10 
 0.5 1   1 0
 0.5 0.5   1 0.5
@@ -552,3 +552,11 @@ psys_village_fire_smoke_big_lowres 12818 prt_mesh_smoke_1  10 3 0.3 -1 50 10
 0 12   1 16
 2 2 1   0 0 5   0 
 0 0.1 
+psys_fire_glow_1_white 530 prt_mesh_fire_2  2 0.55 0.2 0 10 0 
+0.5 0.9   1 0
+0 0.4   1 0.4
+0 0.5   1 0.5
+0 0.6   1 0.6
+0 2   1 2
+0 0 0   0 0 0   0 
+0 0 

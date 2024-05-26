@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^Dziwne, otaczają cie jakby szepty.^Czyżby to rozmawi
 mno_be_quiet_elf|Poszanuj panujący wokół spokój. Poruszaj się jak najciszej.
 mno_be_quiet|Połóż broń na ziemi i bądź cicho! A teraz wynoś sie stąd!
 mno_be_bold|Dalej! Nie lękam się roślin i starych mitów!
-mno_fight_back|Przekonajmy się! Przeszukajcie okolicę! Spalcie parę drzew!
+; mno_fight_back|Let's find out! Search the area! Burn down a tree or two! (Camp)
 menu_fangorn_search_fails|^^^^^^Przeszukujesz  gęsty, mroczny las, ale nic nie znajdujesz.^Jednakże, czujesz się obserwowany, a poczucie niebezpieczeństwa narasta.
 menu_fangorn_killed_player_only|^^^^^^Podróżujesz przez mroczny, gęsty las.^Nagle zostajesz przez coś uderzony! Może gałąź spadła Ci na głowę?^Leżysz nieprzytomny przez parę minut. Jesteś ciężko ranny, lecz wciąż możesz iść dalej.
 mno_ow_get_out|Ahh! Wydostańmy się z tego przeklętego miejsca!
@@ -200,7 +200,7 @@ mno_leave|Odejdź.
 menu_simple_encounter|^^^^^{s2}^Masz {reg22} ludzi zdolnych do walki przeciwko {reg11}.^^Bitwa ma miejsce w {s3}{s4}^^Twe rozkazy?
 mno_encounter_attack|{reg21?Ruszamy na nich:Przygotować się do walki}.
 mno_encounter_order_attack|Rozkaż swoim oddziałom {reg21?zaatakować:stawić im czoła}, ty zaś zaczekaj na tyłach.
-mno_control_allies_menu|Użyj Wpływu aby dowodzić swoimi sojusznikami na polu walki
+mno_control_allies_menu|Użyj Punktów Wpływu aby dowodzić swoimi sojusznikami na polu walki.
 mno_encounter_hide|Ukryj się przed wrogiem. . .
 mno_special_whip|Rusz w ich kierunku łamiąc {s4}.
 mno_encounter_attack_bearform|{reg21?Rzuć się do walki w formie niedźwiedzia:Zmień skórę i zmierz się z nimi}
@@ -235,7 +235,7 @@ mno_pre_join_leave|Nie mieszać do tej walki.
 menu_join_battle|^^^{s2} wznoszą bojowy okrzyk widząc, jak ruszasz im na pomoc. {s1} muszą się teraz zmierzyć z waszymi połączonymi siłami.^ Macie łącznie {reg10} żołnierzy przeciwko {reg11} żołnierzom wroga.
 mno_join_attack|Zaatakuj wroga.
 mno_join_order_attack|Rozkaż swoim ludziom by pomogli sprzymierzeńcom w walce z wrogiem.
-mno_control_allies_join_menu|Użyj Punktów Wpływu aby dowodzić swoimi sojusznikami na polu walki
+mno_control_allies_join_menu|Użyj Punktów Wpływu aby dowodzić swoimi sojusznikami na polu walki.
 mno_join_attack_bearform|Rusz do bitwy w formie niedźwiedzia
 mno_join_leave|Odejdź.
 mno_player_control_allies_join_menu|Przejmij dowodzenie i szarżuj na wrogów 
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^Pokonałeś wszystkich przeciwników i strażników wys
 menu_close|Zamknij.
 menu_town|Przybywasz do {s60}.{s12}{s13}
 mno_town_menu_0|Przejdź do jakiejś lokalizacji.
-mno_town_menu_0_door|Drzwi do jakiegoś miejsca.
+; mno_town_menu_0_door|Inspect...
 mno_town_approach|Podejdź do {s1}...
 mno_town_castle|Idź do {s1}.
 mno_town_castle_door|Drzwi do zamku.
@@ -300,7 +300,7 @@ mno_town_center_door|Drzwi do wieży centralnej.
 mno_aw_chamber_door|Otwórz drzwi.
 mno_trade_with_arms_merchant|Odwiedź zbrojownię.
 mno_trade_with_horse_merchant|Odwiedź magazyny.
-mno_town_prison_door|Drzwi do więzienia.
+mno_town_prison_door|Do obozu treningowego.
 mno_dungeon_enter|Wejdź do lochów.
 mno_dungeon_enter_door|Otwórz drzwi.
 mno_dwarven_warehouse|Odwiedź magazyn Krasnoludów
@@ -312,6 +312,7 @@ mno_isengard_underground_door|Wejdź do podziemnych jaskiń
 mno_tirith_toplevel|Wspinaj się na wyższy poziom.
 mno_tirith_toplevel_door|Idź do Cytadeli
 mno_erebor_gates|Odwiedź Wielką Bramę
+mno_erebor_gates_door|Idź do Wielkiej Bramy
 mno_town_leave|Odejdź...
 mno_town_leave_door|Wyjdź
 menu_player_initiated_siege_result|Zaatakowałeś ten ośrodek pod sztandarem {s2}.
@@ -386,9 +387,6 @@ mno_defend_refugees|Uważaj na rajderów. . .
 mno_attack_refugees|Atakuj uchodźców. . .
 mno_leave_refugees|Zostaw ich na razie. . .
 mno_evil_war_tut_continue|Dalej...
-menu_guardian_party_quest|{s8} wysyła wiadomość, że Isengard jest na kolanach i przygotował swoje ostatnie tchnienie. Życzy on ci przyłączenia się do tej ostatniej bitwy z armiami Isengarda. Musisz przynieść co najmniej {reg13} żołnierzy do wojska, i są instruowani, aby podnieść więcej wojowników z należnym pośpiechem, jeśli nie masz wystarczająco dużo.
-mno_guardian_party_reject|Wyślij wiadomość, że nie możesz do niego dołączyć.
-mno_guardian_party_send_word|Wyślij wiadomość, że wkrótce do niego dołączysz.
 menu_alternate_training_fight|Będziesz miał do czynienia z {reg5} przeciwnikami. Jesteś gotowy?
 mno_training_continue|Rozpocząć szkolenie. . .
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|Korsarze
 mno_rescue_mission|Zakradnij się do kryjówki czarnoksiężnika pod osłoną nocą.
 mno_next_rescue_scene_door|Kontynuuj dalej!
 mno_pick_troops1|Wybierz kompanów na tą misję, {reg0}  wybrano
-menu_pick_troops|Kogo zabrałbyś ze sobą na misję?    Narazie wybrałeś {reg0} kompanów. Możesz zabrać maksymalnie dziesięciu ze sobą.
+menu_pick_troops|Kogo zabrałbyś ze sobą na tajną misje?^Tylko twoi najbardziej zwinni żołnierze i towarzysze będą mogli do ciebie dołączyć.
 mno_go_forward|Zakończ wybieranie kompanów i przejdź dalej.
 menu_burial_mound|Zbliżasz się do kopca pogrzebowego {s1} z {s2}. Został pokonany w bitwie przeciwko siłom {s28}. Piętrzy się na nim stos wyszczerbionych broni pokonanych wrogów.
 mno_pay_respects|Uklęknij i oddaj należyty szacunek.
@@ -442,6 +440,8 @@ menu_death|Powinieneś być martwy. Chociaż wojna wciąż trwa, ty nie jesteś 
 menu_animal_ambush|Ty i twoi kompani oddzieliliście się od reszty drużyny, kiedy nagle...
 menu_animal_ambush_success|{s2} {reg0?fall:falls} przed wami jak zboże skoszone sierpem! Wkrótce wszyscy przeciwnicy leżą na ziemi - ranni, lub martwi. {s3}
 menu_animal_ambush_fail|Zwierzęta zaatakowały ciebie {reg0?,: i twojego kompana {reg2?s,:,}} ale na szczęście udało ci się je odgonić. Miejmy nadzieję że nie zaatakują cie ponownie.
+; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
+mno_isengard_continue|Kontynuuj
 menu_build_your_scene|Możesz zrobić swoją własną scenę bitwy, używając jednego ze slotów udzielonych poniżej oraz trybu edycji gry (musisz włączyć tryb edycji w oknie włączania gry. Najpierw przejdź do opcji, potem wciśnij Ctrl+E wewnątrz sceny żeby mieć dostęp do trybu edycji). Możesz oddawać sceny które stworzyłeś (mianowicie, pliki sco z folderu TLD/SceneObj) do teamu deweloperskiego moda TLD, a jeśli twoja scena jest dobra, może pojawić się w przyszłych update'ach jako jedna w battlegroundsach^^ Spróbuj sprecyzować na którym regionie mapy chciałbyś aby twoja scena się pojawiła.^ Kilka podpowiedzi: unikaj głębokiej wody, stromych gór i innych nieprzekraczalnych miejsc, chyba że jesteś doświadczonym twórcą scenek i wiesz jak powstrzymać jednostki kontrolowane przez AI od pójścia tam gdzie ich nie chcesz, i stworzyć poprawkę do AI w innych miejscach.^\n(Wejścia #0-1 są dla atakujących, #4 dla broniących, nie używaj #5-8
 mno_scene1|Równina Duża (file scn custom 1.sco)
 mno_scene2|Równina Średnia (file scn custom 2.sco)

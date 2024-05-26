@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^奇怪，你聽到四周發出一些威脅的噪音。
 mno_be_quiet_elf|尊重這些憤怒的古樹。悄悄地前進。
 mno_be_quiet|收起武器且保持安靜！馬上離開這裡！
 mno_be_bold|繼續前進！我不害怕植物和古老的神話！
-mno_fight_back|讓我們來一探究竟吧！搜索這個區域！燒燒幾棵樹！ 
+mno_fight_back|讓我們來一探究竟吧！搜索這個區域！燒燒幾棵樹！ （扎營）
 menu_fangorn_search_fails|^^^^^^你搜索了漆黑濃密的森林，但什麽都沒有找到。^然而，你感到來自四周的視線和威脅變得越來越多了。
 menu_fangorn_killed_player_only|^^^^^^你在這個漆黑濃密的森林徘徊。^忽然間某個東西砸到你了的頭上！可能是一根很重的樹枝吧？^你昏迷幾分鐘中後醒了過來。你傷得很重但還能繼續前進。
 mno_ow_get_out|噢！讓我們離開這個被詛咒的地方！
@@ -200,7 +200,7 @@ mno_leave|離開。
 menu_simple_encounter|^^^^^{s2}^你有{reg22}名可戰鬥的部下對抗{reg11}名敵軍。^^戰鬥將在{s3}{s4}展開。^^你的命令是？
 mno_encounter_attack|{reg21?向他們衝鋒:準備迎戰他們}。
 mno_encounter_order_attack|命令你的部下{reg21?進攻:迎戰他們}而不親自參與。
-mno_control_allies_menu|使用影響力來指揮你在戰場上的盟友。 
+mno_control_allies_menu|消耗影響力，取得在戰場上指揮友軍的權力。
 mno_encounter_hide|躲避敵人...
 mno_special_whip|向前衝突破{s4}。
 mno_encounter_attack_bearform|{reg21?變成熊衝進戰場:變身迎戰他們}。
@@ -235,7 +235,7 @@ mno_pre_join_leave|不卷入其中。
 menu_join_battle|^^^你正在幫助{s2}對抗{s1}，^你有{reg22}名部下參加戰鬥對抗敵方的{reg11}人。^^戰鬥將在{s3}{s4}展開。
 mno_join_attack|向敵人衝鋒。
 mno_join_order_attack|命令你的部隊加入盟友進攻而不親自參與。 
-mno_control_allies_join_menu|使用影響力命令你在戰場上的盟友。
+mno_control_allies_join_menu|消耗影響力，取得在戰場上指揮友軍的權力。
 mno_join_attack_bearform|變成熊衝進戰場
 mno_join_leave|脫離。
 mno_player_control_allies_join_menu|指揮他們向敵人衝鋒
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^你擊敗了所有對手和前來鎮壓的守衛。你�
 menu_close|沒什麼。
 menu_town|你抵達了{s60}。{s12}{s13}
 mno_town_menu_0|前往某處。
-mno_town_menu_0_door|通往某處的門。
+; mno_town_menu_0_door|Inspect...
 mno_town_approach|接近{s1}...
 mno_town_castle|前往{s1}。
 mno_town_castle_door|進入城堡的門。
@@ -300,7 +300,7 @@ mno_town_center_door|進入城鎮中心的門。
 mno_aw_chamber_door|開門。
 mno_trade_with_arms_merchant|訪問{s40}。
 mno_trade_with_horse_merchant|訪問{s41}。
-mno_town_prison_door|進入監獄的門。
+mno_town_prison_door|前往訓練場
 mno_dungeon_enter|在山中搜索失落的長槍。
 mno_dungeon_enter_door|打開門。
 mno_dwarven_warehouse|拜訪矮人倉庫
@@ -312,6 +312,7 @@ mno_isengard_underground_door|前往地下洞穴
 mno_tirith_toplevel|爬到頂層。
 mno_tirith_toplevel_door|前往堡壘
 mno_erebor_gates|訪問大門。
+mno_erebor_gates_door|前往大門
 mno_town_leave|離開...
 mno_town_leave_door|離開區域
 menu_player_initiated_siege_result|你在{s2}的旗幟下進攻這個據點。
@@ -386,9 +387,6 @@ mno_defend_refugees|留意掠奪者...
 mno_attack_refugees|攻擊難民隊伍...
 mno_leave_refugees|暫時不管他們...
 mno_evil_war_tut_continue|繼續...
-menu_guardian_party_quest|{s8}派人告知你說艾辛格已經被逼進角落並正在準備最後一戰。他希望你能加入這場跟艾辛格軍隊的最終決戰。你至少需要帶上{reg13}名部下加入軍隊，如果不夠則得盡快徵招更多戰士。
-mno_guardian_party_reject|送信表示你不能加入。
-mno_guardian_party_send_word|派人告知他說你馬上就會加入。
 menu_alternate_training_fight|你將會面對{reg5}個對手。你準備好了嗎？
 mno_training_continue|開始訓練...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|海盜
 mno_rescue_mission|在黑夜的掩護下潛入巫師的巢穴。
 mno_next_rescue_scene_door|繼續向前！
 mno_pick_troops1|選擇一起執行任務的同伴，已選擇了{reg0}人
-menu_pick_troops|你要選擇和誰一起執行這個潛行任務？你已選出了{reg0}個同伴。你最多能帶上10個隊友。
+menu_pick_troops|你要選擇誰和你一起執行這次潛行任務？ ^只有身手最敏捷的部下和同伴能夠加入行動。 ^身為隊伍中荒野求生技能最高的人，{reg65?{s1}建議你最多:你覺得能}帶{reg11}名手下。 ^^目前你選了{reg0}名。
 mno_go_forward|結束同伴選擇並且繼續。
 menu_burial_mound|你接近了{s2}的{s1}的墓塚。他戰敗於{s28}的部隊之下。附近堆滿了死去敵人鈍掉的武器。
 mno_pay_respects|跪下並獻上你的敬意。
@@ -442,6 +440,8 @@ menu_death|你已經被殺害了。雖然戰爭仍舊如火如荼，但你將不
 menu_animal_ambush|你和你的同伴發現跟隊伍的其他人走散了，忽然間...
 menu_animal_ambush_success|{s2}在你面前如同收割麥子一般地{reg0?倒下:倒下}！很快地所有攻擊者都躺在地上，受傷或已死亡。{s3}
 menu_animal_ambush_fail|動物撕咬你{reg0?,:和你的同伴{reg2?,:,}}但幸運的是你設法打退了牠們。希望牠們不會再次攻擊你。
+; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
+; mno_isengard_continue|Continue
 menu_build_your_scene|你可以打造自己的戰場場景。首先在遊戲設定中打開編輯模式，然後選擇底下任意一個存位(你需要先在M&B啟動螢幕設定中將編輯模式切換為ON，然後進入場景中按Ctrl+E打開編輯模式)。  你可以將你創造的場景提交給TLD製作組(TLD/SceneObj資料夾中的sco檔)，做得好的話，它將會作為隨機戰場之一出現在以後的版本中！^^ 記得說明你想要自己作的場景出現在地圖上的哪個地方。^ 附加提示：避免製作深水、陡峭或其他難以通行的地形，除非你是經驗豐富的場景製作者並且知道如何利用AI網格讓AI部隊避開指定區域。^ (#0-1 用於攻擊方，#4用於防守方，別碰#5-8
 mno_scene1|大型平原(file scn custom 1.sco)
 mno_scene2|中型平原(file scn custom 2.sco)

@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|로한 에오를 근위대
 trp_c6_rider_guard_of_rohan_pl|로한 에오를 근위대
 trp_i6_2h_guard_of_rohan|로한 헬름 수비대
 trp_i6_2h_guard_of_rohan_pl|로한 헬름 수비대
-trp_dismounted_veteran_skirmisher_of_rohan|로한 고참 척후병
-trp_dismounted_veteran_skirmisher_of_rohan_pl|로한 고참 척후병
-trp_dismounted_elite_skirmisher_of_rohan|로한 정예 척후병
-trp_dismounted_elite_skirmisher_of_rohan_pl|로한 정예 척후병
-trp_dismounted_thengel_guard_of_rohan|로한 셍겔 근위대
-trp_dismounted_thengel_guard_of_rohan_pl|로한 셍겔 근위대
+trp_ac3_dism_skirmisher_of_rohan2|로한 척후병
+trp_ac3_dism_skirmisher_of_rohan2_pl|로한 척후병
+trp_ac4_dism_veteran_skirmisher_of_rohan2|로한 고참 척후병
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|로한 고참 척후병
+trp_ac5_dism_elite_skirmisher_of_rohan2|로한 정예 척후병
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|로한 정예 척후병
 trp_i1_harad_levy|하라드 징집병
 trp_i1_harad_levy_pl|하라드 징집병
 trp_i3_harad_infantry|하라드 경장보병
@@ -887,14 +887,13 @@ trp_walker_woman_rohan_d|로한 여성 주민
 trp_walker_woman_gondor_b|곤도르 여성 주민
 trp_walker_woman_gondor_bw|곤도르 여성 주민
 trp_walker_woman_gondor_w|곤도르 귀족
-trp_ramun_the_slave_trader|노예상인 라문
-trp_guide|퀵 지미
-trp_galeas|갈레아스
-trp_farmer_from_bandit_village|농부
-trp_farmer_from_bandit_village_pl|농부들
-trp_trainer_1|훈련교관
-trp_trainer_2|훈련교관
-trp_trainer_3|훈련교관
+; trp_mirkwood_walker_1|Greenwood Elf
+; trp_mirkwood_walker_2|Greenwood Elf
+; trp_lorien_walker_1|Lothlorien Elf
+; trp_lorien_walker_2|Lothlorien Elf
+trp_dwarf_walker|난쟁이
+; trp_beorn_walker|Peasant Man
+trp_beorn_walker_fem|여성 농민
 trp_trainer_4|훈련교관
 trp_trainer_gondor|훈련교관
 trp_trainer_rohan|훈련교관
@@ -984,10 +983,6 @@ trp_dunland_lord_pl|족장
 trp_beorn_lord|연로한 그림베오른 족장
 trp_beorn_lord_pl|족장
 trp_lorien_marshall|켈레보른
-trp_pippin_notmet|하플링
-trp_merry_notmet|하플링
-trp_pippin|피핀
-trp_merry|메리
 trp_knight_1_1|"용감한" 앙그보르
 trp_knight_1_2|"장신의" 후린
 trp_knight_1_3|임라힐 대공
@@ -1511,6 +1506,7 @@ trp_gandalf|간달프
 trp_gandalf_pl|집에서 자란 간달프
 trp_nazgul|나즈굴
 trp_nazgul_pl|길들여진 나즈굴
+; trp_radagast|Radagast
 trp_barman|술집 주인
 trp_elder|중앙 장로
 trp_gear_merchant|도구 상인
@@ -1528,8 +1524,8 @@ trp_uruk_hai_sentry|우르크-하이 경비병
 trp_uruk_hai_sentry_pl|우르크-하이 경비병
 trp_black_numenorean_sorcerer|검은 누메노르 주술사
 trp_black_numenorean_sorcerer_pl|검은 누메노르 주술사
-trp_black_numenorean_acolyte|검은 누메노르 시종
-trp_black_numenorean_acolyte_pl|검은 누메노르 시종
+; trp_evil_priest|Evil Priest
+; trp_evil_priest_pl|Evil Priests
 trp_wolf_rider_of_mirkwood|어둠숲 늑대기수
 trp_wolf_rider_of_mirkwood_pl|어둠숲 늑대기수
 trp_warg_rider_of_mirkwood|어둠숲 와르그기수
@@ -1636,3 +1632,18 @@ trp_tribal_orc_warrior|부족 오르크 전사
 trp_tribal_orc_warrior_pl|부족 오르크 전사
 trp_tribal_orc_chief|부족 오르크 족장
 trp_tribal_orc_chief_pl|부족 오르크 족장
+trp_a3_dism_skirmisher_of_rohan|로한 척후병
+trp_a3_dism_skirmisher_of_rohan_pl|로한 척후병
+trp_a4_dism_veteran_skirmisher_of_rohan|로한 고참 척후병
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|로한 고참 척후병
+trp_a5_dism_elite_skirmisher_of_rohan|로한 정예 척후병
+trp_a5_dism_elite_skirmisher_of_rohan_pl|로한 정예 척후병
+; trp_ac5_camel_rider|Harad Camel Rider
+; trp_ac5_camel_rider_pl|Harad Camel Riders
+; trp_aragorn|Aragorn
+; trp_legolas|Legolas
+; trp_gimli|Gimli
+trp_pippin_notmet|하플링
+trp_merry_notmet|하플링
+trp_pippin|피핀
+trp_merry|메리

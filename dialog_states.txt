@@ -38,6 +38,12 @@ hobbit_general_talk_ask_3
 hobbit_general_talk_ask_accept
 hobbit_general_talk_ask_reject
 hobbit_deliver_message
+HD_defense_01
+aragorn_thanks_HD
+treebeard_isengard_1
+treebeard_isengard_2
+treebeard_isengard_3
+ent_encounter
 treebeard_introduce_1
 treebeard_introduce_2
 treebeard_introduce_3
@@ -125,8 +131,9 @@ player_hire_troll_armoured
 player_hire_troll_buy_not_enough
 tld_sell_prisoners
 tld_sell_prisoners_check
-tld_sell_prisoners_2
+tld_sell_prisoners_all
 player_hire_troop_nextcycle
+tld_sell_prisoners_2
 player_hire_troop_pre_pre_nextcycle
 player_hire_troop_reunite
 player_hire_troop_pre_nextcycle
@@ -176,9 +183,6 @@ lord_hunt_refugees_failed
 lord_hunt_refugees_failed_1
 lord_sea_battle_completed
 sea_battle_quest_failed_1
-lord_guardian_party_start
-lord_guardian_party_agree
-lord_guardian_party_wait
 lord_bring_back_runaway_serfs_failed
 lord_bring_back_runaway_serfs_failed_1a
 lord_runaway_serf_half_completed
@@ -382,6 +386,8 @@ lord_tell_mission_lend_companion_accepted
 lord_tell_mission_lend_companion_rejected
 lord_leave_prison
 lord_leave
+lord_offer_troops
+lord_offer_item
 lady_escort_lady_succeeded
 castle_guard_players
 castle_guard_sneaked_intro_1
@@ -442,8 +448,9 @@ kill_scout_5
 kill_scout_6
 kill_scout_7
 kill_scout_8
-healers_ask
+healers_meet
 healer_who
+healers_ask
 healer_wound_ask
 healer_injured_ask
 healers_wound_check
@@ -627,6 +634,8 @@ party_reinforce_end
 party_reinforce_check
 party_reinforce_check_1
 party_reinforce_check_2
+secret_guardian_let_through
+secret_guardian_let_through1
 party_encounter_hostile_attacker
 party_encounter_hostile_defender
 party_encounter_hostile_ultimatum_surrender

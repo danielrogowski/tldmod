@@ -1,9 +1,9 @@
 skl_trade|取引
 skl_trade_desc|鍛冶屋と補給係が より協力的になり、 より良い装備を融通して くれるようになります。 (パーティスキル)
 skl_leadership|統率力
-skl_leadership_desc|1レベル毎に指揮できる兵の数が 5名増加し、士気が上昇して 兵の維持費が5%%減少します。 さらに、より多く、質の高い 志願兵が集まるようになります。 (リーダースキル)
+; skl_leadership_desc|Every point increases maximum number of troops you can command by 5, increases your party morale and coherence in battle. Makes more and stronger volunteers willing to follow you. (Leader skill)
 skl_prisoner_management|囚人管理
-skl_prisoner_management_desc|1レベル毎に、 確保できる囚人の最大数が %d名増加します。 (リーダースキル)
+; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
 skl_persuasion|ワイルドクラフト
 skl_persuasion_desc|自然を操り、自然の中を生き延びる 能力です。木々の生い茂る地形に おいて、パーティの移動速度と、 敵から姿を隠す能力に影響を与えます。 (パーティスキル)
 skl_engineer|-----
@@ -15,7 +15,7 @@ skl_surgery_desc|1レベル毎に4%%の確率で、 戦闘で致死ダメージ�
 skl_wound_treatment|治療
 skl_wound_treatment_desc|パーティの回復速度が 1レベル毎に20%%速くなります。 (パーティスキル)
 skl_inventory_management|荷物管理
-skl_inventory_management_desc|確保できるアイテムの最大数が 1レベル毎に6個増加します。 (リーダースキル)
+; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
 skl_spotting|観測術
 skl_spotting_desc|1レベル毎に、 マップ画面上での視界が 10%%広くなります。 (パーティスキル)
 skl_pathfinding|経路探索

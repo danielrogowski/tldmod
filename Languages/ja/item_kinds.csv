@@ -26,7 +26,6 @@ itm_steppe_horse|ステップ馬
 itm_courser|コーサー
 itm_hunter|ハンター
 itm_pony|ポニー
-itm_arnor_warhorse|アルノール軍馬
 itm_dunedain_warhorse|ドゥネダイン軍馬
 itm_rohirrim_courser|ロヒアリムコーサー
 itm_rohirrim_hunter|ロヒアリムハンター
@@ -93,6 +92,7 @@ itm_hood_black|黒い頭巾
 itm_hood_green|緑の頭巾
 itm_hood_grey|灰色の頭巾
 itm_hood_leather|皮の頭巾
+; itm_mail_coif|Mail Coif
 itm_axe_a|北国人の斧
 itm_axe_b|北国人のヒゲ斧
 itm_axe_c|北国人の斧
@@ -130,21 +130,19 @@ itm_harad_javelin|ハラドの投げ槍
 itm_gondor_javelin|ゴンドールの投げ槍
 itm_rohirrim_throwing_axe|北国人の投げ斧
 itm_loss_throwing_axes|ロスサールナッハの投げ斧
-itm_arnor_helm_a|アルノールの兜
+itm_arnor_helm_c|アルノールの細工入り兜
 itm_arnor_helm_b|アルノールの兜
-itm_arnor_helm_c|アルノールの兜
-itm_dunedain_helm_b|アルノールの細工入り兜
-itm_arnor_armor_a|アルノールの鎧
-itm_arnor_armor_b|アルノールの鎧
-itm_arnor_armor_c|ドゥネダイン野伏の革鎧
-itm_arnor_armor_d|ドゥネダイン野伏の革鎧
-itm_arnor_armor_e|アルノールの補強された胴着
-itm_arnor_armor_f|アルノールの上級鎧
+; itm_arnor_helm_a|Arnor Light Helm
+; itm_arnor_light_a|Dunedain Ranger Jerkin
+; itm_arnor_light_b|Dunedain Ranger Mail
+; itm_arnor_med_a|Dunedain Ranger Coat
+; itm_arnor_med_b|Dunedain Mail
+itm_arnor_heavy|アルノールの上級鎧
 itm_arnor_greaves|アルノールのすね当て
-itm_arnor_shield_a|アルノールの盾
 itm_arnor_shield_c|アルノール騎兵の盾
-itm_arnor_sword_a|アルノールのバスタードソード
+; itm_arnor_shield_a|Arnor Round Shield
 itm_arnor_sword_c|アルノールの長剣
+itm_arnor_sword_a|アルノールのバスタードソード
 itm_arnor_sword_f|アルノールの短剣
 itm_riv_helm_a|裂け谷のコイフ
 itm_riv_helm_b|裂け谷弓兵の兜
@@ -164,7 +162,6 @@ itm_riv_foot_scale|裂け谷のスケイル
 itm_riv_surcoat|裂け谷のシュールコー
 itm_riv_knight|裂け谷騎士の鎧
 itm_riv_armor_h_archer|裂け谷の鎧
-itm_riv_armor_leader|裂け谷指揮官の鎧
 itm_riv_boots|裂け谷のブーツ
 itm_gon_footman|ゴンドールの鎖かたびら
 itm_gon_jerkin|ゴンドールの胴着
@@ -291,7 +288,6 @@ itm_orc_tribal_b|剥いだだけの皮
 itm_orc_tribal_c|剥いだだけの皮
 itm_evil_gauntlets_a|黒い手袋
 itm_evil_gauntlets_b|黒い小手
-itm_free_isen_orc_armor_a|アイゼンガルドオークの鎧
 itm_isen_orc_light_a|アイゼンガルドオークの軽装ハーネス
 itm_isen_orc_light_b|アイゼンガルドオークの軽装ハーネス
 itm_isen_orc_pad_a|アイゼンガルドオークの軽装板札鎧
@@ -352,9 +348,9 @@ itm_orc_axe|オークの斧
 itm_orc_two_handed_axe|オークの大斧
 itm_orc_throwing_axes|オークの投げ斧
 itm_orc_bow|オークの弓
-itm_orc_shield_a|オークの盾
-itm_orc_shield_b|オークの盾
-itm_orc_shield_c|オークの大盾
+; itm_orc_shield_a|Simple Shield
+; itm_orc_shield_b|Fur Shield
+; itm_orc_shield_c|Fur Tower Shield
 itm_mordor_orc_shield_a|モルドールオークの盾
 itm_mordor_orc_shield_b|モルドールオークの盾
 itm_mordor_orc_shield_c|モルドールオークの盾
@@ -427,23 +423,20 @@ itm_gundabad_helm_c|グンダバドの兜
 itm_gundabad_helm_d|グンダバドの兜
 itm_gundabad_helm_e|ワーグ騎兵の兜
 itm_dunland_wolfboots|褐色人の狼ブーツ
-itm_dunland_armor_a|褐色人の毛皮鎧
-itm_dunland_armor_b|褐色人の毛皮鎧
-itm_dunland_armor_c|褐色人の毛皮鎧
-itm_dunland_armor_d|褐色人の毛皮鎧
-itm_dunland_armor_e|褐色人の毛皮鎧
-itm_dunland_armor_g|褐色人の毛皮鎧
-itm_dunland_armor_h|褐色人の丈の長い毛皮鎧
-itm_dunland_armor_i|褐色人のホバーク
-itm_dunland_armor_j|褐色人のホバーク
-itm_dunland_armor_k|褐色人族長の鎧
+; itm_dunland_tunic_1|Dunnish Leather Tunic
+; itm_dunland_tunic_2|Dunnish Leather Tunic
+; itm_dunland_fur_1|Dunnish Fur
+; itm_dunland_fur_2|Dunnish Fur
+itm_dunland_mail_1|褐色人のホバーク
+itm_dunland_mail_2|褐色人のホバーク
+; itm_dunland_chieftain|Dunnish Chief Armor
 itm_dun_helm_a|褐色人の狼の被り物
-itm_dun_helm_b|褐色人の鹿の角の被り物
+; itm_dun_helm_b|Dunnish Fur Cap
 itm_dun_helm_c|褐色人の山高兜
 itm_dun_helm_d|褐色人の山高兜
 itm_dun_helm_e|褐色人の鹿の角の兜
-itm_dun_shield_a|褐色人の盾
-itm_dun_shield_b|褐色人の盾
+; itm_dun_shield_a|Dunnish Roundshield
+; itm_dun_shield_b|Dunnish Oval Shield
 itm_dun_berserker|褐色人族長の剣
 itm_dunnish_antler_axe|褐色人の鹿の角の斧
 itm_dunnish_war_axe|褐色人の戦斧
@@ -499,19 +492,17 @@ itm_mirkwood_helm_a|森のエルフ弓兵の兜
 itm_mirkwood_helm_b|緑森の兜
 itm_mirkwood_helm_c|緑森の重装兜
 itm_mirkwood_helm_d|緑森の上級兜
-itm_mirkwood_boots|森のエルフのブーツ
+; itm_woodelf_leather_boots|Woodelf Leather Boots
+; itm_mirkwood_boots|Greenwood Boots
 itm_harad_tunic|ハラドのチュニック
-itm_harad_padded|ハロンドールの当て物の入った鎧
-itm_harad_hauberk|ハロンドールのホバーク
-itm_harad_lamellar|ハラシヤラ鎧
-itm_harad_heavy|ハラド貴族の鎧
-itm_harad_skirmisher|ハラドの軽装祭服
-itm_harad_archer|ハラド弓兵の鎧
+; itm_harad_padded|Harad Padded Jerkin
+; itm_harad_lamellar|Harad Scale Vest
+; itm_harad_heavy_lamellar|Harad Heavy Scale Vest
+itm_harad_heavy|ハラシヤラ鎧
+; itm_harad_pectoral|Harad Breastplate
 itm_black_snake_armor|マランカ鎧
 itm_harad_champion|遠ハラドの祭服
-itm_panther_guard|豹の毛皮
 itm_harad_scale|ハラドのスケイル鎧
-itm_harad_tiger_scale|虎近衛兵の鎧
 itm_harad_lion_scale|獅子近衛兵の鎧
 itm_harad_dragon_helm|キロカ兜
 itm_harad_cav_helm_a|ハロンドールの軽装兜
@@ -524,11 +515,11 @@ itm_harad_eaglehelm|鷲近衛兵の兜
 itm_lion_helm|獅子近衛兵の兜
 itm_harad_pantherhelm|豹近衛兵の頭巾
 itm_harad_khopesh|ハラドのケペシュ
-itm_black_snake_sword|ハラドの大ファルシオン
-itm_harad_heavy_sword|ハラドの大剣
+; itm_black_snake_sword|Harad Cobra Sword
+; itm_harad_heavy_sword|Harad Dragon Sword
 itm_horandor_a|ハラドのシミター
 itm_skirmisher_sword|ハラド散兵の剣
-itm_harad_sabre|ハラドのサーベル
+; itm_harad_sabre|Harad Salamander Sword
 itm_harad_mace|遠ハラドのメイス
 itm_far_harad_2h_mace|遠ハラドの大メイス
 itm_harad_dagger|ハラドのナイフ
@@ -546,7 +537,7 @@ itm_harad_shield_c|ハロンドールのバックラー
 itm_harad_yellow_shield|ハラドの盾
 itm_desert_boots|砂漠のブーツ
 itm_harad_leather_greaves|ハラドの革のすね当て
-itm_harad_scale_greaves|ハラドのスケイルブーツ
+itm_harad_scale_greaves|ハラドのすね当て
 itm_harad_lamellar_greaves|ハラドの鉄板を張ったすね当て
 itm_khand_inf_helm_a|ハンドの兜
 itm_khand_inf_helm_b|ハンドの兜
@@ -558,10 +549,12 @@ itm_khand_cav_helm_b|ハンドの騎兵の兜
 itm_khand_cav_helm_c|ハンドの飾りのついた兜
 itm_khand_helm_mask|ハンドの仮面
 itm_khand_light|ハンドのキルト
-itm_khand_light_lam|ハンドの軽装薄金鎧
-itm_khand_foot_lam|ハンドの歩兵の鎧
+; itm_khand_light_lam|Khand Light Footmen Armor
+; itm_khand_foot_lam|Khand Heavy Footman Armor
 itm_khand_med_lam|ハンドの薄金鎧
 itm_khand_heavy_lam|ハンドの重装薄金鎧
+; itm_khand_mail|Khand Mail
+itm_khand_noble_lam|ハンドの上級鎧
 itm_khand_axe_great|ハンドの大斧
 itm_khand_axe_winged|ハンドの両刃斧
 itm_khand_halberd|ハンドのハルバード
@@ -642,6 +635,7 @@ itm_umb_helm_a|海賊の貝殻兜
 itm_umb_helm_b|海賊の山高兜
 itm_umb_helm_c|海賊民兵の兜
 itm_umb_helm_d|海賊襲撃兵の兜
+; itm_umb_helm_reward|Ancient Numenorean Karma
 itm_corsair_trident|海の怒りの三つ又
 itm_corsair_boots|海賊のブーツ
 itm_umb_shield_a|海賊の盾
@@ -725,6 +719,7 @@ itm_gondor_lance_banner|ゴンドールの戦旗つきランス
 itm_amroth_lance_banner|ドル・アムロスの戦旗つきランス
 itm_rohan_lance_banner_sun|ローハンの太陽の戦旗つきランス
 itm_rohan_lance_banner_horse|ローハンの馬の戦旗つきランス
+; itm_fur_gloves_reward|Hunter Gloves
 itm_ent_water|おわんに入った奇妙な水
 itm_map|中つ国の地図
 itm_athelas_reward|乾燥させたアセラスの葉
@@ -780,7 +775,6 @@ itm_rohan_armor_th|ローハンの上級鎧
 itm_wilderness_cowl|狩人の頭巾
 itm_prisoner_coll_chain|捕虜の鎖
 itm_witchking_helmet|妖術師の仮面
-itm_lorien_royal_armor|ローリエンの上級鎧
 itm_feet_chains|足の鎖
 itm_feet_chains_dwarf|足の鎖
 itm_spider|大蜘蛛

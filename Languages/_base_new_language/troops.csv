@@ -484,12 +484,12 @@ trp_c6_rider_guard_of_rohan|Eorl Guard of Rohan
 trp_c6_rider_guard_of_rohan_pl|Eorl Guards of Rohan
 trp_i6_2h_guard_of_rohan|Helm Guard of Rohan
 trp_i6_2h_guard_of_rohan_pl|Helm Guards of Rohan
-trp_dismounted_veteran_skirmisher_of_rohan|Veteran Skirmisher of Rohan
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Veteran Skirmishers of Rohan
-trp_dismounted_elite_skirmisher_of_rohan|Elite Skirmisher of Rohan
-trp_dismounted_elite_skirmisher_of_rohan_pl|Elite Skirmishers of Rohan
-trp_dismounted_thengel_guard_of_rohan|Thengel Guard of Rohan
-trp_dismounted_thengel_guard_of_rohan_pl|Thengel Guards of Rohan
+trp_ac3_dism_skirmisher_of_rohan2|Skirmisher of Rohan
+trp_ac3_dism_skirmisher_of_rohan2_pl|Skirmishers of Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Veteran Skirmisher of Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Veteran Skirmishers of Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2|Elite Skirmisher of Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Elite Skirmishers of Rohan
 trp_i1_harad_levy|Harad Levy
 trp_i1_harad_levy_pl|Harad Levies
 trp_i3_harad_infantry|Harad Light Footman
@@ -938,20 +938,20 @@ trp_walker_woman_gondor_bw|Gondor Woman
 trp_walker_woman_gondor_bw_pl| 
 trp_walker_woman_gondor_w|Gondor Noble
 trp_walker_woman_gondor_w_pl| 
-trp_ramun_the_slave_trader|Ramun the slave trader
-trp_ramun_the_slave_trader_pl| 
-trp_guide|Quick Jimmy
-trp_guide_pl| 
-trp_galeas|Galeas
-trp_galeas_pl| 
-trp_farmer_from_bandit_village|Farmer
-trp_farmer_from_bandit_village_pl|Farmers
-trp_trainer_1|Trainer
-trp_trainer_1_pl| 
-trp_trainer_2|Trainer
-trp_trainer_2_pl| 
-trp_trainer_3|Trainer
-trp_trainer_3_pl| 
+trp_mirkwood_walker_1|Greenwood Elf
+trp_mirkwood_walker_1_pl|Greenwood Elves
+trp_mirkwood_walker_2|Greenwood Elf
+trp_mirkwood_walker_2_pl|Greenwood Elves
+trp_lorien_walker_1|Lothlorien Elf
+trp_lorien_walker_1_pl|Lothlorien Elves
+trp_lorien_walker_2|Lothlorien Elf
+trp_lorien_walker_2_pl|Lothlorien Elves
+trp_dwarf_walker|Dwarf
+trp_dwarf_walker_pl|Dwarves
+trp_beorn_walker|Peasant Man
+trp_beorn_walker_pl|Peasant Men
+trp_beorn_walker_fem|Peasant Woman
+trp_beorn_walker_fem_pl|Peasant Women
 trp_trainer_4|Trainer
 trp_trainer_4_pl| 
 trp_trainer_gondor|Trainer
@@ -1094,14 +1094,14 @@ trp_beorn_lord|Chief Grimbeorn the Old
 trp_beorn_lord_pl|Chief
 trp_lorien_marshall|Celeborn
 trp_lorien_marshall_pl| 
-trp_pippin_notmet|halfling
-trp_pippin_notmet_pl| 
-trp_merry_notmet|halfling
-trp_merry_notmet_pl| 
-trp_pippin|Pippin
-trp_pippin_pl| 
-trp_merry|Merry
-trp_merry_pl| 
+trp_pippin_notmet_old|halfling old
+trp_pippin_notmet_old_pl| 
+trp_merry_notmet_old|halfling old
+trp_merry_notmet_old_pl| 
+trp_pippin_old|Pippin old
+trp_pippin_old_pl| 
+trp_merry_old|Merry old
+trp_merry_old_pl| 
 trp_knight_1_1|Angbor the Fearless
 trp_knight_1_1_pl| 
 trp_knight_1_2|Húrin of the Keys
@@ -1718,8 +1718,8 @@ trp_gandalf|Gandalf
 trp_gandalf_pl|Home-grown Gandalves
 trp_nazgul|Nazgul
 trp_nazgul_pl|Domesticated Nazgul
-trp_quick_battle_6_player|quick battle 6 player
-trp_quick_battle_6_player_pl| 
+trp_radagast|Radagast
+trp_radagast_pl|Home-grown Gandalves
 trp_barman|Barman
 trp_barman_pl| 
 trp_elder|Center Elder
@@ -1768,8 +1768,8 @@ trp_uruk_hai_sentry|Uruk-hai Sentry
 trp_uruk_hai_sentry_pl|uruk hai sentry
 trp_black_numenorean_sorcerer|Black Numenorean Sorcerer
 trp_black_numenorean_sorcerer_pl|Black numenorean sorcerer
-trp_black_numenorean_acolyte|Black Numenorean Acolyte
-trp_black_numenorean_acolyte_pl|Black Numenorean Acolytes
+trp_evil_priest|Evil Priest
+trp_evil_priest_pl|Evil Priests
 trp_wolf_rider_of_mirkwood|Wolf Rider of Mirkwood
 trp_wolf_rider_of_mirkwood_pl|Wolf Riders of Mirkwood
 trp_warg_rider_of_mirkwood|Warg Rider of Mirkwood
@@ -1960,5 +1960,29 @@ trp_future_troop_9|Tribal Orc Chief
 trp_future_troop_9_pl|Tribal Orc Chiefs
 trp_future_troop_10|Tribal Orc Chief
 trp_future_troop_10_pl|Tribal Orc Chiefs
+trp_a3_dism_skirmisher_of_rohan|Skirmisher of Rohan
+trp_a3_dism_skirmisher_of_rohan_pl|Skirmishers of Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan|Veteran Skirmisher of Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Veteran Skirmishers of Rohan
+trp_a5_dism_elite_skirmisher_of_rohan|Elite Skirmisher of Rohan
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Elite Skirmishers of Rohan
+trp_ac5_camel_rider|Harad Camel Rider
+trp_ac5_camel_rider_pl|Harad Camel Riders
+trp_aragorn|Aragorn
+trp_aragorn_pl| 
+trp_legolas|Legolas
+trp_legolas_pl| 
+trp_gimli|Gimli
+trp_gimli_pl| 
+trp_stub1|BUG
+trp_stub1_pl|BUG
+trp_pippin_notmet|halfling
+trp_pippin_notmet_pl| 
+trp_merry_notmet|halfling
+trp_merry_notmet_pl| 
+trp_pippin|Pippin
+trp_pippin_pl| 
+trp_merry|Merry
+trp_merry_pl| 
 trp_last|BUG
 trp_last_pl|BUG

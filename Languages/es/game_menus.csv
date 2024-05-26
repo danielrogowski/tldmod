@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^Es extraño... sientes ruidos amenazadores a tu alrede
 mno_be_quiet_elf|Respetar la ira de los árboles. Continuar en silencio.
 mno_be_quiet|¡Bajad las armas y manteneos en silencio! ¡Ahora, vayámonos de aquí!
 mno_be_bold|¡Seguir adelante! ¡No le temo ni a las plantas ni a los viejos mitos!
-mno_fight_back|¡Vamos a ver! ¡Peinad el área! ¡Quemad un árbol o dos!
+mno_fight_back|¡Vamos a ver! ¡Peinad el área! ¡Quemad un árbol o dos! (Campamento)
 menu_fangorn_search_fails|^^^^^^Buscas en la espesura del oscuro bosque pero no encuentras nada.^Aún así te sientes {observado y amenazado/observada y amenazada}, cada vez más y más...
 menu_fangorn_killed_player_only|^^^^^^Vagas por el espeso y oscuro bosque.^¡De repente, algo te golpea! ¿Habrá ssido una rama pesada que ha caído sobre tu cabeza?^Permaneces inconsciente sólo durante algunos minutos... despiertas {maltrecho/maltrecha} pero puedes seguir adelante.
 mno_ow_get_out|¡Ay! Salgamos ahora mismo de este maldito lugar.
@@ -200,7 +200,7 @@ mno_leave|Irse.
 menu_simple_encounter|^^^^^{s2}^Cuentas con {reg22} tropas listas para la batalla frente a las {reg11} del enemigo.^^La batalla tendrá lugar en {s3}{s4}.^^¿Cuáles son tus órdenes?
 mno_encounter_attack|{reg21?Cargar contra ellos:Prepararse para el enfrentamiento}.
 mno_encounter_order_attack|Ordenar a tus tropas {reg21?atacar:enfrentarse a ellos} sin tu ayuda.
-mno_control_allies_menu|Usar Influencia para dar órdenes a tus aliados en el campo de batalla
+mno_control_allies_menu|Usar Influencia para dar órdenes a tus aliados en el campo de batalla.
 mno_encounter_hide|Esconderse del enemigo...
 mno_special_whip|Acercarse rápidamente hacia ellos restallando el {s4}.
 mno_encounter_attack_bearform|{reg21?Atacar en forma de oso:Cambia de piel y enfréntate al enemigo}.
@@ -235,7 +235,7 @@ mno_pre_join_leave|No involucrarse.
 menu_join_battle|^^^Estás colaborando con {s2} en la lucha contra {s1}.^ Cuentas con {reg22} tropas listas para la batalla, frente a las {reg11} del enemigo.^^La batalla tendrá lugar en {s3}{s4}.
 mno_join_attack|Enfrentarse al enemigo.
 mno_join_order_attack|Ordenar a tus tropas que ataquen al enemigo junto con tus aliados mientras te mantienes al margen.
-mno_control_allies_join_menu|Usar puntos de Influencia para dar órdenes a tus aliados en el campo de batalla
+mno_control_allies_join_menu|Usar Influencia para dar órdenes a tus aliados en el campo de batalla.
 mno_join_attack_bearform|Lanzarte a la batalla en forma de oso.
 mno_join_leave|Replegarse.
 mno_player_control_allies_join_menu|Ponerlos bajo tus órdenes y enfrentarse al enemigo.
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^Has dejado inertes en el suelo a todos los oponentes, a
 menu_close|Nada.
 menu_town|Has llegado a {s60}.{s12}{s13}
 mno_town_menu_0|Ir a algún sitio.
-mno_town_menu_0_door|Puerta a algún sitio.
+mno_town_menu_0_door|Inspeccionar...
 mno_town_approach|Acercarse a {s1}...
 mno_town_castle|Ir a{s1}.
 mno_town_castle_door|Puerta al castillo.
@@ -300,7 +300,7 @@ mno_town_center_door|Puerta al centro de la ciudad.
 mno_aw_chamber_door|Abrir la puerta.
 mno_trade_with_arms_merchant|Visitar {s40}.
 mno_trade_with_horse_merchant|Visitar {s41}.
-mno_town_prison_door|Puerta a la prisión.
+mno_town_prison_door|Al campo de entrenamiento
 mno_dungeon_enter|Buscar las lanzas perdidas dentro de la montaña.
 mno_dungeon_enter_door|Abrir la puerta.
 mno_dwarven_warehouse|Visitar el Almacén Enano
@@ -312,6 +312,7 @@ mno_isengard_underground_door|Ir a las cavernas subterráneas.
 mno_tirith_toplevel|Ir al nivel superior.
 mno_tirith_toplevel_door|Ir a la Ciudadela
 mno_erebor_gates|Visitar las Grandes Puertas.
+mno_erebor_gates_door|Ir a las Grandes Puertas.
 mno_town_leave|Irse...
 mno_town_leave_door|Salir del área
 menu_player_initiated_siege_result|Atacaste este centro bajo el estandarte de {s2}.
@@ -386,9 +387,6 @@ mno_defend_refugees|Mantenerte ojo avizor por si aparecen saqueadores...
 mno_attack_refugees|Atacar la caravana de refugiados...
 mno_leave_refugees|Dejarlos en paz por ahora...
 mno_evil_war_tut_continue|Continuar...
-menu_guardian_party_quest|{s8} informa de que Isengard está al límite de sus fuerzas y ha organizado su última defensa. Quiere que te unas a esta batalla final contra los ejércitos de Isengard.   Necesitas aportar al menos {reg13} tropas al ejército,  y se te insta  a reclutar más guerreros con toda premura si no tienes suficientes.
-mno_guardian_party_reject|Envía un mensaje diciendo que no puedes unirte a él.
-mno_guardian_party_send_word|Enviarle el mensaje de que te reunirás con él en breve.
 menu_alternate_training_fight|Te enfrentarás a {reg5} oponentes. ¿Quieres empezar?
 mno_training_continue|Empezar el entrenamiento...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|Corsarios
 mno_rescue_mission|Deslizarse sigilosamente dentro de la guarida del hechicero bajo el abrigo de la noche.
 mno_next_rescue_scene_door|¡Seguir adelante!
 mno_pick_troops1|Elige compañeros para la misión, {reg0} seleccionados
-menu_pick_troops|¿Quién quieres que te acompañe en ésta misión de sigilo?  Por el momento has elegido {reg0} compañeros. Puedes llevarte contigo hasta 10 tropas.
+menu_pick_troops|¿Quiénes te acompañarán en la misión encubierta?    ^Solo tus soldados y compañeros más ágiles podrán ir contigo.    ^Como el miembro del grupo con la mayor puntuación en la habilidad de Dominio de las tierras salvajes, {reg65?{s1} te aconseja:decides} no llevar más de {reg11} tropas contigo.    ^^Actualmente, has seleccionado {reg0} compañeros.
 mno_go_forward|Terminar de elegir compañeros y continuar.
 menu_burial_mound|Te aproximas al túmulo funerario de {s1} de {s2}, que cayó en batalla contra las fuerzas de {s28}.  A sus pies se apilan las melladas armas de sus enemigos caídos.
 mno_pay_respects|Arrodillarte y mostrar tus respetos.
@@ -442,6 +440,8 @@ menu_death|Te han matado. Aunque la guerra sigue su sangriento curso tú ya no f
 menu_animal_ambush|Tú y tus compañeros os encontráis separados del resto del grupo cuando de repente...
 menu_animal_ambush_success|{reg0?El:Los} {s2} {reg0?cae:caen} ante ti como el trigo seco bajo la guadaña. Poco después todos tus atacantes yacen en el suelo, muertos o heridos. {s3}
 menu_animal_ambush_fail|Los animales {reg0?te muerden y desgarran,:os muerden y desgarran a ti y a tu{reg2?s : }compañero{reg2?s,:,}} pero por suerte consigues mantenerlos a raya y ahuyentarlos. Con un poco de suerte no te atacarán de nuevo.
+menu_isengard_flooding|^^^^^@Te rodean enemigos muertos y aliados triunfantes, incluyendo a los Ents; rugen y braman y aúllan de tal modo que las piedras se resquebrajan y caen alrededor de la torre de Orthanc. Son como una tempestad, despedazando las columnas, arrojando avalanchas de piedras a los fosos, lanzando al aire enormes bloques de roca como si fuesen hojas... No se parece a nada que hayas visto antes.^^ Bregalad -- o Ramaviva, como tú lo conoces -- se acerca a grandes zancadas y se detiene solo para decir: '¡{playername}! ¡Cuidado! Mantente lejos de la Torre; pronto romperemos el dique y traeremos el Isen al valle durante un tiempo. ¡Creo que encontrarás muy difícil quedarte aquí!' Te apresuras a seguir su consejo y te apartas de Orthanc.^^ Cerca de medianoche, Isengard empieza a llenarse de charcos y arroyos de aguas negras. No puedes evitar un estremecimiento al ver grandes columnas de humo y vapor elevándose y enroscándose alrededor de la Torre, hasta que parece un elevado pico de nubes, incandescente por abajo y arriba iluminado por la luna. La cólera de los Ents es lenta, pero posee una fuerza irresistible...
+mno_isengard_continue|Continuar
 menu_build_your_scene|Puedes crear tu propio escenario de batalla, utilizando una de las ranuras disponibles abajo y activando el modo de edición (primero tienes que marcar la casilla correspondiente en las opciones del lanzador inciar el juego, entrar en un esenario de batalla y pulsar Ctrl+E para acceder al editor). Puedes enviarnos los escenarios que hayas creado (los archivos sco de dentro de la carpeta TLD/SceneObj) y si tu creación es lo bastante buena, podría aparecer en versiones posteriores como uno de los mapas de batalla aleatorios.^^ Intenta especificar en qué región del mapa quieres que aparezca.^ Un par de consejos: evita las aguas profundas, las montañas empinadas y otros obstáculos infranqueables, a no ser que tengas expperiencia creando mapas y sepas usar las barreras y las «AI Mesh» para hacer que la IA de las tropas vaya donde tú quieras que vaya y no se meta donde no debe.^ (Los puntos de entrada del 0 al 1 son para atacantes, el 4 para los defensores, ni se te ocurra tocar los que van del 5 al 8)
 mno_scene1|Llanura grande (archivo: scn custom 1.sco)
 mno_scene2|Llanura mediana (archivo: scn custom 2.sco)

@@ -176,7 +176,7 @@ menu_fangorn_danger|이상하게도, 위협적인 소음이 당신 주변을 온
 mno_be_quiet_elf|나무들의 증오심을 존중한다. 조용히 이동한다
 mno_be_quiet|무기를 내리고 조용히 하라! 이곳을 벗어난다!
 mno_be_bold|계속 가자! 나는 식물이나 오래된 미신같은 건 두렵지 않아!
-mno_fight_back|알아봐야겠어! 이 지역을 조사하라! 나무를 한 두 그루 정도 불태워 봐!
+; mno_fight_back|Let's find out! Search the area! Burn down a tree or two! (Camp)
 menu_fangorn_search_fails|^^^^^^당신은 어둡고 빽빽한 숲을 조사했지만 아무것도 찾을 수 없었습니다.^하지만 당신은 더 많은 관찰과 위협을 느꼈습니다.
 menu_fangorn_killed_player_only|^^^^^^당신은 빽빽한, 어두운 숲을 배회했습니다.^갑자기 당신은 무언가에 얻어맞았습니다! 아마도 묵직한 가지가 당신의 머리에 떨어진 듯 한데요?^당신은 몇분간 의식을 잃었습니다. 당신은 심하게 다쳤지만 도망칠 수 있었습니다.
 mno_ow_get_out|아야! 이 저주받은 곳에서 나가자!
@@ -200,7 +200,7 @@ mno_leave|떠나기
 menu_simple_encounter|^^^^^{s2}^당신은 {reg11}명의 적군에 맞서 싸울 {reg22}명의 병사를 가지고 있습니다.\n^^전투는 {s3}{s4}에서 일어나고 있습니다.^^당신의 명령은?
 mno_encounter_attack|{reg21?적을 향해 돌격한다:적과 싸울 준비를 한다}
 mno_encounter_order_attack|당신이 뒤로 물러나 있는 동안 병사들에게 {reg21?공격하라고:싸우라고} 명령한다
-mno_control_allies_menu|당신의 아군에게 명령하기 위해 영향력을 사용한다.
+; mno_control_allies_menu|Use influence to command your allies in the field.
 mno_encounter_hide|적으로부터 숨는다...
 mno_special_whip|{s4}을(를) 채찍질하며 그들을 향해 돌격한다
 mno_encounter_attack_bearform|{reg21?Leap into battle in bear form:Turn skin and face them}.
@@ -235,7 +235,7 @@ mno_pre_join_leave|참전하지 않는다
 menu_join_battle|당신은 {s1}에 맞서 {s2}의 군단에 가세했습니다.^우리측 {reg22}명의 군대로 {reg11}명의 적군에 맞서싸워야 합니다.^^전투는 {s3}{s4}에서 일어나고 있습니다.
 mno_join_attack|적에게 돌격하기
 mno_join_order_attack|당신이 뒤에 있는동안 동맹군과 함께 공격하라고 명령한다.
-mno_control_allies_join_menu|당신의 아군에게 명령하기 위해 영향력 포인트를 사용한다.
+; mno_control_allies_join_menu|Use influence to command your allies in the field.
 mno_join_attack_bearform|곰의 형태로 전투에 뛰어든다.
 mno_join_leave|떠나기
 mno_player_control_allies_join_menu|그들에게 적에게 돌격하라 명령한다.
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^당신은 모든 상대를 두들겨 팬 후 소요를 �
 menu_close|아무 것도 안하기
 menu_town|당신은 {s60}에 도착했습니다.{s12}{s13}
 mno_town_menu_0|들어가기
-mno_town_menu_0_door|입구
+; mno_town_menu_0_door|Inspect...
 mno_town_approach|다가가기
 mno_town_castle|{s1}에 가기
 mno_town_castle_door|마을 입구
@@ -300,7 +300,7 @@ mno_town_center_door|마을 입구
 mno_aw_chamber_door|문 열기
 mno_trade_with_arms_merchant|무기 상인과 거래
 mno_trade_with_horse_merchant|말 상인과 거래
-mno_town_prison_door|감옥에 입장
+; mno_town_prison_door|To the Training Grounds
 mno_dungeon_enter|산 속에서 잃어버린 창들을 찾기
 mno_dungeon_enter_door|문 열기
 mno_dwarven_warehouse|난쟁이족 창고 방문하기
@@ -312,6 +312,7 @@ mno_isengard_underground_door|지하 동굴로 들어가기.
 mno_tirith_toplevel|꼭대기층으로 올라가기
 mno_tirith_toplevel_door|요새로 가기
 mno_erebor_gates|정문으로 가기.
+; mno_erebor_gates_door|Go to the Great Gates
 mno_town_leave|떠나기
 mno_town_leave_door|떠나기
 menu_player_initiated_siege_result|당신은 {s2}의 깃발 아래 중심지를 공격했습니다.
@@ -386,9 +387,6 @@ mno_defend_refugees|침략자들을 주시한다...
 mno_attack_refugees|난민 무리를 공격한다...
 mno_leave_refugees|잠시 놔둔다...
 mno_evil_war_tut_continue|계속...
-menu_guardian_party_quest|{s8}은 아이센가드는 벼랑 끝에 서있으며, 최후의 항전을 시도하고 있다고 말했습니다. 그는 당신이 아이센가드와의 최후의 전투에 참여하길 원한다고 서신을 전해왔습니다. 작전에 참여하려면 적어도 {reg13}명의 병사가 있어야 하고, 만약 병사가 없다면 서둘러 징집하라고 지침을 내렸습니다.
-mno_guardian_party_reject|그와 합류할 수 없다고 전한다.
-mno_guardian_party_send_word|곧 합류할 것이라 전하기
 menu_alternate_training_fight|자네는 {reg5}명의 상대와 맞서야 하네. 준비 되었는가?
 mno_training_continue|훈련을 시작한다...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|해적
 mno_rescue_mission|어둠이 보호해줄 때 마술사의 은신처를 수색하세요.
 mno_next_rescue_scene_door|계속 전진하라!
 mno_pick_troops1|미션을 수행할 동료를 선택하세요,[reg0}이 선택되었습니다.
-menu_pick_troops|잠입 임무에 누구를 데려갈까요? 현재 당신은 {reg0} 명을 선택했습니다. 최대 10명까지 동행할 수 있습니다.
+; menu_pick_troops|Whom would you take with you into the stealth mission?    ^Only your most nimble troops and companions will be able to join you.    ^As the party member with the highest wildcraft skill, {reg65?{s1} advises:you decide} that you can take up to {reg11} troops with you.    ^^Currently you have picked {reg0} companions.
 mno_go_forward|선택 종료 및 진행
 menu_burial_mound|당신은 {s2}의 {s1}에 접근하고 있다.   {s28}의 군세에 의해 패배한.  전사한 이들의 부러진 무기가 쌓여 있다.
 mno_pay_respects|무릎을 꿇고 경의를 표하기
@@ -442,6 +440,8 @@ menu_death|당신은 죽었습니다. 전쟁은 계속되고 있지만 당신은
 menu_animal_ambush|당신과 당신의 동료들은 나머지 일행과 떨어져 있다는 것을 알아차렸습니다, 그리고 갑자기...
 menu_animal_ambush_success|{s2}들은 당신 앞에 낫에 잘린 벼이삭마냥 {reg0?쓰러졌습니다:쓰러졌습니다} !  곧 당신을 공격한 이들은 전부 죽거나 기절해 쓰러져 있습니다. {s3}
 menu_animal_ambush_fail|짐승들이 당신{reg0?,: 그리고 당신 동료{reg2?들,:,}}을 물어뜯으며 공격하지만 운좋게도 그들을 물리치는데 성공했습니다. 바라건대 다시는 짐승들에게 공격받지 않기를.
+; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
+; mno_isengard_continue|Continue
 menu_build_your_scene|아래에 제공된 슬롯 중 하나와 게임 편집 모드를 사용하여 자신만의 전투 장면을 만들 수 있습니다(먼저 M&B 화면 옵션에서 편집 모드를 ON으로 전환한 다음 장면 내에서 Ctrl+E를 눌러 편집 모드에 액세스해야 합니다). 그런 다음 작성한 장면(예: TLD/SceneObj 폴더의 sco 파일)을 TLD의 개발 팀에 제출할 수 있으며, 장면이 좋으면 이후 릴리스에서 랜덤 배틀그라운드 중 하나로 나타날 수 있습니다!^^ 지도에서 장면을 표시할 영역을 지정합니다.^ 몇 가지 힌트: 여러분이 장면 제작자가 아니어서 AI 부대가 원하지 않는 곳을 걷지 못하게 하는 방법을 알지 못한다면 깊은 물, 가파른 산 및 기타 통행할 수 없는 장소를 피하고 AI 메쉬를 다른 장소에 만들 수 있습니다.^ (0-1번 항목은 공격자, 4번 항목은 수비수, 5-8번 항목은 터치하지 마십시오.
 mno_scene1|Plain Big (file scn custom 1.sco)
 mno_scene2|Plain Med (file scn custom 2.sco)

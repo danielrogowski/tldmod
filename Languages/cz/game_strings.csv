@@ -569,7 +569,7 @@ str_npc13_intro_response_1|Kdo jste?
 str_npc14_intro_response_1|Kdo jste?
 str_npc15_intro_response_1|Chval Oko, snago. Jaký je tvůj příhěh?
 str_npc16_intro_response_1|Kdo jste?
-; str_npc17_intro_response_1|Mirkwood is a magnificent forest. Who are you? Do you know much about the woods?
+str_npc17_intro_response_1|Temný hvozd je krásný les. Kdo jsi? Víš toho hodně o lesech?
 str_npc1_intro_response_2|Nevadí, obávám se, že jeskyně nejsou příjemným místem pro konverzaci.
 str_npc2_intro_response_2|Nevadí, nemám čas mluvit se strážci.
 str_npc3_intro_response_2|Nevadí, Udělám ''Bordel'' někde jinde.
@@ -586,7 +586,7 @@ str_npc13_intro_response_2|Hled si svého!
 str_npc14_intro_response_2|Hled si svého!
 ; str_npc15_intro_response_2|Hmmf. Keep your little claws to yourself, Snaga.
 str_npc16_intro_response_2|Hled si svého!
-; str_npc17_intro_response_2|Yes, the woods are lovely, but I've got to run along now.
+str_npc17_intro_response_2|Ano, les je krásný, ale už musím jít.
 str_npc1_backstory_a|Prichazis v tezkou dobu, priteli. Ithilien je zaplaven nepratelskymi zvedy a najezdniky, mnozi videli houfy pochodujicich skretu. Snazime se tem odpornym tvorum branit v prechodu Velke reky. Sam jsem vedl skupinu zkusenych Hranicaru k mnoha vitezstvim. Muj kapitan Faramir je odvazny muz a ja si nijak nezoufam na Stin visici nad nami.
 ; str_npc2_backstory_a|Ah, how graceful to inquire about me. I have been newly assigned as a guard of His Stewardship's hallways, a proud duty, if I may say so, if not very eventful.
 ; str_npc3_backstory_a|Well, my old helmet here is getting smaller by the minute and the ground seems wobbly as if I rode a mischievous foil. Ah, if I only hadn't drank all that ale last night - I normally have a good head for drink, so it must have been some nasty orc brew.
@@ -1333,7 +1333,7 @@ str_party_greet_enemy_isengard|Můj Pán bude potěšen až mu ukážu vaše mrt
 str_party_greet_enemy_woodelf|Každý, kdo vstoupí do Temného hvozdu se zlobou se nikdy nevrátí!
 ; str_party_greet_friend_dale|Hail, friend of proud Dale!
 ; str_party_greet_enemy_dale|Draw your swords, we are the Men of Dale!
-; str_party_greet_friend_harad|Welcome, friend of the Haradrim!
+str_party_greet_friend_harad|Vítej, příteli Haradrimu.
 ; str_party_greet_enemy_harad|Your many bodies shall be ground into the sand!
 ; str_party_greet_friend_rhun|Greetings, friend of the Easterling tribes and Dorwinion!
 ; str_party_greet_enemy_rhun|Dwarves and Men are no match for our fierceness!
@@ -1359,7 +1359,7 @@ str_subfaction_gondor_name4|Lossarnach
 str_subfaction_gondor_name5|Pinnath Gelin
 str_subfaction_gondor_name6|Morthond
 ; str_subfaction_gondor_name7|Ithilien
-; str_default_rumor|The War. Everybody is talking about the war.
+str_default_rumor|Válka. Všichni mluví o válce.
 ; str_rohan_rumor_begin|It breaks my heart to see my babies off to war! But without them the men would have to walk.
 ; str_rohan_rumor_2|I hear orcs eat horses. Foul beasts! They also eat prisoners. That is bad too, of course.
 ; str_rohan_rumor_3|There are no horses finer than Rohan's. Even the Elves get their horses from us!
@@ -1368,7 +1368,7 @@ str_subfaction_gondor_name6|Morthond
 ; str_rohan_rumor_6|Gondor prefers sturdier horses. Our riders enjoy speed. The Elves get only the best. And our enemies steal them!
 ; str_rohan_rumor_7|I've seen breeds of the desert mare and Variag horse. Rohan horses are clearly superior but require a more experienced rider to handle.
 ; str_rohan_rumor_8|Wargs are slower than horses but can turn faster. They are also quite fragile compared to a well-bred warhorse.
-; str_rohan_rumor_9|Armies march on Rohan with pikes and spears set against our fine horsemen. The traitor Saruman will cut down the whole Fangorn forest equipping his armies before this war is over.
+str_rohan_rumor_9|Armády pochodují na Rohan s píkami a kopími nasazenými proti našim skvělým jezdcům. Zrádce Saruman vykácí celý Fangornský les, aby vyzbrojil své armády, než tato válka skončí.
 ; str_rohan_rumor_10|Being the best horsemen in the realm starts with raising the best horses.
 ; str_rohan_rumor_11|Most of the horses you see in Gondor came from us. They prefer a slightly stronger, slower horse that can carry their heavy armour.
 ; str_rohan_rumor_12|We say in Rohan that a horse is like a man. That if a horse is good it is like a man is good, and that if a horse is bad, is like a man is bad. And if a horse is hungry is like a man is hungry, and if a horse is sad is like if a man is sad. And we say if a horse is happy is like when a man is happy. We say if a horse is angry is like if man is angry. We say if a horse walk is like when a man walk, we say if a horse is old is like when a man is old, and we say if horse is young is like when a man is young. And the same we say if a horse is old is like when a man is old. And if a horse small, is like when a man's small.
@@ -2529,5 +2529,5 @@ str_imladris_guildmaster_player_found_ok|Rozumím Starší. Děkuji za tvůj ča
 ; str_shortname_region_s_misty_mountains|the foothills of the Southern Misty Mountains
 ; str_shortname_region_n_anduin_vale|the northern Vale of Anduin
 ; str_shortname_region_s_anduin_vale|the southern Vale of Anduin
-; str_shortname_region_cair_andros|Cair Andros
+str_shortname_region_cair_andros|Cair Andros
 ; str_isengard_hunting_camp_guildmaster_player_found_ok|If he kills well, I’ll take him. If not, I’ll gut him like a fish. And if he does turn out to be just another worthless maggot, I’ll come back and pay you for wasting my time!

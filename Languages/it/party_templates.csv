@@ -23,7 +23,7 @@ pt_spy_partners_evil|Viandanti Sospetti
 pt_runaway_serfs|Schiavi Fuggiti
 pt_spy|Viaggiatore Solitario
 pt_spy_evil|Viaggiatore Solitario
-pt_sacrificed_messenger|Messaggero Sacrificato
+pt_ents|Ent
 pt_gandalf|Viaggiatore Solitario
 pt_nazgul|Viaggiatore Solitario
 pt_gondor_scouts|Esploratori di Gondor
@@ -35,7 +35,7 @@ pt_ranger_scouts|Raminghi Esploratori
 pt_rohan_scouts|Esploratori Rohirrim
 pt_lorien_scouts|Esploratori di Lothlórien
 pt_woodelf_scouts|Elfi Esploratori di Bosco Atro
-pt_imladris_scouts|Esploratori Dunedain
+pt_imladris_scouts|Esploratori Dúnedain
 pt_dale_scouts|Esploratori di Dale
 pt_esgaroth_scouts|Esploratori di Esgaroth
 pt_dwarf_scouts|Vedette Naniche
@@ -146,3 +146,4 @@ pt_orc_horde|Orda degli Orchi
 pt_volunteers|Riserve
 pt_refugees|Profughi
 pt_retreat_troops|Truppe di copertura
+pt_radagast|Viaggiatore Solitario

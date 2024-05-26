@@ -83,7 +83,7 @@ morale_scripts = [
 		(party_set_icon, ":party_id", ":icon"),
 	]),
 
-	# script_cf_get_tier_morale
+	# script_cf_agent_get_tier_morale
 	# This script stores the agents tier morale based on level in reg0.
 	# param0 = agent
 	("cf_agent_get_tier_morale",
@@ -182,12 +182,12 @@ morale_scripts = [
 			(store_skill_level,":leader","skl_leadership",reg0),
 		(try_end),
 		(val_div,":troop_level", 10),
-         	(val_div,":hitpoints", 2),
-         	(assign,reg1,100),		
-						
-         	(val_sub,reg1,":hitpoints"),
-         	(val_sub,reg1,":leader"),
-         	(val_sub,reg1,":troop_level"),
+        (val_div,":hitpoints", 2),
+        (assign,reg1,100),		
+                    
+        (val_sub,reg1,":hitpoints"),
+        (val_sub,reg1,":leader"),
+        (val_sub,reg1,":troop_level"),
 
 		(try_begin), # Ents, spies and berserkers don't flee.
 			(eq|this_or_next, ":troop_type", "trp_ent"),
@@ -219,28 +219,40 @@ morale_scripts = [
 			(assign, reg1, -100),
 		(else_try),
 		
-		#Map Morale Bonus / penalty - Kham
+		# #Map Morale Bonus / penalty - Kham #disabled, party morale now affects coherence instead
 		
-		(try_begin),
-			(agent_get_party_id, ":party_no", ":agent_no"),
-			(eq, ":party_no", "p_main_party"), #Only for Player Troops, so there are less AI routing.
-			(ge, ":party_no", 0),
-			(party_get_morale, ":map_morale", ":party_no"),
-			(try_begin),
-				(ge, ":map_morale", 75),
-				(val_sub, reg1, 15),
-			(else_try),
-				(is_between, ":map_morale", 50, 75),
-				(val_sub, reg1, 10),
-			(else_try),
-				(is_between, ":map_morale", 25, 50),
-				(val_add, reg1, 5),
-			(else_try),
-				(lt, ":map_morale", 25),
-				(val_add, reg1, 10),
-			(try_end),
-		(try_end),
+		# (try_begin),
+			# (agent_get_party_id, ":party_no", ":agent_no"),
+			# (eq, ":party_no", "p_main_party"), #Only for Player Troops, so there are less AI routing.
+			# (ge, ":party_no", 0),
+			# (party_get_morale, ":map_morale", ":party_no"),
+			# (try_begin),
+				# (ge, ":map_morale", 75),
+				# (val_sub, reg1, 15),
+			# (else_try),
+				# (is_between, ":map_morale", 50, 75),
+				# (val_sub, reg1, 10),
+			# (else_try),
+				# (is_between, ":map_morale", 25, 50),
+				# (val_add, reg1, 5),
+			# (else_try),
+				# (lt, ":map_morale", 25),
+				# (val_add, reg1, 10),
+			# (try_end),
+		# (try_end),
 
+
+    # Coherence bonus / penalty (Invain)
+        (try_begin),
+            (agent_is_ally, ":agent_no"),
+            (assign, ":coherence", "$allies_coh"),
+        (else_try),
+            (assign, ":coherence", "$enemies_coh"),
+        (try_end),
+        
+        (val_sub, ":coherence", 50), #coherence below increases chance of fleeing
+        (val_sub, reg1, ":coherence"),
+        
 
 		# leader bonuses -CC
 		(try_begin),
@@ -352,11 +364,20 @@ morale_scripts = [
 			(try_end),
 		(try_end),
 		
-		# Rallied agents are 20% less likely to flee.
-		(try_begin),
-			(agent_slot_eq, ":agent_no", slot_agent_rallied, 1),
-			(val_sub, reg1, 20),
-		(try_end),
+		# Rallied agents are 20% less likely to flee. #InVain: We use that slot for storing the general agent morale modifier instead, allows much more flexibility
+		# (try_begin),
+			# (agent_slot_eq, ":agent_no", slot_agent_morale_modifier, 1),
+			# (val_sub, reg1, 20),
+		# (try_end),
+        
+        #agent morale modifier (affected by ingame events)
+        (agent_get_slot, ":morale_modifier", ":agent_no", slot_agent_morale_modifier),
+        (val_sub, reg1, ":morale_modifier"),
+        
+        #normalise it with every check
+        (val_mul, ":morale_modifier", 2),
+        (val_div, ":morale_modifier", 3),
+        (agent_set_slot, ":agent_no", slot_agent_morale_modifier, ":morale_modifier"),
 
 		# Tier morale
 		(call_script, "script_cf_agent_get_tier_morale", ":agent_no"),
@@ -369,38 +390,6 @@ morale_scripts = [
 			(val_sub, reg1, ":morale_bonus"),
 		(try_end),
 
-		# Morale Buffs/Debuffs of Encounter Effects
-
- 	] + ((is_a_wb_script==1) and [
-		(try_begin),
-
-			(party_get_slot, ":encounter_effect", "p_main_party", slot_party_battle_encounter_effect),
-			(ge, ":encounter_effect", LORIEN_MIST), #Encounter effect present
-
-			(call_script, "script_cf_agent_get_faction", ":agent_no"),
-			(assign, ":faction_id", reg0),
-			(faction_get_slot, ":faction_side", ":faction_id", slot_faction_side),
-			(gt, ":faction_id", -1),
-
-			(try_begin),
-				(eq, ":encounter_effect", LORIEN_MIST),
-				(try_begin),
-					(eq, ":faction_side", faction_side_good),
-					(val_sub, reg1, ENCOUNTER_EFFECT_MORALE_BUFF),
-				(else_try),
-					(val_add, reg1, ENCOUNTER_EFFECT_MORALE_DEBUFF),
-				(try_end),
-			(else_try),
-				(is_between, ":encounter_effect", SAURON_DARKNESS, END_EFFECTS),
-				(try_begin),
-					(eq, ":faction_side", faction_side_good),
-					(val_add, reg1, ENCOUNTER_EFFECT_MORALE_DEBUFF),
-				(else_try),
-					(val_sub, reg1, ENCOUNTER_EFFECT_MORALE_BUFF),
-				(try_end),
-			(try_end),
-		(try_end),
-	] or []) + [
 
 	]),
 
@@ -788,7 +777,7 @@ morale_scripts = [
 	]),
 
 	# This script finds a position at the border nearest to the agent
-	#
+	# script_find_exit_position_at_pos4
 	("find_exit_position_at_pos4", 
 	[
 		(store_script_param, ":agent_no", 1),
@@ -859,10 +848,10 @@ morale_scripts = [
   #script_healthbars
     ("healthbars",
     [
-	(assign,reg1,"$allies_coh_base"),
+	(assign,reg1,"$allies_coh"),
 	(assign,reg2,"$enemies_coh"),
-	(assign,reg3,"$new_kills"),
-	(display_message,"@Your troops are at {reg1}% cohesion (+{reg3}% bonus), the enemy at {reg2}%!",0x6495ed),
+	(assign,reg3,"$allies_coh_modifier"),
+	(display_message,"@Your side is at {reg1}% cohesion ({reg3}% recent events), the enemy at {reg2}%!",0x6495ed),
      ]),
 
   #script_morale_check
@@ -870,25 +859,25 @@ morale_scripts = [
     [
 	(try_begin),
 		(lt,"$allies_coh",75),
-              	(store_random_in_range,":routed",1,101),
-              	(assign,":chance_ply",80),
-              	(val_sub,":chance_ply","$allies_coh"),
-                (try_begin),            
-                  	(le,":routed",":chance_ply"),                   
-                  	(call_script, "script_flee_allies"),
-                  	(display_message,"@Morale of your troops wavers!",color_bad_news),      
-		(try_end),
+        (store_random_in_range,":routed",1,101),
+        (assign,":chance_ply",80),
+        (val_sub,":chance_ply","$allies_coh"),
+        (try_begin),            
+            (le,":routed",":chance_ply"),                   
+            (call_script, "script_rout_allies"),
+            (display_message,"@Morale of your troops wavers!",color_bad_news),      
+        (try_end),
 	(try_end),
 
 	(try_begin),
-              	(lt,"$enemies_coh",75),
-              	(store_random_in_range,":routed",1,101),
-              	(assign,":chance_ply",80),
-              	(val_sub,":chance_ply","$enemies_coh"),
+        (lt,"$enemies_coh",75),
+        (store_random_in_range,":routed",1,101),
+        (assign,":chance_ply",80),
+        (val_sub,":chance_ply","$enemies_coh"),
 		(try_begin),  
-                  	(le,":routed",":chance_ply"),                        
-                  	(call_script, "script_flee_enemies"),
-                  	(display_message,"@Morale of your enemies wavers!",color_good_news), 
+            (le,":routed",":chance_ply"),                        
+            (call_script, "script_rout_enemies"),
+            (display_message,"@Morale of your enemies wavers!",color_good_news), 
 		(try_end),            
 	(try_end),
      ]),
@@ -966,6 +955,7 @@ morale_scripts = [
 ## 		FLEEING SCRIPTS 		##
 ##==============================================##
 
+    #script_flee_allies
     ("flee_allies",
     [
 	(call_script, "script_find_exit_position_at_pos4", -1),
@@ -986,64 +976,67 @@ morale_scripts = [
         	(val_div,":chance_ply",2),
         	(store_random_in_range,":routed",1,101),
 		(try_begin),
-                	(le,":routed",":chance_ply"),
-			(agent_get_position,pos2,":agent"),
-			(position_move_z,pos2,200,0),
-                	(agent_clear_scripted_mode,":agent"),
+        
+        (le,":routed",":chance_ply"),
+        (agent_get_position,pos2,":agent"),
+        (position_move_z,pos2,200,0),
+                (agent_clear_scripted_mode,":agent"),
 
-            ] + ((is_a_wb_script==1) and [
-            
-            ## WB has an operation for fleeing - Kham
-            (agent_start_running_away, ":agent"),
-            (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
-            
-            ] or [
-			
-			(call_script, "script_find_exit_position_at_pos4", ":agent"),
-			(agent_set_scripted_destination,":agent",pos4,1),
+        ] + ((is_a_wb_script==1) and [
+        
+        ## WB has an operation for fleeing - Kham
+        (agent_start_running_away, ":agent"),
+        (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
+        
+        ] or [
+        
+        (call_script, "script_find_exit_position_at_pos4", ":agent"),
+        (agent_set_scripted_destination,":agent",pos4,1),
 
-			]) + [
+        ]) + [
 
         (try_end),
 	(end_try),	
      ]),
 
+    #script_flee_enemies
 	("flee_enemies",
 	[
 	(call_script, "script_find_exit_position_at_pos4", -1),
 
 	(try_for_agents,":agent"),
-         	(agent_is_alive,":agent"),
-         	(agent_is_human,":agent"),
-         	(neg|agent_is_ally,":agent"),
-         	(store_agent_hit_points,":hitpoints",":agent",0),
+        (agent_is_alive,":agent"),
+        (agent_is_human,":agent"),
+        (neg|agent_is_ally,":agent"),
+        (store_agent_hit_points,":hitpoints",":agent",0),
 		(agent_get_troop_id,":troop_type", ":agent"),
 		(store_character_level, ":troop_level", ":troop_type"),
 		(val_div,":troop_level",10),
 		(val_add,":hitpoints",":troop_level"),		 
-        	(assign,":chance_ply",100),
-         	(val_sub,":chance_ply",":hitpoints"),
-         	(val_sub,":chance_ply",4),
-         	(val_div,":chance_ply",2),
-         	(store_random_in_range,":routed",1,101),
+        (assign,":chance_ply",100),
+        (val_sub,":chance_ply",":hitpoints"),
+        (val_sub,":chance_ply",4),
+        (val_div,":chance_ply",2),
+            
+        (store_random_in_range,":routed",1,101),
 	 	(try_begin),
-                   	(le,":routed",":chance_ply"),
-                	(agent_get_position,pos2,":agent"),
-		 			(position_move_z,pos2,200,0),
-                    (agent_clear_scripted_mode,":agent"),
+            (le,":routed",":chance_ply"),
+            (agent_get_position,pos2,":agent"),
+            (position_move_z,pos2,200,0),
+            (agent_clear_scripted_mode,":agent"),
 
-					] + ((is_a_wb_script==1) and [
+            ] + ((is_a_wb_script==1) and [
 
-		            ## WB has an operation for fleeing - Kham
-		            (agent_start_running_away, ":agent"),
-		            (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
-		            
-		            ] or [
-					
-					(call_script, "script_find_exit_position_at_pos4", ":agent"),
-					(agent_set_scripted_destination,":agent",pos4,1),
-					
-					]) + [
+            ## WB has an operation for fleeing - Kham
+            (agent_start_running_away, ":agent"),
+            (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
+            
+            ] or [
+            
+            (call_script, "script_find_exit_position_at_pos4", ":agent"),
+            (agent_set_scripted_destination,":agent",pos4,1),
+            
+            ]) + [
 
         (try_end),
 	(end_try),	
@@ -1053,65 +1046,72 @@ morale_scripts = [
 ## 		ROUTING SCRIPTS 		##
 ##==============================================##
 
+    #script_rout_allies
     ("rout_allies",
     [
 	(call_script, "script_find_exit_position_at_pos4", -1),
 	(assign, ":allies_routed", 0),
 	(assign, ":allies_total", 0),
 	(try_for_agents,":agent"),
-         	(agent_is_alive,":agent"),
-         	(agent_is_human,":agent"),
-         	(agent_is_ally,":agent"),
+        (agent_is_alive,":agent"),
+        (agent_is_human,":agent"),
+        (agent_is_ally,":agent"),
 		(get_player_agent_no, ":player_agent"),
 		(neq, ":player_agent", ":agent"),
 		(val_add, ":allies_total", 1),
 		#(assign, reg0, ":chance_ply"),
 		#(assign, reg1, ":routed"),
 		#(display_message, "@{reg1} less than {reg0}"),
-              	(try_begin),
+        (try_begin),
 			(call_script, "script_cf_agent_get_morale", ":agent"),
-         		(assign, ":chance_ply", reg1),
-         		(store_random_in_range,":routed",0,101),
-                   	(le,":routed",":chance_ply"),
+            (assign, ":chance_ply", reg1),
+            (store_random_in_range,":routed",0,101),
+            (le,":routed",":chance_ply"),
 		   	(agent_slot_eq, ":agent", slot_agent_routed, 0),
 		   	(agent_set_slot, ":agent", slot_agent_routed, 1),
-              		(agent_get_position,pos2,":agent"),
+            (agent_get_position,pos2,":agent"),
 		 	(position_move_z,pos2,200,0),
-                        (agent_clear_scripted_mode,":agent"),
+            (agent_clear_scripted_mode,":agent"),
                     
-                    ] + ((is_a_wb_script==1) and [
-						
-		            ## WB has an operation for fleeing - Kham
-		            (agent_start_running_away, ":agent"),
-		            (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
-		            
-		            ] or [
-					
-					(call_script, "script_find_exit_position_at_pos4", ":agent"),
-					(agent_set_scripted_destination,":agent",pos4,1),
+            ] + ((is_a_wb_script==1) and [
+                
+            ## WB has an operation for fleeing - Kham
+            (agent_start_running_away, ":agent"),
+            (agent_set_slot, ":agent", slot_agent_is_running_away, 1),
+            
+            ] or [
+            
+            (call_script, "script_find_exit_position_at_pos4", ":agent"),
+            (agent_set_scripted_destination,":agent",pos4,1),
 
-					]) + [
+            ]) + [
 
-           	(try_end),
-		(try_begin),
+        (try_end),
+		
+        (try_begin),
 		   	(agent_slot_eq, ":agent", slot_agent_routed, 1),
 			(val_add, ":allies_routed", 1),
-       			(store_random_in_range,":rand",1,101),
+       		(store_random_in_range,":rand",1,101),
 			(lt, ":rand", 33), # 33% chance.
 			(agent_get_horse, ":horse", ":agent"),
 			(try_begin),
 				#(gt, ":horse", -1),
           			#(agent_set_animation, ":agent", "anim_nazgul_noooo_mounted_short"),
 			#(else_try),
-				(le, ":horse", -1),
-          			(agent_set_animation, ":agent", "anim_nazgul_noooo_short"),	
+			(le, ":horse", -1),
+          	(agent_set_animation, ":agent", "anim_nazgul_noooo_short"),	
 			(try_end),
 		(try_end),
 	(try_end),
 	(assign, reg0, ":allies_total"),
 	(assign, reg1, ":allies_routed"),	
+    (val_sub, "$allies_coh_modifier", ":allies_routed")
      ]),
 
+    #script_rout_enemies
+    #output: 
+    #reg1 = enemies_routed
+    #reg0 = enemies_total
     ("rout_enemies",
     [
 	(call_script, "script_find_exit_position_at_pos4", -1),
@@ -1164,11 +1164,12 @@ morale_scripts = [
 	(try_end),
 	(assign, reg0, ":enemies_total"),
 	(assign, reg1, ":enemies_routed"),
+    (val_sub, "$enemies_coh_modifier", ":enemies_routed")
     ]),  
 
   
 
-  #script_coherence
+  #script_coherence, overhauled by InVain
     ("coherence",
     [
 	(get_scene_boundaries, pos3, pos4),	
@@ -1177,59 +1178,183 @@ morale_scripts = [
 	(assign,":coh_allies",0),
 	(assign,":num_enemies",0),
 	(assign,":coh_enemies",0),
-	(assign,":num_allies_alive",0),
-	(assign,":num_enemies_alive",0),
+	# (assign,":num_allies_alive",0),
+	# (assign,":num_enemies_alive",0),
 	(assign,":num_allies_rallied",0),
 	(assign,":num_enemies_rallied",0),
+ 	(assign,":num_allies_routed",0),
+	(assign,":num_enemies_routed",0),
+ 	(assign,":leadership_allies",0),
+	(assign,":leadership_enemies",0),      
 
-	(try_for_agents,":agent"),
-		(agent_is_ally,":agent"),
+	(try_for_agents,":agent"), #allies
 		(agent_is_human,":agent"),
-		(store_agent_hit_points,":hitpoints",":agent",0),
+        (agent_is_alive, ":agent"),
+		#(store_agent_hit_points,":hitpoints",":agent",0), #Invain: get rid of hitpoints on coherence level, only matters for agent morale 
 		(agent_get_troop_id,":troop_type", ":agent"),
 		(store_character_level, ":troop_level", ":troop_type"),
-		(val_mul,":hitpoints",":troop_level"),
-		(val_add,":num_allies", ":troop_level"),
-		(val_add,":coh_allies",":hitpoints"),
-		(try_begin),
-			(agent_is_alive, ":agent"),
-			(val_add, ":num_allies_alive", 1),
-		(try_end),
-		(try_begin),
-			(agent_slot_eq,":agent",slot_agent_rallied,1),
-			(val_add, ":num_allies_rallied", 1),
-		(try_end),
-	(else_try),
-		(agent_is_human,":agent"),
-		(store_agent_hit_points,":hitpoints",":agent",0),
-		(agent_get_troop_id,":troop_type", ":agent"),
-		(store_character_level, ":troop_level", ":troop_type"),
-		(val_mul,":hitpoints",":troop_level"),
-		(val_add,":num_enemies", ":troop_level"),
-		(val_add,":coh_enemies",":hitpoints"),
-		(try_begin),
-			(agent_is_alive, ":agent"),
-			(val_add, ":num_enemies_alive", 1),
-		(try_end),
-		(try_begin),
-			(agent_slot_eq,":agent",slot_agent_rallied,1),
-			(val_add, ":num_enemies_rallied", 1),
-		(try_end),
-	(end_try),
+		(val_mul,":troop_level",4),  
 
-	# Difference between in battle agents.
-	(store_sub, ":advantage", ":num_allies_alive", ":num_enemies_alive"),
-	
+        (try_begin),
+            (agent_is_ally,":agent"), #allies
+            (val_add,":num_allies", 1), # troop count
+            (val_add,":coh_allies",":troop_level"), # average level
+            (try_begin),
+                (agent_slot_eq,":agent",slot_agent_morale_modifier,1),
+                (val_add, ":num_allies_rallied", 1),
+            (try_end),
+            (try_begin),
+                (agent_slot_eq,":agent",slot_agent_routed,1),
+                (val_add, ":num_allies_routed", 1),
+            (try_end),
+            (try_begin),
+                (troop_is_hero,":troop_type"),
+                (store_skill_level, ":troop_leaderskip", skl_leadership, ":troop_type"),
+                (val_add, ":leadership_allies", ":troop_leaderskip"),
+                (this_or_next|eq, ":troop_type", "trp_player"), #double bonus for player or lords
+                (is_between, ":troop_type", kingdom_heroes_begin, kingdom_heroes_end),
+                (val_add, ":leadership_allies", ":troop_leaderskip"),
+            (try_end),
+            (try_begin),
+                (this_or_next|eq, ":troop_type", "trp_lothlorien_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i6_rivendell_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_isen_uruk_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_mordor_uruk_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (val_add, ":leadership_allies", 2),
+            (try_end),
+            (try_begin),
+                (this_or_next|eq, ":troop_type", "trp_a6_ithilien_leader"),
+                (this_or_next|eq, ":troop_type", "trp_i6_loss_leader"),
+                (this_or_next|eq, ":troop_type", "trp_i6_pel_leader"),
+                (this_or_next|eq, ":troop_type", "trp_a6_pel_marine_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_lam_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_pinnath_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_amroth_leader"),
+                (eq, ":troop_type", "trp_captain_of_gondor"),
+                (val_add, ":leadership_allies", 3),
+            (try_end),
+        
+        (else_try), # enemies
+            (val_add,":num_enemies", 1), # troop count
+            (val_add,":coh_enemies",":troop_level"), # average level
+            (try_begin),
+                (agent_slot_eq,":agent",slot_agent_morale_modifier,1),
+                (val_add, ":num_enemies_rallied", 1),
+            (try_end),
+            (try_begin),
+                (agent_slot_eq,":agent",slot_agent_routed,1),
+                (val_add, ":num_enemies_routed", 1),
+            (try_end),
+        (try_end),        
+        (try_begin),
+                (troop_is_hero,":troop_type"),
+                (store_skill_level, ":troop_leaderskip", skl_leadership, ":troop_type"),
+                (val_add, ":leadership_enemies", ":troop_leaderskip"),
+                (this_or_next|eq, ":troop_type", "trp_player"), #double bonus for player or lords
+                (is_between, ":troop_type", kingdom_heroes_begin, kingdom_heroes_end),
+                (val_add, ":leadership_enemies", ":troop_leaderskip"),
+            (try_end),
+            (try_begin),
+                (this_or_next|eq, ":troop_type", "trp_lothlorien_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i6_rivendell_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_isen_uruk_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_mordor_uruk_standard_bearer"),
+                (this_or_next|eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (eq, ":troop_type", "trp_i5_greenwood_standard_bearer"),
+                (val_add, ":leadership_enemies", 2),
+            (try_end),
+            (try_begin),
+                (this_or_next|eq, ":troop_type", "trp_a6_ithilien_leader"),
+                (this_or_next|eq, ":troop_type", "trp_i6_loss_leader"),
+                (this_or_next|eq, ":troop_type", "trp_i6_pel_leader"),
+                (this_or_next|eq, ":troop_type", "trp_a6_pel_marine_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_lam_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_pinnath_leader"),
+                (this_or_next|eq, ":troop_type", "trp_c6_amroth_leader"),
+                (eq, ":troop_type", "trp_captain_of_gondor"),
+                (val_add, ":leadership_enemies", 3),
+            (try_end),
+        
+    (try_end), #end try for agents
+
 	(try_begin),
 		(gt,":num_allies",0),
 		(val_div,":coh_allies",":num_allies"),
 	(else_try),
+        (assign, ":num_allies", 1),
 		(assign, ":coh_allies", 0),
 	(try_end),
 
-	(assign,"$allies_coh_base",":coh_allies"),
-	(val_add, "$allies_coh_base", ":advantage"),
-	(val_add, "$allies_coh_base", ":num_allies_rallied"),
+	(try_begin),
+		(gt,":num_enemies",0),
+		(val_div,":coh_enemies",":num_enemies"),
+	(else_try),
+		(assign, ":coh_enemies", 0),
+	(try_end),
+
+    # (assign, reg74, ":num_allies"),
+    # (assign, reg75, ":coh_allies"),
+    # (assign, reg76, ":leadership_allies"),
+
+    # (display_message, "@allies: {reg74}, base coherence {reg75}, leaderhsip {reg76}"),
+    
+    # (assign, reg74, ":num_enemies"),
+    # (assign, reg75, ":coh_enemies"),
+    # (assign, reg76, ":leadership_enemies"),
+    
+    # (display_message, "@enemies: {reg74}, base coherence {reg75}, leaderhsip {reg76}"), 
+    
+	# Difference between in battle agents.
+	#(store_sub, ":advantage", ":num_allies", ":num_enemies"), #InVain: use relative advantage instead
+    (store_mul, ":advantage", ":num_enemies", 100),
+    (val_div, ":advantage", ":num_allies"),
+    (val_clamp, ":advantage", 50, 200), #up to twice outnumbered for any side
+    (val_sub, ":advantage", 100), #reduce gap: -50 to 100
+    (val_div, ":advantage", 3), #-16 to 33; tweakable
+    (val_add, ":advantage", 100), #84 to 133
+
+    # (assign, reg74, ":advantage"),
+    # (display_message, "@advantage {reg74}"),   
+
+    (val_mul, ":coh_allies", 100),
+    (val_div, ":coh_allies", ":advantage"), #75 to 119 %    
+    
+	(val_add, ":coh_allies", ":num_allies_rallied"),
+	(assign,"$allies_coh",":coh_allies"),
+    
+    (val_mul, ":coh_enemies", ":advantage"),
+    (val_div, ":coh_enemies", 100), #84 to 133%, slight buff for enemies
+
+	(assign,"$enemies_coh",":coh_enemies"),    
+	(val_add, "$enemies_coh", ":num_enemies_rallied"),
+
+
+    #leadership bonus and player kills
+    (assign, "$allies_leadership", ":leadership_allies"), #store collective leadership for outside use
+    #(val_div, ":leadership_allies", 2), #tweakable
+	(val_add,"$allies_coh",":leadership_allies"),
+	(val_add,"$allies_coh","$new_kills"),
+
+    #(val_div, ":leadership_enemies", 2), #tweakable
+	(val_add,"$enemies_coh",":leadership_enemies"),
+
+    #party morale (allies only) - get average of party morale and base coherence
+    (party_get_morale, ":party_morale", p_main_party),
+    (val_add, "$allies_coh", ":party_morale"),
+    (val_div, "$allies_coh", 2),
+
+    #coherence modifier (battle events, normalized over time)
+    (val_add, "$allies_coh", "$allies_coh_modifier"),
+    (val_add, "$enemies_coh", "$enemies_coh_modifier"),
+
+	(try_begin),
+		(lt, "$allies_coh", 0),
+		(assign, "$allies_coh", 0),
+	(try_end),
 
 	# Nazgul penalty
 	(try_begin),
@@ -1239,33 +1364,53 @@ morale_scripts = [
 		(agent_get_team, ":player_team", ":player"),
 		(try_begin),
 			(teams_are_enemies, "$nazgul_team", ":player_team"),
-			(val_sub, "$allies_coh_base", ":nazgul_penalty"),
+			(val_sub, "$allies_coh", ":nazgul_penalty"),
 			(val_add, "$enemies_coh", ":nazgul_penalty"),
 		(else_try),
 			(val_sub, "$enemies_coh", ":nazgul_penalty"),
-			(val_add, "$allies_coh_base", ":nazgul_penalty"),
+			(val_add, "$allies_coh", ":nazgul_penalty"),
 		(try_end),
 	(try_end),
 
-	(try_begin),
-		(lt, "$allies_coh_base", 0),
-		(assign, "$allies_coh_base", 0),
-	(try_end),
+		# Morale Buffs/Debuffs of Encounter Effects (moved from agent morale)
 
-	(assign,"$allies_coh","$allies_coh_base"),
+ 	] + ((is_a_wb_script==1) and [
+		(try_begin),
 
-	(try_begin),
-		(gt,":num_enemies",0),
-		(val_div,":coh_enemies",":num_enemies"),
-	(else_try),
-		(assign, ":coh_enemies", 0),
-	(try_end),
+			(party_get_slot, ":encounter_effect", "p_main_party", slot_party_battle_encounter_effect),
+			(ge, ":encounter_effect", LORIEN_MIST), #Encounter effect present
 
-	(assign,"$enemies_coh",":coh_enemies"),
-	(val_sub, "$enemies_coh", ":advantage"),
-	(val_add, "$enemies_coh", ":num_enemies_rallied"),
+			(faction_get_slot, ":allies_faction_side", "$players_kingdom", slot_faction_side),
+            (store_faction_of_party, ":enemy_faction", "$g_enemy_party"),
+            (faction_get_slot, ":enemies_faction_side", ":enemy_faction", slot_faction_side),            
 
-	(val_add,"$allies_coh","$new_kills"),
+			(try_begin), #good side effects
+				(eq, ":encounter_effect", LORIEN_MIST),
+				(try_begin),
+					(eq, ":allies_faction_side", faction_side_good),
+					(val_add, "$allies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+                    (val_sub, "$enemies_coh", ENCOUNTER_EFFECT_MORALE_DEBUFF),
+				(else_try),
+					(val_sub, "$allies_coh", ENCOUNTER_EFFECT_MORALE_DEBUFF),
+                    (val_add, "$enemies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+				(try_end),
+			(else_try), #evil side effects
+				(is_between, ":encounter_effect", SAURON_DARKNESS, END_EFFECTS),
+				(try_begin),
+					(eq, ":allies_faction_side", faction_side_good),
+					(val_sub, "$allies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+                    (val_add, "$enemies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+				(else_try),
+                    (eq, ":enemies_faction_side", faction_side_good),
+					(val_sub, "$allies_coh", ENCOUNTER_EFFECT_MORALE_DEBUFF),
+                    (val_add, "$enemies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+                (else_try), #if both sides are evil (hand vs. eye), both get buffed
+                    (val_add, "$allies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+                    (val_add, "$enemies_coh", ENCOUNTER_EFFECT_MORALE_BUFF),
+				(try_end),
+			(try_end),
+		(try_end),
+	] or []) + [
 
 	(try_begin),
 		(lt|this_or_next, "$enemies_coh", 0),
@@ -1278,4 +1423,13 @@ morale_scripts = [
 		(assign, "$allies_coh", 0),
 	(try_end),
      ]),  
+
+  #script_normalize_coherence_modifier by InVain: Reduces any temporary positive or negative coherence effects by 2/3 per tick
+    ("normalize_coherence_modifier",
+    [
+	(val_mul,"$allies_coh_modifier", 2),
+    (val_div,"$allies_coh_modifier", 3),
+	(val_mul,"$enemies_coh_modifier", 2),
+    (val_div,"$enemies_coh_modifier", 3),
+     ]),
 ]

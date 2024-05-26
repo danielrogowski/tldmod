@@ -396,20 +396,20 @@ trp_a1_arnor_scout|Розвідник Дунедайн
 trp_a1_arnor_scout_pl|Розвідники Дунедайн
 trp_a2_arnor_vet_scout|Слідопит Дунедайн
 trp_a2_arnor_vet_scout_pl|Слідопити Дунедайн
-trp_i3_arnor_swordsman|Дунадан Мечник
+trp_i3_arnor_swordsman|Дунeдайн Мечник
 trp_i3_arnor_swordsman_pl|Мечники Дунедайн
-trp_i4_arnor_vet_swordsman|Дунадан Досвідчений-Мечник
+trp_i4_arnor_vet_swordsman|Дунедайн Досвідчений-Мечник
 trp_i4_arnor_vet_swordsman_pl|Досвідчені-Мечники Дунедайн
 trp_i5_arnor_champion|Чемпіон Арнора
 trp_i5_arnor_champion_pl|Чемпіони Арнора
-trp_c4_arnor_horseman|Дунадан Вершник
+trp_c4_arnor_horseman|Дунедайн Вершник
 trp_c4_arnor_horseman_pl|Вершники Дунедайн
 trp_c5_arnor_knight|Лицар Арнора
 trp_c5_arnor_knight_pl|Лицарі Арнора
 trp_a3_arnor_ranger|Рейнджер Дунедайн
 trp_a3_arnor_ranger_pl|Рейнджери Дунедайн
-trp_a4_arnor_vet_ranger|Досвідчений рейнджер Дунедайн
-trp_a4_arnor_vet_ranger_pl|Досвідчені рейнджери Дунедайн
+trp_a4_arnor_vet_ranger|Досвідчений Рейнджер Дунедайн
+trp_a4_arnor_vet_ranger_pl|Досвідчені Рейнджери Дунедайн
 trp_a5_arnor_master_ranger|Майстер-Рейнджер Арнору
 trp_a5_arnor_master_ranger_pl|Майстри-Рейнджери Арнору
 trp_i1_rohan_youth|Роганський молодий воїн
@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|Роганський воїн гвардії Еор�
 trp_c6_rider_guard_of_rohan_pl|Роганські воїни гвардії Еорла
 trp_i6_2h_guard_of_rohan|Захисник Гельмової Паді
 trp_i6_2h_guard_of_rohan_pl|Захисники Гельмової Паді
-trp_dismounted_veteran_skirmisher_of_rohan|Досвідчений застрільник Рогана
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Досвідчені застрільники Рогана
-trp_dismounted_elite_skirmisher_of_rohan|Добірний застрільник Рогана
-trp_dismounted_elite_skirmisher_of_rohan_pl|Добірні застрільники Рогана
-trp_dismounted_thengel_guard_of_rohan|Роганський воїн гвардії Тенгела
-trp_dismounted_thengel_guard_of_rohan_pl|Роганські воїни гвардії Тенгела
+trp_ac3_dism_skirmisher_of_rohan2|Застрільник Рогана
+trp_ac3_dism_skirmisher_of_rohan2_pl|Застрільники Рогана
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Досвідчений застрільник Рогана
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Досвідчені застрільники Рогана
+trp_ac5_dism_elite_skirmisher_of_rohan2|Добірний застрільник Рогана
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Добірні застрільники Рогана
 trp_i1_harad_levy|Харадський новобранець
 trp_i1_harad_levy_pl|Харадські новобранці
 trp_i3_harad_infantry|Харадський Легкий Піхотинець
@@ -887,14 +887,13 @@ trp_walker_woman_rohan_d|Роганська дівчина
 trp_walker_woman_gondor_b|Ґондорська жінка
 trp_walker_woman_gondor_bw|Ґондорська жінка
 trp_walker_woman_gondor_w|Знатний Ґондорець
-trp_ramun_the_slave_trader|Рамун-работоргівець
-trp_guide|Швидкий Джиммі
-trp_galeas|Галеас
-trp_farmer_from_bandit_village|Фермер
-trp_farmer_from_bandit_village_pl|Фермери
-trp_trainer_1|Тренер
-trp_trainer_2|Тренер
-trp_trainer_3|Тренер
+; trp_mirkwood_walker_1|Greenwood Elf
+; trp_mirkwood_walker_2|Greenwood Elf
+; trp_lorien_walker_1|Lothlorien Elf
+; trp_lorien_walker_2|Lothlorien Elf
+trp_dwarf_walker|Гном
+; trp_beorn_walker|Peasant Man
+trp_beorn_walker_fem|Селянка
 trp_trainer_4|Тренер
 trp_trainer_gondor|Тренер
 trp_trainer_rohan|Тренер
@@ -984,10 +983,6 @@ trp_dunland_lord_pl|Вождь
 trp_beorn_lord|Вождь Грімбеорн Старий
 trp_beorn_lord_pl|Вождь
 trp_lorien_marshall|Келеборн
-trp_pippin_notmet|Гобіти
-trp_merry_notmet|Гобіти
-trp_pippin|Піпін
-trp_merry|Меррі
 trp_knight_1_1|Ангбор Безстрашний
 trp_knight_1_2|Хранитель ключів Хурін
 trp_knight_1_3|Принц Імрахіль
@@ -1511,6 +1506,7 @@ trp_gandalf|Гендальф
 trp_gandalf_pl|Доморощені Гендальфи
 trp_nazgul|Назгул
 trp_nazgul_pl|Одомашнений Назгул
+; trp_radagast|Radagast
 trp_barman|Бармен
 trp_elder|Старійшина
 trp_gear_merchant|Торговець спорядженням
@@ -1528,8 +1524,8 @@ trp_uruk_hai_sentry|Урук-Хай Часовий
 trp_uruk_hai_sentry_pl|Урук-Хайї Часові
 trp_black_numenorean_sorcerer|Чорний нуменорець-Чаклун
 trp_black_numenorean_sorcerer_pl|Чорні нуменорці-Чаклуни
-trp_black_numenorean_acolyte|Чорний нуменорець-служитель
-trp_black_numenorean_acolyte_pl|Чорні нуменорці-служителі
+; trp_evil_priest|Evil Priest
+; trp_evil_priest_pl|Evil Priests
 trp_wolf_rider_of_mirkwood|Вовчий вершник Темнолісся
 trp_wolf_rider_of_mirkwood_pl|Вовчі вершники Темнолісся
 trp_warg_rider_of_mirkwood|Темнолісський вершник на Варзі
@@ -1636,3 +1632,18 @@ trp_tribal_orc_warrior|Дикій Орк-воїн
 trp_tribal_orc_warrior_pl|Дикі Орки-воїни
 trp_tribal_orc_chief|Вождь диких Орків
 trp_tribal_orc_chief_pl|Вожді диких Орків
+trp_a3_dism_skirmisher_of_rohan|Застрільник Рогана
+trp_a3_dism_skirmisher_of_rohan_pl|Застрільники Рогана
+trp_a4_dism_veteran_skirmisher_of_rohan|Досвідчений застрільник Рогана
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Досвідчені застрільники Рогана
+trp_a5_dism_elite_skirmisher_of_rohan|Добірний застрільник Рогана
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Добірні застрільники Рогана
+trp_ac5_camel_rider|Погоничі верблюдів Харада
+trp_ac5_camel_rider_pl|Вершники на верблюдах Харада
+trp_aragorn|Арагорн
+trp_legolas|Леґолас
+trp_gimli|Ґімлі
+trp_pippin_notmet|Гобіти
+trp_merry_notmet|Гобіти
+trp_pippin|Піпін
+trp_merry|Меррі

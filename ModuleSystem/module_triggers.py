@@ -1207,7 +1207,7 @@ triggers = [
   ]),
   
   #TLD magic items stuff(mtarini)
-  (12, 12,ti_once,[(eq,"$g_ent_water_taking_effect",1),
+  (12, 12,0,[(eq,"$g_ent_water_taking_effect",1),
       (troop_get_type,reg5,"trp_player"),
       (store_troop_health,reg6, "trp_player"),
       (ge|this_or_next, reg6, 95), # takes effect only after you fully recovered...
@@ -1309,9 +1309,29 @@ triggers = [
   (0.5, 0, 0, [],[#(gt,"$g_fangorn_rope_pulled",-100)],[
       (call_script,"script_party_is_in_fangorn","p_main_party"),
       (assign,":inside_fangorn",reg0),
+      (assign, ":continue", 1),
+      (try_begin),
+        (check_quest_active, "qst_investigate_fangorn"),
+        (quest_get_slot, ":timeout", "qst_investigate_fangorn", slot_quest_target_amount), #used to disable fangorn check while burning trees
+        (store_current_hours, ":hours"),
+        (eq, ":hours", ":timeout"),
+        (jump_to_menu, "mnu_fangorn_search_fails"),
+        (assign, ":continue", 0),
+       (else_try),
+        (check_quest_active, "qst_investigate_fangorn"),
+        (lt, ":hours", ":timeout"),
+        (assign, ":continue", 0),
+      (else_try),
+        (check_quest_active, "qst_investigate_fangorn"),
+        (gt, ":hours", ":timeout"),
+        (assign, ":continue", 1),
+      (try_end),
+      
       (try_begin),
         (eq, "$g_player_is_captive", 0),
         (eq,":inside_fangorn",1),
+        (eq,":continue",1),
+        (neq, "$g_fast_mode", 1),
         (troop_slot_eq, "trp_treebeard", slot_troop_met_previously, 0), # and didn't meet Treabeard
         #(assign,reg5,"$g_fangorn_rope_pulled"),
         (try_begin),
@@ -1336,6 +1356,11 @@ triggers = [
         (ge,"$g_fangorn_rope_pulled",5),
         (val_sub,"$g_fangorn_rope_pulled", 5), # if outside fangorn, fangorn calms down (to 0).
         (val_max,"$g_fangorn_rope_pulled", 0),
+        (try_for_parties, ":ents"), #remove any ent parties, just to be sure
+            (party_get_template_id, ":template", ":ents"),
+            (eq, ":template", "pt_ents"),
+            (call_script, "script_safe_remove_party",":ents"),
+        (try_end),
       (try_end),
   ]),
   
@@ -1570,9 +1595,9 @@ triggers = [
         (display_log_message, "@{s27}: Party morale decreased.", color_bad_news),
       (try_end),
       # gaining new traits
-      (try_begin),
-        (call_script, "script_cf_check_trait_captain"),
-      (try_end),
+      # (try_begin),
+        # (call_script, "script_cf_check_trait_captain"),
+      # (try_end),
       (try_begin),
         (troop_slot_eq, "trp_traits", slot_trait_command_voice, 0),
         (gt, "$trait_check_commands_issued", 0),
@@ -1623,6 +1648,7 @@ triggers = [
         (call_script, "script_cf_gain_trait_fell_beast"), #MV: let the scripts sort out if it's an orc or not :)
       (try_end),
       (try_begin),
+        (eq, 0, 1), #disabled
         (troop_slot_eq, "trp_traits", slot_trait_foe_hammer, 0),
         (assign, ":count", 0),
         (store_troop_faction, ":tmp", "trp_player"),
@@ -1775,28 +1801,34 @@ triggers = [
   # check for mutiny when orcs in party
   (2, 0, 2, [
       (neg|faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good),
+      (party_get_morale, ":party_morale", p_main_party),
+      (le, ":party_morale", 90), #counter only ticks if morale is <90
+      (val_sub, "$mutiny_counter",2),
       
+      #InVain: Removed this block, instead added morale checks here and for final mutiny chance below
       ## Kham - Reduce rate of mutiny by level and rank (player faction, I could also look at player's rank in mordor & isengard, but lets start with this)
-      (store_character_level, ":level","trp_player"),
-      (call_script, "script_get_faction_rank", "$players_kingdom"),
-      (assign, ":rank", reg0),
-      (store_skill_level, reg1, "skl_leadership", "trp_player"),
-      (this_or_next|lt, reg1,     6),
-      (this_or_next|lt, ":level",17),
-      (             lt, ":rank",  5),
-      (try_begin), ## Reduce deduction by 1 when player is level 12 or rank 3, just to ease it a bit, before disappearing completely.
-        (this_or_next|eq, reg1,     5),
-        (this_or_next|is_between, ":level",13,17),
-        (             is_between, ":rank",  3,5),
-        (val_sub, "$mutiny_counter",1),
-      (else_try),
-        (val_sub, "$mutiny_counter",2),
-      (try_end),
+      # (store_character_level, ":level","trp_player"),
+      # (call_script, "script_get_faction_rank", "$players_kingdom"),
+      # (assign, ":rank", reg0),
+      # (store_skill_level, reg1, "skl_leadership", "trp_player"),
+      # (this_or_next|lt, reg1,     6),
+      # (this_or_next|lt, ":level",17),
+      # (             lt, ":rank",  5),
       
+      # (try_begin), ## Reduce deduction by 1 when player is level 12 or rank 3, just to ease it a bit, before disappearing completely.
+        # (this_or_next|eq, reg1,     5),
+        # (this_or_next|is_between, ":level",13,17),
+        # (             is_between, ":rank",  3,5),
+        # (val_sub, "$mutiny_counter",1),
+      # (else_try),
+        # (val_sub, "$mutiny_counter",2),
+      # (try_end),      
       ## Kham Changes END
+
       (le, "$mutiny_counter",0),
       (party_get_num_companion_stacks, ":num_stacks","p_main_party"),
       (assign, ":orcs", 0),
+      
       (try_for_range, ":stack_no", 0, ":num_stacks"), # count number of orcs and max level
         (party_stack_get_troop_id, ":stack_troop", "p_main_party" ,":stack_no"),
         (neg|troop_is_hero, ":stack_troop"),
@@ -1805,17 +1837,26 @@ triggers = [
         (party_stack_get_size, reg1, "p_main_party",":stack_no"),
         (val_add, ":orcs", reg1),
       (try_end),
+      
       (store_skill_level, reg1, "skl_leadership", "trp_player"), # persuasion neutralizes 5 orcs per level ##Kham - Change to Leadership instead, as there is nothing else persuasion is used for
       (val_mul, reg1, 5),
       (val_sub, ":orcs", reg1),
       (troop_get_type, reg1, "trp_player"),
-    (try_begin),(eq, reg1, tf_orc),(val_sub, ":orcs", 10),(try_end), # player being an orc himself neutralizes 10 orcs
+      
+      (try_begin),
+        (eq, reg1, tf_orc), (val_sub, ":orcs", 10),
+      (try_end), # player being an orc himself neutralizes 10 orcs
+      
       (val_max, ":orcs", 1),
       (party_get_num_companions, reg1, "p_main_party"),
       (gt, reg1, 15), # for big enough party
       (val_div, reg1, ":orcs"),
       (lt, reg1, 2), # more than 50% of "adjusted orcs" in party?
-      (store_random_in_range, reg1, 0, 10),(lt, reg1, 2), #20% mutiny chance
+      
+      #(store_sub, ":chance", 100, ":party_morale"),
+      (store_random_in_range, reg1, 0, 80), 
+      (gt, reg1, ":party_morale"), #mutiny chance, doesn't happen when morale is >80
+      
       ],[
       (assign, "$mutiny_counter",108), # 4.3 days between uprisings
       (try_begin),

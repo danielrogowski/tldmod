@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^Outoja, uhkaavia ääniä kaikkialla ympärilläsi.^Pu
 mno_be_quiet_elf|Kunnioittakaa puitten vihamielisyyttä. Liikkukaamme hiljaa.
 mno_be_quiet|Laskekaa aseenne ja pysykää hiljaa! Nyt ulos täältä!
 mno_be_bold|Jatketaan! Minähän en mitään kasveja tai vanhoja myyttejä pelkää!
-mno_fight_back|Otetaan siitä selvää! Tutkikaa alue! Polttakaa puu tai pari!
+; mno_fight_back|Let's find out! Search the area! Burn down a tree or two! (Camp)
 menu_fangorn_search_fails|Etsit pimeää, paksua metsää, mutta et löydä mitään.^Silti, tunnet itsesi havainnoiduksi ja uhatulta yhä enemmän ja enemmän.
 menu_fangorn_killed_player_only|^^^^^^Vaeltelet paksussa, mustassa metsässä.^Yhtäkkiä sinuun on osunut jokin! Ehkä painava oksa putosi päähäsi?^Ôlet tajuton ainoastaan muutaman minuutin. Olet pahasti vahingoittunut, mutta voit mennä eteenpäin.
 mno_ow_get_out|Aihh! Lähdetään tästä kirotusta paikasta!
@@ -200,7 +200,7 @@ mno_leave|Poistu.
 menu_simple_encounter|^^^^^{s2}^Sinulla on {reg22} joukkoa valmiina taistelemaan heidän {reg11} vastaan.^^Taistelu käydään {s3}{s4}.^^Käskysi?
 mno_encounter_attack|{reg21?Hyökätkää heidän kimppuun:Valmistautukaa kohtaamaan heidät}.
 mno_encounter_order_attack|Käske miestesi liittyä taisteluun {reg21?attack:face} ilman sinua.
-mno_control_allies_menu|Käytä vaikutusvaltaa komentaaksesi liittolaisiasi taistelukentällä.
+; mno_control_allies_menu|Use influence to command your allies in the field.
 mno_encounter_hide|Piiloudu viholliselta...
 mno_special_whip|Kiiruhda eteenpäin heitä kohti murtaen {s4}.
 ; mno_encounter_attack_bearform|{reg21?Leap into battle in bear form:Turn skin and face them}.
@@ -235,7 +235,7 @@ mno_pre_join_leave|Älä osallistu tähän.
 ; menu_join_battle|^^^You are helping {s2} against {s1}.^ You have {reg22} troops fit for battle against the enemy's {reg11}.^^The battle is taking place in {s3}{s4}.
 mno_join_attack|Hyökkää vihollisten kimppuun.
 mno_join_order_attack|Käske sotilaittesi hyökätä liittolaistesi kanssa, samalla kun pysyttelet itse takana.
-mno_control_allies_join_menu|Käytä vaikutusvaltapisteitä komentaaksesi liittolaisiasi taistelukentällä.
+; mno_control_allies_join_menu|Use influence to command your allies in the field.
 ; mno_join_attack_bearform|Leap into battle in bear form
 mno_join_leave|Irroittaudu taistelusta.
 mno_player_control_allies_join_menu|Komenna heitä ja hyökkää vihollisten kimppuun
@@ -291,7 +291,7 @@ menu_siege_join_defense|{s4}^^Sinun tappiot: {s8}^^Liittolaisiesi tappiot: {s9}^
 menu_close|Ei mitään.
 menu_town|Saavuit {s60}.{s12}{s13}een
 mno_town_menu_0|Mene jonnekkin.
-mno_town_menu_0_door|Ovu jonnekkin.
+; mno_town_menu_0_door|Inspect...
 mno_town_approach|Lähesty {s1}...
 mno_town_castle|Mene {s1}.
 mno_town_castle_door|Ovi linnaan.
@@ -300,7 +300,7 @@ mno_town_center_door|Ovi kaupungin keskustaan.
 mno_aw_chamber_door|Avaa ovi.
 mno_trade_with_arms_merchant|Vieraile {s40}.
 mno_trade_with_horse_merchant|Vieraile {s41}.
-mno_town_prison_door|Ovi vankilaan.
+; mno_town_prison_door|To the Training Grounds
 mno_dungeon_enter|Etsi kadonneita keihäitä vuorien uumenista.
 mno_dungeon_enter_door|Avaa ovi.
 mno_dwarven_warehouse|Vieraile kääpiövarastolla
@@ -312,6 +312,7 @@ mno_isengard_underground|Mene maanalaisiin luolastoihin.
 mno_tirith_toplevel|Kiipeä ylimmälle tasolle.
 ; mno_tirith_toplevel_door|Go to the Citadel
 mno_erebor_gates|Vieraile Isoilla porteilla
+; mno_erebor_gates_door|Go to the Great Gates
 mno_town_leave|Poistu...
 mno_town_leave_door|Poistu alueelta
 menu_player_initiated_siege_result|Hyökkäsit tätä keskusta vastaan palvellessasi {s2} lippua.
@@ -386,9 +387,6 @@ mno_defend_refugees|Pidä silmät auki hyökkääjien varalta...
 mno_attack_refugees|Hyökkää pakolaisjunaan...
 mno_leave_refugees|Jätä heidät toistaiseksi...
 mno_evil_war_tut_continue|Jatka...
-; menu_guardian_party_quest|{s8} sends word that Isengard is on its heels and has prepared its last stand. He wishes you to join this final battle against Isengard's Armies.   You need to bring at least {reg13} troops to the army,   and are instructed to raise more warriors with all due haste if you do not have enough.
-mno_guardian_party_reject|Lähetä viesti, että et voi liittyä häneen.
-mno_guardian_party_send_word|Lähetä viesti, että aiot liittyä hänen joukkoihin piakkoin.
 ; menu_alternate_training_fight|You will be facing {reg5} opponents. Are you ready?
 mno_training_continue|Aloita harjoittelu...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|Corsairet
 mno_rescue_mission|Hiivi noidan luolaan yön pimeyden suojassa.
 mno_next_rescue_scene_door|Jatka eteenpäin!
 mno_pick_troops1|Valitse seuralaisesi tehtävään, {reg0} valittuna
-; menu_pick_troops|Whom would you take with you into the stealth mission?    Currently you picked {reg0} companions. You can take up to 10 troops with you
+; menu_pick_troops|Whom would you take with you into the stealth mission?    ^Only your most nimble troops and companions will be able to join you.    ^As the party member with the highest wildcraft skill, {reg65?{s1} advises:you decide} that you can take up to {reg11} troops with you.    ^^Currently you have picked {reg0} companions.
 mno_go_forward|Lopeta seuralaisten valitseminen ja jatka eteenpäin.
 ; menu_burial_mound|You approach the burial mound of {s1} of {s2}.   Defeated in battle by the forces of {s28}.  It is heaped with the notched weapons of his fallen enemies.
 mno_pay_respects|Polvistu ja anna kunnioituksesi.
@@ -442,6 +440,8 @@ menu_death|Sinä olet kaatunut. Vaikka sota jatkuukin vielä, sinä et enää tu
 menu_animal_ambush|Sinä ja seuralaisesi huomaatte olevanne erotettu muusta ryhmästä, kunnes yht'äkkiä.
 ; menu_animal_ambush_success|The {s2} {reg0?fall:falls} before you as wheat to a scythe! Soon all your attackers lie on the floor, wounded or dead. {s3}
 ; menu_animal_ambush_fail|The animals bite and tear at you{reg0?,: and your companion{reg2?s,:,}} but luckily you managed to fend them off. Hopefully they won't attack you again.
+; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
+; mno_isengard_continue|Continue
 ; menu_build_your_scene|You can build your own battle scene, using one of the slots provided below and the game edit mode  (you need to switch edit mode ON in M&B lauching screen Options first, then press Ctrl+E within a scene to access the edit mode).  You can then submit scenes you constructed (namely, sco files from TLD/SceneObj folder)  to the dev team of TLD, and if your scene is good,  it can appear in later releases as one of random battlegrounds!^^ Try to specify which region on map you want your scene to appear.^ Couple hints: avoid deep water, steep mountains and other impassable places,  unless you are experienced scene-maker and know how to bar AI troops  from walking where you don't want them, and make AI mesh in other places.^ (Entries #0-1 are for attackers, #4 for defenders, do not touch #5-8
 ; mno_scene1|Plain Big (file scn custom 1.sco)
 ; mno_scene2|Plain Med (file scn custom 2.sco)

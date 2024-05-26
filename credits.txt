@@ -18,7 +18,7 @@ Substantial contributors:
     Dain Ironfoot - 3D guy, iirc did some really nice interiors and buildings for us.
     Faradon - 3D modeler and texturer, did much absolutely lovely stuff, really understands my concept art. No longer with us due to lack of time.
     foxyman - coder, SVN innovator, author of the famous formation script and less famous but even more useful data structure code. No longer
-    Giles - 3D guy, wonderful models and textures - mostly Haradrim. No longer with us due to lack of time and motivation.
+    Giles - 3D guy, wonderful models and textures - mostly Haradrim.
     Ursca - 3d guy, some of the orc stuff was done by him originally. No longer with us.
     Yoshiboy - coder and admin, occassionally popping in with advice and insights.
 
@@ -65,10 +65,13 @@ Contributions, help, advice:
     Ruthven: Water particle effects, flying birds
     kalarhan - Help with scripting Gondor AI & generally being helpful
     Lightwolf_Games - Werewolf model
+    Lolinilandecadon - Minas Tirith hall base model
     Mandible - Beorning Overhaul, Mithril Shield
     Morgul - Scenes    
     NPC99 - Rohan Overhaul
     Noxbru - Code, bugfixing, help with fixing the Linux version
+    Renmauzuo - Code, especially friendship reward system
+    Sid The Kid (TLD Overhaul/TLDO) - Elven boots    
     Snouz & Saxondragon - Formations AI Fixes
     Snouz - TLD Warband Asset Pack (first port of TLD assets to Warband standarts)
     Yarrum - Dialogues, Descriptions, & Suggestions
@@ -78,14 +81,17 @@ Open Source Assets and Code
     Adorno - Wooden Scene Props Pack
     Brego's LotR OSP - Rohan Guard Armor
     BeefBacon - BeefBacon's Terrain and Landscaping Pack
+    Igor BB - Mail Coif
     BrustwarzenLenny's Retexture Pack
     Brytenwalda - props, items, textures
     Caba' drin - Improved Field AI [Autoswap weapons, Mount Improvements]
-    Crusaders - Way to Expiation (CWE) - Flora, props, items, textures
+    Crusaders - Way to Expiation (CWE) - Flora, props, items, textures, sounds
     dejawolf's Viking pack
+    Teutonic Order: Drang nach Osten OSP (DNO) - priest outfit
+    Ficus's Roman Pack (roman) - Lion skin cape (for Harad)
     Full Invasion Pack - Helms, boots, horses
     Game of Thrones OSP
-    Grim Age (Warhammer mod) - bow models
+    Grim Age (Warhammer mod, GA) - bow models
     Gutekfiutek - Polished buildings
     hoboistice - Up-stab animations & Spear Improvements
     Jaakko - Italian OSP (Trees)
@@ -93,12 +99,15 @@ Open Source Assets and Code
     Llew2 - Mount&Gladius OSP (Pauldrons for Uruk-hai)
     Mandible - Nordish Royal Sword
     Mackie - mackie weapons OSP (Rhun Mangler)
+    Mark7 - Dynamic Props v1.1 
+    Mount and Gladius v2.0 - Dunland sword and pike
     Narf of Picklestink - Rus Armour Pack; Men-at-arms Armour Pack; Transitional Armour Pack
     Nightfall of Middle-Earth: Khazâd ai-mênu! - Props, textures, some items
     Oliveran - Improved Field AI [Archer Aim, Lord AI]
     Jun Yue - Improved Field AI [Horse Archer AI]
     Rath0s Arms and Armour OSP
     SacredStoneHead Nord Armor Set
+    SuperNinjaMan/dstn - "lookat" script
     Spak - OSP Spak_Items
     Vyrn - Noldor bow, HP shield code
     Waewulf's Light Pack

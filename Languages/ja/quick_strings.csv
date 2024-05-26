@@ -38,7 +38,7 @@ qstr_A_peaceful_village_n|ウェストフォルドから遠くない、とある
 qstr_The_War_is_upon_Roha|戦争の魔の手がローハンを襲う！
 qstr_Minas_Tirith___The_W|ミナス・ティリス、白の都
 qstr_The_White_Tree_stand|王家の血筋が途絶えて以来、白の木は枯れたままである
-qstr_The_Shadow_grows_eve|東に広がる闇の力は、かつてないほど強くなっている
+; qstr_And_the_Shadow_grows|And the Shadow grows ever stronger in the East
 qstr_Minas_Morgul___City_|ミナス・モルグル、ナズグールの都
 qstr_Sauron_s_armies_marc|サウロンの軍勢が進軍を開始した！
 qstr_Adventurers_at_audie|冒険者の一行が、執政デネソールに謁見していた・・・
@@ -94,7 +94,7 @@ qstr_TLD_New_FormAI|TLD New FormAI
 qstr_Siege_AI:__|攻城戦AI:  
 qstr_Basic__better_perfor|標準(低負荷)
 qstr_Advanced|高度
-qstr_Campaign_diffculty:_|キャンペーン難易度:
+; qstr_Campaign_difficulty:|Campaign difficulty:  
 qstr_Hard|難しい
 qstr_Default|標準
 qstr_Easy|やさしい
@@ -109,11 +109,6 @@ qstr_Fallen_rider_damage_|落馬ダメージの報告:
 qstr_No_Messages|メッセージなし
 qstr_Player_damage_only|プレイヤーのみ
 qstr_All_Messages|すべてのメッセージ
-qstr_Troop_Identifier_in_|戦場における兵の識別(戦闘時にYを押すと切り替え):
-qstr_Disable|無効
-qstr_Troop_Names|兵のラベル
-qstr_Simple:_Faction_Colo|簡易: 所属勢力ごとに色分け
-qstr_Simple:_Black___Enem|簡易: 敵-黒色/味方-白色
 qstr_Preferred_Camera_Mod|優先するカメラモード:
 qstr_Default_Camera|標準
 qstr_Free_Mode_Custom_Cam|カスタムカメラのフリーモード
@@ -242,6 +237,8 @@ qstr_Strengthens_all_Hero|プレーヤーとすべてのコンパニオンを強
 qstr_+2_to_First_Aid__Par|応急手当てスキル+2(パーティスキル)
 qstr_lead_more_Uruks|より多くのウルクを指揮可能
 qstr_+1_to_Power_Throw|豪投+1
+; qstr_Recruit_Black_Numeno|Recruit Black Numenoreans from various places
+; qstr__Scales_with_Charism|(Scales with Charisma. Human leaders only.)
 qstr_+1_to_Spotting|観測術+1
 qstr_+2_to_Weapon_Master|武器熟練スキル+2
 qstr_+2_to_First_Aid|応急手当てスキル+2
@@ -250,8 +247,16 @@ qstr_Less_Wargs_upkeep|ワーグ騎兵の維持費が低下
 qstr_Light_Armor|軽装鎧
 qstr_Bonus_to_Strength__P|体力にボーナス (プレイヤーのみ)
 qstr_Lead_more_Orcs|指揮可能なオークの数が増大
+; qstr_Can_scare_horses|Can scare horses
 qstr_+{reg1}_to_Party_Mor|パーティの士気+{reg1}
 qstr_Range:_{reg55}|範囲: {reg55}
+qstr_Dwarves|ドワーフ
+; qstr_Humans_and_Elves|Humans and Elves
+; qstr_Orcs|Orcs
+; qstr_Uruks_and_Uruk_Hai|Uruks and Uruk-Hai
+; qstr_Humans_Uruks_and_Uru|Humans, Uruks, and Uruk-Hai
+; qstr_Humans|Humans
+; qstr_This_item_can_be_use|This item can be used by {s2}
 qstr_Do_you_want_to_disem|上陸しますか？
 qstr_Move_here|ここへ移動
 qstr_View_notes|詳細を見る
@@ -408,7 +413,7 @@ qstr_Death_to_the_trespas|{s16}への侵入者には、 死だ!
 qstr_CHARGE!_Let_s_clear_|突撃！ {s18} {s19}のクズどもを、 {s17}から一掃するぞ！
 qstr_{s14}Now_that_{s19}s|{s14}{s19}のクズめ、 我ら熊人の怒りをたっぷり味わえ！
 qstr_Attack!|攻撃！
-qstr_You_are_attacked_by_|ゴブリンの一団に襲われました！
+; qstr_You_are_attacked_by_|You are attacked by a group of bandits!
 qstr_Holding|待機
 qstr_Following|追従
 qstr_Charging|突撃
@@ -559,6 +564,7 @@ qstr_What_should_I_do?|私は何をすればよいのでしょう？
 qstr_Find_{s3}_s_whereabo|ただちに{s3}の所在を探し、{reg3?彼女:彼}と話をするのだ。幸運を祈る！
 qstr_Good_to_see_the_Shad|おぬしがいまだ闇の力に屈していないのは幸運といえよう、 {playername}。
 qstr_You_are_the_one_they|あなたはガンダルフ、もしくはミスランディアと呼ばれている方ですね。
+; qstr_You_are_the_one_they_|You are the one they call Radagast.
 qstr_That_is_what_some_ca|そう呼ぶ者もおるな。 また違った名前で呼ぶ者もあるが、 この闇を食い止めねば、 まもなくわしを呼ぶ者すらいなくなってしまうであろう。
 qstr_What_do_you_mean?|どういう意味ですか？
 qstr_In_spite_of_their_va|勇敢な抵抗もむなしく、 {s3}は闇の力に飲み込まれてしまった。 {s3}の民は散り散りになり、 愛すべき{s4}はもうこの世にいない。
@@ -570,9 +576,26 @@ qstr_What_do_you_want_of_|ご老体、私は何をすればいいのですか？
 qstr_Just_know_that_a_Daw|夜明けがせまっているという事を知っておくのだ。 これは避けられない運命にある。 おぬしがそのときを生きて迎えられたときのために、 心の準備はしておくことだ。
 qstr_Well_met_{playername|おお、{playername}、{s24}よ。 おぬしを見込んだわしの目に、狂いはなかった。 闇の力は打ち破られたのだ。おぬしは少なからぬ働きをしてくれた！
 qstr_Thank_you_Mithrandir|ありがとうございます、ミスランディア！
+; qstr_Thank_you_Radagast!|Thank you, Radagast!
 qstr_The_wizard_Saruman_i|魔法使いサルマンは消え去り、 バラド＝ドゥーアもその闇の主とともに塵あくたとなって崩れ去った！ 中つ国の民は、 この世界の清きものをすべて飲み込まんとする脅威から開放された。 敵は打ち破られ、 王は戻ったのだ！
 qstr_It_was_a_long_and_bl|多くの犠牲を払った、 長い戦いでした。 我々の親しい友たちも、 その多くが命を落としてしまいました。
 qstr_There_is_much_to_reg|後悔や嘆き悲しむべきことは尽きず、 それにもまして、 これからは過酷な修復と再建の日々が始まる。 だが、 とりあえずは、 共に戦い抜いた友たちと喜びを分かち合い、 この時代の最後の日々を勝利して迎えられたことを祝おうではないか。
+; qstr_Orcs_are_marching_ag|Orcs are marching against Helm's Deep.
+; qstr_Orcs_are_marching_aga|Orcs are marching against Edoras.
+; qstr_Ah_{playername}_happ|Ah, {playername}, happy chance that we come on each other in this fashion! Grim tidings I bring from Western Rohan, and haste is sore needed.
+; qstr_What_tidings_do_you_|What tidings do you bring, Mithrandir? What can I do?
+; qstr_Saruman_has_loosed_I|Saruman has loosed Isengard upon Rohan. {s1} For the success of my designs, the valiant Rohirrim must not fall, {playername}! The danger to them is very great, yet also the emptying of Isengard has left it vulnerable, for Saruman has despatched his full strength against Theoden King. This may be the time to move into Nan Curunir. A choice is now laid before you, Commander, a choice you must make, for neither you nor I may be everywhere at once!
+; qstr_Do_you_want_me_to_he|Do you want me to help King Theoden defend {s3}, or hasten to Isengard and see what I can do?
+; qstr_Either_would_be_a_gr|Either would be a great boon to me. You must decide your course on your own, {playername}, as shall I. Shadowfax shall bear me now on a swift errand. You must act quickly as well! Hasten now!
+; qstr_Gandalf_asked_you_to|Gandalf asked you to either help Theoden defend {s3} or find out what is happening in Isengard.
+qstr_Ents|エント
+; qstr_Hail_{playername}!_I|Hail, {playername}! I hope you are unhurt? At any rate, I am pleased you aided my friend Fangorn, or you may know him as Treebeard. The tree shepherds are very mighty, but it was likely that they marched to their doom. You have perhaps saved them from a great peril, Commander, and for that I am glad. I would not like to see the oldest of all living things pass from the world, no, not just yet… no, not before they see the Entwives again, I should hope.
+; qstr_Missing_String|Missing String
+; qstr_Well_thank_you_{play|Well, thank you, {playername}, and farewell. We may meet again, ere the waning of the moon!
+; qstr_Hail_{playername}!_I_|Hail, {playername}! I hope you are unhurt? At any rate, you seem to have lain your blade to the right foe. No enemy has yet taken the Hornburg, and likely none ever shall – not while the likes of you defend Helm’s Gate, I’ll warrant!
+; qstr_Your_deed_has_greatl|Your deed has greatly helped my design, better even than I could have hoped or planned. Farewell, {playername}, and thank you. We may meet again, ere the waning of the moon!
+; qstr_{Playername}_I_will_|{Playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back.
+; qstr_You_have_failed_me_{|You have failed me, {playername} – or perhaps it is I who have failed you. Perhaps there was some flaw in my design, some grave blunder I did not recognise… The terror of Mordor comes. Leave me now, {playername}. We may meet again… or perhaps not.
 qstr_Bagginsssss..._Ssssh|バギンズ・・・ ホビット庄・・・
 qstr_I..._don_t_know!|な・・・ なんの事だ！
 qstr_It..._beckonsssssss.|それは・・・ 手招くのだ・・・
@@ -591,8 +614,11 @@ qstr_The_forces_of_{s2}_m|{s2}の軍勢が、{s15}を目指して進軍してい
 qstr_Rohan_capital_moved_|ローハンがエドラスから角笛城へ、遷都をしました！
 qstr_Dale_capital_moved_f|谷間の国はエスガロスへ遷都を行いました！
 qstr_Gundabad_capital_mov|グンダバドはゴブリン町へ遷都を行いました！
+; qstr_You_have_breached_th|You have breached the Ring of Isengard with the help of the Tree Men. During the battle, Isengard was flooded, but Orthanc still stands unscathed in midst of the havoc. You should investigate the aftermath.
 qstr_The_hosts_of_{s2}_re|{s2}の軍勢は本拠地へ退却しました！
 qstr____Ruins_of_{s1}___|{s1}の廃墟
+; qstr_{s1}_has_joined_the_|{s1} has joined the Hand
+; qstr_{s1}_has_joined_the_E|{s1} has joined the Eye
 qstr_ranks|横陣
 qstr_shield_wall|シールドウォール
 qstr_wedge|くさび形
@@ -631,7 +657,7 @@ qstr_support|補助兵
 qstr_bodyguard|護衛兵
 qstr_undetermined_type_of|未分類の
 qstr_{s1}_has_fled_the_ba|{s1}は戦場から逃げました！
-qstr_Your_troops_are_at_{|味方の兵の団結力は{reg1}%(+{reg3}%ボーナス)、敵兵は{reg2}%です！
+; qstr_Your_side_is_at_{reg|Your side is at {reg1}% cohesion ({reg3}% recent events), the enemy at {reg2}%!
 qstr_Morale_of_your_troop|味方の兵が浮き足立っています！
 qstr_Morale_of_your_enemi|敵兵が浮き足立っています！
 qstr_Your_enemies_flee_in|敵兵が恐怖で逃げています！
@@ -658,6 +684,9 @@ qstr_loses_Faction_Strength|は破壊的な襲撃を受けたため、 勢力ポ
 qstr_loses_Faction_Strength_|はあなたの海における活躍により、 勢力ポイントが下がりました。
 qstr_You_spent_{reg67}_of|あなたは{s1}での影響力ポイントを{reg67}消費しました。 残りは{reg66}です。
 qstr_{s2}_{reg3?was:is_ar|{s2}は{s5}周辺にい{reg3?た:る。
+; qstr_Army_of_{s6}|Army of {s6}
+; qstr_Host_of_{s6}|Host of {s6}
+; qstr_The_host_of_Isengard|The host of Isengard has razed {s2}!
 qstr_{s1}_{s0}|{s1},{s0}
 qstr_{s1}_and_{s0}|{s1}および{s0}
 qstr_No_Troops_Left.|兵はもういません。
@@ -720,6 +749,7 @@ qstr_You_shapeshift_into_|あなたは熊に姿を変えました！
 qstr_You_got_{reg1}_exper|あなたは熊の姿で{reg1}の経験値を獲得しました。
 qstr_Your_ability_to_chan|あなたが姿を変える能力を持つ事は明らかになりました。 これよりあなたは自然において、 人間であると同時に熊としても認識されます。
 qstr_You_change_back_to_h|あなたは人間の姿に戻った・・・
+; qstr_Refill_Ammunition|Refill Ammunition
 qstr_Your_mount_stumbles!|あなたの馬がよろめいています！どうやら足をくじいているようです。
 qstr_Bitten_by_your_own_w|あなたのワーグが噛み付いてきました！
 qstr_You_weigh_too_much_f|ポニーに乗るには、あなたは重すぎます！
@@ -729,8 +759,8 @@ qstr_Switch_Back_to_3rd_P|三人称視点に切り替えてカメラモードを
 qstr_Fixed_Custom_Camera|固定カスタムカメラ
 qstr_Press_Ctrl_+_Left_/_|Ctrl+左矢印/Ctrl+右矢印キーで肩口の切り替え
 qstr_Press_Ctrl_+_Down_to|Ctrl+下矢印キーで中央
-qstr_Use_+/__to_zoom_in/o|+/-でズームイン、ズームアウト
-qstr_Use_Up/Down_arrow_ke|上下の矢印キーで傾きの調整
+; qstr_Press_Ctrl_and_+/__t|Press Ctrl and +/- to zoom in/out
+; qstr_Press_Ctrl_and_Up/Do|Press Ctrl and Up/Down arrow keys to tilt up/down
 qstr_Fixed_Camera___Right|固定カメラ - 右肩
 qstr_Fixed_Camera___Left_|固定カメラ - 左肩
 qstr_Fixed_Camera___Cente|固定カメラ - 中央
@@ -740,6 +770,7 @@ qstr_Cannot_leave_now.|今は離脱できません。
 qstr_You_have_found_the_l|拠点の鍛冶屋を見つけました。
 qstr_You_have_found_the_lo|拠点の管理責任者を見つけました。
 qstr_You_have_found_the_loc|拠点の貯蔵所を見つけました。
+; qstr_You_have_found_the_c|You have found the captain of the garrison.
 qstr_You_look_through_Hen|あなたは夕陽の窓とも呼ばれるヘンネス・アンヌーンを見て回った。 その美しさに、あなたは西方とその底力に対する認識をあらためた。
 qstr__cancelled_the_{reg1|(捕虜を殺害して得た経験値{reg10}をキャンセルしました)
 qstr_Forming_ranks.|横陣を組みます。
@@ -759,8 +790,8 @@ qstr_Two_Nazgul_are_circl|戦場の上空で2体のナズグールが旋回し�
 qstr_A_Nazgul_is_circling|戦場の上空でナズグールが旋回しています！
 qstr_Some_of_your_human_t|あなたの兵のうち、いくらかは人間にもかかわらず闇の力にひるんでいません(ナイト系の兵は夜間のペナルティを受けません)。
 qstr_You_are_filled_with_|敵の姿を目にしたあなたは、怒りで満たされました(狂戦士が発動しました)。
-qstr_Your_mount_is_scared|あなたの馬は{reg73?エント:トロル}に怯えています！
-qstr_Your_mount_is_scared_|あなたの馬は{reg73?エント:トロル}に怯えていますが、なんとかなだめる事はできそうです！
+qstr_Your_mount_is_scared|あなたの馬は{s5}に怯えています！
+; qstr_Your_mount_is_scared_|Your mount is scared by the {s5}, but you can master it!
 qstr_Nazgul_sweep!|ナズグールの攻撃！
 qstr_You_and_your_horse_p|ナズグールの耐え難い叫び声に、あなたと馬は動揺しています！
 qstr_Your_horse_panics_th|ナズグールの耐え難い叫び声に、あなたの馬が動揺しています！
@@ -771,7 +802,7 @@ qstr_{s11}_is_{s10}_in_th|ナズグールの攻撃により、{s11}が{s10}！
 qstr_Received_{reg66}_dam|{reg66}のダメージを受けました。
 qstr_You_yell_for_your_ho|あなたは自分の馬を呼びました。
 qstr_You_do_not_need_to_r|まだ檄を飛ばす必要はありません。
-qstr_You_rally_your_troop|あなたは自軍の兵士たちを奮い立たせました！
+; qstr_You_rally_{reg10}_tr|You rally {reg10} troops!
 qstr_{s5}_rallies_{reg65?|{s5}は部下の兵に檄を飛ばしました！
 qstr_You_have_killed_{reg|あなたは敵兵を{reg1}名倒しました！
 qstr_Your_bravery_inspire|あなたの勇猛さに兵士たちが勇気づけられています！
@@ -783,7 +814,7 @@ qstr_{s21}_{reg24?killed:|{s21} {s22}によって{reg24?殺され:意識を失�
 qstr_A_bear_has_been_summ|戦場に熊が召喚されました！
 qstr_In_The_Last_Days_of_|戦闘開始時、あなたの部下たちはやみくもに突撃する代わりに、陣を整えて待機します。 陣形命令は、'J'で横陣、 'K'でシールドウォール、'L'でくさび形、';'で方陣です。陣形を解除するには'U'を押してください。^あなたの兵が逃亡を始めたら、 'V'で檄を飛ばせます。 一回の戦闘で檄を飛ばせる回数は限られており、統率力スキルと魅力に依存します。
 qstr_You_can_also_order_y|また、兵の使用する武器の種類も指示できます。^^Oで武器の種類、Pで盾に関する指示を出します。
-qstr_The_Last_Days_of_the|The Last Days of the Third Ageでは、 背の低い種族(オークやドワーフなど)を扱う際のカメラの問題を解決するために、 カスタムカメラを導入しています。 ^^^Ctrl+Endを同時に押すと、 ふたつのカメラモードが切り替わります：固定ポジションとフリーモードです。^^固定ポジションはすべての種族での使用において最適な位置に固定されていますが、 調整はできません。CTRL+左矢印/右矢印キーで肩を切り替えます。^^フリーモードはキャラクターを画面の中央に位置させます。Ctrlを長押ししながらPage Up(もしくはPage Down)を押すことで、 カメラの高さ(傾き)を調整できます。^^フリーモードでは、 Ctrlを長押ししながらテンキーの+/-を押すことで、 カメラの距離(ズーム)を調整できます。^^操作の詳細はゲーム概要を見てください。
+; qstr_The_Last_Days_of_the|The Last Days of the Third Age has implemented a Custom Camera in order to bypass the current camera limitation with regards to shorter races (e.g Orcs and Dwarves).^^See Info Pages for how to control the different camera modes.
 qstr_Battlefield_is_too_s|戦場が狭すぎるため、高度な陣形AIは使用できません。
 qstr_You_have_a_clear_per|ただならぬ危険がまわりから迫って来るのを、はっきりと感じる！
 qstr_New_ent_reached_batt|新手のエントが戦闘に加わりました・・・
@@ -834,9 +865,12 @@ qstr_You_are_now_hidden.|隠密状態です。
 qstr_You_move_out_of_hidi|隠密状態を解除しました。
 qstr_The_guards_have_spot|衛兵が死体を発見しました！
 qstr_Alarm_Level_is_now_a|警戒レベルが1になりました！
+; qstr_You_have_been_too_sl|You have been too slow: The alarm has spread, and the sorcerer made his escape before you could get close.
 qstr_Alarm_Level_is_now_at|警戒レベルは0です！
 qstr_The_guards_have_spott|衛兵に発見されました！
 qstr_Alarm_Level_is_now_at_|警戒レベルが2になりました！
+; qstr_Enemy_reinforcements_|Enemy reinforcements arrived.
+; qstr_Venture_deeper_into_|Venture deeper into the forest and find a way onward.
 qstr_The_sorcerer_has_fle|妖術師は逃げてしまいました！
 qstr_Report_this_ill_news|この残念な結果を、すぐにお方さまに報告しなければなりません。
 qstr_The_sorcerer_is_flee|妖術師が逃げています！はやく倒してください！
@@ -896,8 +930,8 @@ qstr_You_are_suffering_fr|あなたは{s1}に悩まされています。
 qstr_You_are_suffering_fro|あなたは{s1}、 および{s2}に悩まされています。
 qstr_You_are_suffering_from|あなたは{s1}、 {s2}、 および{s3}に悩まされています。
 qstr_You_are_suffering_from_|あなたは{s1}、 {s2}、 {s3}、 および{s4}に悩まされています。
-qstr_Weekly_upkeep_for_tr|一週間の兵士維持費:^{reg5}リソースポイント^
-qstr_{s12}^__{s4}:_{reg4}|{s12}^  {s4}:{reg4}リソースポイント({reg5})
+; qstr_Troop_upkeep__paid_e|Troop upkeep (paid every four days):^
+; qstr_{s12}^^__{s4}:_{reg8|{s12}^^  {s4}: {reg8}/{reg5} Resource Points ^Party: {reg4}^Reserves: {reg7}
 qstr_No_upkeep_costs|維持費なし
 qstr_Orc_hiring_bonus:_+2|オーク雇用費:オーク1匹につき+2/3^
 qstr_Current_party_size_l|現在のパーティの人数上限は{reg5}です。^人数上限の修正値は次の通りです:^^基本値:+10^統率力:{s2}{reg1}^カリスマ:{s3}{reg2}^ランク:{s4}{reg3}^{s5}合計:{reg5}
@@ -934,14 +968,18 @@ qstr_You_drank_the_Ent_Wa|エント水を飲みました・・・
 qstr_You_used_the_Orc_Bre|オークビールを飲みました。
 qstr_You_and_your_compani|あなたとコンパニオンたちは一口づつミルヴォールを飲みました。 元気がみなぎり、力が湧いてきました。
 qstr_You_give_a_few_leave|あなたは治療師に数枚のアセラスの葉を渡しました。
+; qstr_Not_enough_party_spa|Not enough party space.
+qstr_elites|精鋭
+qstr_regulars|一般の民
+qstr_recruits|志願兵
+; qstr_wild|wild
+; qstr_goblins|goblins
 qstr_lordless|根なし草
 qstr_orc_stragglers|放浪するオーク
-qstr_wild_goblins|野生のゴブリン
-qstr_recruits|志願兵
-qstr_regulars|一般の民
-qstr_elites|精鋭
 qstr_You_camp_and_beat_th|あなたは野営を張り、地底の太鼓を打ち鳴らしました。 力強い太鼓の音に魅せられた{s1}の{s2}がやってきました。
-qstr_Fangorn_search:_fail|ファンゴルンの森探索:失敗。
+; qstr_You_camp_and_beat_the|You camp and beat the Drums of the Deep. The powerful sound attracts a group of {s1} {s2}.
+; qstr_You_camp_and_beat_the_|You camp and beat the Drums of the Deep. The weak sound attracts a group of {s1} {s2}.
+; qstr_You_camp_and_try_to_|You camp and try to beat the Drums of the Deep, yet noone answers your pitiful call.
 qstr_^^^A_great_victory!^|^^^大いなる勝利だ！^^^なるほど、これがファンゴルンの伝説のからくりか・・・
 qstr_^^^Defeated...^^^Sca|^^^敗れた・・・^^^ファンゴルンの森に散ってしまった・・・ひとりだ・・・
 qstr_Troll_caged_in_wheel|トロルは車輪付きの檻に入れられました。
@@ -972,7 +1010,8 @@ qstr__{s17}.|、 {s17}。
 qstr_A_group_of_{s1}_is_{|{s1}がこちらに{s10}来ました。
 qstr_You_are_attacking_a_|{s1}を攻撃します。
 qstr_The_battle_against_t|{s1}との戦いは続きます。
-qstr_There_are_{reg39}_al|この戦いには{reg39}名の指揮官が参戦しています。 影響力ポイントを{reg40}消費することで、 彼らの兵を指揮する事ができます。
+; qstr_There_are_{reg39}_al|There are {reg39} allied commanders in this battle. You can command them and their troops for {reg40}/{reg41} influence.
+; qstr_There_are_{reg39}_all|There are {reg39} allied commanders in this battle. You don't have enough influence to assume command.
 qstr_Having_a_small_party|少数部隊ならではの強みというのはあるのです・・・ あなたと部下たちは敵勢から姿を隠すと、 念のためにそのまま数時間待機しました。
 qstr_Your_ability_to_mast|自然環境の利用に長けるあなたの能力をもって、 安全に身を隠す事のできる場所を確保しました。 (あなたのワイルドクラフトのスキルでは、 {reg1}名の兵とともに身を隠す事ができます)
 qstr_{reg4}_will_be_lost.|兵{reg4}名を失います。
@@ -1019,7 +1058,7 @@ qstr_As_a_last_defensive_|あなたは城内の大広間へ撤退し、 最後�
 qstr_You_ve_been_driven_a|城壁は敵の手に落ちました。 寄せ手は砦の敷地内へなだれ込んでいます。 もしここで寄せ手を食い止められれば、 まだ戦いの流れを変える事ができるかも知れません。
 qstr_You_ve_breached_the_|城壁を突破されたにもかかわらず、 守備兵は敷地内でしぶとく抵抗を続けています！ 本丸を落とすまえに、 この連中を一掃しなければなりません。
 qstr_The_town_centre_is_y|拠点の中心部を制圧しましたが、 まだ城内へ退却した守備兵が残っています。 勝利を完全なものとするためには、 最後の砦も落とさなければなりません。
-qstr_The_remaining_defend|守備側の残存兵は持ち場を放棄して逃げています！
+qstr_The_remaining_defende|残った守備兵は、 最後の抵抗をするために 城内へと退却しました。 彼らの後を追い、 息の根を止めなくてはなりません。
 qstr_However_since_you_ar|しかしながら、 あなたは{s9}に忠誠を誓った臣下ではないため、 あなたをこの{reg8?町:城}の領主として 承認する事はないでしょう。
 qstr_The_enemy_has_been_f|敵は撤退を余儀なくされました。 攻撃は止みましたが、 まだ包囲は解かれていません。
 qstr_The_assasins_beat_yo|暗殺者はあなたを倒し、 息絶えていくあなたを放置しました。
@@ -1027,6 +1066,8 @@ qstr_You_have_fallen._The|あなたは倒されました。 野盗はあなた�
 qstr_Luckily_some_of_your|幸いにも、 あなたの戻りが遅いのを案じて探しに来たコンパニオンが、 排水溝に横たわるあなたを発見しました。 あなたは安全な場所に運ばれ、 傷の手当を受けました。
 qstr_Luckily_some_passing|幸いにも通りがかった地元の民が排水溝に横たわるあなたを発見し、 そこらの物乞いではないと判断しました。 彼らはあなたを安全な場所へ運び、傷の手当をしてくれました。
 qstr_{s13}^^You_have_succ|{s13}^^潜入に成功しました。
+; qstr_The_tomb_is_destroye|The tomb is destroyed. A fierce fight took place here.
+; qstr_Nothing_of_interest|Nothing of interest
 qstr_the_place|この拠点
 qstr_the_castle|この城
 qstr_the_Throne_Room|王の間
@@ -1077,7 +1118,10 @@ qstr_You_defeated_{reg5}_e|あなたは{reg5}名の敵を倒しました。
 qstr_You_failed_to_defeat|あなたは敵をひとりも倒せませんでした。
 qstr_The_sorcerer_slain_y|妖術師は殺され、あなたとあなたの部下たちは速やかに怪我の応急処置を済ませると、 すべるように夜の闇へと消えていきました。 背後ではおぞましい金切声がそこかしこに上がり、 あなたは暗闇の中にあなたたちの姿を探す、 たくさんの血走った視線を感じました。 間もなく怒りは失望に変わって追跡の気配は消え、 いつもの闇の森の深い静寂にとってかわられました。 あなたは脱出に成功しました。
 qstr_The_sorcerer_slipped|妖術師はあなたの捕獲の手の間からするりと身をかわし、 這いまわる虫のようにみずからの住処の闇の中へと消えていきました。 任務失敗の失望感で心は重いながらも、 あなたとあなたの部下たちは速やかに怪我の応急処置を済ませ、 夜の闇の中を撤収していきました。 背後からはからかいの金切り声が聞こえ、 闇をつらぬくような、 たくさんの血走った視線を感じました。 間もなく笑い声とののしりは消え、 いつもの闇の森の深い静寂にとってかわられました。 あなたは脱出しました。
-qstr_You_approach_a_heavi|あなたは森の一角の、厳重に警戒された場所へ近づいていきました・・・
+; qstr_You_approach_a_heavi|You approach a heavily guarded region of the forest... ^^ You have to decide whether you venture forward on your own, or take some troops with you.
+; qstr_You_have_a_good_chan|You have a good chance of avoiding the guards and slipping through unnoticed.
+; qstr_You_may_have_a_chanc|You may have a chance of avoiding the guards.
+; qstr_You_will_probably_ha|You will probably have to fight the guards.
 qstr_You_wait_for_darknes|あなたはあたりが夜の闇におおわれるのを待っています・・・
 qstr_You_are_quickly_disc|あなたはすぐに発見されてしまいました。
 qstr_You_advance_stealthi|あなたは身を隠しつつ、森のなかへと進んでいきました。
@@ -1092,6 +1136,9 @@ qstr_^^^You_lost_your_fig|^^^あなたは反乱兵に倒されました！ ど�
 qstr_^^^You_have_slain_th|^^^あなたが反乱兵を血祭りにあげると、 他のオークどもは素早く持ち場に戻りました。 虫けらどもも、これでしばらくはおとなしくなるでしょう。
 qstr_You_cover_up_your_tr|あなたは自分の足跡を消し、さらに進んでいきました。
 qstr_Breaking_camp...|野営を撤収しました・・・
+; qstr_Party_morale_is_low.|Party morale is low. Troops desert from your party.
+; qstr_Desertion|Desertion
+; qstr_{s1}_has_deserted_fr|{s1} has deserted from your party.
 qstr_You_have_left_{s1}.|あなたは{s1}を後にしました。
 qstr_You_are_entering_{s1|あなたは{s1}({s2})に入りました。
 qstr_You_are_entering_{s1}|あなたは{s1}に入りました。
@@ -1112,7 +1159,7 @@ qstr_{reg65}_Moria_and/or|{reg65}名のモリア、グンダバドの兵を殺�
 qstr_{reg65}_{s3}_troops_|{s3}の兵を{reg65}名殺した。 (カウンターは1時間ごとに更新されます)
 qstr_{reg66}_{s5}_troops_|{s5}の兵を{reg66}名殺した。 (カウンターは1時間ごとに更新されます)
 qstr_{reg67}_{s7}_{s8}_tr|{s7}の{s8}を{reg67}名殺した。 (カウンターは1時間ごとに更新されます)
-qstr_{reg68}_{s10}_killed|{s10}の兵を{reg68}名殺した。 (カウンターは1時間ごとに更新されます)
+; qstr_{s8}_in_{s9}_asked_y|{s8} in {s9} asked you to slay {reg67} {s10}.^ {reg68} {s11} killed. (Counter refreshes every hour)
 qstr_{s1}_is_scouted.|{s1}の偵察を完了しました。
 qstr_{s2}_was_defeated!|{s2}が敗れました！
 qstr_The_Age_of_Men_has_f|人類の時代は、ついに終わりを告げました。^これよりふたつの塔が残った戦力を結集し、 ^中つ国の覇権を争います！
@@ -1123,7 +1170,7 @@ qstr_In_a_desperate_attem|敵に対してなりふり構わぬ必死の対抗を
 qstr_Guardians_of_{s6}|{s6}防衛軍
 qstr_Guard_Legion_of_{s6}|{s6}防衛軍団
 qstr_Scouts_report_that_{|偵察隊より、 {s6}が{s7}周辺に、 本拠地防衛のための大規模な軍勢を 集結させているとの報告が入りました。
-qstr_The_forces_of_{s2}_e|{s2}が{s15}に遠征軍野営を築きました！
+; qstr_The_forces_of_{s2}_e|The forces of {s2} established an Advance Camp in {s15}!
 qstr_The_hosts_of_{s2}_ma|{s2}の軍勢が、彼らの本拠地を守るために退却しています！
 qstr_{playername}_s_Reser|{playername}の予備兵
 qstr_Gondor_has_called_fo|ゴンドールが助けを求めています！
@@ -1225,6 +1272,8 @@ qstr_Ask_him_if_he_has_an|彼にパイプ草を持ってないか聞いてよ！
 qstr_Tell_him_I_ll_be_the|今度会ったら僕が背の高いほうになるよって言ってよ！
 qstr_Ask_if_he_s_seen_Gan|ガンダルフに会ったか聞いてよ！
 qstr_You_gained_250_exper|経験値を250取得しました。
+; qstr_Hrooom..._Hmmm...Who|Hrooom... Hmmm...Who are you?
+; qstr_Hrooom..._Hmmm...Oh_|Hrooom... Hmmm...Oh, it's you again, {playername}.
 qstr_Treebeard_wants_you_|ファンゴルンの森で木を伐採している オークの一団を倒すよう、 木の鬚に頼まれた。
 qstr_Something_wrong_not_e|なにかがおかしい、偵察隊を編成するための兵が足りない。
 qstr_my_home_town|我が本拠地
@@ -1448,8 +1497,8 @@ qstr_I_want_you_and_your_|おぬしとおぬしの部下の手で
 qstr_{playername}_you_nee|{playername}よ、 おぬしは私やまわりの者たちに、自らの価値を証明しなければならん。 {s6}{s7}の兵を{reg22}名、殺してくれ！
 qstr_{s9}_wants_you_to_per|{s9}の要請により、 {reg22}名の{s6}の兵を、 みずからの手で殺す事となった。
 qstr_{s9}_wants_you_and_y|{s9}の要請により、 {reg22}名の{s6}の兵を、 自分と部下たちの手で殺す事となった。
-qstr_{playername}_we_have_|{playername}よ、 恐ろしい報せを受け取った。 日を追うごとに大胆さを増すウンバールの海賊どもが、 いま我々がこうして話しているあいだにも、 {s6}から遠くない位置に艦隊を集結させておるらしい。 すでにやつらは沿岸部一帯を略奪したが、 いよいよ市街地を襲撃しに来るのだ。^^やつらが市街地に到着するまえに、 やつらの艦を捕捉しなければならない。 急いで{s6}へ行って、 現地の責任者に会ってくれ。
-qstr_{playername}_we_have_r|{playername}よ、 恐ろしい報せを受け取った。 リューンの蛮人どもは、 我々が考えていたよりも悪知恵が働くらしい。 やつらは、たての湖を渡って直接エスガロスに上陸するため、 我々の斥候の目をかいぐぐって小舟やいかだを建造していたらしい！^^市街地に上陸されるまえに、やつらの船を捕捉しなければならない。 兵を率いてできるだけ急いで現地へ行き、 あの野蛮人どもを湖の反対側へ追い払ってくれ！
+qstr_{playername}_we_have|{playername}よ、 いよいよアイゼンガルドを追い詰めたぞ。 やつらは塔にこもるサルマンを守るため、 最後の抵抗を始めた。さあ共に戦おう！
+qstr_{playername}_we_have_|{playername}よ、 恐ろしい報せを受け取った。 リューンの蛮人どもは、 我々が考えていたよりも悪知恵が働くらしい。 やつらは、たての湖を渡って直接エスガロスに上陸するため、 我々の斥候の目をかいぐぐって小舟やいかだを建造していたらしい！^^市街地に上陸されるまえに、やつらの船を捕捉しなければならない。 兵を率いてできるだけ急いで現地へ行き、 あの野蛮人どもを湖の反対側へ追い払ってくれ！
 qstr_If_you_seek_pillage_|{playername}よ、 もし略奪して荒らしまわる機会を探しているのなら、 これはまたとない好機であろう。^^これより海賊船が{s7}より出航する。 目的地は、熟して摘み取られるのを待っている{s6}だ！ 作戦に参加して、戦利品にありつくがよい！
 qstr_The_soft_weaklings_o|{playername}よ、 ひ弱なエスガロスの連中など、 我々の機敏な騎兵と獰猛な戦士の相手ではない。 これはやつらも自覚しておるだろう。 あの湖の民は我々との間に湖があるため、 自分たちは安全であると考えておる。 だが、間もなくその考えは間違っていたと思い知るであろう！^^我々は戦士たちを乗せて湖を渡るのにじゅうぶんな、 小舟といかだを用意した。これは予想できまい！^^もしこの襲撃作戦におぬしも加わろうと考えるなら、 我々の野営本陣へ行き、野営の責任者にその旨を伝えるがよい。
 qstr_{s9}_asked_you_to_he|{s9}の要請により、海賊の襲撃から {s3}を守ることとなった。 現地へ急行して現場責任者に会い、 現地の守備隊と合流しよう。
@@ -1505,6 +1554,24 @@ qstr_We_need_to_grind_dow|{playername}、 我々は役立たずの敵勢を 粉�
 qstr_{s9}_asked_you_to_el|{s9}より、 {s13}を{reg1}部隊壊滅させるよう、 依頼された。
 qstr_{s9}_asked_you_to_fr|{s9}より、 {s13}郊外で暴れるトロルの脅威から、 町を開放するよう頼まれた。
 qstr_{reg1}_{s16}_joined_|あなたのパーティに{reg1}名の{s16}が加わりました。
+; qstr_Wait_{playername}._I|Wait, {playername}. I don't say this often, but you are an exceptionally reliable servant.
+; qstr_Halt_{playername}._I|Halt, {playername}. I once thought you little more than a snaga, but you are proving to be a useful servant.
+; qstr_Take_these_warriors_|Take these warriors, that your horde might continue to serve me.
+; qstr_One_last_thing_{play|One last thing, {playername}. In a land filled with backstabbers and rivals, you have always been a true ally.
+; qstr_Wait_{playername}._W|Wait, {playername}. When we met I sensed in you a rival, but I see now I was mistaken.
+; qstr_Take_these_warriors_a|Take these warriors, and use them to strike down our foes.
+; qstr_Before_you_leave_{pl|Before you leave, {playername}, know that you have always been a good friend to me.
+; qstr_Wait_{playername}._I_|Wait, {playername}. I don't know you half as well as I should like, but thus far you have been a good friend.
+; qstr_Allow_me_to_repay_yo|Allow me to repay you by giving you some troops.
+; qstr_Wait_{playername}._C|Wait, {playername}. Capable servants like you and your warriors deserve the best equipment.
+; qstr_Halt_{playername}._It|Halt, {playername}. It's shameful to have my servants using such inferior equipment.
+; qstr_Take_this_{s22}_and_|Take this {s22} and let it aid your rampage.
+; qstr_Before_you_go_{playe|Before you go, {playername}. Great warriors like you and your companions deserve only the best weapons, armor, and mounts.
+; qstr_Wait_{playername}._Y|Wait, {playername}. Your army has done well, but I think you'd do better with superior equipment.
+; qstr_Take_this_{s22}._I_h|Take this {s22}. I have no need of it.
+; qstr_Just_a_moment_{playe|Just a moment, {playername}. Heroes like you and your companions are worthy of the finest weapons, armor, and horses.
+; qstr_Wait_{playername}._Yo|Wait, {playername}. You have been an able commander in the war effort. I think it's time you had some better equipment.
+; qstr_Accept_this_{s22}_ma|Accept this {s22}, may it aid you and your companions.
 qstr_the_Dwarves_so_that_|ドワーフの間で使われている通貨だから、 もしエレボールかくろがね連山の近くを通ることがあるなら、 名高いドワーフの武器を手に入れるといい
 qstr_Gondor_so_that_if_yo|ゴンドールで使われている通貨だから、 もし領内を通ることがあるなら、 彼らの有名な防具を手に入れるといい
 qstr_Rohan_so_that_if_you|ローハンで使われている通貨だから、 もし領内を通ることがあるなら、 彼らの名高い馬を手に入れるといい
@@ -1615,7 +1682,7 @@ qstr_The_{s9}_of_{s3}_ask|{s3}の{s9}より、 {reg5}個の食料を、 {reg6}�
 qstr_The_{s9}_of_{s3}_aske|{s3}の{s9}より、 {reg5}個の{s6}を、 {reg0}日以内に調達してくるよう、 頼まれた。
 qstr_Escort_the_supply_tr|{s8}まで 補給隊を護衛せよ
 qstr_The_{s9}_of_{s4}_aske|{s4}の{s9}より、 集落の近辺をうろつく迷惑なゴブリンどもを退治するよう、 頼まれた。
-qstr_The_{s9}_of_{s14}_ha|{s14}の{s9}より、 {s14}で悪さを働くゴブリンの一団を退治するよう 頼まれた。 ゴブリンどもは夜のあいだだけ出没し、 単独で通りを歩く者だけを狙うという。
+; qstr_The_{s9}_of_{s14}_ha|The {s9} of {s14} has asked you to deal with a group of bandits making trouble in {s14}. They only come out at night, and only attack lone people on the streets.
 qstr_refugees|難民
 qstr_slaves|奴隷
 qstr_{s1}_Refugees|{s1}の難民
@@ -1654,6 +1721,10 @@ qstr_Then_let_us_go._Stay|では出発しよう。離されないようにして
 qstr_There_will_be_blood_|間違いなく血しぶきはあがるだろう。楽しみたいのなら、 離されないようにしてほしい。
 qstr_Goodbye_friends.|では、 ごきげんよう、 わが友よ。
 qstr_See_you_later_if_you|生きていれば、また会おう。
+; qstr_I_don_t_need_your_he|I don't need your help any longer. Go home.
+; qstr_I_don_t_have_any_nee|I don't have any need for you. Get lost.
+; qstr_We_will_return_to_ou|We will return to our previous task. Goodbye.
+; qstr_Lads_we_re_going_hom|Lads, we're going home!
 qstr__^Oh_and_take_back_t|^おっと、 よそ者は引き取ってくれ。
 qstr_{s31}{reg28?Those:That}_|{s31}{reg28?彼ら:あの}勇敢な{reg28?兵士たち:兵}は、 我らが領土を守る 大きな戦力になってくれるだろう。{s32} {s23}^^[{s14}のリソースポイントを{reg14}獲得しました]
 qstr_{s31}{reg28?Those:That}_u|{s31}{reg28?彼ら:あの}活きのいい{reg28?兵士たち:兵}は、 大きな戦力になってくれるだろう。{s32} {s23}^^[{s14}のリソースポイントを{reg14}獲得しました]

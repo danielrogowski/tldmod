@@ -23,7 +23,7 @@ pt_spy_partners_evil|Sumnjivi Putnici
 pt_runaway_serfs|Izbegli Robovi
 pt_spy|Usamljeni Jahac
 pt_spy_evil|Usamljeni Jahac
-pt_sacrificed_messenger|Ztrveni Glasnik
+; pt_ents|Ents
 pt_gandalf|Usamljeni Jahac
 pt_nazgul|Usamljeni Jahac
 pt_gondor_scouts|Gondorski Skauti
@@ -146,3 +146,4 @@ pt_ring_hunters|Lovći prstena
 ; pt_volunteers|Reserves
 ; pt_refugees|Refugees
 ; pt_retreat_troops|Cover Troops
+pt_radagast|Usamljeni Jahac

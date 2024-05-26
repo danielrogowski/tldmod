@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|Rohani Eorl őre
 trp_c6_rider_guard_of_rohan_pl|Rohani Eorl őrsége
 trp_i6_2h_guard_of_rohan|Rohani Helm őre
 trp_i6_2h_guard_of_rohan_pl|Rohani Helm őrsége
-trp_dismounted_veteran_skirmisher_of_rohan|Rohani talpas veterán csatározó
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Rohani talpas veterán csatározók
-trp_dismounted_elite_skirmisher_of_rohan|Rohani talpas elit csatározó
-trp_dismounted_elite_skirmisher_of_rohan_pl|Rohani talpas elit csatározók
-trp_dismounted_thengel_guard_of_rohan|Rohani Thengel talpas őre
-trp_dismounted_thengel_guard_of_rohan_pl|Rohani Thengel talpas őrsége
+trp_ac3_dism_skirmisher_of_rohan2|Rohani csatározó
+trp_ac3_dism_skirmisher_of_rohan2_pl|Rohani csatározók
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Rohani talpas veterán csatározó
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Rohani talpas veterán csatározók
+trp_ac5_dism_elite_skirmisher_of_rohan2|Rohani talpas elit csatározó
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Rohani talpas elit csatározók
 trp_i1_harad_levy|Haradi sorkatona
 trp_i1_harad_levy_pl|Haradi sorkatonaság
 trp_i3_harad_infantry|Haradi Könnyű Gyalogos
@@ -887,14 +887,13 @@ trp_walker_woman_rohan_d|Rohani hajadon
 trp_walker_woman_gondor_b|Gondori asszony
 trp_walker_woman_gondor_bw|Gondori asszony
 trp_walker_woman_gondor_w|Gondori nemes
-trp_ramun_the_slave_trader|Ramun a rabszolgakereskedő
-trp_guide|Gyors Jimmy
-trp_galeas|Galeas
-trp_farmer_from_bandit_village|Paraszt
-trp_farmer_from_bandit_village_pl|Parasztok
-trp_trainer_1|Kiképző
-trp_trainer_2|Kiképző
-trp_trainer_3|Kiképző
+; trp_mirkwood_walker_1|Greenwood Elf
+; trp_mirkwood_walker_2|Greenwood Elf
+; trp_lorien_walker_1|Lothlorien Elf
+; trp_lorien_walker_2|Lothlorien Elf
+trp_dwarf_walker|Törp
+; trp_beorn_walker|Peasant Man
+trp_beorn_walker_fem|Zsellér nő
 trp_trainer_4|Kiképző
 trp_trainer_gondor|Kiképző
 trp_trainer_rohan|Kiképző
@@ -984,10 +983,6 @@ trp_dunland_lord_pl|törzsfő
 trp_beorn_lord|Vén Grimbeorn törzsfő
 trp_beorn_lord_pl|törzsfő
 trp_lorien_marshall|Celeborn
-trp_pippin_notmet|félszerzet
-trp_merry_notmet|félszerzet
-trp_pippin|Pippin
-trp_merry|Trufa
 trp_knight_1_1|Rettenthetetlen Angbor
 trp_knight_1_2|Húrin a Kulcsok Őrizője
 trp_knight_1_3|Imrahil herceg
@@ -1511,6 +1506,7 @@ trp_gandalf|Gandalf
 trp_gandalf_pl|Otthon-nevelt Gandalfok
 trp_nazgul|Nazgûl
 trp_nazgul_pl|Szelídített nazgûl
+; trp_radagast|Radagast
 trp_barman|Csapos
 trp_elder|Központi elöljáró
 trp_gear_merchant|Felszerelés kereskedő
@@ -1528,8 +1524,8 @@ trp_uruk_hai_sentry|Uruk-hai őrszem
 trp_uruk_hai_sentry_pl|uruk-hai őrszem
 trp_black_numenorean_sorcerer|Fekete númenori varázsló
 trp_black_numenorean_sorcerer_pl|fekete númenori varázsló
-trp_black_numenorean_acolyte|Fekete númenori oltárszolga
-trp_black_numenorean_acolyte_pl|Fekete númenori oltárszolgák
+; trp_evil_priest|Evil Priest
+; trp_evil_priest_pl|Evil Priests
 trp_wolf_rider_of_mirkwood|Bakacsinerdei farkaslovas
 trp_wolf_rider_of_mirkwood_pl|Bakacsinerdei farkaslovasok
 trp_warg_rider_of_mirkwood|Bakacsinerdei varglovas
@@ -1636,3 +1632,18 @@ trp_tribal_orc_warrior|Törzsi ork harcos
 trp_tribal_orc_warrior_pl|Törzsi ork harcosok
 trp_tribal_orc_chief|Törzsi ork főnök
 trp_tribal_orc_chief_pl|Törzsi ork főnök
+trp_a3_dism_skirmisher_of_rohan|Rohani csatározó
+trp_a3_dism_skirmisher_of_rohan_pl|Rohani csatározók
+trp_a4_dism_veteran_skirmisher_of_rohan|Rohani talpas veterán csatározó
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Rohani talpas veterán csatározók
+trp_a5_dism_elite_skirmisher_of_rohan|Rohani talpas elit csatározó
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Rohani talpas elit csatározók
+; trp_ac5_camel_rider|Harad Camel Rider
+; trp_ac5_camel_rider_pl|Harad Camel Riders
+; trp_aragorn|Aragorn
+; trp_legolas|Legolas
+; trp_gimli|Gimli
+trp_pippin_notmet|félszerzet
+trp_merry_notmet|félszerzet
+trp_pippin|Pippin
+trp_merry|Trufa

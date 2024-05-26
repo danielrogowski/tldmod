@@ -67,7 +67,7 @@ party_templates = [
 ("runaway_serfs","Runaway Slaves",icon_peasant|carries_goods(8)|pf_default_behavior|pf_quest_party,0,fac_neutral,merchant_personality,[(trp_farmer,6,7), (trp_peasant_woman,3,3)]),
 ("spy", "Lone Rider", icon_generic_knight|carries_goods(3)|pf_default_behavior|pf_quest_party,0,fac_neutral,merchant_personality,[(trp_spy,1,1)]),
 ("spy_evil", "Lone Rider", icon_generic_knight|carries_goods(3)|pf_default_behavior|pf_quest_party,0,fac_neutral,merchant_personality,[(trp_spy_evil,1,1)]),
-("sacrificed_messenger", "Sacrificed Messenger", icon_generic_knight|carries_goods(3)|pf_default_behavior|pf_quest_party,0,fac_neutral,merchant_personality,[]),
+("ents", "Ents",icon_ent|pf_default_behavior|pf_hide_defenders,0,fac_neutral,soldier_personality,[(trp_ent,5,8)]),
 ("gandalf", "Lone Rider",icon_gandalf|pf_default_behavior|pf_quest_party|pf_hide_defenders,0,fac_neutral,merchant_personality,[(trp_gandalf,1,1)]),
 ("nazgul" , "Lone Rider", icon_nazgul|pf_default_behavior|pf_quest_party|pf_hide_defenders,0,fac_neutral,merchant_personality,[(trp_nazgul,1,1)]),
 
@@ -264,11 +264,11 @@ party_templates = [
 ("blackroot_reinf_c" ,"_",0,0,fac_commoners,0,[(trp_a2_blackroot_bowman,2,4),(trp_i2_blackroot_footman,2,4),]),
 #rohan	
 ("rohan_reinf_a"   ,"_",0,0,fac_commoners,0,[(trp_c2_squire_of_rohan,2,4),(trp_i2_guardsman_of_rohan,1,2),(trp_i1_rohan_youth,3,6),]),
-("rohan_reinf_b"   ,"_",0,0,fac_commoners,0,[(trp_c3_rider_of_rohan,1,2),(trp_ac3_skirmisher_of_rohan,2,4),(trp_i3_footman_of_rohan,3,5),(trp_ac4_veteran_skirmisher_of_rohan,1,2),]),
+("rohan_reinf_b"   ,"_",0,0,fac_commoners,0,[(trp_c3_rider_of_rohan,2,4),(trp_ac3_skirmisher_of_rohan,1,2),(trp_i3_footman_of_rohan,3,5),(trp_ac4_veteran_skirmisher_of_rohan,1,2),]),
 ("rohan_reinf_c"   ,"_",0,0,fac_commoners,0,[(trp_c4_veteran_rider_of_rohan,2,3),(trp_c4_lancer_of_rohan,1,2),(trp_i4_veteran_footman_of_rohan,1,2),]),
 #Isengard - two short trees (up to T4/T5), easier to upgrade, so lower tier reinforcements; also extra orcs (8-16, 7-13, 5-10)
 ("isengard_reinf_a","_",0,0,fac_commoners,0,[(trp_i1_isen_uruk_snaga,1,2),(trp_i1_isen_orc_snaga,2,5),(trp_a2_isen_uruk_tracker,1,2),(trp_i2_isen_uruk,1,2),(trp_i2_isen_orc,2,4),]), #two T1 #InVain: mixed a bit, see Mordor
-("isengard_reinf_b","_",0,0,fac_commoners,0,[(trp_ac2_isen_wolf_rider,2,3),(trp_a2_isen_uruk_tracker,2,4),(trp_i2_isen_uruk,1,2),(trp_i2_isen_orc,2,4),(trp_a3_isen_large_uruk_tracker,1,3),(trp_i3_isen_large_orc,1,2),]), #more T2 troops #InVain: More archers, t3 archers+orcs
+("isengard_reinf_b","_",0,0,fac_commoners,0,[(trp_ac2_isen_wolf_rider,2,3),(trp_a2_isen_uruk_tracker,1,2),(trp_i2_isen_uruk,2,4),(trp_i2_isen_orc,2,4),(trp_a3_isen_large_uruk_tracker,1,3),(trp_i3_isen_large_orc,1,2),]), #more T2 troops #InVain: More archers, t3 archers+orcs
 ("isengard_reinf_c","_",0,0,fac_commoners,0,[(trp_ac3_isen_warg_rider,1,2),(trp_i3_isen_large_uruk,1,2),(trp_i3_isen_uruk_pikeman,1,2),(trp_i3_isen_large_orc,1,2),(trp_i3_isen_large_orc_despoiler,1,2),]), #more T3 troops
 #Mordor - same as Isengard + Numenorean cavalry (8-16, 7-13, 5-10)
 ("mordor_reinf_a"  ,"_",0,0,fac_commoners,0,[(trp_i1_mordor_uruk_snaga,1,3),(trp_i1_mordor_orc_snaga,2,5),(trp_i2_mordor_uruk,1,2),(trp_i2_mordor_orc,2,4),]), #InVain: less t1, a few t2 = less orc archers for field armies
@@ -277,7 +277,7 @@ party_templates = [
 #Harad (7-14, 5-10, 4-8)
 ("harad_reinf_a"   ,"_",0,0,fac_commoners,0,[(trp_c2_harondor_scout,1,2),(trp_i2_far_harad_tribesman,1,2),(trp_i1_harad_levy,5,10),]),
 ("harad_reinf_b"   ,"_",0,0,fac_commoners,0,[(trp_ac3_harondor_skirmisher,1,2),(trp_a3_harad_hunter,2,4),(trp_i3_harad_infantry,1,2),(trp_i2_far_harad_tribesman,1,2),]),
-("harad_reinf_c"   ,"_",0,0,fac_commoners,0,[(trp_ac4_harondor_horse_archer,1,2),(trp_c4_harondor_light_cavalry,1,2),(trp_i4_far_harad_champion,1,2),(trp_i4_harad_swordsman,1,1),(trp_i4_harad_spearman,0,1),]),
+("harad_reinf_c"   ,"_",0,0,fac_commoners,0,[(trp_ac4_harondor_horse_archer,1,2),(trp_c4_harondor_light_cavalry,1,2),(trp_i4_far_harad_champion,1,2),(trp_i4_harad_swordsman,1,1),(trp_i4_harad_spearman,0,2),(trp_ac5_camel_rider,1,2)]),
 #Rhun
 ("rhun_reinf_a"    ,"_",0,0,fac_commoners,0,[(trp_c2_rhun_horseman,1,2),(trp_ac2_rhun_horse_scout,2,3),(trp_i1_rhun_tribesman,5,10),]),
 ("rhun_reinf_b"    ,"_",0,0,fac_commoners,0,[(trp_ac3_rhun_horse_archer,2,4),(trp_c3_rhun_outrider,1,2),(trp_i3_rhun_tribal_infantry,3,5),]),
@@ -329,7 +329,7 @@ party_templates = [
 #Dunlenders (7-14, 5-10, 4-8)
 ("dunland_reinf_a" ,"_",0,0,fac_commoners,0,[(trp_i2_dun_warrior,3,6),(trp_i1_dun_wildman,4,8),]),
 ("dunland_reinf_b" ,"_",0,0,fac_commoners,0,[(trp_i3_dun_vet_warrior,3,6),(trp_i3_dun_pikeman,2,4),]),
-("dunland_reinf_c" ,"_",0,0,fac_commoners,0,[(trp_ac4_dun_crebain_rider,1,2),(trp_i4_dun_wolf_warrior,2,4),(trp_i4_dun_vet_pikeman,1,2),]),
+("dunland_reinf_c" ,"_",0,0,fac_commoners,0,[(trp_ac4_dun_crebain_rider,1,3),(trp_i4_dun_wolf_warrior,2,4),(trp_i4_dun_vet_pikeman,1,3),]),
 
 #Volunteer templates
 #MV guidelines:
@@ -357,7 +357,7 @@ party_templates = [
 ("khand_recruits"     ,"_",0,0,fac_commoners,0,[(trp_i1_khand_bondsman,2,5)]),
 ("umbar_recruits"     ,"_",0,0,fac_commoners,0,[(trp_i1_corsair_youth,3,6)]),
 ("lorien_recruits"    ,"_",0,0,fac_commoners,0,[(trp_a1_lorien_scout,1,3),(trp_a2_lorien_archer,1,1)]), #two T1
-("imladris_recruits"  ,"_",0,0,fac_commoners,0,[(trp_a1_riv_scout,1,2),(trp_a1_arnor_scout,1,2)]), #two T1
+("imladris_recruits"  ,"_",0,0,fac_commoners,0,[(trp_a1_riv_scout,0,2),(trp_a1_arnor_scout,2,3)]), #two T1
 ("woodelf_recruits"   ,"_",0,0,fac_commoners,0,[(trp_a1_greenwood_scout,1,4)]),
 ("moria_recruits"     ,"_",0,0,fac_commoners,0,[(trp_i1_moria_snaga,5,10)]),
 ("guldur_recruits"    ,"_",0,0,fac_commoners,0,[(trp_i1_guldur_orc_snaga,5,10)]),
@@ -366,8 +366,8 @@ party_templates = [
 ("gundabad_recruits"  ,"_",0,0,fac_commoners,0,[(trp_i1_gunda_goblin,3,6)]),
 ("gundabad_cap_recruits","_",0,0,fac_commoners,0,[(trp_i1_gunda_goblin,3,7)]),
 ("dale_recruits"      ,"_",0,0,fac_commoners,0,[(trp_i1_dale_militia,1,4),(trp_c2_rhovanion_retainer,1,2)]), #T1 and T2
-("dwarf_recruits"     ,"_",0,0,fac_commoners,0,[(trp_i1_dwarf_apprentice,2,4)]), #T1 and T2
-("dwarf_iron_recruits","_",0,0,fac_commoners,0,[(trp_i2_iron_hills_miner,1,3)]), #T1 and T2
+("dwarf_recruits"     ,"_",0,0,fac_commoners,0,[(trp_i1_dwarf_apprentice,2,3),(trp_i2_iron_hills_miner,0,2)]), #T1 and T2
+("dwarf_iron_recruits","_",0,0,fac_commoners,0,[(trp_i2_iron_hills_miner,1,2),(trp_i1_dwarf_apprentice,1,2)]), #T1 and T2
 ("dunland_recruits"   ,"_",0,0,fac_commoners,0,[(trp_i1_dun_wildman,3,7)]),
 
 ("caravan_survivors","Caravan Survivors",icon_generic_knight|carries_goods(2),0,fac_neutral,merchant_personality,[(trp_sea_raider,5,5)]),
@@ -412,4 +412,6 @@ party_templates = [
 
 ## Kham - Retreat Troops
 ("retreat_troops","Cover Troops",icon_axeman|carries_goods(3),0,fac_outlaws,merchant_personality,[(trp_farmer,1,1)]),
+
+("radagast", "Lone Rider",icon_generic_knight|pf_default_behavior|pf_quest_party|pf_hide_defenders,0,fac_neutral,merchant_personality,[(trp_radagast,1,1)]),
 ] + common_warp_templates

@@ -26,8 +26,7 @@ itm_steppe_horse|Степовий кінь
 itm_courser|Жеребець
 itm_hunter|Гунтер
 itm_pony|Поні
-itm_arnor_warhorse|Арноріанський бойовий кінь
-itm_dunedain_warhorse|Денендайский бойовий кінь
+itm_dunedain_warhorse|Дунедайнський бойовий кінь
 itm_rohirrim_courser|Роханський жеребець
 itm_rohirrim_hunter|Роханський гунтер
 itm_rohirrim_courser2|Роханський броньований Жеребець
@@ -93,6 +92,7 @@ itm_hood_black|Чорний капюшон
 itm_hood_green|Зелений капюшон
 itm_hood_grey|Сірий капюшон
 itm_hood_leather|Шкірний капюшон
+itm_mail_coif|Кольчужний Капюшон
 itm_axe_a|Північна сокира
 itm_axe_b|Північна бородоподібна сокира
 itm_axe_c|Північна сокира
@@ -130,21 +130,19 @@ itm_harad_javelin|Харадські сулиці
 itm_gondor_javelin|Ґондорська сулиця
 itm_rohirrim_throwing_axe|Північні метальні сокири
 itm_loss_throwing_axes|Лоссарнахські метальні сокири
-itm_arnor_helm_a|Арнорський шолом
+itm_arnor_helm_c|Арнорський прикрашений шолом
 itm_arnor_helm_b|Арнорський шолом
-itm_arnor_helm_c|Арнорський шолом
-itm_dunedain_helm_b|Арнорський прикрашений шолом
-itm_arnor_armor_a|Арнорська броня
-itm_arnor_armor_b|Арнорська броня
-itm_arnor_armor_c|Броня рейнджера дунедайн
-itm_arnor_armor_d|Броня рейнджера дунедайн
-itm_arnor_armor_e|Арнорська товста куртка
-itm_arnor_armor_f|Арнорська чудова броня
+itm_arnor_helm_a|Арнорський легкий шолом
+itm_arnor_light_a|Шкіряна куртка рейнджера дунедайна
+itm_arnor_light_b|Дунедайнський гонець рейнджерів
+itm_arnor_med_a|Плащ рейнджера дунедайна
+itm_arnor_med_b|Кольчуга Дунедайн
+itm_arnor_heavy|Арнорська чудова броня
 itm_arnor_greaves|Арнорські наголінники
-itm_arnor_shield_a|Арнорський щит
 itm_arnor_shield_c|Арнорський кавалерійський щит
-itm_arnor_sword_a|Арнорський меч-бастард
+itm_arnor_shield_a|Арнорський круглий щит
 itm_arnor_sword_c|Військовий меч Арнора
+itm_arnor_sword_a|Арнорський меч-бастард
 itm_arnor_sword_f|Арнорський короткий меч
 itm_riv_helm_a|Рівенділський коїф
 itm_riv_helm_b|Рівенділський шолом лучника
@@ -164,7 +162,6 @@ itm_riv_foot_scale|Рівендельска луската броня
 itm_riv_surcoat|Рівендельська сюрка
 itm_riv_knight|Рівендельска лицарська броня
 itm_riv_armor_h_archer|Рівенділська броня
-itm_riv_armor_leader|Рівенділська броня воєначальника
 itm_riv_boots|Рівенділські чоботи
 itm_gon_footman|Ґондорська кольчуга
 itm_gon_jerkin|Ґондорська куртка
@@ -291,7 +288,6 @@ itm_orc_tribal_b|Необроблена шкіра
 itm_orc_tribal_c|Необроблена шкіра
 itm_evil_gauntlets_a|Чорні рукавички
 itm_evil_gauntlets_b|Чорні панцерні рукавички
-itm_free_isen_orc_armor_a|Ізенґардська орча броня
 itm_isen_orc_light_a|Світловий джгут орків Ізенгарда
 itm_isen_orc_light_b|Світловий джгут орків Ізенгарда
 itm_isen_orc_pad_a|Легка сегментована броня орка Ізенгарда
@@ -352,9 +348,9 @@ itm_orc_axe|Оркська сокира
 itm_orc_two_handed_axe|Велика Оркська сокира
 itm_orc_throwing_axes|Оркські метальні сокири
 itm_orc_bow|Оркський лук
-itm_orc_shield_a|Оркський щит
-itm_orc_shield_b|Оркський щит
-itm_orc_shield_c|Оркський баштовий щит
+; itm_orc_shield_a|Simple Shield
+; itm_orc_shield_b|Fur Shield
+; itm_orc_shield_c|Fur Tower Shield
 itm_mordor_orc_shield_a|Мордорський орочий щит
 itm_mordor_orc_shield_b|Мордорський орочий щит
 itm_mordor_orc_shield_c|Мордорський орочий щит
@@ -427,23 +423,20 @@ itm_gundabad_helm_c|Гундабадський шолом
 itm_gundabad_helm_d|Гундабадський шолом
 itm_gundabad_helm_e|Шолом вовчого наїзника
 itm_dunland_wolfboots|Дунландські вовчі черевики
-itm_dunland_armor_a|Дунландська хутряна броня
-itm_dunland_armor_b|Дунландська хутряна броня
-itm_dunland_armor_c|Дунландська хутряна броня
-itm_dunland_armor_d|Дунландська хутряна броня
-itm_dunland_armor_e|Дунландська хутряна броня
-itm_dunland_armor_g|Дунландська хутряна броня
-itm_dunland_armor_h|Дунландська довга хутряна броня
-itm_dunland_armor_i|Дунландський гауберк
-itm_dunland_armor_j|Дунландський гауберк
-itm_dunland_armor_k|Броня дунландського вождя
+itm_dunland_tunic_1|Дунландська шкіряна туніка
+itm_dunland_tunic_2|Дунландська шкіряна туніка
+itm_dunland_fur_1|Дунланьдське хутро
+itm_dunland_fur_2|Дунланьдське хутро
+itm_dunland_mail_1|Дунландський гауберк
+itm_dunland_mail_2|Дунландський гауберк
+itm_dunland_chieftain|Дунландська броня гетьмана
 itm_dun_helm_a|Дунландський вовчий шолом
-itm_dun_helm_b|Дунландський рогатий шолом
+itm_dun_helm_b|Дунландська хутряна шапка
 itm_dun_helm_c|Дунландський високий шолом
 itm_dun_helm_d|Дунландський високий шолом
 itm_dun_helm_e|Дунландський Оленячий Шолом
-itm_dun_shield_a|Дунландський щит
-itm_dun_shield_b|Дунландський щит
+; itm_dun_shield_a|Dunnish Roundshield
+; itm_dun_shield_b|Dunnish Oval Shield
 itm_dun_berserker|Меч дунландського вождя
 itm_dunnish_antler_axe|Дунландська сокира з оленячого рогу
 itm_dunnish_war_axe|Дунландська бойова сокира
@@ -499,19 +492,17 @@ itm_mirkwood_helm_a|Шолом лучника лісових Ельфів
 itm_mirkwood_helm_b|Шолом Темнолісся
 itm_mirkwood_helm_c|Важкий шолом Темнолісся
 itm_mirkwood_helm_d|Королівський шолом темнолісся
-itm_mirkwood_boots|Чоботи лісових Ельфів
+itm_woodelf_leather_boots|Шкіряні черевики лісових ельфів
+itm_mirkwood_boots|Черевики темнолісся
 itm_harad_tunic|Харадськия одяг
-itm_harad_padded|Харондорська підбита броня
-itm_harad_hauberk|Харондорський гауберк
-itm_harad_lamellar|Броня-Харасьяла
-itm_harad_heavy|Харадська благородна броня
-itm_harad_skirmisher|Легке харадське вбрання
-itm_harad_archer|Харадська броня лучника
+; itm_harad_padded|Harad Padded Jerkin
+; itm_harad_lamellar|Harad Scale Vest
+; itm_harad_heavy_lamellar|Harad Heavy Scale Vest
+itm_harad_heavy|Броня-Харасьяла
+; itm_harad_pectoral|Harad Breastplate
 itm_black_snake_armor|Броня-Маранка
 itm_harad_champion|Далекохарадський одяг
-itm_panther_guard|Шкура пантери
 itm_harad_scale|Харадська луската броня
-itm_harad_tiger_scale|Тигряча броня варти
 itm_harad_lion_scale|Левова броня варти 
 itm_harad_dragon_helm|Шолом Кілока
 itm_harad_cav_helm_a|Легкий шлем Харондора
@@ -524,11 +515,11 @@ itm_harad_eaglehelm|Шолом Орлиної гвардії
 itm_lion_helm|Шолом Левиної гвардії
 itm_harad_pantherhelm|Шолом Гвардії пантери
 itm_harad_khopesh|Харадський хопеш
-itm_black_snake_sword|Харадський важкий фальшіон
-itm_harad_heavy_sword|Харадський важкий меч
+; itm_black_snake_sword|Harad Cobra Sword
+; itm_harad_heavy_sword|Harad Dragon Sword
 itm_horandor_a|Харадський ятаган
 itm_skirmisher_sword|Харадський меч застрільника
-itm_harad_sabre|Харадська шабля
+; itm_harad_sabre|Harad Salamander Sword
 itm_harad_mace|Далекохарадськая булава
 itm_far_harad_2h_mace|Далекохарадська дворучна булава
 itm_harad_dagger|Харадський кинджал
@@ -546,7 +537,7 @@ itm_harad_shield_c|Харондорський баклер
 itm_harad_yellow_shield|Харадський щит
 itm_desert_boots|Пустельні чоботи
 itm_harad_leather_greaves|Гарадські Шкіряні Поножі
-itm_harad_scale_greaves|Гарадські Лускаті Поножі
+itm_harad_scale_greaves|Харадські поножі
 itm_harad_lamellar_greaves|Гарадські Пластинчаті Поножі
 itm_khand_inf_helm_a|Кхандський шолом
 itm_khand_inf_helm_b|Кхандський шолом
@@ -558,10 +549,12 @@ itm_khand_cav_helm_b|Кхандський шолом всадника
 itm_khand_cav_helm_c|Кхандський прикрашений шолом
 itm_khand_helm_mask|Кхандськая маска
 itm_khand_light|Кхандськая спідниця
-itm_khand_light_lam|Кхандський легкий пластинчастий обладунок
-itm_khand_foot_lam|Кхандська броня пехотинця
+itm_khand_light_lam|Кхандський легкий обладунок лакеїв
+itm_khand_foot_lam|Кхандський важкий лакейський обладунок
 itm_khand_med_lam|Кхандський середній пластинчастий обладунок
 itm_khand_heavy_lam|Кхандський важкий пластинчастий обладунок
+; itm_khand_mail|Khand Mail
+itm_khand_noble_lam|Кхандська броня знатного воїна
 itm_khand_axe_great|Кхандська велика сокира
 itm_khand_axe_winged|Кхандська крилата сокира
 itm_khand_halberd|Кхандська алебарда
@@ -642,6 +635,7 @@ itm_umb_helm_a|Корсарський шолом-раковина
 itm_umb_helm_b|Високий шолом Корсара
 itm_umb_helm_c|Корсарський шолом ополченця
 itm_umb_helm_d|Корсарський шолом нальотчика
+itm_umb_helm_reward|Стародавня нумінорська карма
 itm_corsair_trident|Тризуб гнів моря
 itm_corsair_boots|Корсарські чоботи
 itm_umb_shield_a|Корсарський щит
@@ -725,6 +719,7 @@ itm_gondor_lance_banner|Ґондорський спис з прапорцем
 itm_amroth_lance_banner|Дол-Амротський спис з прапорцем
 itm_rohan_lance_banner_sun|Роганський спис з прапором сонця
 itm_rohan_lance_banner_horse|Роганський спис з прапором коня
+itm_fur_gloves_reward|Мисливські рукавички
 itm_ent_water|Дивна чаша води
 itm_map|Карти Середзем'я
 itm_athelas_reward|Сушене листя Ателаса
@@ -780,7 +775,6 @@ itm_rohan_armor_th|Роганська королівська броня
 itm_wilderness_cowl|Капюшон мисливця
 itm_prisoner_coll_chain|Кайдани
 itm_witchking_helmet|Маска Чародія
-itm_lorien_royal_armor|Лоріенська королівська броня
 itm_feet_chains|Кайдани на ноги
 itm_feet_chains_dwarf|Кайдани на ноги
 itm_spider|Павук

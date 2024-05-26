@@ -68,7 +68,7 @@ mno_start_go|Gondor, il Regno della Torre Bianca
 mno_start_ro|Rohan, i Signori dei Cavalli
 mno_start_du|Dúnedain, l'antica dinastia degli Uomini
 mno_start_be|Beorniani, gli Uomini-Orso
-mno_start_wo|BOSCAIOLI, dai margini di Bosco Atro
+mno_start_wo|Boscaioli, dai margini di Bosco Atro
 mno_start_da|Il Regno di Dale
 menu_start_good_elf|^^^^^^^^^^In quale foresta vivi, Elfo ?
 mno_start_ri|Gran Burrone, di Lord Elrond
@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^Strano, senti rumori minacciosi intorno a te.^Sono gli
 mno_be_quiet_elf|Rispetta l'odio degli alberi. Allontanati silenziosamente.
 mno_be_quiet|Abbassa le armi e rimani calmo ! Ora via da qui !
 mno_be_bold|Continua ! Non ho paura delle piante e di vecchie leggende !
-mno_fight_back|Mettetevi a cercare ! Ispezionare l'area ! Abbattete e bruciate un albero o due !
+mno_fight_back|Scopriamolo ! Ispezionate la zona ! Abbattete uno o due alberi ! (Accampati)
 menu_fangorn_search_fails|^^^^^^Esplori l'oscura, fitta foresta ma non trovi niente.^Eppure, ti senti osservato e minacciato, sempre di più.
 menu_fangorn_killed_player_only|^^^^^^Osservi nella fitta, oscura foresta.^All'improvviso qualcosa ti colpisce ! Forse un pesante ramo è caduto sulla tua testa ?^Rimani incosciente per qualche minuto. Hai delle ferite serie ma puoi continuare.
 mno_ow_get_out|Ahi ! Andiamocene da questo posto maledetto !
@@ -200,7 +200,7 @@ mno_leave|Vattene.
 menu_simple_encounter|^^^^^{s2}^Hai {reg22} truppe pronte per la battaglia contro {reg11} delle loro.^^Luogo della battaglia: {s3}{s4}.^^I tuoi ordini ?
 mno_encounter_attack|{reg21?Carica !:Prepariamoci ad affrontarli}.
 mno_encounter_order_attack|Ordina alle tue truppe di {reg21?attaccare:affrontarli} senza di te.
-mno_control_allies_menu|Usa la tua Influenza per Comandare i Tuoi Alleati nel campo.
+mno_control_allies_menu|Usa la tua influenza per comandare i tuoi alleati sul campo.
 mno_encounter_hide|Nasconditi dal nemico...
 mno_special_whip|Corri in avanti verso di loro rompendo il {s4}.
 mno_encounter_attack_bearform|{reg21?Gettati nella battaglia in forma d'orso:Muta la tua forma e affrontali}.
@@ -222,7 +222,7 @@ mno_order_retreat|Fai ritirare i tuoi soldati.
 menu_kingdom_army_quest_report_to_army|{s8} manda a dire che vuole che tu ti unisca alla sua nuova campagna militare. È necessario portare almeno {reg13} truppe per l'esercito, e hai l'incarico di arruolare più guerrieri con la dovuta rapidità, se non ne hai abbastanza.
 mno_reject|Invia un messaggio in cui dichiari di essere troppo impegnato.
 mno_send_word|Fagli sapere che presto ti unirai a lui.
-menu_kingdom_army_quest_messenger|{s8} manda a dire che vuole parlare con te a proposito di un compito che di cui ha bisogno. Egli ti chiede di andare a consulto il più presto possibile..
+menu_kingdom_army_quest_messenger|{s8} manda a dire che desidera parlare con te a proposito di un compito che deve essere svolto. Egli ti chiede di andare da lui il più presto possibile.
 menu_kingdom_army_quest_join_siege_order|{s8} vuole che ti unisca all'assedio di {s9} in preparazione di un assalto. Le tue truppe devono prendere {s9} a tutti i costi.
 menu_kingdom_army_follow_failed|Hai disobbedito agli ordini e non sei riuscito a seguire {s8}.  Manda un messaggio che presuppone che tu hai questioni più urgenti, ma mettiti in guardia la sua pazienza non è illimitata.
 menu_battle_debrief|{s11}^Le tue perdite:{s8}{s10}^^Perdite nemiche:{s9}
@@ -235,7 +235,7 @@ mno_pre_join_leave|Non farti coinvolgere.
 menu_join_battle|^^^Assisti {s2} contro {s1}.^ Hai {reg22} truppe pronte per affrontare le {reg11} del nemico.^^Luogo dello scontro: {s3}{s4}.
 mno_join_attack|Carica il nemico.
 mno_join_order_attack|Ordina alle tue truppe di attaccare al fianco degli alleati mentre tu rimani nelle retrovie.
-mno_control_allies_join_menu|Usa i tuoi Punti Influenza per Comandare i Tuoi Alleati nel Campo.
+mno_control_allies_join_menu|Usa la tua influenza per comandare i tuoi alleati sul campo.
 mno_join_attack_bearform|Lanciati in battaglia in forma d'orso
 mno_join_leave|Ritirati.
 mno_player_control_allies_join_menu|Comandali e carica il nemico
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^Hai battuto tutti gli avversari e le guardie hanno ripo
 menu_close|Niente.
 menu_town|Sei arrivato a: {s60}.{s12}{s13}
 mno_town_menu_0|Vai da qualche parte.
-mno_town_menu_0_door|Porta che conduce verso un luogo.
+mno_town_menu_0_door|Ispeziona....
 mno_town_approach|Vai verso {s1}...
 mno_town_castle|Raggiungi {s1}.
 mno_town_castle_door|Portone del castello.
@@ -300,7 +300,7 @@ mno_town_center_door|Porta per il centro dell'insediamento.
 mno_aw_chamber_door|Apri la porta.
 mno_trade_with_arms_merchant|Visita {s40}.
 mno_trade_with_horse_merchant|Visita {s41}.
-mno_town_prison_door|Porta della prigione.
+mno_town_prison_door|Al campo d'addestramento
 mno_dungeon_enter|Cerca le lance perdute all'interno delle montagne.
 mno_dungeon_enter_door|Apri la porta.
 mno_dwarven_warehouse|Visita il Magazzino dei Nani
@@ -312,6 +312,7 @@ mno_isengard_underground_door|Dirigiti verso le caverne sotterranee
 mno_tirith_toplevel|Raggiungi il livello più alto
 mno_tirith_toplevel_door|Sali alla Cittadella
 mno_erebor_gates|Visita i Grandi Cancelli.
+mno_erebor_gates_door|Va verso i Grandi Cancelli
 mno_town_leave|Vattene...
 mno_town_leave_door|Abbandona l'area
 menu_player_initiated_siege_result|Hai attaccato questo centro sotto lo stendardo di {s2}.
@@ -350,7 +351,7 @@ menu_gondor_reinforcement_event|^^^^^ le Torri-Faro di Gondor sono accese, Minas
 mno_gondor_reinforcement_event_close|Chiudi
 menu_gondor_beacons|Alzi lo sguardo verso {s1}, uno dei fari di segnalazione di Gondor, usato per diffondere l'allarme nel nord e nel sud di Gondor stessa.
 mno_gondor_beacons_close|Vattene...
-menu_player_added_to_war_council|^^^^^È giunto un messaggero che ti ha riferito che adesso, poiché sei {s24}, {s2} ha richiesto che tu faccia parte del suo Concilio di Guerra. Da adesso puoi suggerire strategie che potranno influenzare il corso di questa guerra.
+menu_player_added_to_war_council|^^^^^È giunto un messaggero che ti ha riferito che adesso, poiché sei {s24}, {s2} ha richiesto che tu faccia parte del suo Consiglio di Guerra. Da adesso puoi suggerire strategie che potranno influenzare il corso di questa guerra.
 mno_player_added_to_war_council_close|Chiudi
 menu_player_added_to_siege_reports|^^^^^È giunto un messaggero e ti ha riferito che ora, in qualità di {s24}, riceverai un rapporto ogni volta che {s2} assedierà un centro o quando un centro appartenente a {s2} verrà assediato.
 mno_player_added_to_siege_reports_close|Chiudi
@@ -386,9 +387,6 @@ mno_defend_refugees|Tieni gli occhi aperti per i razziatori...
 mno_attack_refugees|Attacca la carovana di profughi...
 mno_leave_refugees|Lasciamoli, per il momento...
 mno_evil_war_tut_continue|Continua...
-menu_guardian_party_quest|{s8} riferisce che Isengard li sta mettendo alle strette e che stanno organizzando il loro estremo baluardo difensivo. Desidera che tu ti unisca a questa battaglia finale contro gli eserciti di Isengard. Dovrai portare con te almeno {reg13} soldati, hai ricevuto ordini per cui dovrai reclutare altri combattenti se non ne disponi a sufficienza.
-mno_guardian_party_reject|Invia un messaggio dicendo che non puoi raggiungerlo.
-mno_guardian_party_send_word|Fagli sapere che presto ti unirai a lui.
 menu_alternate_training_fight|Affronterai {reg5} avversari. Iniziamo?
 mno_training_continue|Inizio addestramento...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|Corsari
 mno_rescue_mission|Intrufolati nel covo dello stregone con il favore della notte.
 mno_next_rescue_scene_door|Prosegui !
 mno_pick_troops1|Scegli compagni per la missione, {reg0} selezionati
-menu_pick_troops|Chi sceglierai a venire insieme a te nella missione ? Fino ad ora hai scelto {reg0} compagni. Puoi scegliere fino a 10 truppe.
+menu_pick_troops|Chi vorresti portare con te, nella missione furtiva ?    ^Solo le tue truppe e i tuoi compagni più lesti saranno in grado di unirsi a te.    ^In qualità di membro con le più elevate competenze in mimetizzazione, {reg65?{s1} consiglia:stabilisci} di portare fino a {reg11} persone con te.    ^^Attualmente hai selezionato {reg0} compagni.
 mno_go_forward|Chiudi la selezione dei compagni e procedi.
 menu_burial_mound|Ti avvicini al tumulo di {s1} di {s2}. Sconfitto in battaglia dalle forze di {s28}. È ricoperto dalle armi dentellate dei suoi nemici caduti.
 mno_pay_respects|Inginocchiati e rendi omaggio.
@@ -438,10 +436,12 @@ menu_town_ruins|Quando ti avvicini, vedi che {s1} è {s2}
 mno_ruin_menu_0|Esplora il luogo.
 mno_ruin_leave|Vattene...
 menu_premutiny|niente
-menu_death|Sei stato ucciso. Anche se la guerra continua ad infuriare, tu non potrai più farne parte.
+menu_death|Hai subito un colpo mortale. Anche se la guerra continua ad infuriare, tu non potrai più farne parte.
 menu_animal_ambush|Tu e i tuoi compagni vi trovate separati dal resto della compagnia, quando improvvisamente...
 menu_animal_ambush_success|I {s2} {reg0?cadono:cadono} davanti a te come spighe di grano sotto la falce ! In poco tempo tutti i tuoi nemici giacciono sul terreno, morti o feriti. {s3}
-menu_animal_ambush_fail|Gli animali mordono e feriscono te {reg0?,: e i tuoi compagni{reg2?s,:,}} ma fortunatamente riuscite a respingerli. Forse non vi attaccheranno ancora.
+menu_animal_ambush_fail|Le bestie mordono e feriscono te {reg0?,: e i tuoi compagni{reg2?,:,}} ma fortunatamente riuscite a respingerli. Forse non vi attaccheranno ancora.
+menu_isengard_flooding|^^^^^@Ti trovi in mezzo ai cadaveri dei nemici e agli alleati trionfanti, inclusi gli Ent; essi ruggiscono, rimbombano facendo risuonare le loro voci, fin quando le pietre della torre di Orthanc non si frantumano cadendo. Risuonano come un'ululante tempesta che rompe pilastri, scaglia valanghe di massi lungo i pozzi, lancia enormi lastre di pietra in aria come fossero foglie... Non assomiglia a nulla che tu abbia visto prima.^^ Bregalad - o Sveltolampo come a te è noto - ti raggiunge a grandi passi e si ferma per avvertirti, '{playername} ! Fa attenzione ! Allontanati dalla Torre - ben presto diroccheremo la diga e faremo irrompere l'Isen in questa vallata, per un certo tempo. Troverai arduo rimanere qui, credo!' Segui rapidamente il suo consiglio e ti allontani da Orthanc.^^ Verso mezzanotte Isengard comincia ad essere invasa dalle acque formando inquietanti pozze nere. Non puoi fare a meno di rabbrividire alla vista dei fumi che formano altissime colonne, mentre una grande spirale di vapore si alza serpeggiando avvolgendo la Torre, fino a quando assume la somiglianza di un elevato strato di nubi, con la parte di sotto infuocata e quella superiore illuminata dalla luna. L'ira degli Ent è lenta, ma dotata di una potenza inesorabile.
+mno_isengard_continue|Continua
 menu_build_your_scene|Qui puoi costruire il tuo scenario di battaglia personalizzato, usando una delle slot qua sotto e l'Editor del gioco (Devi prima togliere il flag dal quadratino "Edit Mode" nelle opzioni del launcher di M&B).^Poi, puoi verificare gli scenari che hai costruito (con estensione .sco dalla cartella TLD/SceneObj) e inviarli al team di sviluppo di TLD e, se la tua scena risultasse valida, potrà essere inclusa nelle prossime versioni della mod come contesto di una battaglia !^^ Prova anche a specificare in quale regione della mappa vuoi che la tua scena appaia.^ Un paio di suggerimenti: Cerca di evitare di inserire acque troppo profonde, montagne troppo grandi o appuntite e altri sentieri in cui non si può passare, eccetto se sei uno sceneggiatore con molta esperienza e sai come cambiare l'AI delle truppe per non andare in un posto dove non vuoi che vadano, e quindi imporre alla IA di prendere altre direzioni.^ (Gruppi #0-1 sono per gli attaccanti, #4 per i difensori, non toccare #5-8).
 mno_scene1|Grande Pianura (file scn custom 1.sco)
 mno_scene2|Pianura Media (file scn custom 2.sco)

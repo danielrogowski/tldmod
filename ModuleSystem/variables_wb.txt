@@ -413,7 +413,7 @@ g_player_party_icon
 g_player_luck
 disable_npc_complaints
 prev_day
-gate_breached
+lore_mode
 g_tld_conversations_done
 g_tld_nazgul_state
 trait_captain_infantry_week
@@ -633,7 +633,7 @@ player_side_faction
 enemy_side_faction
 inital_player_xp
 g_fac_str_siegable
-battle_renown_total
+original_savegame_version
 tld_option_animal_ambushes
 g_defiled_armor_item
 g_defiled_armor_rotation
@@ -642,7 +642,7 @@ tld_option_siege_relax_rate
 tld_option_regen_rate
 tld_option_regen_limit
 tld_option_morale
-allies_coh_base
+allies_leadership
 allies_coh
 enemies_coh
 base_kills
@@ -688,7 +688,7 @@ qst_defend_village_party
 qst_raid_village_party
 cam_shoulder
 qst_destroy_scout_camp_party
-gondor_ai_testing
+play_ambient_sounds
 gondor_reinforcement_event
 first_time_town
 formations_tutorial
@@ -901,3 +901,6 @@ weapon_unequipped
 shield_unequipped
 tld_options_overlay_16
 tld_campaign_diffulty
+cheatmode_used
+allies_coh_modifier
+enemies_coh_modifier

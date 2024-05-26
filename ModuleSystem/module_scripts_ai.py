@@ -18,13 +18,20 @@ ai_scripts = [
 
 # script_recalculate_ais
 ("recalculate_ais",
-	[(try_begin),
+	[(store_script_param_1, ":theater"),
+    (try_begin),
 	  (ge,"$tld_war_began",1),  # faction AI can change only if War started, GA
 	  (call_script, "script_init_ai_calculation"),
+      (store_current_hours, ":cur_hours"),
 	  (try_for_range, ":faction_no", kingdoms_begin, kingdoms_end),   # recalculate AI for active non-player factions
 		(faction_slot_eq, ":faction_no", slot_faction_state, sfs_active),
+        (neg|faction_slot_ge, ":faction_no", slot_faction_scripted_until, ":cur_hours"),
+        (this_or_next|eq, ":theater", 2), #2= all theaters
+        (faction_slot_eq, ":faction_no", slot_faction_active_theater, ":theater"),
 		(neg|faction_slot_eq, ":faction_no",  slot_faction_marshall, "trp_player"),
 		(call_script, "script_decide_faction_ai", ":faction_no"),
+        # (str_store_faction_name, s15, ":faction_no"),
+        # (display_message, "@recalc {s15}"),
 	  (try_end),
 	  (call_script, "script_decide_kingdom_party_ais"),               # recalculate AI for hero-led parties
 	(try_end),
@@ -80,18 +87,8 @@ ai_scripts = [
        
 	   (store_script_param_1, ":faction_no"),
 
-    (assign, ":guardian_party_quest_active", 0),
-
-     (try_begin),
-      (check_quest_active, "qst_guardian_party_quest"),
-      (quest_get_slot, ":guardian_party_attacker", "qst_guardian_party_quest", slot_quest_object_center),
-      (eq, ":faction_no", ":guardian_party_attacker"),
-      (assign, ":guardian_party_quest_active", 1),
-     (try_end),
-
-     (this_or_next|faction_slot_eq, ":faction_no", slot_faction_last_stand, 0), #Kham - No Faction AI during last stand event
-     (neq, ":guardian_party_quest_active", 1), #No Faction AI for guardian party attacker faction
-
+       (faction_slot_eq, ":faction_no", slot_faction_last_stand, 0), #Kham - No Faction AI during last stand event
+       
 	   (faction_get_slot, ":old_faction_ai_state", ":faction_no", slot_faction_ai_state),
        (faction_get_slot, ":old_faction_ai_object", ":faction_no", slot_faction_ai_object),
        (faction_get_slot, ":old_faction_ai_last_offensive_time", ":faction_no", slot_faction_ai_last_offensive_time),
@@ -256,6 +253,9 @@ ai_scripts = [
        (try_begin),
          (this_or_next|neq, "$tld_option_siege_reqs", 0), # Disabled normal attacking siege reqs
          (ge, ":faction_strength", fac_str_ok), #TLD
+         (store_character_level, ":player_level", "trp_player"), #InVain: Delay sieges by two levels
+         (val_sub, ":player_level", "$tld_player_level_to_begin_war"),
+         (ge, ":player_level", 2),
          (neq, ":old_faction_ai_state", sfai_default),
          (gt, ":faction_marshall_party", 0),
          (assign, ":old_target_attacking_center", -1),
@@ -269,7 +269,7 @@ ai_scripts = [
            (party_is_active, ":enemy_walled_center"), #don't attack disabled centers
            (party_slot_eq, ":enemy_walled_center", slot_center_destroyed, 0), #TLD
            #MV: make sure the center is in the active theater
-           (party_slot_eq, ":enemy_walled_center", slot_center_theater, ":faction_theater"),
+           #(party_slot_eq, ":enemy_walled_center", slot_center_theater, ":faction_theater"),
            
            (store_faction_of_party, ":center_faction", ":enemy_walled_center"),
            (party_get_slot, ":siegable", ":enemy_walled_center", slot_center_siegability),
@@ -339,6 +339,8 @@ ai_scripts = [
            #(store_distance_to_party_from_party, ":dist", ":enemy_walled_center", ":faction_marshall_party"),
            (call_script, "script_get_tld_distance", ":enemy_walled_center", ":faction_marshall_party"),
            (assign, ":dist", reg0),
+           (this_or_next|party_slot_eq, ":enemy_walled_center", slot_center_theater, ":faction_theater"),
+           (le, ":dist", 50),
            (val_add, ":dist", 20),
            (try_begin),
             (this_or_next|eq, ":center_faction", "fac_gondor"),
@@ -920,6 +922,9 @@ ai_scripts = [
     [ (store_script_param, ":party_no", 1),
       (store_script_param, ":new_ai_state", 2),
       (store_script_param, ":new_ai_object", 3),
+      (store_current_hours, ":cur_hours"),
+      (val_max, ":cur_hours", 2), #make sure the condition doesn't block the script at game start (hour zero)
+      (neg|party_slot_ge, ":party_no", slot_party_scripted_ai, ":cur_hours"),
 
       ##Kham fix for invalid parties
        (try_begin),
@@ -1910,7 +1915,8 @@ ai_scripts = [
          (troop_get_slot, ":party_no", ":troop_no", slot_troop_leaded_party),
          (party_is_active, ":party_no"),
          (gt, ":party_no", 0),
-         (neg|party_slot_eq, ":party_no", slot_party_scripted_ai, 1), #Kham - override AI when scripted.
+         (store_current_hours, ":cur_hours"),
+         (neg|party_slot_ge, ":party_no", slot_party_scripted_ai, ":cur_hours"), #Kham - override AI when scripted.
          (call_script, "script_process_hero_ai", ":troop_no"),
        (try_end),
 ]),
@@ -1921,7 +1927,7 @@ ai_scripts = [
 ("process_hero_ai",
     [ (store_script_param_1, ":troop_no"),
       (troop_get_slot, ":party_no", ":troop_no", slot_troop_leaded_party),
-
+      
       (try_begin),
         (party_is_active, ":party_no"),
         (store_faction_of_party, ":faction_no", ":party_no"),
@@ -1978,7 +1984,8 @@ ai_scripts = [
               (call_script, "script_add_notification_menu", "mnu_notification_center_under_siege", ":ai_object", ":troop_no"),
             (try_end),
             (call_script, "script_village_set_state", ":ai_object", svs_under_siege),
-            (assign, "$g_recalculate_ais", 1),
+            (call_script, "script_find_theater", ":party_no"),
+            (assign, "$g_recalculate_ais", reg0),
           (try_end),
         (else_try),
           (eq, ":ai_state", spai_recruiting_troops),
@@ -2152,6 +2159,7 @@ ai_scripts = [
         (gt, ":party_no", 0),
         (party_is_active, ":party_no"),
         (party_slot_eq, ":party_no", slot_party_following_player, 0),
+        (neg|party_slot_eq, ":party_no", slot_party_scripted_ai, 1),        
         (store_faction_of_party, ":faction_no", ":party_no"),
         (assign, ":continue", 1),
 
@@ -2215,11 +2223,11 @@ ai_scripts = [
       (try_begin),
         (troop_slot_eq, ":troop_no", slot_troop_occupation, slto_kingdom_hero),
         (neg|troop_slot_ge, ":troop_no", slot_troop_prisoner_of_party, 0),
-        (neg|troop_slot_eq, ":troop_no", slot_troop_wound_mask, wound_death), #Not dead - Kham
+        (neg|troop_slot_eq, ":troop_no", slot_troop_wound_mask, wound_death), #Not dead - Kham  
 		
 		(call_script, "script_cf_fails_if_sitting_king", ":troop_no"),
 		
-        (troop_get_slot, ":party_no", ":troop_no", slot_troop_leaded_party),
+        (troop_get_slot, ":party_no", ":troop_no", slot_troop_leaded_party),         
         (gt, ":party_no", 0),
           (party_slot_ge, ":party_no", slot_party_commander_party, 0),
           (party_set_ai_initiative, ":party_no", 30), #MV: review this number, was 50
@@ -2316,7 +2324,7 @@ ai_scripts = [
       (str_store_troop_name, s5, ":troop_no"),
       (party_set_name, "$pout_party", "str_s5_s_party"),
   # add bodyguards. Transformation of lord+guards to a host moved to simple triggers
-	  (faction_get_slot,":guard",":troop_faction_no",slot_faction_prison_guard_troop),
+	  (faction_get_slot,":guard",":troop_faction_no",slot_faction_castle_guard_troop),
       (try_begin),
         (faction_slot_eq, ":troop_faction_no", slot_faction_marshall, ":troop_no"),
         (faction_get_slot,":guard",":troop_faction_no",slot_faction_castle_guard_troop), # marshalls get elite guards
@@ -2446,7 +2454,7 @@ ai_scripts = [
 
          (faction_get_slot, ":hosts", ":troop_faction_no", slot_faction_hosts),
          (faction_get_slot, ":strength", ":troop_faction_no", slot_faction_strength),
-         (try_begin), ## Kham - Lets give Gondor more Hosts - Let's hide it in a menu for testing
+         (try_begin), ## Kham - Lets give Gondor and Rohan more Hosts
             #(eq, "$gondor_ai_testing", 1),
             (this_or_next|eq, ":faction_no", "fac_gondor"),
 			(eq, ":faction_no", "fac_rohan"),
@@ -2491,43 +2499,20 @@ ai_scripts = [
          (eq,":check_pass",1),
 
          (store_random_in_range,":rnd",0,100),
-         (try_begin),
-            (eq, "$gondor_ai_testing", 1),
-            (eq, ":faction_no", "fac_gondor"),
-            (assign,":chance",20),              # Kham - lets give Gondor more hosts frequently
-            (display_message, "@Gondor AI Tweaks - More frequent hosts"),
-         (else_try),
-            (assign,":chance",10),              # faction passes random check 
-         (try_end),
          (this_or_next|faction_slot_eq, ":troop_faction_no", slot_faction_marshall, ":hero"), # marshall/king bypasses random check
-         (lt, ":rnd", ":chance"),  # faction passes random check 
+         (lt, ":rnd", 10),  # faction passes random check 
 
          (val_add, ":hosts",1),
          (faction_set_slot, ":troop_faction_no", slot_faction_hosts,":hosts"), # host is spawned
          
          (party_set_slot, ":party", slot_party_type, spt_kingdom_hero_party), # TLD party type changed to host
-         
-         #Kham - Change Host VP for Gondor (Sept 2018)
+         (party_set_slot, ":party", slot_party_victory_value, ws_host_vp), # TLD victory points for party kill
 
-         (try_begin),
-            (eq, ":troop_faction_no", "fac_gondor"),
-            (faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good), #only if player is Good
-            (party_set_slot, ":party", slot_party_victory_value, ws_host_vp/2), # TLD victory points/2 for Gondor
-         (else_try),
-            (party_set_slot, ":party", slot_party_victory_value, ws_host_vp), # TLD victory points for party kill
-         (try_end),
 
          (try_begin), #MV: double that for kings
             (faction_slot_eq, ":troop_faction_no", slot_faction_marshall, ":hero"),
-            (eq, ":troop_faction_no", "fac_gondor"),
-            (faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good), #only if player is Good
-            (party_set_slot, ":party", slot_party_victory_value, ws_host_vp),
-         (else_try),
-            (faction_slot_eq, ":troop_faction_no", slot_faction_marshall, ":hero"),
             (party_set_slot, ":party", slot_party_victory_value, ws_host_vp*2),
          (try_end),
-
-         #Kham - Change Host VP for Gondor END (Sept 2018)
 
          (str_store_faction_name, s6, ":troop_faction_no"), # TLD host naming after faction
          (str_store_troop_name, s5, ":hero"),
@@ -3026,8 +3011,8 @@ ai_scripts = [
 ("destroy_center",[
 	(store_script_param, ":center", 1),
 	(store_faction_of_party, ":center_faction", ":center"),
-
     (party_set_slot, ":center", slot_center_is_besieged_by, -1),
+    (call_script,"script_cancel_all_related_center_quest",":center"),
     
     # first remove any volunteers
     (call_script,"script_delete_volunteers_party",":center"),
@@ -3048,46 +3033,85 @@ ai_scripts = [
       (party_detach, ":reserve_party"),
       (call_script, "script_safe_remove_party", ":reserve_party"),
       (troop_set_slot, "trp_player", slot_troop_player_reserve_party,  0),
-	  (try_end),
+	(try_end),
 
-  # If this is Edoras and Hornburg is still Rohan's, move capital - Add more secondary capitals
-  (try_begin),
-    (eq, ":center", "p_town_edoras"),
-    (eq, ":center_faction", "fac_rohan"),
-    (party_slot_eq, "p_town_hornburg", slot_center_destroyed, 0), 
-    (faction_slot_eq, "fac_rohan", slot_faction_capital, "p_town_edoras"),
-    (store_faction_of_party, ":hornburg_faction", "p_town_hornburg"),
-    (eq, ":hornburg_faction", "fac_rohan"),
-    (faction_set_slot, "fac_rohan", slot_faction_capital, "p_town_hornburg"),
-    (display_message, "@Rohan capital moved from Edoras to Hornburg!"),
-  #(else_try),
-  #  (eq, ":center", "p_town_minas_tirith"),
-  #  (eq, ":center_faction", "fac_gondor"),
-  #  (party_slot_eq, "p_town_dol_amroth", slot_center_destroyed, 0), 
-  #  (faction_slot_eq, "fac_gondor", slot_faction_capital, "p_town_minas_tirith"),
-  #  (store_faction_of_party, ":dol_amroth_faction", "p_town_dol_amroth"),
-  #  (eq, ":dol_amroth_faction", "fac_gondor"),
-  #  (faction_set_slot, "fac_gondor", slot_faction_capital, "p_town_dol_amroth"),
-  #  (display_message, "@Gondor capital moved from Minas Tirith to Dol Amroth!"),
-  (else_try),
-    (eq, ":center", "p_town_dale"),
-    (eq, ":center_faction", "fac_dale"),
-    (party_slot_eq, "p_town_esgaroth", slot_center_destroyed, 0), 
-    (faction_slot_eq, "fac_dale", slot_faction_capital, "p_town_dale"),
-    (store_faction_of_party, ":esgaroth_faction", "p_town_esgaroth"),
-    (eq, ":esgaroth_faction", "fac_dale"),
-    (faction_set_slot, "fac_dale", slot_faction_capital, "p_town_esgaroth"),
-    (display_message, "@Dale capital moved from Dale to Esgaroth!"),
-  (else_try),
-    (eq, ":center", "p_town_gundabad"),
-    (eq, ":center_faction", "fac_gundabad"),
-    (party_slot_eq, "p_town_goblin_north_outpost", slot_center_destroyed, 0),
-    (faction_slot_eq, "fac_gundabad", slot_faction_capital, "p_town_gundabad"),
-    (store_faction_of_party, ":goblin_town_faction", "p_town_goblin_north_outpost"),
-    (eq, ":goblin_town_faction", "fac_gundabad"),
-    (faction_set_slot, "fac_gundabad", slot_faction_capital, "p_town_goblin_north_outpost"),
-    (display_message, "@Gundabad capital moved from Gundabad to Goblin Town!"),
-  (try_end),
+    # If this is Edoras and Hornburg is still Rohan's, move capital - Add more secondary capitals
+    (try_begin),
+        (eq, ":center", "p_town_edoras"),
+        (eq, ":center_faction", "fac_rohan"),
+        (party_slot_eq, "p_town_hornburg", slot_center_destroyed, 0), 
+        (faction_slot_eq, "fac_rohan", slot_faction_capital, "p_town_edoras"),
+        (store_faction_of_party, ":hornburg_faction", "p_town_hornburg"),
+        (eq, ":hornburg_faction", "fac_rohan"),
+        (faction_set_slot, "fac_rohan", slot_faction_capital, "p_town_hornburg"),
+        (display_message, "@Rohan capital moved from Edoras to Hornburg!"),
+        #(else_try),
+        #  (eq, ":center", "p_town_minas_tirith"),
+        #  (eq, ":center_faction", "fac_gondor"),
+        #  (party_slot_eq, "p_town_dol_amroth", slot_center_destroyed, 0), 
+        #  (faction_slot_eq, "fac_gondor", slot_faction_capital, "p_town_minas_tirith"),
+        #  (store_faction_of_party, ":dol_amroth_faction", "p_town_dol_amroth"),
+        #  (eq, ":dol_amroth_faction", "fac_gondor"),
+        #  (faction_set_slot, "fac_gondor", slot_faction_capital, "p_town_dol_amroth"),
+        #  (display_message, "@Gondor capital moved from Minas Tirith to Dol Amroth!"),
+    (else_try),
+        (eq, ":center", "p_town_dale"),
+        (eq, ":center_faction", "fac_dale"),
+        (party_slot_eq, "p_town_esgaroth", slot_center_destroyed, 0), 
+        (faction_slot_eq, "fac_dale", slot_faction_capital, "p_town_dale"),
+        (store_faction_of_party, ":esgaroth_faction", "p_town_esgaroth"),
+        (eq, ":esgaroth_faction", "fac_dale"),
+        (faction_set_slot, "fac_dale", slot_faction_capital, "p_town_esgaroth"),
+        (display_message, "@Dale capital moved from Dale to Esgaroth!"),
+    (else_try),
+        (eq, ":center", "p_town_gundabad"),
+        (eq, ":center_faction", "fac_gundabad"),
+        (party_slot_eq, "p_town_goblin_north_outpost", slot_center_destroyed, 0),
+        (faction_slot_eq, "fac_gundabad", slot_faction_capital, "p_town_gundabad"),
+        (store_faction_of_party, ":goblin_town_faction", "p_town_goblin_north_outpost"),
+        (eq, ":goblin_town_faction", "fac_gundabad"),
+        (faction_set_slot, "fac_gundabad", slot_faction_capital, "p_town_goblin_north_outpost"),
+        (display_message, "@Gundabad capital moved from Gundabad to Goblin Town!"),
+    (try_end),
+    
+    (try_begin), #if Hornburg is destroyed, Isengard becomes siegable (because auf the Ent attack)
+        (this_or_next|eq, ":center", "p_town_hornburg"),
+        (eq, ":center", "p_town_edoras"), 
+        (party_set_slot, "p_town_isengard", slot_center_siegability, 1), 
+        (try_for_parties, ":besieger"), #turn guardian party into a patrol
+            (party_slot_eq, ":besieger", slot_party_type, spt_guardian),
+            (party_slot_eq, ":besieger", slot_party_ai_object, ":center"),
+            (party_set_slot, ":besieger", slot_party_type, spt_patrol),
+            (party_set_slot, ":besieger", slot_party_victory_value, ws_patrol_vp), # victory points for party kill
+            (party_set_slot, ":besieger", slot_party_home_center, "p_town_isengard"),
+            (call_script, "script_party_set_ai_state", ":besieger", spai_patrolling_around_center, "p_town_isengard"),
+            (party_set_ai_initiative, ":besieger", 100),
+            (party_set_flags, ":besieger", pf_show_faction, 1),
+            (troop_get_slot, ":theoden_party", "trp_rohan_lord", slot_troop_leaded_party),
+            (gt, ":theoden_party", 0),            
+            (party_set_slot, ":theoden_party", slot_party_scripted_ai, 0),
+            (faction_set_slot, "fac_rohan", slot_faction_scripted_until, 0),
+        (try_end),
+        (try_begin),
+            (check_quest_active, "qst_guardian_party_quest"),
+            (quest_slot_eq, "qst_guardian_party_quest", slot_quest_target_center, ":center"),
+            (call_script, "script_cf_isengard_guardian_quest_fail"),
+        (try_end),
+    (else_try), 
+        (eq, ":center", "p_town_isengard"), 
+        (try_for_parties, ":besieger"),
+            (party_slot_eq, ":besieger", slot_party_type, spt_guardian),
+            (party_slot_eq, ":besieger", slot_party_ai_object, ":center"),
+            #(call_script, "script_safe_remove_party", ":besieger"),
+            (disable_party, ":besieger"), #removing it causes script errors in script_simulate_battle, so we use this instead
+            (check_quest_active, "qst_guardian_party_quest"),
+            (str_store_string, s6, "@You have breached the Ring of Isengard with the help of the Tree Men. During the battle, Isengard was flooded, but Orthanc still stands unscathed in midst of the havoc. You should investigate the aftermath."),
+            (add_quest_note_from_sreg, "qst_blank_quest_05", 2, s6, 0),            
+            #(dialog_box,s6,"@The Flooding of Isengard"),
+            (quest_set_slot, "qst_guardian_party_quest", slot_quest_current_state, 2),
+            (jump_to_menu, "mnu_isengard_flooding"),
+        (try_end),
+    (try_end),
     
 	# detach all attached parties, in case there are parties in the camp
 	(party_get_num_attached_parties, ":num_attached_parties", ":center"),
@@ -3100,15 +3124,15 @@ ai_scripts = [
 
 	(try_begin),
 		(is_between, ":center", advcamps_begin, advcamps_end), # advance camps not replaced by ruins
-    (try_begin),
-      (eq, ":center_faction", "$players_kingdom"),
-      (troop_get_slot, ":adv_reserve_party", "trp_player", slot_troop_player_reserve_adv_camp),
-      (gt, ":adv_reserve_party", 0),
-      (party_is_active, ":adv_reserve_party"),
-      (party_detach, ":adv_reserve_party"),
-      (call_script, "script_safe_remove_party", ":adv_reserve_party"),
-      (troop_set_slot, "trp_player", slot_troop_player_reserve_adv_camp,  0),
-    (try_end),
+        (try_begin),
+          (eq, ":center_faction", "$players_kingdom"),
+          (troop_get_slot, ":adv_reserve_party", "trp_player", slot_troop_player_reserve_adv_camp),
+          (gt, ":adv_reserve_party", 0),
+          (party_is_active, ":adv_reserve_party"),
+          (party_detach, ":adv_reserve_party"),
+          (call_script, "script_safe_remove_party", ":adv_reserve_party"),
+          (troop_set_slot, "trp_player", slot_troop_player_reserve_adv_camp,  0),
+        (try_end),
 		#reestablish the advance camp in 3+ days - 10 days now (Kham)    
 		(store_current_hours, ":cur_hours"),
 		(faction_set_slot, ":center_faction", slot_faction_advcamp_timer, ":cur_hours"), #set the timer for camp creation
@@ -3124,44 +3148,44 @@ ai_scripts = [
             (party_set_slot, ":center", slot_camp_place_occupied, 0),
 		(try_end),
 		(disable_party, ":center"),
-    (faction_get_slot, ":home_of_destroyed_adv_camp", ":center_faction", slot_faction_home_theater),
-    (faction_get_slot, ":current_active_theater", ":center_faction", slot_faction_active_theater),
-    (faction_set_slot, ":center_faction", slot_faction_active_theater, ":home_of_destroyed_adv_camp"), #Move them back home.
-    (faction_set_slot, ":center_faction", slot_faction_theater_retreated_from, ":current_active_theater"), #Store where they retreated from
-    (str_store_faction_name, s2, ":center_faction"),
-    (try_begin),
-      (store_relation, ":rel", "$players_kingdom", ":center_faction"),
-      (lt, ":rel", 0),
-      (assign, ":news_color", color_good_news),
+        (faction_get_slot, ":home_of_destroyed_adv_camp", ":center_faction", slot_faction_home_theater),
+        (faction_get_slot, ":current_active_theater", ":center_faction", slot_faction_active_theater),
+        (faction_set_slot, ":center_faction", slot_faction_active_theater, ":home_of_destroyed_adv_camp"), #Move them back home.
+        (faction_set_slot, ":center_faction", slot_faction_theater_retreated_from, ":current_active_theater"), #Store where they retreated from
+        (str_store_faction_name, s2, ":center_faction"),
+        (try_begin),
+          (store_relation, ":rel", "$players_kingdom", ":center_faction"),
+          (lt, ":rel", 0),
+          (assign, ":news_color", color_good_news),
+        (else_try),
+          (assign, ":news_color", color_bad_news),
+        (try_end),
+        (display_log_message, "@The hosts of {s2} retreat back to their homes!", ":news_color"),
     (else_try),
-      (assign, ":news_color", color_bad_news),
-    (try_end),
-    (display_log_message, "@The hosts of {s2} retreat back to their homes!", ":news_color"),
-	(else_try),
-		(party_set_slot, ":center", slot_center_destroyed, 1), # DESTROY!
-		(party_set_flags, ":center", pf_is_static|pf_always_visible|pf_hide_defenders|pf_label_small, 1),
-    
-    #Remove Adv Camp Player Garrison - Kham
-    (try_begin),
-      (eq, ":center_faction", "$players_kingdom"),
-      (troop_get_slot, ":reserve_party_ac", "trp_player", slot_troop_player_reserve_adv_camp),
-      (gt, ":reserve_party_ac", 0),
-      (party_is_active, ":reserve_party_ac"),
-      (party_detach, ":reserve_party_ac"),
-      (call_script, "script_safe_remove_party", ":reserve_party_ac"),
-      (troop_set_slot, "trp_player", slot_troop_player_reserve_adv_camp, 0),
-    (try_end),
+        (party_set_slot, ":center", slot_center_destroyed, 1), # DESTROY!
+        (party_set_flags, ":center", pf_is_static|pf_always_visible|pf_hide_defenders|pf_label_small, 1),
 
-		(try_begin),
-			(party_slot_eq, ":center", slot_center_destroy_on_capture,2),
-			(party_set_icon, ":center", "icon_debris"),
-		(else_try),
-			(try_begin),
-				(neq,":center","p_town_minas_tirith"), # minas tirith has an elevated flag
-				(party_set_banner_icon, ":center", "icon_debris"),
-			(else_try),
-				(party_set_banner_icon, ":center", "icon_empty"),
-			(try_end),
+        #Remove Adv Camp Player Garrison - Kham
+        (try_begin),
+          (eq, ":center_faction", "$players_kingdom"),
+          (troop_get_slot, ":reserve_party_ac", "trp_player", slot_troop_player_reserve_adv_camp),
+          (gt, ":reserve_party_ac", 0),
+          (party_is_active, ":reserve_party_ac"),
+          (party_detach, ":reserve_party_ac"),
+          (call_script, "script_safe_remove_party", ":reserve_party_ac"),
+          (troop_set_slot, "trp_player", slot_troop_player_reserve_adv_camp, 0),
+        (try_end),
+
+        (try_begin),
+            (party_slot_eq, ":center", slot_center_destroy_on_capture,2),
+            (party_set_icon, ":center", "icon_debris"),
+        (else_try),
+            (try_begin),
+                (neq,":center","p_town_minas_tirith"), # minas tirith has an elevated flag
+                (party_set_banner_icon, ":center", "icon_debris"),
+            (else_try),
+                (party_set_banner_icon, ":center", "icon_empty"),
+            (try_end),
 		(try_end),
 		(str_store_party_name, s1, ":center"),
 		(party_set_name, ":center", "@___Ruins_of_{s1}___"), # spaces to make writings smaller (GA)

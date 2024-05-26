@@ -1,9 +1,9 @@
 skl_trade|거래 흥정
 skl_trade_desc|대장장이와 보급관이 보다 협조적으로 대하며 더 나은 장비를 제공하게 됩니다. (부대 기술)
 skl_leadership|리더십
-skl_leadership_desc|매 포인트마다 지휘할 수 있는 최대 병력 수가 5 증가하고, 부대 사기가 증가하며 병력에 지급하는 임금이 5%%% 감소합니다. 지원자들이 더 강해지며 당신을 더 많이 따릅니다. (지도자 기술)
+; skl_leadership_desc|Every point increases maximum number of troops you can command by 5, increases your party morale and coherence in battle. Makes more and stronger volunteers willing to follow you. (Leader skill)
 skl_prisoner_management|포로 수송
-skl_prisoner_management_desc|1포인트가 증가할 때 마다 포로의 수가 %d로 증가합니다.(리더 기술)
+; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
 skl_persuasion|서바이벌
 skl_persuasion_desc|황야에서 살아남고 이용하는 능력. 부대가 적에게서 숨는 능력과 숲에서의 속도에 영향을 줍니다. (부대 기술)
 skl_engineer|-----
@@ -15,7 +15,7 @@ skl_surgery_desc|1 포인트가 오를 때 마다 4%%의 확률로 죽지 않고
 skl_wound_treatment|부상 치료
 skl_wound_treatment_desc|1 포인트당 부대 치료속도가 20%% 증가합니다.(부대 기술)
 skl_inventory_management|소지품 관리
-skl_inventory_management_desc|1 포인트가 오를 때 마다 소지품 제한 갯수가 +6 증가합니다. (리더 기술)
+; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
 skl_spotting|탐지
 skl_spotting_desc|1 포인트가 오를 때 마다 부대의 시야범위가 10%% 증가 합니다(부대 기술)
 skl_pathfinding|길 찾기

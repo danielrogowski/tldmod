@@ -1,9 +1,9 @@
 skl_trade|ทักษะในการต่อรอง
 skl_trade_desc|ทำให้ช่างเหล็กและผู้เชี่ยวชาญด้านอุปทานร่วมมือกันมากขึ้นและนำเสนออุปกรณ์ที่ดีกว่า (สกิลปาร์ตี้)
 skl_leadership|ความเป็นผู้นำ
-skl_leadership_desc|ทุกๆ แต้มจะเพิ่มจำนวนทหารสูงสุดที่คุณสามารถบัญชาการได้ 5 แต้ม เพิ่มขวัญกำลังใจในปาร์ตี้ของคุณ และลดค่าแรงของทหารลง 5 แต้ม %% ทำให้อาสาสมัครแข็งแกร่งขึ้นเรื่อยๆ และ เต็มใจที่จะติดตามคุณ (ทักษะความเป็นผู้นำ)
+skl_leadership_desc|ทุกจุดจะเพิ่มจำนวนกองกำลังสูงสุดที่คุณสามารถสั่งการได้ 5 เพิ่มขวัญและกำลังใจในการต่อสู้ ทำให้อาสาสมัครจำนวนมากขึ้นและเต็มใจที่จะติดตามคุณ (ทักษะความเป็นผู้นำ)
 skl_prisoner_management|การจัดการนักโทษ
-skl_prisoner_management_desc|ทุกๆเลเวลของสกิลนี้เพิ่มขีดจำกัดของนักโทษที่จับได้สูงสุด %d (สกิลสำหรับผู้นำกองทัพ)
+; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
 skl_persuasion|พรานป่า
 skl_persuasion_desc|ความสามารถในการเอาตัวรอดและใช้ประโยนช์จากป่า ความสามารถนี้จะส่งผลต่อกองทัพในการเคลื่อนที่และการซ่อนตัวในป่า (สกิลที่ส่งผลทั้งกองทัพ)
 skl_engineer|-----
@@ -15,7 +15,7 @@ skl_surgery_desc|ทุกเวลเวลของสกิลจะเพิ
 skl_wound_treatment|การดูแลรักษาบาดแผล
 skl_wound_treatment_desc|อัตราการฟื้นฟูของกองทัพเพิ่มขึ้น 20%% ต่อเลเวลของสกิล (สกิลที่ส่งผลทั้งกองทัพ)
 skl_inventory_management|การจัดการช่องเก็บของ
-skl_inventory_management_desc|เพิ่มช่องเก็บของ +6 ช่องต่อเลเวลสกิล (สกิลสำหรับผู้นำกองทัพ)
+; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
 skl_spotting|การสังเกต
 skl_spotting_desc|เพิ่มระยะการมองเห็นของกองทัพ 10%% ต่อเลเวลสกิล (สกิลที่ส่งผลทั้งกองทัพ)
 skl_pathfinding|การสำรวจเส้นทาง

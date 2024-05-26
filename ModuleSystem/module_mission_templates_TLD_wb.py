@@ -251,7 +251,6 @@ field_ai_triggers = [
    # based on if closest 3 enemies are within 5 meters and if currently attacking/defending.
   
  [
-
   (try_for_agents, ":agent"), # Run through all active NPCs on the battle field.
      # Hasn't been defeated.
     (agent_is_alive, ":agent"),
@@ -302,16 +301,26 @@ field_ai_triggers = [
              (else_try),
     
     # Still mounted
-                (agent_get_position, pos1, ":agent"),    
-                (call_script, "script_get_closest3_distance_of_enemies_at_pos1", ":team", pos1),
-                (assign, ":avg_dist", reg0), # Find distance of nearest 3 enemies
+                (agent_get_position, pos1, ":agent"),
+                (agent_get_speed, pos10, ":agent"),
+                (position_get_y, ":speed", pos10),                
+                # (call_script, "script_get_closest3_distance_of_enemies_at_pos1", ":team", pos1),
+                # (assign, ":avg_dist", reg0), # Find distance of nearest 3 enemies
+                (agent_ai_get_cached_enemy, ":enemy_agent", ":agent", 0), #InVain: get closest cached enemy instead
+                (ge, ":enemy_agent", 0),              
+                (agent_is_active, ":enemy_agent"),
+                (agent_is_alive, ":enemy_agent"),
+                (agent_is_human, ":enemy_agent"),
+                (agent_get_position, pos2, ":enemy_agent"),
+                (get_distance_between_positions, ":dist", pos1, pos2),
     
      #SHOULD CLOSEST MATTER???
                 (try_begin),
-                    (lt, ":avg_dist", 500), # Are the enemies within 5 meters?
-                    (agent_get_combat_state, ":combat", ":agent"),
-                    (gt, ":combat", 3), # Agent currently in combat? ...avoids switching before contact
                     (eq, ":wielded", ":lance"), # Still using lance?
+                    (lt, ":dist", 500), # Are the enemies within 5 meters? (InVain: changed to closest cached enemy only)
+                    (lt, ":speed", 300), #slowed down? (InVain)
+                    (agent_get_combat_state, ":combat", ":agent"),
+                    (gt, ":combat", 3), # Agent currently in combat? ...avoids switching before contact                    
                       (try_begin),
                             (gt, ":shield_order", 0),
                           (assign, ":inc_two_handers", 0),
@@ -320,8 +329,9 @@ field_ai_triggers = [
                       (try_end),
                     (call_script, "script_weapon_use_backup_weapon", ":agent", ":inc_two_handers"), # Then equip a close weapon
                 (else_try),
+                    (gt, ":dist", 500),
                     (neq, ":wielded", ":lance"), # Enemies farther than 5 meters and/or not fighting, and not using lance?
-                     (neg|agent_slot_eq, ":agent", slot_team_shield_order, 2), #Not commanded to use side-arms
+                    (neg|agent_slot_eq, ":agent", slot_team_shield_order, 2), #Not commanded to use side-arms
                     (agent_set_wielded_item, ":agent", ":lance"), # Then equip it!
                 (try_end),
              (try_end),
@@ -330,6 +340,7 @@ field_ai_triggers = [
           (party_slot_eq, "p_main_party", slot_party_pref_wu_harcher, 1),
           (agent_get_slot, ":bow", ":agent", slot_agent_horsebow),
           (gt, ":bow", 0),  # Horse archer?
+          (eq,"$field_ai_horse_archer",0), #InVain: Only if horse archer AI is turned off, avoids conflicts
           (neq, ":fire_order", aordr_hold_your_fire), #Not ordered to hold fire
     
      # Get wielded item.
@@ -1583,6 +1594,7 @@ kham_check_formations = (0, 0, 0, [
 tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of every half. Should be enough.
 
           (eq,"$field_ai_horse_archer",1),
+          (neq, "$battle_won", 1),
           
   ],
 
@@ -1592,6 +1604,18 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
             (agent_is_alive, ":agent_no"),
             (agent_is_human, ":agent_no"),
             (agent_is_non_player, ":agent_no"),
+            (agent_get_team, ":team_no", ":agent_no"),
+            
+            (agent_slot_eq, ":agent_no", slot_agent_positioned, 0), #InVain, from FormAI v5
+            
+            (try_begin),
+                (this_or_next|all_enemies_defeated, ":team_no"),
+                (agent_slot_eq, ":agent_no", slot_agent_is_running_away, 1),
+                (agent_set_attack_action, ":agent_no", -2, 1),
+                (assign, ":battle_over", 1),
+            (try_end),
+            
+            (neq, ":battle_over", 1),
             
             (agent_get_troop_id, ":troop_id", ":agent_no"),
             (store_skill_level, ":horse_archery_level", "skl_horse_archery", ":troop_id"),
@@ -1609,19 +1633,19 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
                 (team_get_weapon_usage_order, ":weapon_usage_order", ":team_no", ":class_no"),
                 (team_get_movement_order, ":movement_order", ":team_no", ":class_no"),
                 (team_get_hold_fire_order, ":hold_fire", ":team_no", ":class_no"),
-                (assign, ":thrown_ammo", 0),
+                #(assign, ":thrown_ammo", 0),
                 (assign, ":ranged_weapon", -1),
                 (try_for_range, ":item", 0, 4),
                   (agent_get_item_slot, ":item_weapon", ":agent_no", ":item"),
                   (gt, ":item_weapon", 0),
                   (item_get_type, ":item_weapon_type", ":item_weapon"),
                   (try_begin),
-                    (eq, ":item_weapon_type", itp_type_thrown),
-                    (agent_get_ammo_for_slot, ":ammo_for_slot", ":agent_no", ":item"),
-                    (val_add, ":thrown_ammo", ":ammo_for_slot"),
-                  (else_try),
+                    # (eq, ":item_weapon_type", itp_type_thrown),
+                    # (agent_get_ammo_for_slot, ":ammo_for_slot", ":agent_no", ":item"),
+                    # (val_add, ":thrown_ammo", ":ammo_for_slot"),
+                  # (else_try),
                     (this_or_next|eq, ":item_weapon_type", itp_type_bow),
-                    (this_or_next|eq, ":item_weapon_type", itp_type_pistol),
+                    (this_or_next|eq, ":item_weapon_type", itp_type_thrown),
                     (eq, ":item_weapon_type", itp_type_musket),
                     (assign, ":ranged_weapon", ":item_weapon"),
                   (else_try),
@@ -1635,7 +1659,7 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
                 (neg|item_has_property, ":ranged_weapon", itp_cant_reload_on_horseback),
                 (neg|item_has_property, ":ranged_weapon", itp_cant_use_on_horseback),
                 (agent_get_ammo, ":ammo", ":agent_no", 0),
-                (val_sub, ":ammo", ":thrown_ammo"),
+                #(val_sub, ":ammo", ":thrown_ammo"),
                 (gt, ":ammo", 0),
                 (agent_set_slot, ":agent_no", 1003, 2),
                 (neg|eq, ":hold_fire", aordr_hold_your_fire),
@@ -1700,24 +1724,29 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
                     (gt, ":weapon_hold", 0),
                     (item_get_type, ":weapon_type", ":weapon_hold"),
                     (this_or_next|eq, ":weapon_type", itp_type_bow),
-                    (this_or_next|eq, ":weapon_type", itp_type_pistol),
+                    (this_or_next|eq, ":weapon_type", itp_type_thrown),
                     (eq, ":weapon_type", itp_type_musket),
                     (agent_get_bone_position, pos103, ":agent_no", 8, 1),
                     (agent_get_bone_position, pos104, ":enemies_closest", 9, 1),
                     (position_has_line_of_sight_to_position, pos103, pos104),
                     (agent_set_look_target_agent, ":agent_no", ":enemies_closest"),
                     (try_begin),
-                      (assign, ":shoot_distance", 4000), #InVain: Can be used for further scaling, also maybe for adjusting javelin cavalry
+                      (assign, ":shoot_distance", 4000), #InVain: Can be used for further scaling
+                      (try_begin),
+                        (eq, ":weapon_type", itp_type_thrown),
+                        (val_mul, ":shoot_distance", 2),
+                        (val_div, ":shoot_distance", 3), 
+                      (try_end),
                       (agent_get_attack_action, ":attack_action", ":agent_no"),
                       (eq, ":attack_action", 1),
                       (try_begin),
                         (gt, ":distance_closest", 700),
                         (le, ":distance_closest", ":shoot_distance"),
                         (store_mul, ":speed_limit", ":horse_archery_level", 4),
-                        (val_sub, ":speed_limit", 10), #InVain: We can use this for scaling: Force low-tier archers to slow down while shooting.
+                        (val_sub, ":speed_limit", 10), #InVain: We use this for scaling: Force low-tier archers to slow down while shooting.
                         (val_max, ":speed_limit", 0),
                       (try_end),
-                      (eq, ":weapon_type", itp_type_bow),
+                      #(eq, ":weapon_type", itp_type_bow),
                       (try_begin),
                         (le, ":distance_true", ":shoot_distance"),
                         (agent_set_defend_action, ":agent_no", -2, 1),
@@ -1730,7 +1759,7 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
                         (agent_set_defend_action, ":agent_no", 3, 1),
                       (try_end),
                     (else_try),
-                      (eq, ":weapon_type", itp_type_bow),
+                      #(eq, ":weapon_type", itp_type_bow),
                       (le, ":distance_true", ":shoot_distance"),#
                       (agent_get_combat_state, ":combat_state", ":agent_no"),
                       (neq, ":combat_state", 8),
@@ -1740,6 +1769,10 @@ tld_improved_horse_archer_ai =  (1, 0, 0, [ #Run it every 1 second instead of ev
                 (agent_set_speed_limit, ":agent_no", ":speed_limit"),
                 (try_begin), #InVain: This is the code for evading close enemies. Black magic.
                   (store_random_in_range, ":chance", 0, 10),
+                    (try_begin),
+                        (eq, ":weapon_type", itp_type_thrown), #skirmishers need a slight buff
+                        (val_sub, ":chance", 2), 
+                    (try_end),
                   (le, ":chance", ":horse_archery_level"),  #scaling: Better horse archers check distance more often. Bad HAs may get caught easier
                   (agent_slot_eq, ":enemies_closest", slot_agent_is_running_away, 0),
                   (lt, ":distance_closest", 10000),
@@ -1969,12 +2002,12 @@ hp_shield_trigger = (ti_on_agent_hit, 0, 0, [
         (try_begin),
             (ge, ":damage", 30),
             (assign, ":deal_damage", 1),
-            (agent_set_animation, ":agent", "anim_strike3_abdomen_front"),
+            (agent_set_animation, ":agent", "anim_strike3_abdomen_front", 1),
           (else_try),
             (lt, ":current_hp_shield", 100),
             (ge, ":damage", 15),
             (assign, ":deal_damage", 3),
-            (agent_set_animation, ":agent", "anim_strike3_abdomen_front"),
+            (agent_set_animation, ":agent", "anim_strike3_abdomen_front", 1),
          (try_end),
      (try_end),
      ###non-trolls stagger end###
@@ -2414,17 +2447,6 @@ tld_kill_or_wounded_triggers = (ti_on_agent_killed_or_wounded, 0, 0, [
     (try_end),
   ])
 
-troll_unkillable_trigger = (ti_on_agent_killed_or_wounded, 0, 0, [],
-    [
-        (store_trigger_param_1, ":agent"),
-        (agent_get_troop_id, ":troop_id", ":agent"),
-        (troop_get_type, ":race", ":troop_id"),
-        (try_begin),
-            (eq, ":race", tf_troll),
-            (set_trigger_result,2),
-        (try_end),
-    ])
-
 
 #Batching Triggers:
 
@@ -2717,18 +2739,18 @@ extended_battle_menu = [  #15 triggers
       (neg|main_hero_fallen),
       ],[
       (assign, "$gk_order", 0),
-      (try_begin),
-        (is_presentation_active, "prsnt_battle"),
-        (assign, "$g_presentation_active", 1),
-      (try_end),
+      # (try_begin), #InVain: Currently unused
+        # (is_presentation_active, "prsnt_battle"),
+        # (assign, "$g_presentation_active", 1),
+      # (try_end),
       (try_begin),
         (presentation_set_duration, 0),
         (assign, "$switch_presentation_new", "prsnt_order_display"),
-        (try_begin),
-          (gt, "$g_display_agent_labels", 0),
-          (eq, "$show_hide_labels", 1),
-          (start_presentation, "prsnt_display_agent_labels"),
-        (try_end),
+        # (try_begin), #InVain: unused
+          # (gt, "$g_display_agent_labels", 0),
+          # (eq, "$show_hide_labels", 1),
+          # (start_presentation, "prsnt_display_agent_labels"),
+        # (try_end),
       (try_end),
       (assign, "$native_opening_menu", 1),
       (try_begin),
@@ -3150,12 +3172,12 @@ extended_battle_menu = [  #15 triggers
   (0.7, 0, 0, [
       (eq, "$tld_option_formations", 2),
       (eq, "$g_presentation_active", 1),
-      (neg|is_presentation_active, "prsnt_order_display"),
+      (neg|is_presentation_active, "prsnt_order_display"), #InVain: Problem is that prsnt_order_display is disabled elsewhere, but only if divisions 1-3 are selected
       (eq, "$gk_order", 0),
       ],[
-      (presentation_set_duration, 0),
-      (assign, "$switch_presentation_new", "prsnt_battle"),
-      (assign, "$g_presentation_active", 0),
+      #(presentation_set_duration, 0), #so we just disable the consequences, this looks somewhat better
+      #(assign, "$switch_presentation_new", "prsnt_battle"),
+      (assign, "$g_presentation_active", 0), #InVain: Makes this global ineffective, need to keep in mind for future
   ]),
 ]#end extended battle menu
 
@@ -3188,7 +3210,7 @@ common_division_data = [  #4 triggers
           (agent_is_non_player, ":agent"),
           (agent_get_group, ":team", ":agent"),
           (gt, ":team", -1),  #not a MP spectator
-          (call_script, "script_agent_fix_division", ":agent"), #Division fix
+          (call_script, "script_agent_fix_division_moto", ":agent"), #Division fix
         (try_end),
       (try_end),
       
@@ -3247,7 +3269,7 @@ common_division_data = [  #4 triggers
   #catch spawning agents after initial setup
   (ti_on_agent_spawn, 0, 0, [(eq, "$tld_option_formations", 2),(call_script, "script_cf_division_data_available_moto")], [
       (store_trigger_param_1, ":agent"),
-      (call_script, "script_agent_fix_division", ":agent"), #Division fix
+      (call_script, "script_agent_fix_division_moto", ":agent"), #Division fix
   ]),
   
   # Trigger file: common_division_data_regular_trigger
@@ -4408,3 +4430,742 @@ common_battle_init_banner = (
     (agent_get_troop_id, ":troop_no", ":agent_no"),
     (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":agent_no", ":troop_no"),
   ])
+  
+
+tld_place_inventory_backup =   (0.1, 0, ti_once, [], [ #agent fadeout sphere test
+        (scene_prop_get_num_instances, ":inv_found", "spr_inventory"),
+        (try_begin),
+          (lt, ":inv_found", 1),
+          (get_player_agent_no, ":player"),
+          (agent_get_position, pos1, ":player"),
+          (set_spawn_position, pos1),
+          (spawn_scene_prop, "spr_inventory"),
+          #(display_message, "@inventory spawned"),
+        (try_end),
+    ])  
+    
+tld_ai_fadeout_spheres =   (3, 0, 0, [], [ #agent fadeout sphere test
+    (scene_prop_get_num_instances, ":num_fadeout_spheres", "spr_ai_fadeout_sphere"),
+    (set_fixed_point_multiplier, 100),
+    (try_for_range, ":count", 0, ":num_fadeout_spheres"),
+        (scene_prop_get_instance, ":instance_no", "spr_ai_fadeout_sphere", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (prop_instance_get_scale, pos3, ":instance_no"),
+        (position_get_scale_y, ":scale", pos3),
+        (try_for_agents, ":agent_no", pos2, ":scale"),
+            (agent_is_alive, ":agent_no"),
+            (agent_get_position, pos4, ":agent_no"),
+            (get_distance_between_positions, ":dist", pos2, pos4),
+            (le, ":dist", ":scale"), #need to put this extra check because WSE breaks the try_for_agents operation
+            (agent_fade_out, ":agent_no"),
+            # (str_store_agent_name, s2, ":agent_no"),
+            # (display_message, "@{s2} is in fadeout range"),
+        (try_end),
+    (try_end),
+    ])    
+    
+tld_calculate_wounded = (ti_on_agent_killed_or_wounded, 0, 0, [], [ 
+	(store_trigger_param_1, ":agent_no"),
+    (agent_get_party_id, ":party_no", ":agent_no"),
+    (ge, ":party_no", 0),
+    (party_is_active, ":party_no"),
+    (agent_get_troop_id, ":troop_no", ":agent_no"),
+    (neg|troop_is_hero, ":troop_no"),
+    
+    #surgery
+    (party_stack_get_troop_id, ":party_leader", ":party_no", 0),
+    (store_skill_level, ":surgery", skl_surgery, ":party_leader"),    
+    (try_begin),
+        (eq, ":party_no", p_main_party),
+        (party_get_skill_level, ":surgery", "p_main_party", skl_surgery),
+    (try_end),        
+    (assign, reg75, ":surgery"),
+    (val_mul, ":surgery", 4),
+    
+    #troop level
+    (store_character_level, ":chance", ":troop_no"), 
+    (assign, reg76, ":chance"),
+    (troop_get_type, ":race", ":troop_no"),
+    (try_begin), 
+        (is_between, ":race", tf_orc_begin, tf_orc_end),
+        (val_mul, ":chance", 2),
+        (val_div, ":chance", 3),
+    (try_end),
+    (val_add, ":chance", ":surgery"),
+    #(val_div, ":chance", 100),
+    (val_min, ":chance", 90),
+    
+    (assign, reg77, ":chance"),
+    (str_store_agent_name, s55, ":agent_no"),
+    (store_random_in_range, ":rnd", 0, 100),
+    
+    (try_begin),
+        (le, ":rnd", ":chance"),
+        (set_trigger_result, 2), #wound
+        # (try_begin),
+            # (agent_is_ally, ":agent_no"),
+            # (display_message, "@{s55} wounded, surgery {reg75}, level {reg76}, chance: {reg77}"),
+        # (try_end),
+    (else_try),
+        (set_trigger_result, 1), #kill
+        # (try_begin),
+            # (agent_is_ally, ":agent_no"),
+            # (display_message, "@{s55} killed, surgery {reg75}, level {reg76}, chance: {reg77}"),
+        # (try_end),
+    (try_end),        
+    ])
+    
+tld_ai_melee_spheres =   (3, 0, 0, [], [ #agent fadeout sphere test
+    (scene_prop_get_num_instances, ":num_spheres", "spr_ai_melee_on_off_var1"),
+    (set_fixed_point_multiplier, 100),
+    (try_for_range, ":count", 0, ":num_spheres"),
+        (scene_prop_get_instance, ":instance_no", "spr_ai_melee_on_off_var1", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (prop_instance_get_scale, pos3, ":instance_no"),
+        (prop_instance_get_variation_id, ":value", ":instance_no"),
+        (position_get_scale_y, ":scale", pos3),
+        (try_for_agents, ":agent_no", pos2, ":scale"),
+            (agent_is_alive, ":agent_no"),
+            (neg|agent_is_defender, ":agent_no"),
+            (agent_get_position, pos4, ":agent_no"),
+            (get_distance_between_positions, ":dist", pos2, pos4),
+            (le, ":dist", ":scale"), #need to put this extra check because WSE breaks the try_for_agents operation
+            (agent_ai_set_always_attack_in_melee, ":agent_no", ":value"),
+            # (str_store_agent_name, s5, ":agent_no"),
+            # (assign, reg77, ":value"),
+            # (display_message, "@{s5} set to {reg77}"),
+        (try_end),
+    (try_end),
+    ]) 
+    
+tld_animated_town_agents = [
+  (0.3, 0, 0, [], [ #animated agents WB only
+    
+    #wood hackers
+    (call_script, "script_animate_town_agents", spr_troop_work_wood_hacker_1h, 3, 3, itm_civilian_woodaxe_1h),
+    (call_script, "script_animate_town_agents", spr_troop_work_wood_hacker_2h, 4, 3, itm_civilian_woodaxe_2h),
+    (call_script, "script_animate_town_agents", spr_troop_work_tree_feller, 4, 1, itm_civilian_woodaxe_2h),   
+    
+    #hammerer
+    (call_script, "script_animate_town_agents", spr_troop_work_hammer, 2, 3, itm_civilian_hammer),
+
+    #farmers
+    (call_script, "script_animate_town_agents", spr_troop_work_farmer_mattock, 4, 3, itm_civilian_war_mattock),
+    (call_script, "script_animate_town_agents", spr_troop_work_farmer_shovel, 2, 0, itm_civilian_shovel), #doesn't work so well
+    
+    #miners use two attack actions, so we fire the script twice with higher pause count
+    (call_script, "script_animate_town_agents", spr_troop_work_miner, 6, 4, itm_civilian_pickaxe),
+    #(call_script, "script_animate_town_agents", spr_troop_civilian_miner, 6, 1), 
+    
+    #smiths
+    (call_script, "script_animate_town_agents", spr_troop_smith, 3, 3, itm_civilian_hammer), 
+    
+    (call_script, "script_animate_town_agents", spr_troop_work_butcher, 4, 3, itm_orc_axe),
+    
+    (call_script, "script_animate_town_agents", spr_troop_guard_fight_single, 5, 4, itm_practice_staff),
+      ]),
+
+  (1, 0, 0, [], [ #oh no and cheer
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos4, ":player_agent"),
+    (set_fixed_point_multiplier, 100),
+    
+    #oh no
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_human_prisoner_oh_no"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_human_prisoner_oh_no", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (prop_instance_get_position, pos3,":instance_no"),
+        (get_distance_between_positions, ":distance", pos3, pos4),
+        (is_between, ":distance", 350, 3000), #only if player isn't too close, but also not too far either (avoid too many sounds)
+        (agent_set_scripted_destination, ":agent", pos2),
+        (agent_get_animation, ":cur_animation", ":agent", 1),
+        (neq, ":cur_animation", "anim_nazgul_noooo_long"),
+        (store_random_in_range, ":chance", 0, 100),
+        (le, ":chance", 60),
+        (agent_set_animation, ":agent", "anim_nazgul_noooo_short"),
+        (le, ":chance", 30),
+        (agent_set_animation, ":agent", "anim_nazgul_noooo_long"),
+        #(agent_set_animation_progress, ":agent", ":chance"),
+        (le, ":chance", 4),
+        (agent_stop_sound, ":agent"),
+        (agent_play_sound,":agent","snd_horror_scream_man"),
+    (try_end),
+
+    #cheer
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_civ_cheer"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_civ_cheer", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (prop_instance_get_position, pos3,":instance_no"),
+        (get_distance_between_positions, ":distance", pos3, pos4),
+        (is_between, ":distance", 350, 3000), #only if player isn't too close, but also not too far either (avoid too many sounds)
+        (agent_set_scripted_destination, ":agent", pos2),
+        (store_random_in_range, ":chance", 0, 100),
+        (le, ":chance", 25),
+        (agent_set_animation, ":agent", "anim_cheer"),
+        (le, ":chance", 4),
+        (agent_get_troop_id,":troop", ":agent"),
+        (troop_get_type,reg1,":troop"),
+        (try_begin),
+            (is_between, reg1, tf_urukhai, tf_orc_end),
+            (agent_play_sound, ":agent", "snd_meeting_uruk"),
+        (else_try),
+            (eq, reg1, tf_orc),
+            (agent_play_sound, ":agent", "snd_meeting_orc"),
+        (else_try),
+            (is_between, reg1, tf_elf_begin, tf_elf_end),
+            (agent_play_sound, ":agent", "snd_meeting_elf"),
+        (else_try),				
+            (agent_play_sound, ":agent", "snd_meeting_man"),
+        (try_end),
+    (try_end),
+
+    #worker stand
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_work_stand"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_work_stand", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (agent_set_scripted_destination, ":agent", pos2),
+        (store_random_in_range, ":chance", 0, 100),
+        (le, ":chance", 45),
+        (agent_set_animation, ":agent", "anim_defend_up_staff_keep"),
+        (le, ":chance", 30),
+        (agent_set_animation, ":agent", "anim_defend_up_twohanded_keep"),
+        (le, ":chance", 15),
+        (agent_set_animation, ":agent", "anim_defend_up_onehanded_keep"),
+    (try_end),
+
+    #worker table
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_work_table"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_work_table", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (agent_set_scripted_destination, ":agent", pos2),
+        (agent_set_look_target_position, ":agent", pos2),
+        (store_random_in_range, ":chance", 0, 100),
+        (assign, ":sound", 0),
+        (try_begin),
+            (le, ":chance", 45),
+            (assign, ":sound", "snd_pull_bow"),
+            (agent_set_animation, ":agent", "anim_defend_forward_staff"),
+            (le, ":chance", 30),
+            (agent_set_animation, ":agent", "anim_defend_forward_onehanded"),
+            (le, ":chance", 15),
+            (assign, ":sound", "snd_pull_arrow"),
+            (agent_set_animation, ":agent", "anim_defend_forward_greatsword"),
+        (try_end),
+        (gt, ":sound", 0),
+        (agent_play_sound, ":agent", ":sound"),
+    (try_end),
+
+    #priests / worshippers
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_priest"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_priest", ":count"),
+        (prop_instance_get_position, pos2, ":instance_no"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (agent_set_scripted_destination, ":agent", pos2),
+        (store_random_in_range, ":chance", 0, 100),
+        (le, ":chance", 15),
+        (agent_set_animation, ":agent", "anim_troll_roar"),
+    (try_end),
+
+    #refill training archers
+    (scene_prop_get_num_instances, ":num_props", "spr_troop_archer_fight_single"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_troop_archer_fight_single", ":count"),
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (agent_refill_ammo, ":agent"),
+    (try_end),
+ 
+    #turn fighting on/off based on distance, to avoid sounds
+    (try_for_prop_instances, ":instance_no"),
+        (prop_instance_get_scene_prop_kind, ":prop_type", ":instance_no"),
+        (this_or_next|eq, ":prop_type", "spr_troop_guard_fight_duel"),
+        (this_or_next|eq, ":prop_type", "spr_troop_troll_fight_duel"),
+        (eq, ":prop_type", "spr_troop_archer_fight_single"),
+        #(display_message, "@prop found"),
+        (try_begin),
+            (scene_prop_get_slot, ":fighter_1", ":instance_no", slot_prop_agent_1),
+            (scene_prop_get_slot, ":fighter_2", ":instance_no", slot_prop_agent_2),
+            (agent_get_position, pos5, ":fighter_1"),
+            (get_distance_between_positions, ":dist", pos4, pos5),
+            (ge, ":dist", 3000),
+            #(assign, reg78, ":dist"),
+            #(display_message, "@distance: {reg78}"),
+            (agent_clear_relations_with_agents, ":fighter_1"),
+            (agent_clear_relations_with_agents, ":fighter_2"),
+            #(display_message, "@stop fight"),
+         (else_try),
+            (lt, ":dist", 3000),
+            (agent_add_relation_with_agent, ":fighter_1", ":fighter_2", -1),
+            (ge, ":fighter_2", 1),
+            (agent_add_relation_with_agent, ":fighter_2", ":fighter_1", -1),
+            #(display_message, "@start fight"),
+        (try_end),
+    (try_end),
+      ]),        
+]
+
+tld_positional_sound_props = [
+
+
+  (3, 0, 0, [], [ # positional sounds
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos4, ":player_agent"),
+    (scene_prop_get_num_instances, ":num_props", "spr_sound_emitter_var1x10_plus_var2_scalable"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_sound_emitter_var1x10_plus_var2_scalable", ":count"),
+        (prop_instance_get_variation_id, ":sound", ":instance_no"),
+        (val_mul, ":sound", 10),
+        (prop_instance_get_variation_id_2, ":sound_2", ":instance_no"),
+        (val_add, ":sound", ":sound_2"),
+        (assign, reg76, ":sound"), 
+        (prop_instance_get_scale, pos2, ":instance_no"),
+        (position_get_scale_x, ":range", pos2),
+        (val_sub, ":range", 100),
+        (val_mul, ":range", 100),
+        (prop_instance_get_position, pos3, ":instance_no"),
+        (get_distance_between_positions, ":distance", pos3, pos4),
+        # (assign, reg77, ":distance"),
+        # (assign, reg78, ":range"),
+        # (display_message, "@distance {reg77}/{reg78}"),
+        (le, ":distance", ":range"),
+        (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 0),
+        (gt, ":sound", 0),
+        (prop_instance_play_sound, ":instance_no", ":sound"),
+        #(display_message, "@play_sound {reg76};"),
+        (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 1),
+    (else_try),
+        (gt, ":distance", ":range"),
+        (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 1),
+        (prop_instance_stop_sound, ":instance_no"),
+        (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 0),
+        #(display_message, "@stop sound"),
+    (try_end),
+      ]),
+
+  (3, 0, 0, [], [ # ambient sounds
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos4, ":player_agent"),
+    (scene_prop_get_num_instances, ":num_props", "spr_sound_emitter_ambient_var1x10_plus_var2_scalable"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_sound_emitter_ambient_var1x10_plus_var2_scalable", ":count"),
+        (prop_instance_get_variation_id, ":sound", ":instance_no"),
+        (val_mul, ":sound", 10),
+        (prop_instance_get_variation_id_2, ":sound_2", ":instance_no"),
+        (val_add, ":sound", ":sound_2"),
+        (assign, reg76, ":sound"), 
+        (prop_instance_get_scale, pos2, ":instance_no"),
+        (position_get_scale_x, ":range", pos2),
+        (val_sub, ":range", 100),
+        (val_mul, ":range", 100),
+        (prop_instance_get_position, pos3, ":instance_no"),
+        (get_distance_between_positions, ":distance", pos3, pos4),
+        # (assign, reg77, ":distance"),
+        # (assign, reg75, ":range"),
+        # (display_message, "@distance {reg77}/{reg75}"),
+        (le, ":distance", ":range"),
+        (eq, "$play_ambient_sounds", 1),
+        (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 0),
+        (gt, ":sound", 0),
+        (stop_all_sounds, 0), #stop looping sounds
+        (assign, "$play_ambient_sounds", 0), 
+        (prop_instance_play_sound, ":instance_no", ":sound", sf_looping|sf_2d|sf_vol_15),
+        (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 1),
+        #(display_message, "@play_sound {reg76}"),
+    (else_try),
+        (gt, ":distance", ":range"),
+        (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 1),
+        (prop_instance_stop_sound, ":instance_no"),
+        (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 0),
+        (assign, "$play_ambient_sounds", 1),
+        #(display_message, "@back to normal sounds"),
+        
+        (try_begin),
+            (eq, "$bs_day_sound", 0),
+            (party_get_slot, ":a","$current_town",slot_center_ambient_sound_always),
+            (try_begin),(gt,":a",0),(play_sound, ":a", sf_looping),(try_end),
+        (else_try),
+            (play_sound, "$bs_day_sound", sf_looping),
+        (try_end),
+        (neg|is_currently_night),
+        (try_begin),
+            (eq, "$bs_night_sound", 0),
+            (party_get_slot, ":a","$current_town",slot_center_ambient_sound_day),
+            (try_begin),(gt,":a",0),(play_sound, ":a", sf_looping),(try_end),
+        (else_try),
+            (play_sound, "$bs_night_sound", sf_looping),
+        (try_end),
+
+    (try_end),
+      ]),
+
+  (2, 0, 0, [], [ # positional fire sounds #workaround to prevent sound overflow if a town scene has lots of fire props like campfires, torches, lamps
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos4, ":player_agent"),
+    (assign, ":count", 0),
+    (try_for_prop_instances, ":instance_no"),
+        (scene_prop_get_slot, ":sound", ":instance_no", slot_prop_sound),
+        (this_or_next|eq, ":sound", "snd_fire_loop"),
+        (eq, ":sound", "snd_torch_loop"),
+        (try_begin),
+            (prop_instance_get_position, pos3, ":instance_no"),
+            (get_distance_between_positions, ":distance", pos3, pos4),
+            (le, ":distance", 2000), #20m, need some range to fade in and out
+            (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 0),
+            (lt, ":count", 3), #not more than 3 at a time
+            #(gt, ":sound", 0),
+            (prop_instance_play_sound, ":instance_no", "snd_torch_loop"), 
+            (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 1),
+            (val_add, ":count", 1),
+            # (assign, reg78, ":count"),
+            # (display_message, "@count: {reg78}"),
+        (else_try),
+            (lt, ":distance", 2000),
+            (scene_prop_slot_eq, ":instance_no", slot_prop_playing_sound, 1),
+            (val_add, ":count", 1), #important to also count the props that are already playing
+        (else_try),    
+            (gt, ":distance", 2000),
+            (prop_instance_stop_sound, ":instance_no"),
+            (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 0),
+        (else_try), 
+            (ge, ":count", 3), #many sound sources around? Remove some earlier.
+            (gt, ":distance", 1000),
+            (prop_instance_stop_sound, ":instance_no"),
+            (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, 0),        
+        (try_end),
+    (try_end),
+      ]),
+]
+      
+tld_points_of_interest = [
+   
+  #distance check for PoI and guardians, check requirements and apply consequences
+  (1.5, 0, 0, [], [ 
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos4, ":player_agent"),
+    (store_current_scene, ":scene"),
+    (call_script, "script_get_faction_rank", "$ambient_faction"),
+    (assign, ":rank", reg0),
+    (store_character_level, ":player_level", "trp_player"),
+    (agent_get_horse, ":player_mount", ":player_agent"),    
+    (store_time_of_day, ":time"),
+    #(assign, "$temp_2", 0), #for spawn control on scene props, particle effects etc.
+    
+    (try_for_prop_instances, ":instance_no", "spr_secret_point_of_interest"), #points of interest
+        (scene_prop_slot_eq, ":instance_no", scene_prop_open_or_close_slot, 0), #we use a slot prop so we can also add explorations points that don't give a reward / don't need a party slot
+        (prop_instance_get_variation_id, ":var1", ":instance_no"),
+        (prop_instance_get_position, pos5, ":instance_no"),
+        (get_distance_between_positions, ":dist", pos4, pos5),
+        # (assign, reg78, ":dist"),
+        # (assign, reg77, ":instance_no"),
+        # (display_message, "@POI {reg77} distance {reg78}"),
+        
+        (try_begin),
+            (eq, ":scene", scn_minas_tirith_center),
+            (eq, ":var1", 1),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+            (neg|is_currently_night),
+            (lt, ":dist", 1000),
+            #(tutorial_message, "@You happen upon an Old Guesthouse. As you inspect the weathered stone building, you notice a group of boys playing among the pillars, the only children you have seen in Minas Tirith.  One of them greets at you and you wave back, with your heart lightened for a brief moment from the sorrow of war.", 0 , 10),
+            (display_message, "@You happen upon an Old Guesthouse. As you inspect the weathered stone building, you notice a group of boys playing among the pillars, the only children you have seen in Minas Tirith.  One of them greets you and you wave back. Your heart is gladdened and you forget, for a brief moment, the sorrow of war."),
+            (add_xp_as_reward, 100),
+            (call_script, "script_change_player_party_morale", 35),
+            (call_script, "script_change_player_relation_with_center", "$current_town", 3),
+            (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+            (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used            
+
+        (else_try),
+            (eq, ":scene", scn_henneth_annun_castle),
+            (eq, ":var1", 1),
+            (is_between, ":time", 18, 21),
+            (try_begin),
+              (eq, "$temp_2", 0),
+              (set_spawn_position, pos5),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (assign, "$temp_2", 1),
+            (try_end),            
+            (lt, ":dist", 400),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),            
+            (display_message, "@You look through Henneth Annun, the Window of the Sunset. The beautiful sight restores your faith in the West and the Powers beyond."),
+            (add_xp_as_reward, 100),
+            (call_script, "script_change_player_party_morale", 35),
+            (call_script, "script_change_player_relation_with_center", "$current_town", 3),
+            (call_script, "script_increase_rank", "$ambient_faction", 10),
+            (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+            (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used              
+
+        (else_try), #Cirith Ungol Stairs
+            (eq, ":scene", scn_minas_morgul_center),
+            (eq, ":var1", 1),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+            (lt, ":dist", 1000),
+            (display_message, "@As you follow the straight stairs, cut into the rock of the mountain, and then a second set of stairs, winding as it clings to the cliff-face, you realize that you should not pursue this path any further if you value your own life."),
+            (play_sound, "snd_spider"),
+            (add_xp_as_reward, 500),
+            (call_script, "script_change_player_relation_with_center", "$current_town", 3),
+            (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used
+            (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+           
+        (else_try), #Minas Morgul citadel
+            (eq, ":scene", scn_minas_morgul_center),
+            (eq, ":var1", 2),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_2, 1),
+            (lt, ":dist", 8500),
+            (try_begin),
+                (lt, ":player_level", 12), 
+                (store_random_in_range, ":chance", 3000, 11000),     
+                (gt, ":chance", ":dist"),
+                (store_random_in_range, ":long_skretch", 0,2),
+                (try_begin), 
+                    (ge,":player_mount",0), 
+                    (agent_set_animation, ":player_mount", "anim_horse_rear"), 
+                    (agent_set_animation, ":player_agent", "anim_nazgul_noooo_mounted_short"), 
+                (else_try), 
+                    (ge,":long_skretch",1),
+                    (agent_set_animation, ":player_agent", "anim_nazgul_noooo_long"),
+                (else_try), 
+                    (agent_set_animation, ":player_agent", "anim_nazgul_noooo_short"),
+                (try_end),
+                (agent_deliver_damage_to_agent, ":player_agent", ":player_agent", 30),
+                (val_div, ":chance", 2),
+                (gt, ":chance", ":dist"),
+                (try_begin),
+                    (ge,":long_skretch",1),
+                    (agent_play_sound, ":player_agent", "snd_nazgul_skreech_long" ),
+                (else_try),
+                    (agent_play_sound, ":player_agent", "snd_nazgul_skreech_short"),
+                (try_end),
+                (display_message, "@You are unable to endure the horrors of the Dead City."),
+            (else_try),
+                (lt, ":dist", 3000),
+                (ge, ":player_level", 12),
+                (store_random_in_range, ":chance", 0, 100),
+                (lt, ":chance", 15), #so it doesn't happen immediatly
+                (display_message, "@You endure the horrors of the Dead City and explore its innermost circles. The Silent Watchers recognise your valour and don't oppose you. (You gained 1 Charisma.)"),
+                (add_xp_as_reward, 500),
+                (call_script, "script_change_player_relation_with_center", "$current_town", 10),
+                (call_script, "script_increase_rank", "$ambient_faction", 20),
+                (troop_raise_attribute, "trp_player", ca_charisma, 1),
+                (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used
+                (party_set_slot, "$current_town", slot_exploration_point_2, 1),         
+            (try_end),
+            
+        (else_try), #Rhun temple 
+            (eq, ":scene", scn_north_rhun_camp_center),
+            (eq, ":var1", 1),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+            (lt, ":dist", 3000),
+            (try_begin),          
+                (lt, ":player_level", 8),
+                (store_random_in_range, ":chance", 0, 4500),
+                (assign, reg77, ":chance"),          
+                (lt, ":chance", ":dist"),
+                (agent_get_animation, ":cur_animation", ":player_agent", 1),
+                (neq, ":cur_animation", "anim_nazgul_noooo_long"),
+                (agent_set_animation, ":player_agent", "anim_nazgul_noooo_long"),
+                (val_mul, ":chance", 2),
+                (lt, ":chance", ":dist"),
+                (agent_stop_sound, ":player_agent"),
+                (play_sound_at_position ,"snd_horror_scream_man", pos5),            
+                (display_message, "@You are unable to endure the horrors of the temple."),
+            (else_try),
+                (lt, ":dist", 1000),
+                (ge, ":player_level", 8),
+                (display_message, "@You endure the horrors of the unspeakable rituals in this sacred place. The cruel people of Rhun recognise the strength you have shown and some of their mightiest decide to join your party."),
+                (agent_set_animation, ":player_agent", "anim_cheer"),
+                (call_script, "script_troop_get_cheer_sound", "trp_player"),
+                (ge, reg1, 0),
+                (agent_play_sound, ":player_agent", reg1),            
+                (add_xp_as_reward, 500),
+                (call_script, "script_change_player_relation_with_center", "$current_town", 10),
+                (call_script, "script_increase_rank", "$ambient_faction", 16),
+                (party_force_add_members, "p_main_party", "trp_c6_rhun_warlord", 5),
+                (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used
+                (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+            (try_end),
+
+        (else_try),
+            (eq, ":scene", scn_gundabad_camp_center),
+            (eq, ":var1", 1),
+            (try_begin),
+              (eq, "$temp_2", 0),
+              (set_spawn_position, pos5),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (assign, "$temp_2", 1),
+            (try_end),            
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+            (lt, ":dist", 500),
+            (try_begin),
+                (lt, ":rank", 4),
+                (display_message, "@You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. This is no place for one such as you. Snarling, you make your retreat. When the Shadow has covered the world above, perhaps then, you may return here without fear..."),
+                (agent_deliver_damage_to_agent, ":player_agent", ":player_agent", 30),
+            (else_try),
+                (ge, ":rank", 4),
+                (display_message, "@You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. Raising your weapon high, you snarl your defiance at the unseen foe in this place. This may have been a place of wonder once... but now, with the true power you have gained, you realize you have nothing to fear from the forgotten past of a broken world."),                
+                (add_xp_as_reward, 800),
+                (call_script, "script_change_player_party_morale", 35),
+                (call_script, "script_change_player_relation_with_center", "$current_town", 3),
+                (troop_raise_attribute, "trp_player", ca_charisma, 1),
+                (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+            (try_end),
+            (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used  
+
+        (else_try),
+            (eq, ":scene", scn_caras_galadhon_center),
+            (eq, ":var1", 1),
+            (try_begin),
+              (eq, "$temp_2", 0),
+              (is_currently_night),
+              (position_move_z, pos5, 25),
+              (set_spawn_position, pos5),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (spawn_scene_prop, "spr_moon_beam"),
+              (spawn_scene_prop, "spr_moon_sparks"),
+              (assign, "$temp_2", 1),
+            (try_end),            
+            (lt, ":dist", 400),
+            (troop_get_slot, ":galadriel_relation", "trp_lorien_lord", slot_troop_player_relation),
+            (try_begin),
+                (is_currently_night),
+                (ge, ":galadriel_relation", 40),
+                (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+                (store_random_in_range, ":chance", 0, 100),
+                (lt, ":chance", 20), #so it doesn't happen immediatly                   
+                (display_message, "@With trepidation, you look within the silver basin. The water shows you visions of horror; blood and terror and grief. You recoil... but then, the visions vanish and you see instead a clear night sky, with what seems to be a silver boat floating across the expanse. A sense of calm washes over you. Hope is not wholly gone."),
+                (add_xp_as_reward, 1500),
+                (troop_raise_attribute, "trp_player", ca_intelligence, 1),
+                (call_script, "script_change_player_party_morale", 50),
+                (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+                (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used
+                (play_sound, "snd_elf_song"),
+            (else_try),
+                (neg|is_currently_night),
+                (store_random_in_range, ":chance", 0, 100),
+                (lt, ":chance", 20), #so it doesn't happen immediatly   
+                (display_message, "@The Lady's garden lies peacefully in the bright daylight. You sense nothing out of the ordinary..."),
+            (try_end),
+
+        (else_try),
+            (eq, ":scene", scn_edoras_center),
+            (eq, ":var1", 1),            
+            (lt, ":dist", 2000),
+            #(eq, ":player_mount", -1),
+            (neg|party_slot_eq, "$current_town", slot_exploration_point_1, 1),
+            (store_random_in_range, ":chance", 0, 100),
+            (lt, ":chance", 20), #so it doesn't happen immediatly            
+            (try_begin),
+                (ge, ":rank", 4),
+                (display_message, "@You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words."),
+                (add_xp_as_reward, 500),
+                (call_script, "script_change_player_relation_with_center", "$current_town", 3),
+                (call_script, "script_increase_rank", "$ambient_faction", 20),
+                (party_set_slot, "$current_town", slot_exploration_point_1, 1),
+                (scene_prop_set_slot, ":instance_no", scene_prop_open_or_close_slot, 1), #used
+            (else_try),
+                (lt, ":rank", 4),
+                (call_script, "script_get_rank_title_to_s24", "$ambient_faction"),
+                (display_message, "@You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance."),
+            (try_end),
+        (try_end),    
+    (try_end),
+
+    (try_for_prop_instances, ":instance_no", "spr_secret_guardian"), #guardians, can also be used for persons of interest, very nice!
+        (prop_instance_get_variation_id, ":var1", ":instance_no"),
+        (prop_instance_get_position, pos5, ":instance_no"),
+        (get_distance_between_positions, ":dist", pos4, pos5),
+        (assign, ":speak_dist", 0),
+        (assign, ":rank_req", 0),
+        
+        #debug
+        # (assign, reg78, ":dist"),
+        # (assign, reg77, ":instance_no"),
+        # (display_message, "@POI {reg77} distance {reg78}"),
+        
+        (str_store_string, s1, "@Halt! You are not allowed to enter here!"),
+        
+        (try_begin),
+            (eq, ":scene", scn_minas_tirith_center),
+            (eq, ":var1", 1),
+            (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+            (assign, ":rank_req", 4),
+            (assign, ":speak_dist", 500),
+        (else_try),
+            (eq, ":scene", scn_caras_galadhon_center),
+            (eq, ":var1", 1),
+            (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+            (troop_get_slot, ":rank", "trp_lorien_lord", slot_troop_player_relation),
+            (assign, ":rank_req", 40),
+            (assign, ":speak_dist", 500),
+            (str_store_string, s1, "@Halt! You are not allowed to enter here without the Lady's leave!"),
+        (try_end), 
+
+        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        (neg|agent_slot_eq, ":agent", slot_agent_secret_guardian, 0),
+
+        (try_begin), #spawn barrier
+            (agent_slot_eq, ":agent", slot_agent_assigned_prop, 0),
+            (position_rotate_z, pos5, 180),
+            (set_spawn_position, pos5),
+            (spawn_scene_prop, "spr_barrier_8m"),
+            (agent_set_slot, ":agent", slot_agent_assigned_prop, reg0),
+        (try_end),
+
+        (lt, ":dist", ":speak_dist"),
+        (try_begin),
+            (lt, ":rank", ":rank_req"),
+            (agent_set_slot, ":agent", slot_agent_secret_guardian, 1), #used for tracking guardian status
+        (else_try),
+            (agent_set_slot, ":agent", slot_agent_secret_guardian, -1), #let player pass
+        (try_end),
+
+        (agent_get_troop_id, ":troop_no", ":agent"),
+        (assign, "$temp", ":agent"), #very absurd workaround to make sure that it always catches the right agent for dialog window
+        (assign, "$talk_context", tc_castle_gate),
+        
+        (start_mission_conversation, ":troop_no"),
+    (try_end),    
+    ]),
+
+  # #spawn guardians
+  # (ti_after_mission_start, 1, ti_once, [], [ 
+    # (store_current_scene, ":scene"),
+    # (try_for_prop_instances, ":instance_no", "spr_secret_guardian"), #guardians, can also be used for persons of interest, very nice!
+        # (prop_instance_get_variation_id, ":var1", ":instance_no"),
+        
+        # (try_begin),
+            # (eq, ":scene", scn_minas_tirith_center),
+            # (eq, ":var1", 2), 
+            # (assign, ":troop", trp_i6_gon_tower_swordsman),
+        # (else_try),
+            # (eq, ":scene", scn_caras_galadhon_center),
+            # (eq, ":var1", 0), 
+            # (assign, ":troop", trp_i6_gon_tower_swordsman),
+        # (try_end),
+
+        # (gt, ":troop", 0),
+        # (prop_instance_get_position, pos5, ":instance_no"),
+        # (set_spawn_position, pos5),
+        # (spawn_agent, ":troop"),
+        # (assign, ":agent", reg0),
+        # (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, ":agent"),
+        # (agent_set_slot, ":agent", slot_agent_secret_guardian, 1),
+        # (position_rotate_z, pos5, 180),
+        # (set_spawn_position, pos5),
+        # (spawn_scene_prop, "spr_barrier_8m"),
+        # (agent_set_slot, ":agent", slot_agent_assigned_prop, reg0),
+    # (try_end), 
+      # ]),    
+]

@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|Garde d'Eorl du Rohan
 trp_c6_rider_guard_of_rohan_pl|Gardes d'Eorl du Rohan
 trp_i6_2h_guard_of_rohan|Garde de Helm du Rohan
 trp_i6_2h_guard_of_rohan_pl|Gardes de Helm du Rohan
-trp_dismounted_veteran_skirmisher_of_rohan|Tirailleur vétéran du Rohan
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Archers vétérans du Rohan
-trp_dismounted_elite_skirmisher_of_rohan|Tirailleur d'élite du Rohan
-trp_dismounted_elite_skirmisher_of_rohan_pl|Tirailleurs d'élite du Rohan
-trp_dismounted_thengel_guard_of_rohan|Garde de Thengel du Rohan
-trp_dismounted_thengel_guard_of_rohan_pl|Gardes de Thengel du Rohan
+trp_ac3_dism_skirmisher_of_rohan2|Tirailleur du Rohan
+trp_ac3_dism_skirmisher_of_rohan2_pl|Tirailleurs du Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Tirailleur vétéran du Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Archers vétérans du Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2|Tirailleur d'élite du Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Tirailleurs d'élite du Rohan
 trp_i1_harad_levy|Recrue du Harad
 trp_i1_harad_levy_pl|Recrues du Harad
 trp_i3_harad_infantry|Fantassin léger du Harad
@@ -887,14 +887,13 @@ trp_walker_woman_rohan_d|Jeune fille du Rohan
 trp_walker_woman_gondor_b|Femme du Gondor
 trp_walker_woman_gondor_bw|Femme du Gondor
 trp_walker_woman_gondor_w|Noble du Gondor
-trp_ramun_the_slave_trader|Ramun le marchand d'esclaves
-trp_guide|Jimmy le Prompt
-trp_galeas|Galeas
-trp_farmer_from_bandit_village|Fermier
-trp_farmer_from_bandit_village_pl|Fermiers
-trp_trainer_1|Mentor
-trp_trainer_2|Mentor
-trp_trainer_3|Mentor
+trp_mirkwood_walker_1|Elfe de Vertbois
+trp_mirkwood_walker_2|Elfe de Vertbois
+trp_lorien_walker_1|Elfe de la Lothlórien
+trp_lorien_walker_2|Elfe de la Lothlórien
+trp_dwarf_walker|Nain
+trp_beorn_walker|Paysan
+trp_beorn_walker_fem|Paysanne
 trp_trainer_4|Mentor
 trp_trainer_gondor|Mentor
 trp_trainer_rohan|Mentor
@@ -984,10 +983,6 @@ trp_dunland_lord_pl|Chef
 trp_beorn_lord|Chef Grimbeorn le Vieux
 trp_beorn_lord_pl|Chef
 trp_lorien_marshall|Celeborn
-trp_pippin_notmet|Demi-homme
-trp_merry_notmet|Demi-Homme
-trp_pippin|Pippin
-trp_merry|Merry
 trp_knight_1_1|Angbor l'Intrépide
 trp_knight_1_2|Húrin des Clefs
 trp_knight_1_3|Prince Imrahil
@@ -1511,6 +1506,7 @@ trp_gandalf|Gandalf
 trp_gandalf_pl|Maisons de Gandalf
 trp_nazgul|Nazgûl
 trp_nazgul_pl|Nazgûl domestiqué
+trp_radagast|Radagast
 trp_barman|Barman
 trp_elder|l'Ancien de la ville
 trp_gear_merchant|Marchand d'équipement
@@ -1528,8 +1524,8 @@ trp_uruk_hai_sentry|Sentinelle uruk-hai
 trp_uruk_hai_sentry_pl|sentinelle uruk-hai
 trp_black_numenorean_sorcerer|Sorcier númenoréen noir
 trp_black_numenorean_sorcerer_pl|Sorcier númenoréen noir
-trp_black_numenorean_acolyte|Acolyte númenoréen noir
-trp_black_numenorean_acolyte_pl|Acolytes númenoréens noirs
+trp_evil_priest|Prêtre maléfique
+trp_evil_priest_pl|Prêtres maléfiques
 trp_wolf_rider_of_mirkwood|Chevaucheur de loup de Grand'Peur
 trp_wolf_rider_of_mirkwood_pl|Chevaucheurs de loups de Grand'Peur
 trp_warg_rider_of_mirkwood|Chevaucheur de warg de Grand'Peur
@@ -1636,3 +1632,18 @@ trp_tribal_orc_warrior|Guerrier orque tribal
 trp_tribal_orc_warrior_pl|Guerriers orques tribaux
 trp_tribal_orc_chief|Chef orque tribal
 trp_tribal_orc_chief_pl|Chefs orques tribaux
+trp_a3_dism_skirmisher_of_rohan|Tirailleur du Rohan
+trp_a3_dism_skirmisher_of_rohan_pl|Tirailleurs du Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan|Tirailleur vétéran du Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Archers vétérans du Rohan
+trp_a5_dism_elite_skirmisher_of_rohan|Tirailleur d'élite du Rohan
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Tirailleurs d'élite du Rohan
+trp_ac5_camel_rider|Cavalier sur dromadaire du Harad
+trp_ac5_camel_rider_pl|Cavaliers sur dromadaire du Harad
+trp_aragorn|Aragorn
+trp_legolas|Legolas
+trp_gimli|Gimli
+trp_pippin_notmet|Demi-homme
+trp_merry_notmet|Demi-Homme
+trp_pippin|Pippin
+trp_merry|Merry

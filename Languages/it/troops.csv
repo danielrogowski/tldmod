@@ -114,14 +114,14 @@ trp_ac2_rhun_horse_scout|Esploratore a Cavallo del Rhûn
 trp_ac2_rhun_horse_scout_pl|Esploratori a Cavallo del Rhûn
 trp_ac3_rhun_horse_archer|Arciere a Cavallo del Rhûn
 trp_ac3_rhun_horse_archer_pl|Arcieri a Cavallo del Rhûn
-trp_ac4_rhun_veteran_horse_archer|Arciere Veterano a Cavallo del Rhûn
-trp_ac4_rhun_veteran_horse_archer_pl|Arcieri Veterani a Cavallo del Rhûn
+trp_ac4_rhun_veteran_horse_archer|Arciere a Cavallo Veterano del Rhûn
+trp_ac4_rhun_veteran_horse_archer_pl|Arcieri a Cavallo Veterani del Rhûn
 trp_ac5_rhun_balchoth_horse_archer|Arciere a Cavallo Balchoth
 trp_ac5_rhun_balchoth_horse_archer_pl|Arcieri a Cavallo Balchoth
 trp_c3_rhun_swift_horseman|Cavaliere Rapido del Rhûn
 trp_c3_rhun_swift_horseman_pl|Cavalieri Rapidi del Rhûn
-trp_c4_rhun_veteran_swift_horseman|Cavaliere Veterano Rapido del Rhûn 
-trp_c4_rhun_veteran_swift_horseman_pl|Cavalieri Veterani Rapidi del Rhûn
+trp_c4_rhun_veteran_swift_horseman|Cavaliere Rapido Veterano del Rhûn
+trp_c4_rhun_veteran_swift_horseman_pl|Cavalieri Rapidi Veterani del Rhûn
 trp_c5_rhun_falcon_horseman|Cavaliere Falco
 trp_c5_rhun_falcon_horseman_pl|Cavalieri Falco
 trp_i2_rhun_tribal_warrior|Fante Tribale del Rhûn
@@ -138,7 +138,7 @@ trp_c3_rhun_outrider|Esploratore di Rhûn
 trp_c3_rhun_outrider_pl|Esploratori di Rhûn
 trp_c4_rhun_noble_rider|Cavaliere Nobile di Rhûn
 trp_c4_rhun_noble_rider_pl|Cavalieri Nobili di Rhûn 
-trp_c5_rhun_warrider|Cavaliere Guerriero di Rhûn 
+trp_c5_rhun_warrider|Cavaliere Guerriero di Rhûn
 trp_c5_rhun_warrider_pl|Cavalieri Guerrieri di Rhûn 
 trp_c6_rhun_warlord|Signore della Guerra di Rhûn
 trp_c6_rhun_warlord_pl|Signori della Guerra di Rhûn
@@ -220,8 +220,8 @@ trp_steward_guard|Guardia del Sovrintendente
 trp_steward_guard_pl|Guardie del Sovrintendente
 trp_a4_ithilien_ranger|Ramingo dell'Ithilien
 trp_a4_ithilien_ranger_pl|Raminghi dell'Ithilien
-trp_a5_ithilien_vet_ranger|Ramingo veterano dell'Ithilien
-trp_a5_ithilien_vet_ranger_pl|Raminghi veterani dell'Ithilien
+trp_a5_ithilien_vet_ranger|Ramingo Veterano dell'Ithilien
+trp_a5_ithilien_vet_ranger_pl|Raminghi Veterani dell'Ithilien
 trp_a6_ithilien_master_ranger|Mastro Ramingo dell'Ithilien
 trp_a6_ithilien_master_ranger_pl|Mastri Raminghi dell'Ithilien
 trp_a6_ithilien_leader|Capitano dei Raminghi dell'Ithilien
@@ -386,32 +386,32 @@ trp_i5_riv_swordmaster|Mastro Spadaccino di Gran Burrone
 trp_i5_riv_swordmaster_pl|Mastri Spadaccini di Gran Burrone
 trp_i6_riv_champion|Campione di Imladris
 trp_i6_riv_champion_pl|Campioni di Imladris
-trp_ac5_riv_rider|Cavallerizzo di Gran Burrone 
+trp_ac5_riv_rider|Cavallerizzo di Gran Burrone
 trp_ac5_riv_rider_pl|Cavallerizzi di Gran Burrone
 trp_ac6_riv_knight|Cavaliere di Imladris
 trp_ac6_riv_knight_pl|Cavalieri di Imladris
 trp_i6_rivendell_standard_bearer|Portastendardo di Gran Burrone
 trp_i6_rivendell_standard_bearer_pl|Portastendardi di Gran Burrone
-trp_a1_arnor_scout|Esploratore Dunedain
-trp_a1_arnor_scout_pl|Esploratori Dunedain
-trp_a2_arnor_vet_scout|Inseguitore Dunedain
-trp_a2_arnor_vet_scout_pl|Inseguitori Dunedain
-trp_i3_arnor_swordsman|Spadaccino Dunedain
-trp_i3_arnor_swordsman_pl|Spadaccini Dunedain
-trp_i4_arnor_vet_swordsman|Spadaccino Veterano Dunedain
-trp_i4_arnor_vet_swordsman_pl|Spadaccini Veterani Dunedain
+trp_a1_arnor_scout|Esploratore Dúnedain
+trp_a1_arnor_scout_pl|Esploratori Dúnedain
+trp_a2_arnor_vet_scout|Inseguitore Dúnedain
+trp_a2_arnor_vet_scout_pl|Inseguitori Dúnedain
+trp_i3_arnor_swordsman|Spadaccino Dúnedain
+trp_i3_arnor_swordsman_pl|Spadaccini Dúnedain
+trp_i4_arnor_vet_swordsman|Spadaccino Veterano Dúnedain
+trp_i4_arnor_vet_swordsman_pl|Spadaccini Veterani Dúnedain
 trp_i5_arnor_champion|Campione di Arnor
 trp_i5_arnor_champion_pl|Campioni di Arnor
-trp_c4_arnor_horseman|Cavallerizzo Dunedain
-trp_c4_arnor_horseman_pl|Cavallerizzi Dunedain
+trp_c4_arnor_horseman|Cavallerizzo Dúnedain
+trp_c4_arnor_horseman_pl|Cavallerizzi Dúnedain
 trp_c5_arnor_knight|Cavaliere di Arnor
 trp_c5_arnor_knight_pl|Cavalieri di Arnor
-trp_a3_arnor_ranger|Guardia della Foresta Dunedain
-trp_a3_arnor_ranger_pl|Guardie della Foresta Dunedain
-trp_a4_arnor_vet_ranger|Guardia della Foresta Dunedain Veterana
-trp_a4_arnor_vet_ranger_pl|Guardie della Foresta Dunedain Veterane
-trp_a5_arnor_master_ranger|Mastro Ranger di Arnor
-trp_a5_arnor_master_ranger_pl|Mastri Rangers di Arnor
+trp_a3_arnor_ranger|Ramingo Dúnedain
+trp_a3_arnor_ranger_pl|Raminghi Dúnedain
+trp_a4_arnor_vet_ranger|Ramingo Dúnedain Veterano
+trp_a4_arnor_vet_ranger_pl|Raminghi Dúnedain Veterani
+trp_a5_arnor_master_ranger|Mastro Ramingo di Arnor
+trp_a5_arnor_master_ranger_pl|Mastri Raminghi di Arnor
 trp_i1_rohan_youth|Giovane di Rohan
 trp_i1_rohan_youth_pl|Giovani di Rohan
 trp_i2_guardsman_of_rohan|Guardia di Rohan
@@ -458,12 +458,12 @@ trp_c6_rider_guard_of_rohan|Guardia dell'Ordine di Eorl di Rohan
 trp_c6_rider_guard_of_rohan_pl|Guardie dell'Ordine di Eorl di Rohan
 trp_i6_2h_guard_of_rohan|Guardia dell'Ordine di Helm di Rohan
 trp_i6_2h_guard_of_rohan_pl|Guardie dell'Ordine di Helm di Rohan
-trp_dismounted_veteran_skirmisher_of_rohan|Schermagliatore Veterano di Rohan
-trp_dismounted_veteran_skirmisher_of_rohan_pl|Schermagliatori Veterani di Rohan
-trp_dismounted_elite_skirmisher_of_rohan|Schermagliatore d'Élite di Rohan
-trp_dismounted_elite_skirmisher_of_rohan_pl|Schermagliatori d'Élite di Rohan
-trp_dismounted_thengel_guard_of_rohan|Guardia dell'Ordine di Thengel di Rohan
-trp_dismounted_thengel_guard_of_rohan_pl|Guardie dell'Ordine di Thengel di Rohan
+trp_ac3_dism_skirmisher_of_rohan2|Schermagliatore di Rohan
+trp_ac3_dism_skirmisher_of_rohan2_pl|Schermagliatori di Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2|Schermagliatore Veterano di Rohan
+trp_ac4_dism_veteran_skirmisher_of_rohan2_pl|Schermagliatori Veterani di Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2|Schermagliatore d'Élite di Rohan
+trp_ac5_dism_elite_skirmisher_of_rohan2_pl|Schermagliatori d'Élite di Rohan
 trp_i1_harad_levy|Coscritto di Harad
 trp_i1_harad_levy_pl|Coscritti di Harad
 trp_i3_harad_infantry|Fante leggero di Harad
@@ -536,12 +536,12 @@ trp_c3_khand_horseman|Cavaliere di Khand
 trp_c3_khand_horseman_pl|Cavalieri di Khand
 trp_c4_khand_heavy_horseman|Cavaliere Pesante di Khand
 trp_c4_khand_heavy_horseman_pl|Cavalieri Pesanti di Khand
-trp_c5_khand_kataphrakt|Catafratto Variago 
+trp_c5_khand_kataphrakt|Catafratto Variago
 trp_c5_khand_kataphrakt_pl|Catafratti Variaghi
 trp_c5_khand_lance_kataphrakt|Lanciere Variago
 trp_c5_khand_lance_kataphrakt_pl|Lancieri Variaghi
-trp_i4_khand_halberdier|Spadaccino di Khand
-trp_i4_khand_halberdier_pl|Spadaccini di Khand
+trp_i4_khand_halberdier|Falciatore di Khand
+trp_i4_khand_halberdier_pl|Falciatori di Khand
 trp_i5_khand_halberd_master|Mastro d'Alabarda Variago
 trp_i5_khand_halberd_master_pl|Mastri d'Alabarda Variaghi
 trp_i3_khand_pitfighter|Combattente delle Fosse di Khand
@@ -609,23 +609,23 @@ trp_ac3_isen_warg_rider_pl|Cavalca-Warg di Isengard
 trp_ac4_isen_white_hand_rider|Cavaliere della Mano Bianca
 trp_ac4_isen_white_hand_rider_pl|Cavalieri della Mano Bianca
 trp_warg_ghost_1b|Warg
-trp_warg_ghost_1b_pl|Wargs
+trp_warg_ghost_1b_pl|Warg
 trp_warg_ghost_1c|Warg
-trp_warg_ghost_1c_pl|Wargs
+trp_warg_ghost_1c_pl|Warg
 trp_warg_ghost_1d|Warg
-trp_warg_ghost_1d_pl|Wargs
+trp_warg_ghost_1d_pl|Warg
 trp_warg_ghost_a1b|Warg
-trp_warg_ghost_a1b_pl|Wargs
+trp_warg_ghost_a1b_pl|Warg
 trp_warg_ghost_a1c|Warg Corazzato
-trp_warg_ghost_a1c_pl|Wargs Corazzati
+trp_warg_ghost_a1c_pl|Warg Corazzati
 trp_warg_ghost_a2b|Warg Corazzato
-trp_warg_ghost_a2b_pl|Wargs Corazzati
+trp_warg_ghost_a2b_pl|Warg Corazzati
 trp_warg_ghost_a2c|Warg Corazzato
-trp_warg_ghost_a2c_pl|Wargs Corazzati
+trp_warg_ghost_a2c_pl|Warg Corazzati
 trp_warg_ghost_a3a|Warg Corazzato
-trp_warg_ghost_a3a_pl|Wargs Corazzati
+trp_warg_ghost_a3a_pl|Warg Corazzati
 trp_warg_ghost_h|Warg Gigante
-trp_warg_ghost_h_pl|Wargs Giganti
+trp_warg_ghost_h_pl|Warg Giganti
 trp_a2_isen_uruk_tracker|Inseguitore Uruk-Hai
 trp_a2_isen_uruk_tracker_pl|Inseguitori Uruk-Hai
 trp_a3_isen_large_uruk_tracker|Grande Braccatore Uruk-Hai
@@ -667,9 +667,9 @@ trp_i5_mordor_black_uruk_pl|Uruk Neri di Barad-Dûr
 trp_i5_mordor_uruk_standard_bearer|Portastendardo di Mordor
 trp_i5_mordor_uruk_standard_bearer_pl|Portastendardi di Mordor
 trp_troll_of_moria|Troll di Caverna
-trp_troll_of_moria_pl|Trolls di Caverna
+trp_troll_of_moria_pl|Troll di Caverna
 trp_armoured_troll|Troll Corazzato
-trp_armoured_troll_pl|Trolls Corazzati
+trp_armoured_troll_pl|Troll Corazzati
 trp_olog_hai|Olog-Hai di Mordor
 trp_olog_hai_pl|Olog-Hai di Mordor
 trp_ent_old|Ent
@@ -687,9 +687,9 @@ trp_i3_mordor_large_orc_pl|Grandi Orchi di Mordor
 trp_i4_mordor_fell_orc|Orco Crudele di Mordor
 trp_i4_mordor_fell_orc_pl|Orchi Crudeli di Mordor
 trp_c3_mordor_warg_rider|Cavalca-Warg di Gorgoroth
-trp_c3_mordor_warg_rider_pl|Cavalca-Wargs di Gorgoroth
+trp_c3_mordor_warg_rider_pl|Cavalca-Warg di Gorgoroth
 trp_c4_mordor_great_warg_rider|Grande Cavalca-Warg di Udun
-trp_c4_mordor_great_warg_rider_pl|Grandi Cavalca-Wargs di Udun
+trp_c4_mordor_great_warg_rider_pl|Grandi Cavalca-Warg di Udun
 trp_i2_mordor_morgul_orc|Orco di Minas Morgul
 trp_i2_mordor_morgul_orc_pl|Orchi di Minas Morgul
 trp_i4_mordor_fell_morgul_orc|Orco Crudele di Minas Morgul
@@ -887,14 +887,13 @@ trp_walker_woman_rohan_d|Fanciulla di Rohan
 trp_walker_woman_gondor_b|Donna di Gondor
 trp_walker_woman_gondor_bw|Donna di Gondor
 trp_walker_woman_gondor_w|Nobile di Gondor
-trp_ramun_the_slave_trader|Ramun, il commerciante di schiavi
-trp_guide|Jimmy lo Svelto
-trp_galeas|Galeas
-trp_farmer_from_bandit_village|Contadino
-trp_farmer_from_bandit_village_pl|Contadini
-trp_trainer_1|Addestratore
-trp_trainer_2|Addestratore
-trp_trainer_3|Addestratore
+trp_mirkwood_walker_1|Elfo di Boscoverde
+trp_mirkwood_walker_2|Elfo di Boscoverde
+trp_lorien_walker_1|Elfo di Lothlorien
+trp_lorien_walker_2|Elfo di Lothlorien
+trp_dwarf_walker|Nano
+trp_beorn_walker|Contadino
+trp_beorn_walker_fem|Contadina
 trp_trainer_4|Addestratore
 trp_trainer_gondor|Addestratore
 trp_trainer_rohan|Addestratore
@@ -984,10 +983,6 @@ trp_dunland_lord_pl|Capo
 trp_beorn_lord|Capo Grimbeorn, il Vecchio
 trp_beorn_lord_pl|Capo
 trp_lorien_marshall|Celeborn
-trp_pippin_notmet|Mezzuomo
-trp_merry_notmet|Mezzuomo
-trp_pippin|Pipino
-trp_merry|Merry
 trp_knight_1_1|Angbor, l'Impavido
 trp_knight_1_2|Húrin Delle Chiavi
 trp_knight_1_3|Principe Imrhail
@@ -1074,8 +1069,8 @@ trp_smith_wosgiliath|Gardil
 trp_smith_wosgiliath_pl|la fucina improvvisata
 trp_smith_calembel|Agronom
 trp_smith_calembel_pl|la fucina
-trp_smith_hannun|Fal, il Fabbro dei Ranger
-trp_smith_hannun_pl|Equipaggiamento di scorta dei Ranger
+trp_smith_hannun|Fal, il Fabbro dei Raminghi
+trp_smith_hannun_pl|Equipaggiamento di scorta dei Raminghi
 trp_smith_candros|Kalimdor
 trp_smith_candros_pl|la fucina
 trp_smith_edoras|Eaoden, il Mastro dell'Acciaio
@@ -1110,9 +1105,9 @@ trp_smith_uhcamp|Rabzug Mangiaruggine
 trp_smith_uhcamp_pl|Il fabbro del campo
 trp_smith_urcamp|Glurk
 trp_smith_urcamp_pl|Il fabbro del campo
-trp_smith_cgaladhon|Dirufin, il Fabbricatore di Archi
+trp_smith_cgaladhon|Dirufin, il Fabbrica-Archi
 trp_smith_cgaladhon_pl|I forgiatori di armi elfiche
-trp_smith_cdolen|Dimirian, il Fabbricafrecce
+trp_smith_cdolen|Dimirian, il Fabbrica-Frecce
 trp_smith_cdolen_pl|I forgiatori di armi elfiche
 trp_smith_camroth|Getasistan
 trp_smith_camroth_pl|I forgiatori di armi elfiche
@@ -1120,7 +1115,7 @@ trp_smith_thranduils_halls|Thurinor
 trp_smith_thranduils_halls_pl|la fucina
 trp_smith_woodelf_camp|Calechir
 trp_smith_woodelf_camp_pl|la fucina
-trp_smith_beorn|Beornalaf, il Fabbricatore di Asce
+trp_smith_beorn|Beornalaf, il Fabbrica-Asce
 trp_smith_beorn_pl|la fucina
 trp_smith_moria|Burgak, il Forgiatore
 trp_smith_moria_pl|la fucina
@@ -1158,7 +1153,7 @@ trp_smith_mordor_ac|Hurbag, il Forgiacancelli
 trp_smith_mordor_ac_pl|la fucina
 trp_smith_isengard_ac|Burz, il Battiferro
 trp_smith_isengard_ac_pl|la fucina sotterranea
-trp_smith_lorien_ac|Dimirian, il Fabbricafrecce
+trp_smith_lorien_ac|Dimirian, il Fabbrica-Frecce
 trp_smith_lorien_ac_pl|I forgiatori di armi elfiche
 trp_smith_woodelf_ac|Dhoelath
 trp_smith_woodelf_ac_pl|la fucina
@@ -1184,13 +1179,13 @@ trp_smith_moria_ac|Burgak, il Forgiatore
 trp_smith_moria_ac_pl|la fucina
 trp_smith_dale_ac|Ardel Manodifuoco
 trp_smith_dale_ac_pl|la fucina
-trp_smith_beorn_ac|Beornalaf, il Fabbricatore di Asce
+trp_smith_beorn_ac|Beornalaf, il Fabbrica-Asce
 trp_smith_beorn_ac_pl|la fucina
 trp_smith_woodelf_west_camp|Dhoelath
 trp_smith_woodelf_west_camp_pl|la fucina
-trp_smith_woodmen|Beornalaf, il Fabbricatore di Asce
+trp_smith_woodmen|Beornalaf, il Fabbrica-Asce
 trp_smith_woodmen_pl|la fucina
-trp_smith_beorn_v|Beornalaf, il Fabbricatore di Asce
+trp_smith_beorn_v|Beornalaf, il Fabbrica-Asce
 trp_smith_beorn_v_pl|la fucina
 trp_smith_troll_cave|Burgak, il Forgiatore
 trp_smith_troll_cave_pl|la fucina
@@ -1372,7 +1367,7 @@ trp_elder_pinnath|Saggio della Tribù di Pinnath
 trp_elder_pinnath_pl|la città
 trp_elder_ethring|Borgomastro di Calembel
 trp_elder_ethring_pl|la città
-trp_elder_henneth|Borgomastro dei Ranger
+trp_elder_henneth|Borgomastro dei Raminghi
 trp_elder_henneth_pl|Il Nascondiglio
 trp_elder_cairandros|Borgomastro di Cair Andros
 trp_elder_cairandros_pl|L'Isola Fortezza
@@ -1511,6 +1506,7 @@ trp_gandalf|Gandalf
 trp_gandalf_pl|Seguaci di Gandalf
 trp_nazgul|Nazgul
 trp_nazgul_pl|Nazgul addomesticato
+trp_radagast|Radagast
 trp_barman|Barista
 trp_elder|Il Saggio del Centro
 trp_gear_merchant|Mercante di Equipaggiamenti
@@ -1528,8 +1524,8 @@ trp_uruk_hai_sentry|Sentinella Uruk-Hai
 trp_uruk_hai_sentry_pl|Sentinelle Uruk-Hai
 trp_black_numenorean_sorcerer|Stregone Numenoreano Nero
 trp_black_numenorean_sorcerer_pl|Stregoni Numenoreani Neri
-trp_black_numenorean_acolyte|Accolito Numenoreano Nero
-trp_black_numenorean_acolyte_pl|Accoliti Numenoreani Neri
+trp_evil_priest|Sacerdote Oscuro
+trp_evil_priest_pl|Sacerdoti Oscuri
 trp_wolf_rider_of_mirkwood|Cavalca-Lupo di Bosco Atro
 trp_wolf_rider_of_mirkwood_pl|Cavalca-Lupi di Bosco Atro
 trp_warg_rider_of_mirkwood|Cavalca-Warg di Bosco Atro
@@ -1537,7 +1533,7 @@ trp_warg_rider_of_mirkwood_pl|Cavalca-Warg di Bosco Atro
 trp_gate_aggravator|Difesa della Porta
 trp_orc_pretender|Orco Impostore
 trp_human_prisoner|Prigioniero Umano
-trp_spider|Ragno di Bosco Atro
+trp_spider|Ragni di Bosco Atro
 trp_spider_pl|Ragni di Bosco Atro
 trp_bear|Orso
 trp_bear_pl|Orsi
@@ -1589,43 +1585,43 @@ trp_npc20|Zigûrphel
 trp_werewolf|Mannaro
 trp_werewolf_pl|Mannari
 trp_moria_troll|Troll di Caverna
-trp_moria_troll_pl|Trolls di Caverna
+trp_moria_troll_pl|Troll di Caverna
 trp_moria_vet_troll|Troll di Caverna Addestrato
-trp_moria_vet_troll_pl|Trolls di Caverna Addestrati
+trp_moria_vet_troll_pl|Troll di Caverna Addestrati
 trp_moria_armored_troll|Troll di Caverna Corazzato
-trp_moria_armored_troll_pl|Trolls di Caverna Corazzati
+trp_moria_armored_troll_pl|Troll di Caverna Corazzati
 trp_gunda_troll|Troll di Montagna
-trp_gunda_troll_pl|Trolls di Montagna
+trp_gunda_troll_pl|Troll di Montagna
 trp_gunda_vet_troll|Troll di Montagna Addestrato
-trp_gunda_vet_troll_pl|Trolls di Montagna Addestrati
+trp_gunda_vet_troll_pl|Troll di Montagna Addestrati
 trp_gunda_placeholder|Troll di Montagna Addestrato
-trp_gunda_placeholder_pl|Trolls di Montagna Addestrati
+trp_gunda_placeholder_pl|Troll di Montagna Addestrati
 trp_isen_troll|Troll di Isengard
-trp_isen_troll_pl|Trolls di Isengard
+trp_isen_troll_pl|Troll di Isengard
 trp_isen_vet_troll|Troll di Isengard Addestrato
-trp_isen_vet_troll_pl|Trolls di Isengard Addestrati
+trp_isen_vet_troll_pl|Troll di Isengard Addestrati
 trp_isen_armored_troll|Troll di Isengard Corazzato
-trp_isen_armored_troll_pl|Trolls di Isengard Corazzati
+trp_isen_armored_troll_pl|Troll di Isengard Corazzati
 trp_mordor_troll|Troll di Mordor
-trp_mordor_troll_pl|Trolls di Mordor
+trp_mordor_troll_pl|Troll di Mordor
 trp_mordor_vet_troll|Troll di Mordor Addestrato
-trp_mordor_vet_troll_pl|Trolls di Mordor Addestrati
+trp_mordor_vet_troll_pl|Troll di Mordor Addestrati
 trp_mordor_olog_hai|Olog-Hai di Mordor
 trp_mordor_olog_hai_pl|Olog-Hai di Mordor
 trp_troll_placeholder_1|Troll di Caverna
-trp_troll_placeholder_1_pl|Trolls di Caverna
+trp_troll_placeholder_1_pl|Troll di Caverna
 trp_troll_placeholder_2|Troll di Caverna
-trp_troll_placeholder_2_pl|Trolls di Caverna
+trp_troll_placeholder_2_pl|Troll di Caverna
 trp_troll_placeholder_3|Troll di Caverna
-trp_troll_placeholder_3_pl|Trolls di Caverna
+trp_troll_placeholder_3_pl|Troll di Caverna
 trp_troll_placeholder_4|Troll di Caverna
-trp_troll_placeholder_4_pl|Trolls di Caverna
+trp_troll_placeholder_4_pl|Troll di Caverna
 trp_troll_placeholder_5|Troll di Caverna
-trp_troll_placeholder_5_pl|Trolls di Caverna
+trp_troll_placeholder_5_pl|Troll di Caverna
 trp_troll_placeholder_6|Troll di Caverna
-trp_troll_placeholder_6_pl|Trolls di Caverna
+trp_troll_placeholder_6_pl|Troll di Caverna
 trp_wild_troll|Troll di Caverna Selvaggio
-trp_wild_troll_pl|Trolls di Caverna Selvaggi
+trp_wild_troll_pl|Troll di Caverna Selvaggi
 trp_ent|Ent
 trp_ent_pl|Ent
 trp_mountain_goblin|Goblin di Montagna
@@ -1636,3 +1632,18 @@ trp_tribal_orc_warrior|Orco Tribale Guerriero
 trp_tribal_orc_warrior_pl|Orchi Tribali Guerrieri
 trp_tribal_orc_chief|Capo Orco Tribale
 trp_tribal_orc_chief_pl|Capi Orchi Tribali
+trp_a3_dism_skirmisher_of_rohan|Schermagliatore di Rohan
+trp_a3_dism_skirmisher_of_rohan_pl|Schermagliatori di Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan|Schermagliatore Veterano di Rohan
+trp_a4_dism_veteran_skirmisher_of_rohan_pl|Schermagliatori Veterani di Rohan
+trp_a5_dism_elite_skirmisher_of_rohan|Schermagliatore d'Élite di Rohan
+trp_a5_dism_elite_skirmisher_of_rohan_pl|Schermagliatori d'Élite di Rohan
+trp_ac5_camel_rider|Cavaliere Cammellato di Harad
+trp_ac5_camel_rider_pl|Cavalieri Cammellati di Harad
+trp_aragorn|Aragorn
+trp_legolas|Legolas
+trp_gimli|Gimli
+trp_pippin_notmet|Mezzuomo
+trp_merry_notmet|Mezzuomo
+trp_pippin|Pipino
+trp_merry|Merry

@@ -176,7 +176,7 @@ menu_fangorn_danger|^^^^^^Дивні, звуки лякають оточують
 mno_be_quiet_elf|Слід поважати гнів дерев. Рухайтеся якомога тихіше.
 mno_be_quiet|Опустіть зброю і замовкніть! А тепер - геть звідси!
 mno_be_bold|Вперед! Я не боюся бур'янів зі старих казок!
-mno_fight_back|Потрібно дізнатись, у чому справа! Обшукати округу! Спалити пару дерев!
+; mno_fight_back|Let's find out! Search the area! Burn down a tree or two! (Camp)
 menu_fangorn_search_fails|^^^^^^Ви обстежуєте темний, густий ліс, але не можете нічого знайти.^ Однак вам все більше відчувається, що за вами спостерігають і вам загрожує небезпека.
 menu_fangorn_killed_player_only|^^^^^^Ви обстежуєте темний, густий ліс.^ Раптово ви отримуєте удар! Може бути, важка гілка впала вам на голову?^ Ви на короткий час втрачаєте свідомість. Ви серйозно поранені, але можете продовжувати рух.
 mno_ow_get_out|Ай! Пора забиратися з цього проклятого місця!
@@ -200,7 +200,7 @@ mno_leave|Продовжити.
 menu_simple_encounter|^^^^^{s2}^ У вас {reg22} бійців проти {reg11} воїнів супротивника. ^^ Битва розгортається в землі, відомої як {s3}{s4}.^^ Які будуть ваші накази?
 mno_encounter_attack|{reg21? В атаку!: Приготуватися до бою}
 mno_encounter_order_attack|Наказати воїнам {reg21? Атакувати:битися з ворогом} без вашої участі.
-mno_control_allies_menu|Використовуйте вплив, щоб командувати своїми союзниками в поле.
+mno_control_allies_menu|Використовуйте накази, щоб керувати своїми союзниками на полі.
 mno_encounter_hide|Сховатися від ворога...
 mno_special_whip|Рвонутись назустріч ворогу, клацнувши Батогом Пана {s4}.
 mno_encounter_attack_bearform|{reg21?Вступити в бій в образі ведмедя}.
@@ -235,7 +235,7 @@ mno_pre_join_leave|Не Втручатися
 menu_join_battle|^^^Ви прийшли на допомогу військам {s2} в битві проти {s1}.^ У вас {reg22} воїнів, готових до битви, проти {reg11} бійців ворога.^^ Битва розгортається в землі, відомої як {s3}{s4}.
 mno_join_attack|Атакувати ворога.
 mno_join_order_attack|Наказати воїнам битися разом з союзниками, але без вашої участі.
-mno_control_allies_join_menu|Використовуйте очки впливу, щоб командувати своїми союзниками в полі битви.
+mno_control_allies_join_menu|Використовуйте накази, щоб керувати своїми союзниками на полі.
 mno_join_attack_bearform|Вступити в бій у формі ведмедя
 mno_join_leave|Відступити.
 mno_player_control_allies_join_menu|Командуйте ними і атакуйте ворога
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^Ви перемогли всіх супротивник
 menu_close|Нічого.
 menu_town|Перед вами {s60}.{S12}{s13}
 mno_town_menu_0|Пройти далі.
-mno_town_menu_0_door|Увійти всередину.
+; mno_town_menu_0_door|Inspect...
 mno_town_approach|Увійти в {s1}...
 mno_town_castle|Увійти в {s1}.
 mno_town_castle_door|Увійти в замок.
@@ -300,7 +300,7 @@ mno_town_center_door|Вийти на головну площу.
 mno_aw_chamber_door|Відкрити двері.
 mno_trade_with_arms_merchant|Відвідати {s40}.
 mno_trade_with_horse_merchant|Відвідати {s41}.
-mno_town_prison_door|Увійти в темницю.
+; mno_town_prison_door|To the Training Grounds
 mno_dungeon_enter|Увійти в підземелля.
 mno_dungeon_enter_door|Відкрити двері.
 mno_dwarven_warehouse|Відвідати склад гномів
@@ -312,6 +312,7 @@ mno_isengard_underground_door|Перейти до підземних печер
 mno_tirith_toplevel|Зійти на верхній рівень.
 mno_tirith_toplevel_door|Ідіть до Цитаделі
 mno_erebor_gates|Відвідати Великі Врата.
+; mno_erebor_gates_door|Go to the Great Gates
 mno_town_leave|Продовжити...
 mno_town_leave_door|Залишити територію
 menu_player_initiated_siege_result|Ви напали на гарнізон під прапорами {s2}.
@@ -386,9 +387,6 @@ mno_defend_refugees|Не спускати очей з нальотчиків...
 mno_attack_refugees|Напасти на обоз біженців...
 mno_leave_refugees|Залишимо їх... поки що...
 mno_evil_war_tut_continue|Продовжити...
-menu_guardian_party_quest|s8} повідомляє що Ізенгард поніс величезні втрати і готується до останньої битви. Він просить Вас приєднатися до фінального розгрому ізенгардскіх полчищ. У вас має бути щонайменше {reg13} воїнів, і Вам слід поспішити, якщо у Вас ще недостатньо сил.
-mno_guardian_party_reject|Передати що Ви не зможете скласти йому компанію.
-mno_guardian_party_send_word|Передати, що ви незабаром будете.
 menu_alternate_training_fight|Ви будете боротися проти {reg5} супротивників. Ви готові?
 mno_training_continue|Почати тренування...
 menu_alternate_training_conclusion|{s5}
@@ -420,7 +418,7 @@ mno_cb_mordor8|Корсари
 mno_rescue_mission|Прокрастися в лігво чаклуна під покровом ночі.
 mno_next_rescue_scene_door|Далі!
 mno_pick_troops1|Виберіть супутників для цього завдання, {reg0} вибрано
-menu_pick_troops|Кого ви оберете для цього секретного завдання? Поки ви вибрали {reg0} супутників. Ви можете взяти із собою до 10 воїнів.
+menu_pick_troops|Кого б ви взяли з собою в стелс-місію? ^Лише ваші найспритніші війська та товариші зможуть приєднатися до вас. ^Як член партії з найвищими навичками розвідки, {reg65?{s1} радить:ви вирішуєте}, що ви можете взяти з собою до {reg11} військ. ^^Наразі ви вибрали {reg0} супутників.
 mno_go_forward|Супутники обрані, в путь.
 menu_burial_mound|Ви підходите до місця поховання {s1} з {s2}. Він був переможений силами {s28}. Навколо складено зазубрені зброю його полеглих ворогів.
 mno_pay_respects|Схилити коліна і віддати данину поваги.
@@ -442,6 +440,8 @@ menu_death|Вас вбили. Війна триває, але вже без ва
 menu_animal_ambush|Заблукавши, ви трохи відстали від своїх, як раптом...
 menu_animal_ambush_success|{s2} {reg0?впали:впав} перед вами, як пшениця для коси! Незабаром всі ваші нападники лежать на підлозі, поранені або мертві. {S3}
 menu_animal_ambush_fail|Тварини мучать кусають вас {reg0?,: ви та ваш соратник {reg2?s,:,}} але вам вдається відірватися від ворога. Ви сподіваєтеся, що вас не стануть переслідувати.
+; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
+; mno_isengard_continue|Continue
 menu_build_your_scene|Ви можете створити свою власну бойову сцену, використовуючи один із наведених нижче слотів та режим редагування гри (вам потрібно спочатку ввімкнути режим редагування на екрані запуску M&B, а потім натиснути Ctrl+E у межах сцени, щоб отримати доступ до режиму редагування). Ви можете потім представити вашу створену локацію (а саме, файли sco з папки TLD/SceneObj) команді TLD, і, якщо ваша локація вдалася, вона може з'явитися в наступних випусках як одна з випадкових полів битв! ^^Спробуйте визначити, на якій області карти повинна з'являтися ваша локація.^ Пара підказок: уникайте глибокої води, крутих гір і інших непрохідних місць, якщо тільки ви не досвідчений творець локацій і знаєте, як перешкодити переміщенню солдат ІІ в непотрібні місця і направити їх в потрібні.^ (Вхід #0-1 для атакуючих, #4 для захисників, не чіпати #5-8
 mno_scene1|Велика рівнина (file scn custom 1.sco)
 mno_scene2|Середня рівнина (file scn custom 2.sco)
