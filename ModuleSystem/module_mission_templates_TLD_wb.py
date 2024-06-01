@@ -2446,17 +2446,6 @@ tld_kill_or_wounded_triggers = (ti_on_agent_killed_or_wounded, 0, 0, [
 
     (try_end),
   ])
- 
-troll_unkillable_trigger = (ti_on_agent_killed_or_wounded, 0, 0, [],
-    [
-        (store_trigger_param_1, ":agent"),
-        (agent_get_troop_id, ":troop_id", ":agent"),
-        (troop_get_type, ":race", ":troop_id"),
-        (try_begin),
-            (eq, ":race", tf_troll),
-            (set_trigger_result,2),
-        (try_end),
-    ])
 
 
 #Batching Triggers:
@@ -4510,7 +4499,11 @@ tld_calculate_wounded = (ti_on_agent_killed_or_wounded, 0, 0, [], [
     (str_store_agent_name, s55, ":agent_no"),
     (store_random_in_range, ":rnd", 0, 100),
     
+    # trolls are never killed
     (try_begin),
+        (eq, ":race", tf_troll),
+        (set_trigger_result, 2),
+    (else_try),
         (le, ":rnd", ":chance"),
         (set_trigger_result, 2), #wound
         # (try_begin),
@@ -4523,7 +4516,7 @@ tld_calculate_wounded = (ti_on_agent_killed_or_wounded, 0, 0, [], [
             # (agent_is_ally, ":agent_no"),
             # (display_message, "@{s55} killed, surgery {reg75}, level {reg76}, chance: {reg77}"),
         # (try_end),
-    (try_end),        
+    (try_end),
     ])
     
 tld_ai_melee_spheres =   (3, 0, 0, [], [ #agent fadeout sphere test
