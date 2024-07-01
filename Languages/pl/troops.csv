@@ -138,7 +138,7 @@ trp_c3_rhun_outrider|Foryś z Rhunu
 trp_c3_rhun_outrider_pl|Forysie z Rhunu
 trp_c4_rhun_noble_rider|Szlachetny Jeździec z Rhunu
 trp_c4_rhun_noble_rider_pl|Szlachetni Jeźdźcy z Rhunu
-trp_c5_rhun_warrider|Jeźdźca Wojny Rhunu
+trp_c5_rhun_warrider|Jeździec Wojny Rhunu
 trp_c5_rhun_warrider_pl|Jeźdźców Wojny Rhunu
 trp_c6_rhun_warlord|Pan Wojny Rhunu
 trp_c6_rhun_warlord_pl|Panów Wojny Rhunu
@@ -1409,7 +1409,7 @@ trp_elder_beorn|Starszy Beorn
 trp_elder_beorn_pl|mała wioska
 trp_elder_harad|Przywódca Haradrimskiego Obozu
 trp_elder_harad_pl|Obóz
-trp_elder_rhun|Przywódca Obozu Rhun
+; trp_elder_rhun|Rhun High Priest
 trp_elder_rhun_pl|Obóz
 trp_elder_khand|Przywódca Obozu Khandu 
 trp_elder_khand_pl|Obóz

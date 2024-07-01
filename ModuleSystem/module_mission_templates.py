@@ -1358,6 +1358,9 @@ mission_templates = [ # not used in game
        
 	(1, 0, ti_once, [],[ # set walkers, music and ambient sounds
 			(get_player_agent_no, "$current_player_agent"),
+             ] + ((is_a_wb_mt==1) and [
+            (agent_set_speed_modifier, "$current_player_agent", 120), # speed up player in towns
+              ] or []) + [
 			(try_begin),
 				(eq, "$g_mt_mode", tcm_default),
 				(store_current_scene, ":cur_scene"),
@@ -1480,15 +1483,15 @@ mission_templates = [ # not used in game
       ]),
 
   ### town patrols (separate triggers, maybe shift the load of the nested prop loops) WB only
-  (15, 0, 0, [], [ 
+  (1, 0, 15, [], [ 
     (call_script, "script_town_guard_patrols", "spr_troop_guard"),
       ]),
 
-  (9, 0, 0, [], [ 
+  (2, 0, 9, [], [ 
     (call_script, "script_town_guard_patrols", "spr_troop_archer"),
       ]),
       
-  (20, 0, 0, [], [ 
+  (3, 0, 20, [], [ 
     (call_script, "script_town_guard_patrols", "spr_troop_rider"),
       ]),      
 
@@ -3996,7 +3999,10 @@ mission_templates = [ # not used in game
     (try_for_agents, ":agent"),
         (agent_get_position, pos1, ":agent"),
         (position_get_z, ":height", pos1),
-        (lt, ":height", -3),
+        (lt, ":height", -300),
+        # (str_store_agent_name, s7, ":agent"),
+        # (assign, reg78, ":height"),
+        # (display_message, "@{s7} height {reg78}"),
         (agent_fade_out, ":agent"),
     (try_end),
     ]),
@@ -6418,20 +6424,34 @@ mission_templates = [ # not used in game
 	(ti_question_answered, 0, 0, [], [ (store_trigger_param_1,":answer"), (eq,":answer",0), (finish_mission), ]),
 	(ti_before_mission_start, 0, 0, [], [ (assign, "$player_is_inside_dungeon",0),(assign, "$dungeons_in_scene",1)]),
 	dungeon_darkness_effect,
+
+    ] + ((is_a_wb_mt==1) and [    
+    (1, 0, ti_once, [],[ 
+        (get_player_agent_no, "$current_player_agent"),
+        (agent_set_speed_modifier, "$current_player_agent", 120)]),
+     ] or []) + [
+    
 ]),
 ( "dungeon_crawl_moria_hall",0,-1,
     "Explore around Moria",
-    [(0 ,mtef_visitor_source|mtef_team_0,af_override_horse,aif_start_alarmed,1,[]),(1 ,mtef_visitor_source|mtef_team_2,af_override_horse,aif_start_alarmed,1,[]),(4 ,mtef_visitor_source|mtef_team_2,af_override_horse,aif_start_alarmed,1,[])
+    [(0 ,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(1 ,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[]),(4 ,mtef_visitor_source|mtef_team_1,af_override_horse,aif_start_alarmed,1,[])
 	],tld_common_wb_muddy_water+[
     (ti_tab_pressed, 0, 0, [],[(question_box,"@Trace back your steps and go back in the open now?")]),
 	(ti_question_answered, 0, 0, [], [ (store_trigger_param_1,":answer"), (eq,":answer",0), (finish_mission)]),
 	(ti_before_mission_start, 0, 0, [], [
         (assign, "$dungeons_in_scene",1), 
         (play_sound, "snd_moria_ambiance", sf_looping), 
+        
+        (team_set_relation, 2, 1, -1),
+        (team_set_relation, 1, 2, -1),
+        
+        #disable guard props
         (replace_scene_props, "spr_troop_archer", "spr_empty"),
         (replace_scene_props, "spr_troop_castle_guard", "spr_empty"),
-        (replace_scene_props, "spr_troop_guard", "spr_troop_civilian"),
-		(replace_scene_props, "spr_troop_guard_sitting", "spr_empty"), # (CppCoder) These are what cause the "unable to finish" bugs.
+        #(replace_scene_props, "spr_troop_guard", "spr_empty"),
+        (replace_scene_props, "spr_troop_civilian", "spr_troop_guard"),
+        (replace_scene_props, "spr_troop_civ_sitting_ground", "spr_empty"),
+		(replace_scene_props, "spr_troop_guard_sitting", "spr_empty"),
 		(replace_scene_props, "spr_troop_human_prisoner", "spr_empty"),
 		(replace_scene_props, "spr_troop_troll", "spr_empty"),
         (try_for_range, ":prop", spr_troop_civ_lying, spr_troop_priest+1), #remove town agents
@@ -6439,6 +6459,12 @@ mission_templates = [ # not used in game
         (try_end),
         ]),
 	dungeon_darkness_effect,
+    
+    ] + ((is_a_wb_mt==1) and [    
+    (1, 0, ti_once, [],[ 
+        (get_player_agent_no, "$current_player_agent"),
+        (agent_set_speed_modifier, "$current_player_agent", 120)]),
+     ] or []) + [
 ]),
 ( "dungeon_crawl_moria_deep",mtf_battle_mode,-1,
     "Lost in Moria! Orcs are everywhere! You must find a way out!",
@@ -6450,6 +6476,11 @@ mission_templates = [ # not used in game
 	(ti_before_mission_start, 0, 0, [], [ (set_fog_distance,18,0x000001),(assign, "$dungeons_in_scene",1),(play_sound, "snd_moria_ambiance", sf_looping),]),
     (0,0,ti_once,[],[(entry_point_get_position, pos1, 1), (set_spawn_position, pos1),(spawn_item, "itm_orc_throwing_arrow"),]),
 	dungeon_darkness_effect,
+    ] + ((is_a_wb_mt==1) and [    
+    (1, 0, ti_once, [],[ 
+        (get_player_agent_no, "$current_player_agent"),
+        (agent_set_speed_modifier, "$current_player_agent", 120)]),
+     ] or []) + [    
 ]),
 
 ############ 808 stealth & rescue templates

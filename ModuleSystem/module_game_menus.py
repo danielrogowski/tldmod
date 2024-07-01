@@ -1918,6 +1918,18 @@ game_menus = [
     (val_mul, ":leadership", 5),
     (store_attribute_level, ":charisma", "trp_player", ca_charisma),
 
+    (party_get_num_companion_stacks, ":num_stacks", "p_main_party"),
+    (try_for_range, ":i_stack", 0, ":num_stacks"), #leadership and charisma bonus from companions
+        (party_stack_get_troop_id, ":stack_troop", "p_main_party", ":i_stack"),
+        (troop_is_hero, ":stack_troop"),
+        (store_skill_level, ":npc_skill", "skl_leadership", ":stack_troop"),
+        (store_attribute_level, ":npc_charisma", ":stack_troop", ca_charisma),
+        (val_mul, ":npc_skill", 3),
+        (val_div, ":npc_charisma", 2),
+        (val_add, ":charisma", ":npc_charisma"),
+        (val_add, ":leadership", ":npc_skill"),
+    (try_end),
+
     (assign, ":ranks", 0),
     (try_for_range, ":faction", kingdoms_begin, kingdoms_end),
       (call_script, "script_get_faction_rank", ":faction"),
@@ -2141,7 +2153,14 @@ game_menus = [
 	]),
 
    	] + (is_a_wb_menu==1 and [
-	("camp_options",[],"Change TLD options.",[(start_presentation, "prsnt_tld_mod_options")]),
+	("camp_options",[],"Change TLD options.",[
+    (start_presentation, "prsnt_tld_mod_options"), 
+    #necessary to avoid presentation bugs whith old savegames
+    (assign, "$tld_options_overlay_0" ,-1), (assign, "$tld_options_overlay_1" ,-1),(assign, "$tld_options_overlay_2" ,-1),(assign, "$tld_options_overlay_3" ,-1),
+    (assign, "$tld_options_overlay_4" ,-1),(assign, "$tld_options_overlay_5" ,-1),(assign, "$tld_options_overlay_6" ,-1),(assign, "$tld_options_overlay_7" ,-1),
+    (assign, "$tld_options_overlay_8" ,-1),(assign, "$tld_options_overlay_9" ,-1),(assign, "$tld_options_overlay_10" ,-1),(assign, "$tld_options_overlay_11" ,-1),
+    (assign, "$tld_options_overlay_12" ,-1),(assign, "$tld_options_overlay_13" ,-1),(assign, "$tld_options_overlay_14" ,-1),(assign, "$tld_options_overlay_15" ,-1),(assign, "$tld_options_overlay_16" ,-1),
+    ]),
 	] or [
 	("camp_options",[],"Change TLD options.",[(jump_to_menu, "mnu_game_options")]),
 	]) + [
@@ -4764,10 +4783,11 @@ game_menus = [
  	 ("cheat_disabable",[],
 		"Disable cheat/modding options.",[(assign, "$cheat_mode", 0),	(jump_to_menu, "mnu_camp"),]),
 
-	("camp_cheat_find_item",[], "Find an item...",[(jump_to_menu, "mnu_cheat_find_item"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),
+     ("cheat_original_version",   [],
+      "Display original savegame version.",
+      [(assign, reg78, "$original_savegame_version"), (display_message, "@{!} debug: Original savegame version: {reg78}"),]),
 
-	("crossdressing", [(assign,reg6, "$tld_option_crossdressing"), ], "Crossdressing: {reg6?Enabled:Disabled}", 
-	  [(store_sub, "$tld_option_crossdressing", 1, "$tld_option_crossdressing"), (jump_to_menu, "mnu_camp_cheat"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),
+	("camp_cheat_find_item",[], "Find an item...",[(jump_to_menu, "mnu_cheat_find_item"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),
 
 	#("cheat_change_race",[],"Change your race (for development use).",[(jump_to_menu, "mnu_cheat_change_race"),]),	   
 	("impose_quest", [], "Impose a quest...",  [(jump_to_menu, "mnu_cheat_impose_quest"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),
@@ -4778,6 +4798,15 @@ game_menus = [
 	   (assign, "$select_any_troop_add_selected_troops",1 ), 
 	   (jump_to_menu, "mnu_select_any_troop") ,(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")
 	 ]),
+     
+	("crossdressing", [(assign,reg6, "$tld_option_crossdressing"), ], "Crossdressing: {reg6?Enabled:Disabled}", 
+	  [(store_sub, "$tld_option_crossdressing", 1, "$tld_option_crossdressing"), (jump_to_menu, "mnu_camp_cheat"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),
+
+	("cheat_options_town_menu",[(try_begin),(eq, "$tld_option_town_menu_hidden", 0),(str_store_string, s7, "@ON"),
+								 (else_try),(str_store_string, s7, "@OFF"),(try_end),
+	    ],"Town NPCs always accessible from Menus:  {s7}",[
+	    (store_sub,"$tld_option_town_menu_hidden",1,"$tld_option_town_menu_hidden"),(val_clamp,"$tld_option_town_menu_hidden",0,2),(jump_to_menu, "mnu_camp_cheat"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),     
+     
     ("cheat_add_prisoners", [], "Add 10 prisoners",  [(party_add_prisoners, p_main_party, trp_a1_arnor_scout, 10),(display_message, "@Added 10 prisoners."), ]),
 	#("cheat_get_item", [], "Gain a free magic item", [(jump_to_menu, "mnu_cheat_free_magic_item")]),
 	("cheat_add_xp", [], "Add 1000 experience to player.", [(add_xp_to_troop, 1000, "trp_player"), (display_message, "@Added 1000 experience to player."), ]),	  	
@@ -7521,6 +7550,7 @@ game_menus = [
 			(set_jump_mission,"mt_dungeon_crawl_moria_hall"),
             (jump_to_scene, "scn_moria_center"),
 			(assign, "$found_moria_entrance", 1),
+            (assign, "$g_encountered_party_2", "p_town_moria"), #dirty trick to influence troop spawn props
             (change_screen_mission),
 	  ],"Enter Moria."),
 	  
@@ -9133,7 +9163,7 @@ game_menus = [
 	   	  (eq,"$entry_to_town_forbidden",0), 
           (party_get_num_companions, ":no_companions", "$g_encountered_party"),
           (ge, ":no_companions", 1),
-          (party_slot_ge, "$current_town", slot_barracks_visited, 1),
+          (this_or_next|eq,"$tld_option_town_menu_hidden",0),(party_slot_ge, "$current_town", slot_barracks_visited, 1),
        ],"Visit the {s61} Barracks.",[
              (set_jump_mission,"mt_conversation_encounter"),
              (modify_visitors_at_site,"scn_conversation_scene"),(reset_visitors),
@@ -9319,11 +9349,11 @@ game_menus = [
 							(set_jump_mission,"mt_ai_training"),
 							(jump_to_scene,":scene"),
 							(change_screen_mission)]),
-      # ("castle_cheat_dungeon",[(eq, cheat_switch, 1),(eq, 0, 1)], "CHEAT: Prison.",[ # unneeded
-							# (set_jump_mission,"mt_ai_training"),
-							# (party_get_slot, ":castle_scene", "$current_town", slot_town_prison),
-							# (jump_to_scene,":castle_scene"),
-							# (change_screen_mission)]),
+       ("castle_cheat_dungeon",[(eq, cheat_switch, 1),(eq, 0, 1)], "CHEAT: Prison.",[ # unneeded
+							(set_jump_mission,"mt_ai_training"),
+							(party_get_slot, ":castle_scene", "$current_town", slot_town_prison),
+							(jump_to_scene,":castle_scene"),
+							(change_screen_mission)]),
       ("castle_cheat_town_walls",[(eq, cheat_switch, 1),(eq, "$cheat_mode", 1),(party_slot_eq,"$current_town",slot_party_type, spt_town),], "CHEAT! Town Walls.",[
 							(party_get_slot, ":scene", "$current_town", slot_town_walls),
 							(set_jump_mission,"mt_ai_training"),
@@ -9363,7 +9393,7 @@ game_menus = [
       #("town_cheat_alley",[(eq, 0, 1),], "CHEAT",[]),
 	  ("castle_cheat_interior",[(eq, 0, 1),], "CHEAT",[]),
 	  ("castle_cheat_town_exterior",[(eq, 0, 1),], "CHEAT",[]),
-	  # ("castle_cheat_dungeon",[(eq, 0, 1),], "CHEAT",[]),
+	  ("castle_cheat_dungeon",[(eq, 0, 1),], "CHEAT",[]),
 	  ("castle_cheat_town_walls",[(eq, 0, 1),], "CHEAT",[]),
 	  ("cheat_town_start_siege",[(eq, 0, 1),], "CHEAT",[]),
 	  # ("center_reports",[(eq, 0, 1),], "CHEAT",[]),
