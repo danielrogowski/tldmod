@@ -18,7 +18,7 @@ python()
 
 #swy-- make it fast by calling the python2 interpreter only once
 #      goes from 31.4s to 8.2s, a huge improvement in my book.
-python -B -OO ./Process/process_all.py
+python2 -B -OO ./Process/process_all.py
 
 # python -B -OO ./Process/process_init.py
 # python -B -OO ./Process/process_global_variables.py

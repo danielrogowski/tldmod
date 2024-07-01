@@ -3660,6 +3660,9 @@ ai_scripts+=[
         
         (store_random_in_range, ":join_chance", 0, 500),
         (try_begin),
+            # TODO add all factions to the block to prohibit change of sides (while it makes stuff more random, it doesn't make any sense lore wise)
+            # or deactivate the script by commenting it's call!
+            # the script was probably introduced to spice things up a little
             (neq, ":faction_no", "fac_dunland"), #these factions don't switch sides
             (neq, ":faction_no", "fac_guldur"),
             (le, ":join_chance", ":faction_score"),
