@@ -422,6 +422,7 @@ triggers = [
         
         (store_div, ":num_goods", ":center_str_income", 5),
         (val_add, ":num_goods", num_merchandise_goods), #now 3-7
+        (val_mul, ":num_goods", 2), # to accomodate for the new leadership feature, which makes for player armies > 200, not even taking the orc bonus into account (it's quite ridiculous to have 200.000 resource points and not being able to buy food)
         
             #Invain: Relation+trade bonus; (rel+trade_skill*10)/100 (up to 2x)
             (store_add, ":abundance_bonus", ":center_relation", ":trading_modifier"), #get score, up to 200
