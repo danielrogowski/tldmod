@@ -453,6 +453,7 @@ kill_scout_8
 healers_meet
 healer_who
 healers_ask
+healers_ask_2
 healer_wound_ask
 healer_injured_ask
 healers_wound_check
@@ -604,6 +605,9 @@ town_dweller_talk
 town_dweller_ask_fugitive
 town_dweller_ask_info
 town_dweller_ask_rumor
+town_dweller_ask_directions
+town_dweller_ask_directions2
+town_dweller_ask_directions3
 town_dweller_brawl
 town_dweller_brawl_confirm
 player_castle_guard_talk
@@ -611,11 +615,6 @@ player_castle_guard_talk_2
 player_castle_guard_talk_3
 hall_guard_easter_egg
 hall_guard_easter_egg_scene
-hall_guard_talk
-hall_guard_duty
-hall_guard_arrest
-hall_guard_arrest_2
-battle_reason_stated
 regular_member_talk
 view_regular_char_requested
 do_regular_member_view_char
@@ -643,6 +642,7 @@ ori_choose_finish
 party_encounter_hostile_attacker
 party_encounter_hostile_defender
 party_encounter_hostile_ultimatum_surrender
+battle_reason_stated
 free
 view_char_requested
 threaten_1

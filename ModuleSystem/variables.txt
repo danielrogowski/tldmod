@@ -261,8 +261,7 @@ attacker_team
 defender_team_2
 attacker_team_2
 defender_team_3
-attacker_team_3
-g_arena_training_num_agents_spawned
+tld_show_tutorials
 g_arena_training_max_opponents
 belfry_positioned
 ballista_action
@@ -430,7 +429,7 @@ wall_missile_troop2
 wall_missile_troop3
 wall_missile_troop4
 wall_missile_troop5
-rescue_convo_troop
+tld_start_war_by_day_or_level
 wound_setting
 healing_setting
 g_encountered_party_2
@@ -736,7 +735,6 @@ g_option_good
 g_option_evil_text
 g_option_evil
 cheat_find_item_range_begin
-mouse_coordinates
 intro_presentation_stage
 g_presentation_obj_item_select_2
 g_presentation_obj_item_select_3
@@ -753,8 +751,7 @@ force_scene
 show_hide_labels
 reinforcements_arrived
 tld_campaign_diffulty
-tld_options_overlay_14
-g_display_agent_labels
 cheatmode_used
 allies_coh_modifier
 enemies_coh_modifier
+tutorial_1_state

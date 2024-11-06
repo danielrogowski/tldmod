@@ -184,7 +184,7 @@ scene_props = [
 ("fireplace_c",0,"fireplace_c","bo_fireplace_c", []),
 #  ("sofa_a",0,"sofa_a","bo_sofa", []),
 ("sofa_b",0,"sofa_b","bo_sofa", []),
-("ewer_a",0,"ewer_a","bo_ewer_a", []),
+("ewer_a",0,"ewer_a_new","bo_ewer_a", []),
 ("end_table_a",0,"end_table_a","bo_end_table_a", []),
 
 #  ("fake_houses_steppe_a",0,"fake_houses_steppe_a","0", []),
@@ -271,7 +271,7 @@ scene_props = [
 #  ("carpet_c",0,"carpet_c","0", []),
 #  ("carpet_d",0,"carpet_d","0", []),
 #  ("carpet_e",0,"carpet_e","0", []),
-("carpet_f",0,"carpet_f","0", []),
+("carpet_f",0,"carpet_f_new","bo_carpet_f_new", []),
 
 #  ("awning_a",0,"awning_a","bo_awning", []),
 ("awning_b",0,"awning_b","bo_awning", []),
@@ -353,6 +353,7 @@ scene_props = [
 ("archery_butt_a",0,"archery_butt","bo_archery_butt", [
    (ti_on_scene_prop_hit,
     [   (store_trigger_param_1, ":instance_no"),
+        (ge, "$tutorial_1_state", 1), #only in tutorial mission
         (prop_instance_get_position, pos2, ":instance_no"),
         (get_player_agent_no, ":player_agent"),
         (agent_get_position, pos3, ":player_agent"),
@@ -379,6 +380,7 @@ scene_props = [
 ("archery_target_with_hit_a",0,"arena_archery_target_a","bo_arena_archery_target_a", [
    (ti_on_scene_prop_hit,
     [   (store_trigger_param_1, ":instance_no"),
+        (ge, "$tutorial_1_state", 1), #only in tutorial mission
         (prop_instance_get_position, pos2, ":instance_no"),
         (get_player_agent_no, ":player_agent"),
         (agent_get_position, pos3, ":player_agent"),
@@ -406,6 +408,7 @@ scene_props = [
 ("dummy_a",sokf_destructible|sokf_moveable,"arena_archery_target_b","bo_arena_archery_target_b",   [
    (ti_on_scene_prop_destroy,
     [   (store_trigger_param_1, ":instance_no"),
+        (ge, "$tutorial_1_state", 1), #only in tutorial mission
         (prop_instance_get_starting_position, pos1, ":instance_no"),
         (get_player_agent_no, ":player_agent"),
         (agent_get_position, 2, ":player_agent"),
@@ -627,13 +630,13 @@ scene_props = [
 ("chest_b",0,"chest_b","bo_chest_b", []),
 ("chest_c",0,"chest_c","bo_chest_c", []),
 ("counter_tavern",0,"counter_tavern","bocounter_tavern", []),
-("cup",0,"cup","0", []),
-("dish_metal",0,"dish_metal","0", []),
+("cup",0,"cup_new","0", []),
+("dish_metal",0,"dish_metal_new","0", []),
 ("gothic_chair",0,"gothic_chair","0", []),
 ("gothic_stool",0,"gothic_stool","0", []),
-("grate",0,"grate","bograte", []),
-("jug",0,"jug","0", []),
-("potlamp",0,"potlamp","0", []),
+("grate",0,"grate_new","bograte", []),
+("jug",0,"jug_new","0", []),
+("potlamp",0,"potlamp_new","0", []),
 ("weapon_rack",0,"weapon_rack","boweapon_rack", []),
 ("weapon_rack_big",0,"weapon_rack_big","boweapon_rack_big", []),
 ("tavern_barrel",0,"barrel_new","bobarrel", []),
@@ -652,8 +655,64 @@ scene_props = [
 ("straw_a",0,"straw_a","0", []),
 ("straw_b",0,"straw_b","0", []),
 ("straw_c",0,"straw_c","0", []),
-("cloth_a",0,"cloth_a_new","0", []),
-("cloth_b",0,"cloth_b_new","0", []),
+("cloth_a",0,"cloth_a_new_animated","0", [
+ ] + (is_a_wb_sceneprop==1 and [   
+ (ti_on_scene_prop_init,[
+     (store_trigger_param_1, ":instance_no"),
+    (store_random_in_range,":r",0,100), # Random animations time
+            (try_begin),
+      (ge, ":r", 50),
+      (try_begin),
+      (ge, ":r", 75),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 1,25, 2000),
+      #(display_message, "@cloth_a ANIM + Fast"),
+      (else_try),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 1,25, 2500),
+      #(display_message, "@cloth_a ANIM + Slow"),
+      (try_end),
+    (else_try),
+    (try_begin),
+      (ge, ":r", 25),
+     (prop_instance_deform_in_cycle_loop, ":instance_no", 25,1, 2000),
+     #(display_message, "@cloth_a ANIM - Fast"),
+      (else_try),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 25,1, 2500),
+      #(display_message, "@cloth_a ANIM - Slow"),
+      (try_end),
+    (try_end),
+]),
+] or []) + [ 
+ ]),
+
+("cloth_b",0,"cloth_b_new_animated","0", [
+ ] + (is_a_wb_sceneprop==1 and [   
+ (ti_on_scene_prop_init,[
+     (store_trigger_param_1, ":instance_no"),
+    (store_random_in_range,":r",0,100), # Random animations time
+            (try_begin),
+      (ge, ":r", 50),
+      (try_begin),
+      (ge, ":r", 75),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 1,25, 2000),
+      #(display_message, "@cloth_b ANIM + Fast"),
+      (else_try),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 1,25, 3500),
+      #(display_message, "@cloth_b ANIM + Slow"),
+      (try_end),
+    (else_try),
+    (try_begin),
+      (ge, ":r", 25),
+     (prop_instance_deform_in_cycle_loop, ":instance_no", 25,1, 2000),
+     #(display_message, "@cloth_b ANIM - Fast"),
+      (else_try),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 25,1, 3500),
+      #(display_message, "@cloth_b ANIM - Slow"),
+      (try_end),
+    (try_end),
+]),
+] or []) + [ 
+ ]),
+ 
 ("mat_a",0,"mat_a","0", []),
 ("mat_b",0,"mat_b","0", []),
 ("mat_c",0,"Gutek_mat_c","0", []),
@@ -689,7 +748,7 @@ scene_props = [
 
 ("wheel",0,"wheel","bowheel", []),
 ("ladder",0,"ladder","boladder", []),
-("cart",0,"cart","bocart", []),
+("cart",0,"cart","bo_cart_new", []),
 ("village_stand",0,"village_stand","bovillage_stand", []),
 ("wooden_stand",0,"wooden_stand","bowooden_stand", []),
 ("table_small",0,"table_small","botable_small", []),
@@ -837,7 +896,7 @@ scene_props = [
 #("fake_house_far_snowy_d",0,"fake_house_far_snowy_d","0", []),
 
 ("earth_wall_a",0,"earth_wall_a","bo_earth_wall_a", []),
-  ("earth_wall_a_E",0,"earth_wall_a","0", []),
+("earth_wall_b",0,"earth_wall_b","bo_earth_wall_b", []),
 #("earth_wall_a2",0,"earth_wall_a2","bo_earth_wall_a2", []),
 #("earth_wall_b",0,"earth_wall_b","bo_earth_wall_b", []),
 #("earth_wall_b2",0,"earth_wall_b2","bo_earth_wall_b2", []),
@@ -1025,7 +1084,7 @@ scene_props = [
 ("village_hut_a",0,"village_hut_a","bo_village_hut_a", []),
   ("village_hut_a_E",0,"village_hut_a","0", []),
 ("crude_fence",0,"fence","bo_fence", []),
-  ("crude_fence_E",0,"fence","0", []),
+("crude_fence_curved",0,"fence_curved","bo_fence_curved", []),
 ("crude_fence_small",0,"crude_fence_small","bo_crude_fence_small", []),
   ("crude_fence_small_E",0,"crude_fence_small","0", []),
 ("crude_fence_small_b",0,"crude_fence_small_b","bo_crude_fence_small_b", []),
@@ -1077,15 +1136,15 @@ scene_props = [
 #("church_a",0,"church_a","bo_church_a", []),
 #("church_tower_a",0,"church_tower_a","bo_church_tower_a", []),
 ("stone_step_a",0,"floor_stone_a","bo_floor_stone_a", []),
-("stone_step_b",0,"stone_step_b","0", []),
-("stone_step_c",0,"stone_step_c","0", []),
+("stone_step_b",0,"stone_step_b_new","0", []),
+("stone_step_c",0,"stone_step_c_new","0", []),
 ("stone_heap",0,"stone_heap","bo_stone_heap", []),
 ("stone_heap_b",0,"stone_heap_b","bo_stone_heap", []),
 
 #("panel_door_a",0,"house_door_a","bo_house_door_a", []),
 #("panel_door_b",0,"house_door_b","bo_house_door_a", []),
 ("smoke_stain",0,"soot_a","0", []),
-("brazier_with_fire",0,"brazier","bo_brazier",    [
+("brazier_with_fire",0,"brazier_new","bo_brazier",    [
   (ti_on_scene_prop_init,
   [   (set_position_delta,0,0,85),
     (particle_system_add_new, "psys_brazier_fire_1"),
@@ -1264,8 +1323,8 @@ scene_props = [
 ("candle_a",0,"candle_a","0",[(ti_on_scene_prop_init,[(set_position_delta,0,0,27),(particle_system_add_new, "psys_candle_light")])]),
 ("candle_b",0,"candle_b","0",[(ti_on_scene_prop_init,[(set_position_delta,0,0,25),(particle_system_add_new, "psys_candle_light")])]),
 ("candle_c",0,"candle_c","0",[(ti_on_scene_prop_init,[(set_position_delta,0,0,10),(particle_system_add_new, "psys_candle_light_small")])]),
-("lamp_a",0,"lamp_a","0",[(ti_on_scene_prop_init,[(set_position_delta,66,0,2),(particle_system_add_new, "psys_candle_light")])]),
-("lamp_b",0,"lamp_b","0",[(ti_on_scene_prop_init,
+("lamp_a",0,"lamp_a_new","0",[(ti_on_scene_prop_init,[(set_position_delta,66,0,2),(particle_system_add_new, "psys_candle_light")])]),
+("lamp_b",0,"lamp_b_new","0",[(ti_on_scene_prop_init,
     [(set_position_delta,65,0,-7),
      (particle_system_add_new, "psys_lamp_fire"),
      (set_position_delta,70,0,-5),
@@ -1304,7 +1363,7 @@ scene_props = [
         (particle_system_burst, "psys_gourd_piece_1", pos1, 1),
         (particle_system_burst, "psys_gourd_piece_2", pos1, 5),
         (prop_instance_animate_to_position, ":instance_no", pos2, 1),
-        (play_sound, "snd_gourd_destroyed"),
+        (play_sound, "snd_dummy_destroyed"),
   ])]),
 
 ("gourd_spike",0,"gourd_spike","bo_gourd_spike",[]),
@@ -1354,12 +1413,12 @@ scene_props = [
   ("gon_upper_apt_E",0,"gon_upper_apt_a","0", []),
 
 ##GONDOR RUINS###
-("gon_ruined_wall",0,"ruined_wall","bo_ruined_wall", []),
-  ("gon_ruined_wall_E",0,"ruined_wall","0", []),
+("gon_ruined_wall_a",0,"ruined_wall","bo_ruined_wall", []),
+("gon_ruined_castle_b",0,"gon_destroy_castle_b","bo_destroy_castle_b", []),
 ("gon_ruined_arch",0,"ruined_arch","bo_ruined_arch", []),
-  ("gon_ruined_arch_E",0,"ruined_arch","0", []),
+("gon_ruined_small_wall_c",0,"gon_small_wall_c","bo_small_wall_c", []),
 ("gon_ruined_stone",0,"ruined_stone","bo_ruined_stone", []),
-  ("gon_ruined_stone_E",0,"ruined_stone","0", []),
+("gon_ruined_stone_heap",0,"gon_stone_heap","bo_stone_heap", []),
 ("gon_ruined_debris_a",0,"ruined_debris_a","bo_ruined_debris_a", []),
   ("gon_ruined_debris_a_E",0,"ruined_debris_a","0", []),
 ("gon_ruined_debris_b",0,"ruined_debris_b","bo_ruined_debris_b", []),
@@ -1367,29 +1426,29 @@ scene_props = [
 ("gon_ruined_debris_c",0,"ruined_debris_c","bo_ruined_debris_c", []),
   ("gon_ruined_debris_c_E",0,"ruined_debris_c","0", []),
 ("gon_ruined_door",0,"ruined_door","bo_ruined_door", []),
-  ("gon_ruined_door_E",0,"ruined_door","0", []),
+("gon_ruined_stone_step_b",0,"gon_stone_step_b","0", []),
 ("gon_ruined_stairs_a",0,"ruined_stairs_a","bo_ruined_stairs_a", []),
-  ("gon_ruined_stairs_a_E",0,"ruined_stairs_a","0", []),
+("gon_ruined_small_wall_destroy",0,"gon_small_wall_c_destroy","bo_small_wall_c_destroy", []),
 ("gon_ruined_stairs_b",0,"ruined_stairs_b","bo_ruined_stairs_b", []),
   ("gon_ruined_stairs_b_E",0,"ruined_stairs_b","0", []),
 ("gon_ruined_pillar",0,"ruined_pillar","bo_ruined_pillar", []),
   ("gon_ruined_pillar_E",0,"ruined_pillar","0", []),
 ("gon_ruined_arches",0,"ruined_arches","bo_ruined_arches", []),
-  ("gon_ruined_arches_E",0,"ruined_arches","0", []),
+("gon_ruined_castle_d",0,"gon_destroy_castle_d","bo_destroy_castle_d", []),
 ("gon_ruined_house_a",0,"ruined_house_a","bo_ruined_house_a", []),
-  ("gon_ruined_house_a_E",0,"ruined_house_a","0", []),
+("gon_ruined_house_d",0,"gon_destroy_house_a","bo_destroy_house_a", []),
 ("gon_ruined_house_b",0,"ruined_house_b","bo_ruined_house_b", []),
-  ("gon_ruined_house_b_E",0,"ruined_house_b","0", []),
+("gon_ruined_house_e",0,"gon_destroy_house_b","bo_destroy_house_b", []),
 ("gon_ruined_house_c",0,"ruined_house_c","bo_ruined_house_c", []),
-  ("gon_ruined_house_c_E",0,"ruined_house_c","0", []),
+("gon_ruined_house_c_E",0,"ruined_house_c","0", []),
 ("gon_ruined_battlement",0,"ruined_battlement","bo_ruined_battlement", []),
-  ("gon_ruined_battlement_E",0,"ruined_battlement","0", []),
+("gon_ruined_castle_battlement",0,"gon_castle_e_battlement_a_destroyed","bo_castle_e_battlement_a_destroyed", []),
 ("gon_ruined_tower",0,"ruined_tower","bo_ruined_tower", []),
-  ("gon_ruined_tower_E",0,"ruined_tower","0", []),
+("gon_ruined_castle_c",0,"gon_destroy_castle_c","bo_destroy_castle_c", []),
 ("gon_ruined_wallgate",0,"ruined_wallgate","bo_ruined_wallgate", []),
-  ("gon_ruined_wallgate_E",0,"ruined_wallgate","0", []),
+("gon_ruined_castle_a",0,"gon_destroy_castle_a","bo_destroy_castle_a", []),
 ("gon_ruined_bridge_a",0,"ruined_bridge_a","bo_ruined_bridge_a", []),
-  ("gon_ruined_bridge_a_E",0,"ruined_bridge_a","0", []),
+("gon_ruined_tower_b",0,"gon_ruins_tower","bo_ruins_tower", []),
 ("gon_ruined_bridge_b",0,"ruined_bridge_b","bo_ruined_bridge_b", []),
   ("gon_ruined_bridge_b_E",0,"ruined_bridge_b","0", []),
 ("gon_ruined_fem",0,"statue_female_ruined","bo_statue_female_marble", []),
@@ -1535,7 +1594,7 @@ scene_props = [
 # ("gondor_mt_door_extension_a_E",0,"mt_door_extension_a", "0", []),
 ("gondor_mt_gate",0,"mt_gate", "bo_mt_gate_new", []),
   ("gondor_mt_gate_E",0,"mt_gate", "0", []),
-("gondor_mt_gate_tower",0,"mt_gate_tower", "bo_mt_tower", []),
+("gondor_mt_gate_tower",0,"mt_gate_tower", "bo_mt_gate_tower", []),
   ("gondor_mt_gate_tower_E",0,"mt_gate_tower", "0", []),
 ("gondor_mt_gate_house",0,"mt_gate_house", "bo_mt_gate_house", []),
   ("gondor_mt_gate_house_E",0,"mt_gate_house", "0", []),
@@ -1606,7 +1665,7 @@ scene_props = [
   ("osgiliath_ruins_nine_E",0,"osgiliath_ruins_nine","0", []),
 ("osgiliath_ruins_set_one",0,"osgiliath_ruins_set_one","bo_osgiliath_ruins_set_one", []),
   ("osgiliath_ruins_set_one_E",0,"osgiliath_ruins_set_one","0", []),
-("osgiliath_ruins_seven",0,"osgiliath_ruins_seven","bo_osgiliath_ruins_seven", []),
+("osgiliath_ruins_seven",0,"osgiliath_ruins_seven","bo_osgiliath_ruins_seven_new", []),
   ("osgiliath_ruins_seven_E",0,"osgiliath_ruins_seven","0", []),
 ("osgiliath_ruins_seventeen",0,"osgiliath_ruins_seventeen","bo_osgiliath_ruins_seventeen", []),
   ("osgiliath_ruins_seventeen_E",0,"osgiliath_ruins_seventeen","0", []),
@@ -1693,7 +1752,7 @@ scene_props = [
   ("rohan_wall_stair_E",0,"rohan_wall_stair","0", []),
 ("rohan_long_stair",0,"rohan_long_stair","bo_rohan_long_stair", []),
   ("rohan_long_stair_E",0,"rohan_long_stair","0", []),
-("rohan_wall"      ,0,"rohan_wall"      ,"bo_rohan_wall"      , []),
+("rohan_wall"      ,0,"rohan_wall_curved"      ,"bo_rohan_wall_curved"      , []),
   ("rohan_wall_E"      ,0,"rohan_wall"      ,"0"      , []),
 
 #Helms Deep
@@ -1737,9 +1796,9 @@ scene_props = [
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_pistol_smoke",pos1,200),
+    (particle_system_burst,"psys_game_hoof_dust",pos1,40),
+    (particle_system_burst,"psys_dummy_smoke",pos1,30),
+    #(particle_system_burst,"psys_pistol_smoke",pos1,200),
     (position_rotate_x, pos1, 85),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
     (play_sound, "snd_dummy_destroyed"),
@@ -1796,9 +1855,9 @@ scene_props = [
   #(entry_point_get_position,pos1,39),
   #(agent_set_position, "$gate_aggravator_agent", pos1), # place gate aggravator agent to proper position
     ]),
-], 3000),
+], 4000),
 
-("HD_gate_destructible",sokf_destructible,"HD_gate_closed_repositioned","bo_HD_gate_closed_repositioned",   [ 
+("HD_gate_destructible",sokf_destructible|sokf_moveable,"HD_gate_closed_repositioned","bo_HD_gate_closed_repositioned",   [ 
    (ti_on_scene_prop_init, [
    (store_trigger_param_1, ":gate_no"),
    
@@ -1829,9 +1888,9 @@ scene_props = [
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_pistol_smoke",pos1,200),
+    (particle_system_burst,"psys_game_hoof_dust",pos1,40),
+    (particle_system_burst,"psys_dummy_smoke",pos1,30),
+    #(particle_system_burst,"psys_pistol_smoke",pos1,200),
     (position_rotate_x, pos1, 95),
     (position_move_z, pos1, -100,1),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
@@ -2005,7 +2064,15 @@ scene_props = [
 ("trees_end", 0, "spike_a", "0", []), 
 ("football_ball",0,"stone_ball","0", []),
 ("dolguldur_copy",0,"dolguldur_copy","0", []),
-("morannon_gate",0,"morannon_gate","bo_morannon_gate", [(ti_on_scene_prop_init,[(neg|is_currently_night),(set_fog_distance,800,0x150101),]),]),
+("morannon_gate",0,"morannon_gate","bo_morannon_gate", [
+     (ti_on_scene_prop_init,[ (set_fixed_point_multiplier, 100), 
+         (try_begin),(is_currently_night),(eq, "$bright_nights", 1), (set_fog_distance,450,0x150101),
+         (else_try),(is_currently_night),(set_fog_distance,450,0x150101), 
+         ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 25, 25, 25),(set_startup_sun_light, 5, 5, 5),(set_startup_ground_ambient_light, 12, 12, 12), ] or []) + [ 
+         (else_try),(set_fog_distance,800,0x150101),         
+         ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 40, 40, 40),(set_startup_sun_light, 10, 10, 10),(set_startup_ground_ambient_light, 12, 12, 12), ] or []) + [ 
+         (try_end),
+     ])]),
 ("mor_tower_a",0,"mor_tower_a","bo_mor_tower_a", []),
 ("evil_element",0,"evil_element","0", []),
 ("evil_tunnel_a",0,"evil_tunnel_a","bo_evil_tunnel_a", []),
@@ -2374,8 +2441,8 @@ scene_props = [
 ("khand_tent_a", 0, "khandTent_a", "bo_khandTent_a", []),
 ("khand_tent_b", 0, "khandTent_b", "bo_khandTent_a", []),
 ("harad_tent_tusks", 0, "haradTentTusks", "bo_haradTentTusks", []),
-("harad_tent_a", 0, "haradTent_a", "bo_haradTent_a", []),
-("harad_tent_b", 0, "haradTent_b", "bo_haradTent_a", []),
+("harad_tent_a", 0, "haradTent_a_new", "bo_khandTent_a", []),
+("harad_tent_b", 0, "haradTent_b_new", "bo_khandTent_a", []),
 
 # Romainoir Rohan buildings
 ("rohan_birdhouse",0,"rohan_birdhouse","bo_birdhouse",[]),
@@ -2629,7 +2696,7 @@ scene_props = [
 ("horse_pony",sokf_invisible,"pony","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
   (spawn_horse,"itm_pony", 0),(agent_set_stand_animation, reg0, "anim_horse_stand"),])]),
-("harad_oliphant",sokf_invisible,"oliphant","bo_oliphant", [(ti_on_init_scene_prop,[
+("harad_oliphant",sokf_invisible,"oliphant_base","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
   (spawn_horse,"itm_oliphant", 0),
   (agent_set_speed_limit, reg0, 0),
@@ -2690,13 +2757,30 @@ scene_props = [
 ("ai_limiter_gate_breached" ,sokf_invisible|sokf_type_ai_limiter|sokf_moveable,"barrier_8m" ,"bo_barrier_8m" , []), # all instances moved away when gate_destructible is destroyed
 ("barrier_cube" ,sokf_invisible,"collision_cube" ,"bo_collision_cube", []), #a poli-efficient replacement for some colmeshes 
 
-("fog_elven_settlement",sokf_invisible,"collision_cube", "0", [(ti_on_scene_prop_init,[
-  (try_begin),(is_currently_night),(set_fog_distance,3000,0xeFFF3D),(else_try),(set_fog_distance,1500,0xeFFF3D),(try_end)])]),
-("fog_darkish_glow",sokf_invisible,"collision_cube", "0", [(ti_on_scene_prop_init,[
-  (try_begin),(is_currently_night),(eq, "$bright_nights", 1), (set_fog_distance,1300,0x010101),(else_try),(is_currently_night),(set_fog_distance,1000,0x010101),(else_try),(set_fog_distance,1500,0x010101),(try_end)])]),
-("fog_reddish_glow",sokf_invisible,"collision_cube", "0", [(ti_on_scene_prop_init,[
-  (try_begin),(is_currently_night),(set_fog_distance,3000,0x911101),(else_try),(set_fog_distance,1500,0x911101),(try_end)])]),
-("fog_greenish_glow",sokf_invisible,"collision_cube", "0", [(ti_on_scene_prop_init,[
+("fog_elven_settlement",sokf_invisible|sokf_place_at_origin,"collision_cube", "0", [(ti_on_scene_prop_init,[(set_fixed_point_multiplier, 100),
+  (try_begin),(is_currently_night),(set_fog_distance,3000,0xeFFF3D),(else_try),(set_fog_distance,3000,0xeFFF3D),] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 95, 95, 75), ] or []) + [  (try_end)])]),
+("fog_darkish_glow",sokf_invisible|sokf_place_at_origin,"collision_cube", "0", [ #Mordor and Minas Tirith siege, Erebor
+     (ti_on_scene_prop_init,[ (store_trigger_param_1, ":instance_no"),(set_fixed_point_multiplier, 1000), (prop_instance_get_position, pos2, ":instance_no"), (position_move_z, pos2, 2000), (prop_instance_set_position, ":instance_no", pos2),
+     (prop_instance_get_scale, pos1, ":instance_no"), (position_get_scale_x, ":scale", pos1),
+         (try_begin),(is_currently_night),(eq, "$bright_nights", 1), (val_mul, ":scale", 2),(val_div, ":scale", 3),
+         (else_try),(is_currently_night),(set_fog_distance,130,0x010101), (val_div, ":scale", 2),
+         ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 25, 25, 25),(set_startup_sun_light, 5, 5, 5),(set_startup_sun_light, 2, 2, 2),(set_startup_ground_ambient_light, 12, 12, 12), ] or []) + [ 
+         (else_try),
+         (set_fog_distance,200,0x010101), ] + (is_a_wb_sceneprop==1 and [  (set_startup_ambient_light, 40, 40, 40),(set_startup_sun_light, 10, 10, 10),(set_startup_ground_ambient_light, 12, 12, 12), ] or []) + [ 
+         (try_end),
+         (set_fog_distance,":scale",0x010101),
+         (eq, ":scale", 1000), #only show tutorial message if scale is unchanged
+          ] + (is_a_wb_sceneprop==1 and [ (is_edit_mode_enabled), ] or []) + [ 
+         (display_message, "@{!} debug: scale up down to increase/decrease fog distance, default is 1000m."),
+        (display_message, "@{!} debug: scale prop to disable this message"),
+     ])]),
+("fog_reddish_glow",sokf_invisible|sokf_place_at_origin,"collision_cube", "0", [# Goblin town and Isengard underground
+    (ti_on_scene_prop_init,[(set_fixed_point_multiplier, 100),
+        (set_fog_distance,80,0x0F0200),
+        ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 12, 9, 9),(set_startup_sun_light, 75, 75, 75), ] or []) + [
+  ])]),
+("fog_greenish_glow",sokf_invisible|sokf_place_at_origin,"collision_cube", "0", [ #Mirkwood
+    (ti_on_scene_prop_init,[(set_fixed_point_multiplier, 100),
   (try_begin),(is_currently_night),(eq, "$bright_nights", 1), (set_fog_distance,300,0x0F190F),(else_try),(is_currently_night),(set_fog_distance,250,0x090F09),(else_try),(set_fog_distance,400,0x172617),(try_end)])]),
   
 ("isen_furnace",0,"isen_furnace","bo_isen_furnace", []),
@@ -2902,12 +2986,12 @@ scene_props = [
        (try_end),])]),	   
 #InVain re-used map icons for ambience scenes end
 	
-( "honey_pot",0,"honey_pot","0",[]),
-( "butter_pot",0,"butter_pot","0",[]),
-( "apple_basket",0,"apple_basket","bo_apple_basket",[]),
+( "honey_pot",0,"honey_pot_new","0",[]),
+( "butter_pot",0,"butter_pot_new","0",[]),
+( "apple_basket",0,"apple_basket_new","bo_apple_basket",[]),
 ( "sausages",0,"sausages","0",[]),
-( "wine",0,"amphora_slim","0",[]),
-( "oil",0,"oil","0",[]),
+( "wine",0,"amphora_slim_new","0",[]),
+( "oil",0,"oil_new","0",[]),
 
 ( "boat_sail_on",0,"new_boat_sail_on","bo_new_boat_sail_on",[]),
 ( "boat_sail_off",0,"new_boat_sail_off","bo_new_boat_sail_off",[]),
@@ -2952,9 +3036,9 @@ scene_props = [
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_pistol_smoke",pos1,200),
+    (particle_system_burst,"psys_game_hoof_dust",pos1,40),
+    (particle_system_burst,"psys_dummy_smoke",pos1,30),
+    #(particle_system_burst,"psys_pistol_smoke",pos1,200),
     (position_rotate_x, pos1, 85),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
     (play_sound, "snd_dummy_destroyed"),
@@ -3010,7 +3094,7 @@ scene_props = [
   #(entry_point_get_position,pos1,39),
   #(agent_set_position, "$gate_aggravator_agent", pos1), # place gate aggravator agent to proper position
     ]),
-], 1500), 
+], 2500), 
 
 ("rope_bridge",0,"rope_bridge_new","bo_rope_bridge_new", []),
 ("arena_awning",0,"arena_block_j_awning","bo_arena_block_j_awning", []),
@@ -3210,10 +3294,15 @@ scene_props = [
 ("morgul_tower_7",0,"morgul_gondor_tower_7_evil","bo_gondor_tower_7", []),
 ("morgul_wall",0,"morgul_mt_wall_evil","bo_morgul_mt_wall_evil", []),
 ("morgul_gate_tower",0,"morgul_mt_gate_tower_evil","bo_mt_tower", []),
-("morgul_gate_house",0,"morgul_mt_gate_house_evil","bo_morgul_mt_gate_house_evil", [(ti_on_scene_prop_init,
-            [(try_begin),(is_currently_night),(set_fog_distance,450,0x07291D),
-			 (else_try),                      (set_fog_distance,1000,0x10261E),
-			 (try_end),])]),
+("morgul_gate_house",0,"morgul_mt_gate_house_evil","bo_morgul_mt_gate_house_evil", [
+     (ti_on_scene_prop_init,[ (set_fixed_point_multiplier, 100), 
+         (try_begin),(is_currently_night),(eq, "$bright_nights", 1), (set_fog_distance,450,0x07291D),
+         (else_try),(is_currently_night),(set_fog_distance,450,0x07291D), 
+         ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 25, 30, 25),(set_startup_sun_light, 5, 5, 5),(set_startup_ground_ambient_light, 12, 18, 12), ] or []) + [ 
+         (else_try),(set_fog_distance,700,0x10261E),         
+         ] + (is_a_wb_sceneprop==1 and [ (set_startup_ambient_light, 40, 40, 40),(set_startup_sun_light, 10, 10, 10),(set_startup_ground_ambient_light, 12, 18, 12), ] or []) + [ 
+         (try_end),
+     ])]),
 ("morgul__gate",0,"morgul_gate","bo_morgul_gate", []),
 ("morgul_short_tower",0,"morgul_short_tower","bo_morgul_short_tower", []),	
 ("morgul_tower_b_vp_E",0,"morgul_tower_b_color","0", []),
@@ -3265,7 +3354,7 @@ scene_props = [
 ( "Gutek_straw_a"                              ,0,"Gutek_straw_a","0",[]),
 ( "Gutek_straw_b"                              ,0,"Gutek_straw_b","0",[]),
 ( "Gutek_straw_c"                              ,0,"Gutek_straw_c","0",[]),
-( "Gutek_cart"                                 ,0,"Gutek_cart","bocart",[]),
+( "Gutek_cart"                                 ,0,"Gutek_cart","bo_cart_new",[]),
 ( "Gutek_awning_d"                             ,0,"Gutek_awning_d","bo_awning_d",[]),
 ( "Gutek_stand_cloth"                          ,0,"Gutek_stand_cloth","bo_stand_cloth",[]),
 ( "Gutek_stand_thatched"                       ,0,"Gutek_stand_thatched","bo_stand_thatched",[]),
@@ -3453,81 +3542,171 @@ scene_props = [
 
 ("animal_goat",sokf_invisible,"bry_goat","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(store_random_in_range, ":animal_var", 1, 3),														 
-	        (try_begin),
-	        	(eq, ":animal_var",1),
-				(spawn_horse,"itm_animal_small", 0),
-	        (else_try),
-	        	(spawn_horse,"itm_animal_small", imod_cracked),
-			(try_end),])]),
+
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", 0, imod_cracked+1),														 
+	(spawn_horse,"itm_animal_small", ":animal_var"),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_goat), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_goat), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 10), #chance to move per second, minimum 5%
+    ] or []) + [          
+    ])]),
+
 ("animal_cow",sokf_invisible,"bry_cow_a","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(store_random_in_range, ":animal_var", 1, 5),														 
-	        (try_begin),
-	        	(eq, ":animal_var",1),
-				(spawn_horse,"itm_animal_big", 0),
-	        (else_try),
-	        	(eq, ":animal_var",2),
-				(spawn_horse,"itm_animal_big", imod_cracked),
-	        (else_try),
-	        	(eq, ":animal_var",3),
-				(spawn_horse,"itm_animal_big", imod_rusty),
-	        (else_try),
-	        	(eq, ":animal_var",4),
-				(spawn_horse,"itm_animal_big", imod_bent),
-			(try_end),
-			(agent_set_stand_animation, reg0, "anim_horse_stand"),])]),
+
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", imod_cracked, imod_bent+1),														 
+	(spawn_horse,"itm_animal_big", ":animal_var"),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_cow_moo), #sound 2
+    ] or []) + [          
+    ])]),
+
 ("animal_cow_b",sokf_invisible,"CWE_cow_mod_a","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-  (spawn_horse,"itm_animal_big", imod_chipped),])]),
+
+    ] + (is_a_wb_sceneprop==1 and [ 													 
+	(spawn_horse,"itm_animal_big", imod_chipped),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_cow_moo), #sound 2
+    ] or []) + [          
+    ])]),  
+
 ("animal_donkey",sokf_invisible,"bry_wild_donkey","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-  (spawn_horse,"itm_animal_big", imod_rotten),])]),
+
+    ] + (is_a_wb_sceneprop==1 and [ 													 
+	(spawn_horse,"itm_animal_big", imod_rotten),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_horse_breath), #sound 1 
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_donkey), #sound 2
+    ] or []) + [          
+    ])]),
+    
 ("animal_aurochs",sokf_invisible,"spak_yak1","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(store_random_in_range, ":animal_var", 1, 3),														 
-	        (try_begin),
-	        	(eq, ":animal_var",1),
-				(spawn_horse,"itm_animal_big", imod_smelling),
-	        (else_try),
-	        	(spawn_horse,"itm_animal_big", imod_large_bag),
-			(try_end),])]),
 
-] + (is_a_wb_sceneprop==1 and [
-("animal_wolf",sokf_invisible,"wolf","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_animal_wolf", 0),])]),
-("animal_bear",sokf_invisible,"bear","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_animal_bear", 0),])]),
-("animal_spider",sokf_invisible,"spider","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_animal_spider", 0),])]),
-("animal_werewolf",sokf_invisible,"mm_warg_a","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_animal_werewolf", 0),])]),
- 
-    ] or [	
-    ("animal_wolf",sokf_invisible,"wolf","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_wolf", 0),])]),
-    ("animal_bear",sokf_invisible,"bear","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_bear", 0),])]),
-    ("animal_spider",sokf_invisible,"spider","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_spider", 0),])]),
-    ("animal_werewolf",sokf_invisible,"mm_warg_a","0", [(ti_on_init_scene_prop,[(store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),(spawn_horse,"itm_werewolf", 0),])]),
-	]) + [
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", 1, 4),														 
+    (try_begin),
+        (eq, ":animal_var",1),
+        (spawn_horse,"itm_animal_big", imod_smelling),
+    (else_try),
+        (spawn_horse,"itm_animal_big", imod_large_bag),
+    (try_end),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, 0), #sound 2
+    ] or []) + [          
+    ])]),
+
+("animal_wolf",sokf_invisible,"wolf","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(spawn_horse,"itm_animal_wolf", 0),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, "snd_warg_lone_woof"), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 15), #chance to move per second, minimum 5%
+    ] or []) + [          
+    ])]),
+
+("animal_bear",sokf_invisible,"bear","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(spawn_horse,"itm_animal_bear", 0),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, "anim_bear_slam"), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_bear_strike), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_bear_strike), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 15), #chance to move per second, minimum 5%
+    ] or []) + [          
+    ])]),
+    
+("animal_spider",sokf_invisible,"arrow_helper_blue","0", [(ti_on_init_scene_prop,[
+    ] + (is_a_wb_sceneprop==1 and [
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, "itm_animal_spider"),
+    ] or []) + [
+    ])]),
+
+("animal_werewolf",sokf_invisible,"mm_warg_a","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(spawn_horse,"itm_animal_werewolf", 0),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, "anim_bear_slam"), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_bear_slam"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, "snd_warg_lone_woof"), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 15), #chance to move per second, minimum 5%
+    ] or []) + [          
+    ])]),
  
 ("animal_sheep",sokf_invisible,"CWE_sheep_mod_a","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(store_random_in_range, ":animal_var", 1, 3),														 
-	        (try_begin),
-	        	(eq, ":animal_var",1),
-				(spawn_horse,"itm_animal_small", imod_rusty),
-	        (else_try),
-	        	(spawn_horse,"itm_animal_small", imod_bent),
-			(try_end),])]),
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", imod_rusty, imod_bent+1),														 
+	(spawn_horse,"itm_animal_small", ":animal_var"),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_sheep), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_sheep), #sound 2
+    ] or []) + [          
+    ])]),
+
 ("animal_horse",sokf_invisible,"CWE_horse_light_a","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(store_random_in_range, ":animal_var", 1, 4),														 
-	        (try_begin),
-	        	(eq, ":animal_var",1),
-				(spawn_horse,"itm_sumpter_horse", imod_cracked),
-	        (else_try),
-	        	(eq, ":animal_var",2),
-				(spawn_horse,"itm_sumpter_horse", imod_rusty),
-	        (else_try),
-				(spawn_horse,"itm_sumpter_horse", imod_bent),
-			(try_end),
-			(agent_set_stand_animation, reg0, "anim_horse_stand"),])]),
+
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", imod_cracked, imod_bent+1),														 
+	(spawn_horse,"itm_animal_horse", ":animal_var"),
+    #(agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_horse_breath), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_horse_low_whinny1), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 5), #chance to move per second, minimum 5%
+    ] or []) + [          
+    ])]),
 
 ("rock_cliff_k_bb",0,"beefbacon_cliff_01","bo_terrain_cliff_01",[]),
 ("rock_cliff_l_bb",0,"beefbacon_cliff_02","bo_terrain_cliff_02",[]),
@@ -3700,7 +3879,7 @@ scene_props = [
 ("mordor_clouds_3",sokf_moveable|sokf_place_at_origin,"skybox_cloud_overlay_3","0",[]),
 
 # retreat gates open at mission start and close when the assigned rally point in var_id_2 is lost. Place closed.
-("gate_destructible_retreat",sokf_destructible,"gate_tld_displaced","bo_gate_tld_displaced",   [ 
+("gate_destructible_retreat",sokf_destructible|sokf_moveable,"gate_tld_displaced","bo_gate_tld_displaced",   [ 
    
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
@@ -3709,9 +3888,9 @@ scene_props = [
     (scene_prop_set_slot, ":gate_no", scene_prop_open_or_close_slot, 2),
     ] or []) + [
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,200),
-    (particle_system_burst,"psys_pistol_smoke",pos1,200),
+    (particle_system_burst,"psys_game_hoof_dust",pos1,40),
+    (particle_system_burst,"psys_dummy_smoke",pos1,30),
+    #(particle_system_burst,"psys_pistol_smoke",pos1,200),
     (position_rotate_x, pos1, -180),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
     (play_sound, "snd_dummy_destroyed"),
@@ -3766,7 +3945,7 @@ scene_props = [
       (particle_system_burst, "psys_dummy_smoke", pos1, 3),
       (particle_system_burst, "psys_dummy_straw", pos1, 10),
     ]),
-], 1500),
+], 2500),
 
 ("spike_group_a_destructible",sokf_destructible,"spike_group_a","bo_spike_group_a_big",   [ 
    (ti_on_scene_prop_init, [
@@ -3791,7 +3970,7 @@ scene_props = [
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,10),
+    (particle_system_burst,"psys_dummy_smoke",pos1,10),
     (position_rotate_x, pos1, -80),
     (position_move_z, pos1, -200,1),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
@@ -3874,7 +4053,7 @@ scene_props = [
    (ti_on_scene_prop_destroy, [
     (store_trigger_param_1, ":gate_no"),
     (prop_instance_get_starting_position, pos1, ":gate_no"),
-    (particle_system_burst,"psys_village_fire_smoke_big",pos1,10),
+    (particle_system_burst,"psys_dummy_smoke",pos1,10),
     (position_rotate_x, pos1, -80),
     (position_move_z, pos1, -200,1),
     (prop_instance_animate_to_position, ":gate_no", pos1, 400), #animate in 4 second
@@ -3987,7 +4166,7 @@ scene_props = [
 ("troop_messenger",sokf_invisible,"arrow_helper_blue","0", [
     (ti_on_init_scene_prop,[
     (store_random_in_range, ":chance", 0, 100),
-    (lt, ":chance", 60),
+    (lt, ":chance", 40),
     (store_trigger_param_1, ":instance_no"),
     (store_faction_of_party, ":faction", "$current_town"),
     (faction_get_slot, ":troop", ":faction", slot_faction_rider_troop),
@@ -4039,9 +4218,12 @@ scene_props = [
     (store_random_in_range, reg6, 0, 100),
     (agent_set_animation_progress, reg0, reg6),
     
-    (agent_set_slot, reg0, slot_agent_walker_type, 1), #walker
-    (agent_set_slot, reg0, slot_agent_target_entry_point, ":instance_no"), #store home position
-  
+    (agent_set_slot, reg0, slot_agent_walker_type, 4), #prop walker
+    (store_random_in_range, ":speed", 2, 6), 
+    (agent_set_speed_limit, reg0, ":speed"),
+    ] + (is_a_wb_sceneprop==1 and [     
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    ] or []) + [    
   ])]),
 
 ("light_white",sokf_invisible,"light_sphere","0",  [
@@ -4196,6 +4378,7 @@ scene_props = [
     (val_add, ":anim", "anim_fall_face_hold"),
 	(spawn_agent, ":troop"),
     (agent_set_team, reg0, 0),(agent_set_animation, reg0, ":anim"),(agent_set_animation_progress, reg0, 100),
+    (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
     
         #remove weapons and helms
   ] + (is_a_wb_sceneprop==1 and [    
@@ -4247,19 +4430,8 @@ scene_props = [
     (party_get_slot, ":troop", "$current_town", slot_town_guard_troop),
     (spawn_agent, ":troop"), (assign, ":fighter_1", reg0),(agent_set_team, ":fighter_1", 0),(agent_ai_set_interact_with_player, ":fighter_1", 0),(agent_set_is_alarmed, ":fighter_1", 1),(agent_set_no_death_knock_down_only, ":fighter_1", 1),    
     (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, ":fighter_1"),
-    (agent_get_item_slot, ":old_weapon", ":fighter_1", 0), #assume that weapon is in first slot
-    (agent_unequip_item, ":fighter_1", ":old_weapon", 0),
-    (item_get_type, ":weapon_type", ":old_weapon"),
-    (assign, ":new_weapon", itm_wood_club),
-    (try_begin),
-        (eq, ":weapon_type", itp_type_two_handed_wpn),
-        (assign, ":new_weapon", itm_twohand_wood_club),
-    (else_try),
-        (eq, ":weapon_type", itp_type_polearm),
-        (assign, ":new_weapon", itm_practice_staff),
-    (try_end),        
-    (agent_equip_item, ":fighter_1", ":new_weapon", 0),
-    (agent_set_wielded_item, ":fighter_1", ":new_weapon"),    
+    (agent_set_slot, ":fighter_1", slot_agent_walker_type, 5), #don't talk
+    
     (position_move_y, pos1, 500,0),
     (position_rotate_z, pos1, 180),
     (set_spawn_position, pos1),
@@ -4267,19 +4439,33 @@ scene_props = [
     (scene_prop_set_slot, ":instance_no", slot_prop_agent_2, ":fighter_2"),
     (agent_set_team, ":fighter_2", 0),(agent_ai_set_interact_with_player, ":fighter_2", 0),(agent_set_is_alarmed, ":fighter_2", 1),(agent_set_no_death_knock_down_only, ":fighter_2", 1),
     (agent_add_relation_with_agent, ":fighter_2", ":fighter_1", -1),(agent_add_relation_with_agent, ":fighter_1", ":fighter_2", -1),
-    (agent_get_item_slot, ":old_weapon", ":fighter_2", 0), #assume that weapon is in first slot
-    (agent_unequip_item, ":fighter_2", ":old_weapon", 0),
-    (item_get_type, ":weapon_type", ":old_weapon"),
-    (assign, ":new_weapon", itm_wood_club),
+    (agent_set_slot, ":fighter_2", slot_agent_walker_type, 5), #don't talk
+
     (try_begin),
-        (eq, ":weapon_type", itp_type_two_handed_wpn),
-        (assign, ":new_weapon", itm_twohand_wood_club),
+        (faction_slot_eq,"$ambient_faction", slot_faction_side, faction_side_good),
+        (assign, ":weapon_to_use", itm_practice_staff),
     (else_try),
-        (eq, ":weapon_type", itp_type_polearm),
-        (assign, ":new_weapon", itm_practice_staff),
-    (try_end),        
-    (agent_equip_item, ":fighter_2", ":new_weapon", 0),
-    (agent_set_wielded_item, ":fighter_2", ":new_weapon"), 
+        (store_random_in_range, ":rand", 0, 100),
+        (assign, ":weapon_to_use", itm_wood_club),
+        (ge, ":rand", 50),
+        (assign, ":weapon_to_use", itm_twohand_wood_club),
+    (try_end),
+    (try_begin),
+        (prop_instance_get_variation_id, ":var1", ":instance_no"),
+        (eq, ":var1", 0),
+        (try_for_range, ":weapon_slot", 0, 4), #remove weapons
+            (agent_get_item_slot, ":item", ":fighter_1", ":weapon_slot"),
+            (gt, ":item", 1),
+            (agent_unequip_item, ":fighter_1", ":item", ":weapon_slot"),
+            (agent_get_item_slot, ":item", ":fighter_2", ":weapon_slot"),
+            (gt, ":item", 1),
+            (agent_unequip_item, ":fighter_2", ":item", ":weapon_slot"),            
+        (try_end), 
+        (agent_equip_item, ":fighter_1", ":weapon_to_use", 1),
+        (agent_set_wielded_item, ":fighter_1", ":weapon_to_use"),
+        (agent_equip_item, ":fighter_2", ":weapon_to_use", 1),
+        (agent_set_wielded_item, ":fighter_2", ":weapon_to_use"),
+    (try_end),
     ] or []) + [  
   ])]),
   
@@ -4296,6 +4482,7 @@ scene_props = [
     (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
     (agent_set_scripted_destination, reg0, pos1), 
     (agent_set_damage_modifier, reg0, 0),
+    (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
 
     (assign, ":weapon_found", 0),
     (try_for_range, ":weapon_slot", 0, 4), #find weapon, non-polearm first
@@ -4327,7 +4514,7 @@ scene_props = [
         #(agent_equip_item, reg0, ":item", 1),
         (agent_set_wielded_item, reg0, ":item"),
         (item_get_weapon_length, ":length", ":item"), #polearm users need more space
-        (val_add, ":length", 30),
+        (val_add, ":length", 50),
         (val_mul, ":length", -1),
         # (assign, reg78, ":length"),
         # (display_message, "@length {reg78}"),
@@ -4370,30 +4557,39 @@ scene_props = [
     ] or []) + [  
   ])]),
 
-("troop_archer_fight_single",sokf_invisible,"arrow_helper_blue","0", [(ti_on_init_scene_prop,[
+("troop_archer_fight_single",sokf_invisible,"arrow_helper_blue","bo_man_body_lie_lower", [(ti_on_init_scene_prop,[
   ] + (is_a_wb_sceneprop==1 and [  
     (store_trigger_param_1, ":instance_no"),
     (set_fixed_point_multiplier, 100),
     (lt, "$g_encountered_party_2", 0), #don't spawn guards in siege battles
     (prop_instance_get_position, pos1, ":instance_no"), 
     (set_spawn_position, pos1),
-    (party_get_slot, ":troop", "$current_town", slot_town_archer_troop),
-    (spawn_agent, "trp_gate_aggravator"),
-    (scene_prop_set_slot, ":instance_no", slot_prop_agent_2, reg0),
-    (agent_set_team, reg0, 0), 
-    (assign, reg1, reg0),
-    (agent_set_no_dynamics, reg0, 1), 
-    (agent_ai_set_interact_with_player, reg0, 0),
-    (agent_set_is_alarmed, reg0, 1),
-    (agent_set_no_death_knock_down_only, reg0, 1),
-    (agent_set_visibility, reg0, 0),
+    #(position_set_z_to_ground_level, pos1),
+    (position_move_z, pos1, -150),
+    (spawn_agent, "trp_i1_isen_orc_snaga"), #get a small troop
+    (assign, ":target", reg0),
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_2, ":target"),
+    (agent_set_team, ":target", 0),     
+    (agent_set_no_dynamics, ":target", 1), 
+    (agent_set_position, ":target", pos1),
+    (agent_ai_set_interact_with_player, ":target", 0),
+    (agent_set_is_alarmed, ":target", 0),
+    (agent_set_no_death_knock_down_only, ":target", 1),
+    (agent_set_visibility, ":target", 0),
+    (agent_set_animation, ":target", "anim_fall_face_hold"),(agent_set_animation_progress, ":target", 100),
+    #(agent_set_stand_animation, ":target", "anim_sit_on_throne"),
+    # (agent_ai_set_can_crouch, ":target", 1),
+    # (agent_set_crouch_mode, ":target", 1),
     
+    (prop_instance_get_position, pos1, ":instance_no"),
     (position_move_y, pos1, -1000,0),(set_spawn_position, pos1),
+    (party_get_slot, ":troop", "$current_town", slot_town_archer_troop),    
     (spawn_agent, ":troop"),(agent_set_team, reg0, 0),
     #(agent_set_no_dynamics, reg0, 1),
     (agent_set_scripted_destination, reg0, pos1), 
-    (agent_add_relation_with_agent, reg0, reg1, -1),(agent_ai_set_interact_with_player, reg0, 0),(agent_set_is_alarmed, reg0, 1),(agent_set_no_death_knock_down_only, reg0, 1),
+    (agent_add_relation_with_agent, reg0, ":target", -1),(agent_ai_set_interact_with_player, reg0, 0),(agent_set_is_alarmed, reg0, 1),(agent_set_no_death_knock_down_only, reg0, 1),
     (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
     
     (assign, ":bow_found", 0),    
     (try_for_range, ":weapon_slot", 0, 4), #check if they have a bow or throwing weapon
@@ -4438,6 +4634,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_woodaxe_1h", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_woodaxe_1h"),
         (agent_set_look_target_position, reg0, pos2),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4487,6 +4684,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_woodaxe_2h", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_woodaxe_2h"),
         (agent_set_look_target_position, reg0, pos2),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4536,6 +4734,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_woodaxe_2h", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_woodaxe_2h"),
         (agent_set_look_target_position, reg0, pos2),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4585,6 +4784,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_pickaxe", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_pickaxe"),
         (agent_set_look_target_position, reg0, pos2),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]), 
     
    (ti_on_scene_prop_hit,
@@ -4621,7 +4821,8 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_hammer", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_hammer"),
         (agent_set_look_target_position, reg0, pos1),
-        (agent_set_scripted_destination, reg0, pos2, 0, 1),           
+        (agent_set_scripted_destination, reg0, pos2, 0, 1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4673,6 +4874,7 @@ scene_props = [
     (agent_set_no_dynamics, reg0, 1),
     (agent_set_position, reg0, pos3),
     #(agent_set_scripted_destination, reg0, pos3, 0, 1),
+    (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
     ] or []) + [   
     ])]),
 
@@ -4684,7 +4886,7 @@ scene_props = [
         (lt, "$g_encountered_party_2", 0), #don't spawn guards in siege battles
         (prop_instance_get_position, pos1, ":instance_no"),
         (copy_position, pos2, pos1),
-        (position_move_y, pos2, -80,0),(set_spawn_position, pos2),
+        (position_move_y, pos2, -90,0),(set_spawn_position, pos2),
         (store_random_in_range, ":walker_type", 0, 2), #only use first two town walkers, make sure they're not "rich" walkers
         (val_add, ":walker_type", slot_center_walker_0_troop),
         (party_get_slot, ":troop", "$current_town", ":walker_type"),
@@ -4700,6 +4902,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_hammer", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_hammer"),
         (agent_set_look_target_position, reg0, pos1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4751,6 +4954,7 @@ scene_props = [
         (agent_equip_item, reg0, ":item_to_equip", 1),
         (agent_set_wielded_item, reg0, ":item_to_equip"),
         (agent_set_look_target_position, reg0, pos1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4785,7 +4989,7 @@ scene_props = [
         (lt, "$g_encountered_party_2", 0), #don't spawn guards in siege battles
         (prop_instance_get_position, pos1, ":instance_no"), 
         (copy_position, pos2, pos1),
-        (position_move_y, pos2, -80,0),(set_spawn_position, pos2),
+        (position_move_y, pos2, -120,0),(set_spawn_position, pos2),
         (store_random_in_range, ":walker_type", 0, 2), #only use first two town walkers, make sure they're not "rich" walkers
         (val_add, ":walker_type", slot_center_walker_0_troop),
         (party_get_slot, ":troop", "$current_town", ":walker_type"),
@@ -4801,6 +5005,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_civilian_shovel", 1),
         (agent_set_wielded_item, reg0, "itm_civilian_shovel"),
         (agent_set_look_target_position, reg0, pos1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ]),
         
    (ti_on_scene_prop_hit,
@@ -4840,6 +5045,7 @@ scene_props = [
         (agent_equip_item, reg0, "itm_orc_axe", 1),
         (agent_set_wielded_item, reg0, "itm_orc_axe"),
         (agent_set_look_target_position, reg0, pos2),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
          ]),
         
    (ti_on_scene_prop_hit,
@@ -4888,6 +5094,7 @@ scene_props = [
         (agent_set_position, reg0, pos1),
         (agent_set_scripted_destination, reg0, pos1), #so they turn back
         #(agent_set_look_target_position, reg0, pos1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ] or []) + [          ]),
         ]),
 
@@ -4915,6 +5122,7 @@ scene_props = [
         #(agent_set_position, reg0, pos2),
         (agent_set_scripted_destination, reg0, pos2), #so they turn back
         (agent_set_look_target_position, reg0, pos1),
+        (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
         ] or []) + [          ]),
         ]),
 
@@ -4952,6 +5160,7 @@ scene_props = [
     (lt, "$g_encountered_party_2", 0), #don't spawn guards in siege battles
     (prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
     (spawn_agent, "trp_evil_priest"),(agent_set_team, reg0, 0),(store_random_in_range, reg6, 0, 100),(agent_set_animation_progress, reg0, reg6),
+    (agent_set_slot, reg0, slot_agent_walker_type, 5), #don't talk
 
     #remove weapons and helms (for old savegames)
   ] + (is_a_wb_sceneprop==1 and [  
@@ -5012,7 +5221,10 @@ scene_props = [
 
 ("ai_melee_on_off_var1",sokf_invisible,"sphere_1m","0", []), #var 1 sets agent_ai_set_always_attack_in_melee
 
-("secret_point_of_interest",sokf_invisible,"sphere_1m","0", []),
+("secret_point_of_interest",sokf_invisible,"sphere_1m","0", [(ti_on_scene_prop_init,
+    [(particle_system_add_new, "psys_moon_beam_1"),
+    #(particle_system_add_new, "psys_moon_beam_paricle_1") #separate prop now
+    ])]),
 ("secret_guardian",sokf_invisible,"arrow_helper_blue","0", [
     (ti_on_init_scene_prop,[
     ] + (is_a_wb_sceneprop==1 and [     
@@ -5045,18 +5257,151 @@ scene_props = [
 ("basket_earth",0,"basket_earth","bo_apple_basket",[]),
 ("basket_cloth",0,"basket_cloth","bo_apple_basket",[]),
 
-("animal_dog",sokf_invisible,"wolf","0", [(ti_on_init_scene_prop,[
+("animal_dog",sokf_invisible,"wolf_dog","0", [(ti_on_init_scene_prop,[
     (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
-	(spawn_horse,"itm_animal_small", imod_chipped),
-    (agent_set_stand_animation, reg0, "anim_horse_stand"),
     ] + (is_a_wb_sceneprop==1 and [ 
+	(spawn_horse,"itm_animal_dog", imod_chipped),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
     (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
-    (scene_prop_set_slot, ":instance_no", slot_prop_sound, "snd_distant_dog_bark"),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, "anim_horse_rear"), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, "snd_distant_dog_bark"), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, "snd_warg_lone_woof"), #sound 2
+    ] or []) + [          
+    ])]),
+
+("animal_pig",sokf_invisible,"pk_pig","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 												 
+	(spawn_horse,"itm_animal_small", imod_battered),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_pig), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, 0), #sound 2
+    ] or []) + [          
+    ])]),
+
+("animal_boar",sokf_invisible,"boar","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 												 
+	(spawn_horse,"itm_animal_boar", imod_battered),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_pig), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, 0), #sound 2
+    ] or []) + [
+    ])]),
+
+("animal_boar_big",sokf_invisible,"boar","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 												 
+	(spawn_horse,"itm_animal_boar_big", imod_battered),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_bear_strike), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_troll_grunt), #sound 2
+    ] or []) + [
+    ])]),
+
+#from sclavinia mod
+ ("animal_chicken",0,"scla_kura_combine",0,   [
+    ] + (is_a_wb_sceneprop==1 and [   
+   (ti_on_scene_prop_init,
+    [(store_trigger_param_1, ":instance_no"),
+    (store_random_in_range, ":random", 0, 220),  
+    (prop_instance_deform_to_time, ":instance_no", ":random"),
+    (store_random_in_range, ":random", 4000, 8000),
+    (prop_instance_deform_in_cycle_loop, ":instance_no", 0, 220, ":random"),
+    ])
+    ] or []) + [    
+    ]),
+
+
+("animal_pony",sokf_invisible,"CWE_horse_light_a","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", imod_cracked, imod_bent+1),														 
+	(spawn_horse,"itm_animal_pony", ":animal_var"),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_horse_breath), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_neigh1), #sound 2
+    ] or []) + [
+    ])]),
+
+("animal_deer",sokf_invisible,"scla_reddeer","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 													 
+	(spawn_horse,"itm_animal_deer", 0),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, "anim_wolf_snap"), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, snd_horse_breath), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, 0), #sound 2
+    ] or []) + [
+    ])]),
+
+("animal_camel",sokf_invisible,"giles_evil_camel_brown","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+
+    ] + (is_a_wb_sceneprop==1 and [ 													 
+	(spawn_horse,"itm_animal_camel", 0),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, snd_camel_sounds), #sound 2
+    ] or []) + [
+    ])]),
+
+("animal_rat",0,"earth_heap","0", [(ti_on_init_scene_prop,[
+    ] + (is_a_wb_sceneprop==1 and [
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_playing_sound, itm_animal_rat),
+    ] or []) + [
+    ])]),
+
+("animal_warg",sokf_invisible,"warg_1B","0", [(ti_on_init_scene_prop,[
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+    ] + (is_a_wb_sceneprop==1 and [ 
+	(store_random_in_range, ":animal_var", imod_cracked, imod_bent+1),														 
+	(spawn_horse,"itm_animal_warg", ":animal_var"),
+    (agent_set_stand_animation, reg0, "anim_horse_stand"),    
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+    (agent_set_slot, reg0, slot_agent_troll_swing_status, "anim_bear_slam"), #animation 1   
+    (agent_set_slot, reg0, slot_agent_troll_swing_move, "anim_wolf_snap"), #animation 2
+    (agent_set_slot, reg0, slot_agent_last_hp, "snd_warg_lone_woof"), #sound 1
+    (agent_set_slot, reg0, slot_agent_mount_side, "snd_warg_lone_woof"), #sound 2
+    (agent_set_slot, reg0, slot_agent_mount_dead, 15), #chance to move per second, minimum 5%
     ] or []) + [          
     ])]),
             
 ] + (is_a_wb_sceneprop==1 and [ 
-  ("fellbeast", sokf_moveable|sokf_dynamic_physics, "Fellbeast_Flap_1", "bo_Fellbeast_Flap_1", [
+  ("fellbeast", sokf_moveable|sokf_dynamic_physics, "Fellbeast_FlyAnim", "bo_woron_flight", [
     (ti_on_scene_prop_init,[
       (store_trigger_param_1, ":instance_no"),
       (store_random_in_range, ":var3", 0, 16),
@@ -5064,10 +5409,10 @@ scene_props = [
       (val_mul, ":var3", 200),
       (scene_prop_set_slot, ":instance_no", 39, ":var3"), #height offset
       (scene_prop_set_slot, ":instance_no", 43, 11), #dead frame
-      (prop_instance_deform_in_cycle_loop, ":instance_no", 0, 29, 1500),
+      (prop_instance_deform_in_cycle_loop, ":instance_no", 0, 35, 1500),
       (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_1, 50),
       (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_2, 500),
-      (assign, "$nazgul_in_battle", 1),
+      (assign, "$nazgul_in_battle", ":instance_no"),
     ]),
     (ti_on_scene_prop_hit,
     [   (store_trigger_param_1, ":instance_no"),
@@ -5076,13 +5421,15 @@ scene_props = [
         (scene_prop_get_slot, ":health", ":instance_no", slot_prop_temp_hp_1),
         (val_sub, ":health", ":damage"),
         (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_1, ":health"),
-        (scene_prop_get_slot, ":health", ":instance_no", slot_prop_temp_hp_2),
-        (val_sub, ":health", ":damage"),
-        (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_2, ":health"),        
+        (scene_prop_get_slot, ":health2", ":instance_no", slot_prop_temp_hp_2),
+        (val_sub, ":health2", ":damage"),
+        (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_2, ":health2"),        
         (particle_system_burst, "psys_dummy_smoke", pos1, 3),
         (particle_system_burst, "psys_dummy_straw", pos1, 10),
+        
+        (lt, ":health", 1),
         (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_long" ),
-        (display_message, "@hit!"),
+        #(display_message, "@hit!"),
         (scene_prop_set_slot, ":instance_no", 41, 3), #retreat
         (prop_instance_get_position, pos2, ":instance_no"),
         (position_get_rotation_around_x, ":tilt", pos2), #reset x rotation
@@ -5096,6 +5443,27 @@ scene_props = [
     ])    
     ]),
        ] or [("fellbeast", 0, "beest", "0", []),]) + [  
+
+("fallen_king_base",0,"FK_Base_combined","bo_apple_basket",[]),
+("fallen_king_head",0,"FK_Head","bo_apple_basket",[]),
+("fallen_king_evil_head",0,"FK_evil_head","bo_apple_basket",[]),
+
+("water_stream_a",0,"water_stream_a","bo_water_stream_a", []),
+("water_stream_b",0,"water_stream_b","bo_water_stream_b", []),
+("water_way",0,"water_way","bo_isen_forge", []),
+("barrel_water",0,"barrel_water","bo_barrel_a_repositioned", []),
+("bridge_b",0,"bridge_b","bo_bridge_b", []),
+
+("banner_stand_auto",0,"battle_banner_stand_a_auto","0", [(ti_on_init_scene_prop,[
+    (party_get_slot, ":cur_leader", "$current_town", slot_town_lord),
+    (troop_get_slot, ":troop_banner_object", ":cur_leader", slot_troop_banner_scene_prop),
+    (gt, ":troop_banner_object", 0),
+    (store_trigger_param_1, ":instance_no"),(prop_instance_get_position, pos1, ":instance_no"), (set_spawn_position, pos1),
+    ] + (is_a_wb_sceneprop==1 and [ 
+    (spawn_scene_prop, ":troop_banner_object"),
+    (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+    ] or []) + [
+    ])]),
 
 #("save_compartibility2",0,"0","0", []),
 #("save_compartibility3",0,"0","0", []),

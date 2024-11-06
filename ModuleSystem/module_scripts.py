@@ -541,14 +541,7 @@ scripts = [
           (neq, ":difference", 0),
           (call_script, "script_get_faction_rank", ":fac"),
           (assign, ":old_rank", reg0),
-          (faction_get_slot, ":val", ":fac", slot_faction_rank),
-
-          #swy-- uninitialized globals default to zero,
-          #   -- take advantage of this by adding one to get the saved multiplier:
-          #   -- 0 = x1 | 1 = x2 | 2 = x3 | 3 = x4
-          (store_add,                ":rank_multiplier", "$tld_option_rank_gain_rate", 1),
-          (val_mul,   ":difference", ":rank_multiplier"),
-          #swy-- 
+          (faction_get_slot, ":old_rank_points", ":fac", slot_faction_rank),
 		  
 		  (try_begin), #InVain: Home faction bonus
 			(eq, "$players_kingdom", ":fac"),
@@ -558,34 +551,48 @@ scripts = [
 			#(display_message, "@home faction bonus"),
 		  (try_end),
 
-		  #InVain: Charisma bonus
-          (store_attribute_level, ":player_charisma", trp_player, ca_charisma),
-          (val_mul, ":difference", 100),
-          (val_mul, ":difference", ":player_charisma"),
-          (val_div, ":difference", 1200), #starts to scale from 12, reduces below
-          (val_max, ":difference", 1),
-		  
-
-          (val_add, ":val", ":difference"),
-          (ge,      ":val", 0), #no negative rank points
-          (faction_set_slot, ":fac", slot_faction_rank, ":val"),
-          (call_script, "script_get_faction_rank", ":fac"),
-          (assign, ":new_rank", reg0),
+		  (try_begin), #InVain: Charisma bonus
+              (gt, ":difference", 0),
+              (store_attribute_level, ":player_charisma", trp_player, ca_charisma),
+              (val_mul, ":difference", 100),
+              (val_mul, ":difference", ":player_charisma"),
+              (val_div, ":difference", 1200), #starts to scale from 12, reduces below
+              (val_max, ":difference", 1),
+          (try_end),
           
           # gain influence = 1/8 rank points gain (rounded) Was 1/10
-          (faction_get_slot, ":val", ":fac", slot_faction_influence),
+          (faction_get_slot, ":old_inf", ":fac", slot_faction_influence),
           (store_add, ":inf_dif", ":difference", 8/2),
           (val_div,   ":inf_dif", 8),
 
           #swy-- uninitialized globals default to zero,
           #   -- take advantage of this by adding one to get the saved multiplier:
           #   -- 0 = x1 | 1 = x2 | 2 = x3 | 3 = x4
-          (store_add,             ":inf_multiplier", "$tld_option_influence_gain_rate", 1),
+          #Invain -- change multiplier to fractions, now goes 110, 120, 130...
+          (store_mul, ":inf_multiplier", "$tld_option_influence_gain_rate", 20),
+          (val_add, ":inf_multiplier", 100),
           (val_mul,   ":inf_dif", ":inf_multiplier"),
+          (val_div, ":inf_dif", 100),
           #swy--
 
-          (val_add, ":val", ":inf_dif"),
-          (faction_set_slot, ":fac", slot_faction_influence, ":val"),
+          #swy-- uninitialized globals default to zero,
+          #   -- take advantage of this by adding one to get the saved multiplier:
+          #   -- 0 = x1 | 1 = x2 | 2 = x3 | 3 = x4
+          #Invain -- change multiplier to fractions, now goes 110, 120, 130...
+          (store_mul, ":rank_multiplier", "$tld_option_rank_gain_rate", 20),
+          (val_add, ":rank_multiplier", 100),
+          (val_mul,   ":difference", ":rank_multiplier"),
+          (val_div, ":difference", 100),
+          #swy-- 
+
+          (val_add, ":old_rank_points", ":difference"),
+          #(ge,      ":old_rank_points", 0), #no negative rank points
+          (faction_set_slot, ":fac", slot_faction_rank, ":old_rank_points"),
+          (call_script, "script_get_faction_rank", ":fac"),
+          (assign, ":new_rank", reg0),
+
+          (val_add, ":old_inf", ":inf_dif"),
+          (faction_set_slot, ":fac", slot_faction_influence, ":old_inf"),
 
           # display message
           # (store_mod, reg10, ":difference", 100),(store_div, reg11, ":difference", 100),
@@ -1824,6 +1831,9 @@ scripts = [
 	(party_set_slot, "p_town_eastfold", slot_party_subfaction      , subfac_eastfold),
 	(party_set_slot, "p_town_westfold", slot_party_subfaction      , subfac_westfold),
 
+    (party_set_slot, "p_town_cair_andros", slot_town_reinforcements_a, "pt_ithilien_reinf_a"), #cair andros exception
+    (party_set_slot, "p_town_cair_andros", slot_town_archer_troop   , "trp_a4_ithilien_ranger"),
+    (party_set_slot, "p_town_cair_andros", slot_town_castle_guard_troop , "trp_a6_ithilien_master_ranger"),
 	(party_set_slot, "p_town_minas_tirith", slot_town_castle_guard_troop, "trp_steward_guard"), # minas tirith exception
 	(party_set_slot, "p_town_woodsmen_village", slot_town_castle_guard_troop, "trp_i5_woodmen_night_guard"), # woodmen exception
 
@@ -1961,6 +1971,11 @@ scripts = [
       (call_script, "script_get_player_party_morale_values"),
       (party_set_morale, "p_main_party", reg0),
 
+      #Piggyback for item score
+      ] + (is_a_wb_script==1 and [
+        (call_script, "script_init_item_score"),
+        ] or []) + [
+
 # assigning game global variables
 	(assign, "$g_fangorn_rope_pulled", 0),
 	#(assign, "$g_ent_seen", 0),
@@ -2013,7 +2028,7 @@ scripts = [
 	(assign, "$wall_missile_troop3", 0),
 	(assign, "$wall_missile_troop4", 0),
 	(assign, "$wall_missile_troop5", 0),  
-	(assign, "$rescue_convo_troop", 0),  	
+	(assign, "$tld_start_war_by_day_or_level", 0),  	
 
    #initialize game option defaults (see camp menu)
 	(assign, "$tld_option_crossdressing", 0), # item restrictions ON by default
@@ -2061,30 +2076,26 @@ scripts = [
 	(assign, "$FormAI_AI_no_defense",0), #Kham - FormAI - don't allow AI Defensive
 	(party_set_slot, "p_main_party", slot_party_number_following_player, 0),
 	(assign, "$lore_mode", 1),# unused      
-    (assign, "$play_ambient_sounds", 1), 
+    (assign, "$play_ambient_sounds", 1),
+    (assign, "$tld_start_war_by_day_or_level", 0), #0= by level (old setting), 1=by day (new setting)
+    (assign, "$cheatmode_used", 0),
+    (assign, "$tutorial_1_state", 0),
+    
 	#Kham - Squelch compiler warnings
-	(assign, "$original_savegame_version", 0),
-    (assign, "$cheatmode_used", 0),      
+      
     (assign, "$hold_f1", 0),  
-	(assign, "$dormant_spawn_radius", 0),  
-    (assign, "$mouse_coordinates", 0), #wb only
+	(assign, "$dormant_spawn_radius", 0),
     (assign, "$attacker_archer_melee",0),
-    (assign, "$attacker_team_3", 5),
-    (assign, "$rescue_convo_troop", 3),
-    (assign, "$tld_options_overlay_14", 2),
-    (assign, "$g_display_agent_labels", 2),
 
-    (val_mul, "$hold_f1", "$cheatmode_used"),
-    (val_mul, "$hold_f1", "$original_savegame_version"),
 	(val_mul, "$hold_f1", "$dormant_spawn_radius"),
-    (val_mul, "$hold_f1", "$mouse_coordinates"),
     (val_mul, "$hold_f1", "$attacker_archer_melee"),
     (val_mul, "$attacker_archer_melee", "$hold_f1"),
-    (val_mul, "$attacker_archer_melee", "$attacker_team_3"),
-    (val_mul, "$attacker_archer_melee", "$rescue_convo_troop"),   
-    (val_mul, "$attacker_archer_melee", "$tld_options_overlay_14"),   
-    (val_mul, "$attacker_archer_melee", "$g_display_agent_labels"),  
-    (val_mul, "$attacker_archer_melee", "$allies_leadership"),     
+    (val_mul, "$attacker_archer_melee", "$allies_leadership"), #wb only
+    (val_mul, "$attacker_archer_melee", "$fog_red"),  
+    (val_mul, "$attacker_archer_melee", "$fog_green"),  
+    (val_mul, "$attacker_archer_melee", "$fog_blue"),  
+    (val_mul, "$attacker_archer_melee", "$fog_dist"),
+    (val_mul, "$attacker_archer_melee", "$fog_color"),
 
 	#Kham - Squelch compiler warnings END
 	
@@ -2101,7 +2112,7 @@ scripts = [
 	# Set Light Armor Slot for Berserker Trait
 	(call_script, "script_set_slot_light_armor"),
 
-    (assign,"$savegame_version", 4028),  #Rafa: Savegame version
+    (assign,"$savegame_version", 4115),  #Rafa: Savegame version
     (assign,"$original_savegame_version", "$savegame_version"),
     
 	] + (is_a_wb_script==1 and [
@@ -2125,7 +2136,10 @@ scripts = [
 	(assign, "$FormAI_AI_Control_Troops", 0), #AI Control Dead Player's Troops (FormV5)
 	(assign, "$slow_when_wounded",1), #Kham - Agents get slower when wounded
 	(assign, "$battle_encounter_effects",1), #Kham - Special Effects on Battlefield
-
+    (assign, "$tld_town_player_speed_multi", 120),
+    (assign, "$mouse_coordinates", 0), #wb only
+    (assign, "$g_display_agent_labels", 0), #disabled
+    
 	#Custom Camera Initialize	
 	(call_script, "script_init_camera"),	
 
@@ -2210,6 +2224,11 @@ scripts = [
     
 	(try_for_range, ":has_hp_shield", trp_aragorn, trp_gimli+1),
 		(troop_set_slot, ":has_hp_shield", slot_troop_hp_shield, 200),
+        (troop_set_slot, ":has_hp_shield", slot_troop_has_combat_ai, 1),
+	(try_end),
+
+	(try_for_range, ":has_hp_shield", trp_greenwood_captain, trp_end_leaders),
+		(troop_set_slot, ":has_hp_shield", slot_troop_hp_shield, 100),
         (troop_set_slot, ":has_hp_shield", slot_troop_has_combat_ai, 1),
 	(try_end),
     
@@ -2834,7 +2853,7 @@ scripts = [
 						(store_random_in_range,":rnd",0,100),
 						(try_begin),
 							(store_character_level, ":player_level", "trp_player"), #InVain: Scale lord death chance with player level
-							(val_sub, ":player_level", 10),
+							(val_sub, ":player_level", 12),
 							(val_div, ":player_level", 2),
 							(lt,":rnd", ":player_level"),
 							(is_between, ":cur_troop_id", "trp_knight_1_1", kingdom_heroes_end), #kings and marshals cannot die for now
@@ -2996,6 +3015,19 @@ scripts = [
 					(try_begin), #TLD: if center destroyable, disable it, otherwise proceed as normal
 						(party_slot_ge, ":root_defeated_party", slot_center_destroy_on_capture, 1),
 						(call_script, "script_destroy_center", ":root_defeated_party"),
+                        
+                        (try_for_range, ":troop_no", kingdom_heroes_begin, kingdom_heroes_end), #InVain: Maybe this helps avoid parties continuing to attack destroyed centers
+                            (troop_slot_eq, ":troop_no", slot_troop_occupation, slto_kingdom_hero),
+                            #(troop_slot_eq, ":troop_no", slot_troop_is_prisoner, 0),
+                            (neg|troop_slot_ge, ":troop_no", slot_troop_prisoner_of_party, 0),
+                            (troop_get_slot, ":party_no", ":troop_no", slot_troop_leaded_party),
+                            (gt, ":party_no", 0),
+                            (party_slot_eq, ":party_no", slot_party_ai_state, spai_besieging_center),
+                            (party_slot_eq, ":party_no", slot_party_ai_object, ":root_defeated_party"),
+                            #(party_slot_eq, ":party_no", slot_party_ai_substate, 1),
+                            (call_script, "script_party_set_ai_state", ":party_no", spai_undefined, -1),
+                        (try_end),
+                        
 					(else_try),
 						(call_script, "script_give_center_to_faction", ":root_defeated_party", ":winner_faction"),
 						(call_script, "script_order_best_besieger_party_to_guard_center", ":root_defeated_party", ":winner_faction"),
@@ -4214,7 +4246,7 @@ scripts = [
       (else_try),
 		(eq,":item_no","itm_miruvor_reward"),
         (try_begin),(eq, ":extra_text_id", 0),(set_result_string, "@Strengthens all Heroes"),(set_trigger_result, color_item_text_bonus),(try_end),
-		(try_begin),(eq, ":extra_text_id", 1),(set_result_string, "@+2 to First Aid (Party)"),(set_trigger_result, color_item_text_bonus),(try_end),
+		(try_begin),(eq, ":extra_text_id", 1),(set_result_string, "@+4 to First Aid (Party)"),(set_trigger_result, color_item_text_bonus),(try_end),
         (try_begin),(eq, ":extra_text_id", 2),(set_result_string, "@Use from Camp Menu"),(set_trigger_result, color_item_text_bonus),(try_end),
       (else_try),
 	  (eq,":item_no","itm_isen_uruk_heavy_reward"),
@@ -5855,6 +5887,7 @@ scripts = [
             (party_get_skill_level, ":prs_management", "p_main_party", "skl_prisoner_management"),
             (val_mul, ":prs_management", ":stack_size"),
             (val_div, ":prs_management", 20),
+            (val_add, ":prs_management", 1),
             (val_add, ":stack_size", 1),
             (store_random_in_range, ":stack_size_new", ":prs_management", ":stack_size"),
             (assign, ":stack_size", ":stack_size_new"),
@@ -9328,6 +9361,7 @@ scripts = [
 	  (else_try), (eq, reg0,  "p_town_umbar_camp"), (assign, ":sight_range", 8), #InVain
 	  (else_try), (eq, reg0,  "p_town_linhir"), (assign, ":sight_range", 8), #InVain
 	  (else_try), (eq, reg0,  "p_town_tarnost"), (assign, ":sight_range", 8), #InVain
+      (else_try), (eq, reg0,  "p_town_minas_morgul"), (assign, ":sight_range", 0), #InVain, unused landmark, so it doesn't overwrite crossroads
 	  (else_try), 
 			(this_or_next|eq, reg0,  "p_town_west_osgiliath"), 
 			(eq, reg0,  "p_town_east_osgiliath"),
@@ -9343,11 +9377,17 @@ scripts = [
 		(set_fixed_point_multiplier,100.0),
 		(party_get_position, pos10, ":party_no"),
 	    (position_get_x,":x",pos10),(position_get_y,":y",pos10),
-		(is_between, ":y", -19130, -18800),
-		(try_begin), (gt, ":x", -2072),
-			(assign, reg0, landmark_great_east_road ),
+		(try_begin),
+            (is_between, ":y", -19130, -18800),
+            (gt, ":x", -2072),
+            (assign, reg0, landmark_great_east_road ),
 		(else_try),
+            (is_between, ":y", -19130, -18800),
 			(assign, reg0, landmark_old_forest_road  ),
+        (else_try),
+            (is_between, ":y", 2040, 2450),
+            (is_between, ":x", -7100, -6668),
+            (assign, reg0, landmark_ithilien_crossroads  ),
 		(try_end),
 	  (try_end),
 ]),
@@ -9366,6 +9406,9 @@ scripts = [
 	(else_try),
 		(eq, ":landmark", landmark_old_forest_road ),
 		(str_store_string, s17, "@near what is left of the Old Forest Road, the ancient dwarven path that used to cross the thick forest"),
+	(else_try),
+		(eq, ":landmark", landmark_ithilien_crossroads ),
+		(str_store_string, s17, "@near the old cross-roads, where the Ithilien road meets the road to Osgiliath"),
 	(else_try),
 		(str_store_party_name, s15, ":landmark"),
 		(eq,":landmark","p_hand_isen"),	
@@ -12344,6 +12387,11 @@ scripts = [
 	        (else_try),
 	        	(assign,":scene_to_use","scn_osgiliath_outskirts_4"),
 			(try_end),
+    (else_try),
+        (eq,":landmark",landmark_ithilien_crossroads),
+        (assign,":scene_to_use","scn_forest_ithilien_crossroads"),
+        (assign, "$bs_day_sound", "snd_neutralforest_ambiance"), 
+        (assign, "$bs_night_sound", "snd_night_ambiance"), 
 	(else_try), #coastal scenes
 		(this_or_next|eq,":landmark","p_town_linhir"), #InVain: Keep this BEFORE region_lebennin and the other Gondor regions
 		(this_or_next|eq,":landmark","p_town_tarnost"),
@@ -14488,8 +14536,8 @@ scripts = [
       (position_move_y, pos5, ":y"),
       #(neg|is_currently_night),
         
-        (store_random_in_range, ":r", 0, 7),
-        (ge, ":r", 5),
+        (store_random_in_range, ":r", 0, 10),
+        (ge, ":r", 7),
         ] + (is_a_wb_script==1 and [
         (play_sound_at_position, ":sound", pos5),
         ] or [
@@ -14718,30 +14766,88 @@ scripts = [
        (agent_set_slot, ":cur_agent", slot_agent_walker_type, 1),
        (call_script, "script_set_town_walker_destination", ":cur_agent"),      
 
+       (agent_get_troop_id, ":walker_troop", ":cur_agent"),
+       (troop_get_type, ":type", ":walker_troop"),
+       #set speed
+	   (try_begin),
+			(try_begin), #rich walkers don't run
+                (this_or_next|party_slot_eq, "$current_town", slot_center_walker_2_troop, ":walker_troop"),
+                (party_slot_eq, "$current_town", slot_center_walker_3_troop, ":walker_troop"),
+                (store_random_in_range,reg10,1,6),
+            (else_try),
+				(this_or_next|eq,":type",tf_orc),
+				(eq,":type",tf_dwarf),
+                #(neq, ":is_guard", 1),
+				(store_random_in_range,reg10,1,11),  # orcs and dwarves walk slower
+			(else_try),
+                #(neq, ":is_guard", 1),
+				(store_random_in_range,reg10,2,12),  # humans                
+			(else_try), #guards move slow
+				(store_random_in_range,reg10,1,3),  
+			(try_end), 
+            (try_begin),
+                (this_or_next|eq, "$current_town", "p_town_west_osgiliath"),
+                (eq, "$current_town", "p_town_east_osgiliath"),
+                (val_add, reg10, 4),
+            (try_end),
+            (agent_set_speed_limit, ":cur_agent", reg10),
+            ] + ((is_a_wb_script==1) and [
+            (lt, reg10, 10),
+            (agent_set_speed_modifier, ":cur_agent", 80), # makes walkers more realistic
+            ] or []) + [                 
+	   (try_end),
+
       ] + (is_a_wb_script==1 and [       
        #equip carry items
-       (agent_get_troop_id, ":walker_troop", ":cur_agent"),
-       (this_or_next|party_slot_eq, "$current_town", slot_center_walker_0_troop, ":walker_troop"), #walker troops 0 and 1 are "workers"
-       (party_slot_eq, "$current_town", slot_center_walker_1_troop, ":walker_troop"),
+       (neq, ":type", tf_uruk), #Uruks aren't workers
+       (neq, ":type", tf_urukhai),
        (store_random_in_range, ":chance", 0, 100),
-       (lt, ":chance", 60),
-        #remove weapons and helms     
-            (try_for_range, ":weapon_slot", 0, 4), 
-                (agent_get_item_slot, ":item", ":cur_agent", ":weapon_slot"),
-                (gt, ":item", 1),
-                (agent_unequip_item, ":cur_agent", ":item", ":weapon_slot"),
-            (try_end),
-            (try_begin),
-                (agent_get_item_slot, ":helm", ":cur_agent", ek_head),
-                (gt, ":helm", 1),
-                (neg|item_has_property, ":helm", itp_civilian),
-                (agent_unequip_item, ":cur_agent", ":helm", ek_head),
-            (try_end),    
-       (store_random_in_range, ":item", "itm_civilian_carry_amphora", "itm_civilian_carry_wood2"),
-       (agent_equip_item, ":cur_agent", ":item", 1),
-       (agent_set_wielded_item, ":cur_agent", ":item"),
-       (agent_set_attack_action, ":cur_agent", 3, 1),
-       (agent_set_speed_limit, ":cur_agent", 5), #make sure they don't run
+       
+        #remove weapons and helms 
+        (lt, ":chance", 80),
+        (try_for_range, ":weapon_slot", 0, 4), 
+            (agent_get_item_slot, ":item", ":cur_agent", ":weapon_slot"),
+            (gt, ":item", 1),
+            (agent_unequip_item, ":cur_agent", ":item", ":weapon_slot"),
+        (try_end),
+        (try_begin),
+            (agent_get_item_slot, ":helm", ":cur_agent", ek_head),
+            (gt, ":helm", 1),
+            (neg|item_has_property, ":helm", itp_civilian),
+            (agent_unequip_item, ":cur_agent", ":helm", ek_head),
+        (try_end),
+        
+       (try_begin), #carry in hand
+           (is_between, ":chance", 0, 60),
+           (assign, ":item_to_use", 0),
+           (try_begin),       
+               (this_or_next|party_slot_eq, "$current_town", slot_center_walker_0_troop, ":walker_troop"), #walker troops 0 and 1 are "workers"
+               (party_slot_eq, "$current_town", slot_center_walker_1_troop, ":walker_troop"),
+               (neq, ":type", tf_female),         
+               (store_random_in_range, ":item_to_use", "itm_civilian_carry_wood_heap", "itm_civilian_carry_wood2"),
+               (is_between, ":type", tf_orc_begin, tf_orc_end), #orcs don't carry on head
+               (store_random_in_range, ":item_to_use", "itm_civilian_carry_wood_heap", "itm_civilian_carry_basket"),
+           (else_try),
+               (eq, ":type", tf_female),         
+               (store_random_in_range, ":item_to_use", "itm_civilian_carry_amphora", "itm_civilian_carry_wood2"),
+           (try_end),
+           (gt, ":item_to_use", 0),
+           (agent_equip_item, ":cur_agent", ":item_to_use", 1),
+           (agent_set_wielded_item, ":cur_agent", ":item_to_use"),
+           (agent_set_attack_action, ":cur_agent", 3, 1),
+        (try_end), 
+        
+        (try_begin), #carry on back
+            (is_between, ":chance", 40, 60),
+            (neg|is_between, ":type", tf_orc_begin, tf_orc_end), #orcs don't carry baskets
+            (assign, ":item_to_use", 0),
+            (this_or_next|party_slot_eq, "$current_town", slot_center_walker_0_troop, ":walker_troop"), #walker troops 0 and 1 are "workers"
+            (party_slot_eq, "$current_town", slot_center_walker_1_troop, ":walker_troop"),
+            (store_random_in_range, ":item_to_use", "itm_work_basket", itm_work_basket_2+1),
+            (gt, ":item_to_use", 0),
+            (agent_equip_item, ":cur_agent", ":item_to_use", 2),
+        (try_end),
+       (agent_set_speed_limit, ":cur_agent", 5), #make sure they don't run   
          ] or []) + [     
      (try_end), 
 ]),
@@ -14876,7 +14982,7 @@ scripts = [
      #(agent_get_entry_no, ":entry", ":agent_no"),
      #(agent_get_slot, ":walker_type", ":agent_no", slot_agent_walker_type),
      #(agent_slot_eq, ":agent_no", slot_agent_walker_type, 1), #only for civilian walker
-     (assign, ":is_guard", 0),
+     #(assign, ":is_guard", 0),
        
         (try_begin), #walkers
            #(is_between, ":entry",town_walker_entries_start,40),
@@ -14917,45 +15023,17 @@ scripts = [
             (assign, ":target_entry_point", 10),					
         (try_end),
             
-	      (try_begin),
-	        (agent_set_slot, ":agent_no", slot_agent_target_entry_point, ":target_entry_point"),
-            (ge, ":target_entry_point", 0),
-	        (entry_point_get_position, pos1, ":target_entry_point"),
-	        (try_begin),
-	          (init_position, pos2),
-	          (position_set_y, pos2, 250),
-	          (position_transform_position_to_parent, pos1, pos1, pos2),
-	        (try_end),
-	        (agent_set_scripted_destination, ":agent_no", pos1, 0),
-	   (agent_get_troop_id, ":troop_no", ":agent_no"), # orcs and dwarves walk slower
-	   (troop_get_type,":try_limit",":troop_no"),
-	   (try_begin),
-			# (neq, "$current_town", "p_town_west_osgiliath"), # guys run in osgiliaths
-			# (neq, "$current_town", "p_town_east_osgiliath"),
-#			(neq, "$g_defending_against_siege", 0), # guys run when siege
-			(try_begin),
-				(this_or_next|eq,":try_limit",tf_orc),
-				(eq,":try_limit",tf_dwarf),
-                (neq, ":is_guard", 1),
-				(store_random_in_range,reg10,1,11),  # orc dwarf walk slower
-			(else_try),
-                (neq, ":is_guard", 1),
-				(store_random_in_range,reg10,2,12),  # humans                
-			(else_try), #guards move slow
-				(store_random_in_range,reg10,1,3),  
-			(try_end), 
-            (try_begin),
-                (this_or_next|eq, "$current_town", "p_town_west_osgiliath"),
-                (eq, "$current_town", "p_town_east_osgiliath"),
-                (val_add, reg10, 4),
-            (try_end),
-            (agent_set_speed_limit, ":agent_no", reg10),
-            ] + ((is_a_wb_script==1) and [
-            (lt, reg10, 10),
-            (agent_set_speed_modifier, ":agent_no", 80), # makes walkers more realistic
-            ] or []) + [                 
-	   (try_end),
-     (try_end),
+    (try_begin),
+        (agent_set_slot, ":agent_no", slot_agent_target_entry_point, ":target_entry_point"),
+        (ge, ":target_entry_point", 0),
+        (entry_point_get_position, pos1, ":target_entry_point"),
+        (try_begin),
+          (init_position, pos2),
+          (position_set_y, pos2, 250),
+          (position_transform_position_to_parent, pos1, pos1, pos2),
+        (try_end),
+        (agent_set_scripted_destination, ":agent_no", pos1, 0),
+    (try_end),
 ]),
 
 # script_siege_init_ai_and_belfry
@@ -15335,12 +15413,16 @@ scripts = [
 
 		(try_begin),
 			(agent_is_defender, ":agent_no"), # defending archers go to their respective points
+            (is_between, "$defender_reinforcement_stage", 0, 15),
             (agent_slot_eq, ":agent_no", slot_agent_is_not_reinforcement, 0),
 			(try_begin),
 				(agent_slot_eq, ":agent_no", slot_agent_target_entry_point, 0),
 				(agent_get_team, ":team", ":agent_no"), #0, 2, 4
-                (store_div, ":team_slot", ":team", 2),  #0, 1, 2
-                (neg|troop_slot_eq,"trp_no_troop",":team_slot",-1), #choke point not taken
+                (this_or_next|troop_slot_ge,"trp_no_troop",0,1), #move as long as any choke point not taken
+                (this_or_next|troop_slot_ge,"trp_no_troop",1,1),
+                (troop_slot_ge,"trp_no_troop",2,1),
+                #(store_div, ":team_slot", ":team", 2),  #0, 1, 2
+                #(neg|troop_slot_eq,"trp_no_troop",":team_slot",-1), #choke point not taken
 				(try_begin),(eq,":team",0),(store_random_in_range, ":random_entry_point", 50, 56), (ge, ":random_entry_point", 53), (assign, ":random_entry_point", 42), #left
 				 (else_try),(eq,":team",2),(store_random_in_range, ":random_entry_point", 54, 57), (ge, ":random_entry_point", 55), (assign, ":random_entry_point", 41), #center
 				 (else_try),               (store_random_in_range, ":random_entry_point", 56, 62), (ge, ":random_entry_point", 59), (assign, ":random_entry_point", 43), #right
@@ -15395,11 +15477,13 @@ scripts = [
 		(else_try), # when archer is an attacker
             (neg|agent_is_defender, ":agent_no"),
 			(agent_get_ammo,":ammo",":agent_no"),
+            (agent_get_team, ":team", ":agent_no"),
+            (neq, ":team", 6), #don't auto-reassign player team archers              
 			(try_begin),
-				(lt,":ammo",2),               
+				(lt,":ammo",2),
 				(agent_clear_scripted_mode, ":agent_no"),
 				(agent_ai_set_always_attack_in_melee, ":agent_no", 1),
-                ] + (is_a_wb_script==1 and [
+                ] + (is_a_wb_script==1 and [              
                 (agent_set_division, ":agent_no", grc_infantry),
 			    (agent_force_rethink, ":agent_no"),
 			    ] or []) + [
@@ -17753,11 +17837,12 @@ scripts = [
       (try_begin), # just got it
         (item_slot_eq, ":item", ":slot", 0),
         (troop_raise_attribute, "trp_player", ":attr", ":attr_bonus"),
-        (item_set_slot, ":item", ":slot", 1),
+        (item_set_slot, ":item", ":slot", ":attr_bonus"),
         (display_message, "@You've gained {s6} from gaining {s7}", color_good_news),
       (try_end),
     (else_try), #lost or unequipped it
-      (item_slot_eq, ":item", ":slot", 1),
+      (item_slot_ge, ":item", ":slot", 1),
+      (item_get_slot, ":attr_bonus", ":item", ":slot"),
       (val_mul, ":attr_bonus", -1),
       (troop_raise_attribute, "trp_player", ":attr", ":attr_bonus"),
       (item_set_slot, ":item", ":slot", 0),
@@ -18554,8 +18639,8 @@ scripts = [
         
         (eq, ":can_capture", 1),   
         (party_get_skill_level, ":prs_management", "p_main_party", "skl_prisoner_management"),
-        (val_mul, ":prs_management", 9),
-        (val_add, ":prs_management", 20), #scaling goes 20, 29, 38, 47, 56, 65, 74, 83, 92, 102, 110
+        (val_mul, ":prs_management", 10),
+        (val_add, ":prs_management", 20), #scaling goes 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120
         
         (store_random_in_range, ":rand", 0, 100),
         (gt, ":prs_management", ":rand"),
@@ -20657,7 +20742,7 @@ scripts = [
             (assign, ":track", "track_TLD_Henneth_Annun"),
           (else_try),
           	(eq, "$g_encountered_party", "p_town_cair_andros"),
-            (assign, ":track", "track_infiltration_evil"),
+            (assign, ":track", "track_TLD_Henneth_Annun"),
           (else_try),
             (assign, ":track", "track_TLD_Gondor_Cities"),
           (try_end),
@@ -21521,6 +21606,10 @@ scripts = [
      #check rumor heard already (once a day), troop slot for merchants/lords/etc, center slots for walkers
 	 (assign, ":no_new_rumor", 0),
      (agent_get_entry_no, ":entry_no", ":agent"),
+     (try_begin), #for prop walkers, assign a random entry
+        (lt, ":entry_no", 1),
+        (store_random_in_range, ":entry_no", town_walker_entries_start, town_walker_entries_start+num_town_walkers),
+     (try_end),
      (try_begin),
 	    (is_between,":entry_no", town_walker_entries_start, town_walker_entries_start+num_town_walkers),
 		(val_add, ":entry_no", slot_center_rumor_check_begin),
@@ -23482,12 +23571,12 @@ scripts = [
       (try_begin),
           (quest_slot_ge, "qst_guardian_party_quest", slot_quest_current_state, 1), #Isengard
           (str_store_string, s50, "@Hail, {playername}! I hope you are unhurt? At any rate, I am pleased you aided my friend Fangorn, or you may know him as Treebeard. The tree shepherds are very mighty, but it was likely that they marched to their doom. You have perhaps saved them from a great peril, Commander, and for that I am glad. I would not like to see the oldest of all living things pass from the world, no, not just yet… no, not before they see the Entwives again, I should hope."),
-          (str_store_string, s51, "@Missing String"),
+          (str_store_string, s51, "@I did what I could."),
           (str_store_string, s52, "@Well, thank you, {playername}, and farewell. We may meet again, ere the waning of the moon!"),
           (assign, "$g_tld_convo_lines", 3),
       (else_try), #Helm's Deep
            (str_store_string, s50, "@Hail, {playername}! I hope you are unhurt? At any rate, you seem to have lain your blade to the right foe. No enemy has yet taken the Hornburg, and likely none ever shall – not while the likes of you defend Helm’s Gate, I’ll warrant!"),
-          (str_store_string, s51, "@Missing String"),
+          (str_store_string, s51, "@@I did what I could."),
           (str_store_string, s52, "@Your deed has greatly helped my design, better even than I could have hoped or planned. Farewell, {playername}, and thank you. We may meet again, ere the waning of the moon!"),
           (assign, "$g_tld_convo_lines", 3),
       (try_end),
@@ -23502,8 +23591,8 @@ scripts = [
 
     (else_try),
       (eq, ":convo_code", tld_cc_gandalf_rohan_quest_fail),     
-      (str_store_string, s50, "@{Playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back."),
-      (str_store_string, s51, "@Missing String"),      
+      (str_store_string, s50, "@{playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back."),
+      (str_store_string, s51, "@I..."),      
       (str_store_string, s52, "@You have failed me, {playername} – or perhaps it is I who have failed you. Perhaps there was some flaw in my design, some grave blunder I did not recognise… The terror of Mordor comes. Leave me now, {playername}. We may meet again… or perhaps not."),
       (assign, "$g_tld_convo_lines", 3),
       (call_script, "script_end_quest", "qst_guardian_party_quest"),
@@ -24385,46 +24474,34 @@ command_cursor_scripts = [
 ("find_theater",
    [(set_fixed_point_multiplier, 100),
     (store_script_param_1, ":party"),
-    (assign, ":OK", 0),
-    (try_for_range, ":center", centers_begin, centers_end), 
-	    #(party_is_active, ":center"),
-	    (store_faction_of_party, ":faction",":center"),
-	    (faction_get_slot, ":home_theater", ":faction", slot_faction_home_theater),
-	    (party_get_position, pos1, ":party"),
-		(party_get_position, pos2, ":center"),
-		(get_distance_between_positions, ":dist", pos1, pos2),
-	    (lt, ":dist", 3200), #MV: was 3200
-	    (try_begin),
-	    	(eq, ":OK",0),
-	    	(eq, ":home_theater",theater_SE),
-	      	(assign, reg0, theater_SE),
-	      	(assign, ":OK",1),
-	      	#(display_message, "@Debug: Theater_SE"),
-	    (else_try),
-	    	(eq, ":OK",0),
-	    	(eq, ":home_theater",theater_SW),
-	      	(assign, reg0, theater_SW),
-	      	(assign, ":OK",1),
-	      	#(display_message, "@Debug: Theater_SW"),
-	    (else_try),
-	        (eq, ":OK",0),
-	    	(eq, ":home_theater",theater_C),
-	      	(assign, reg0, theater_C),
-	      	(assign, ":OK",1),
-	      	#(display_message, "@Debug: Theater_C"),
-	    (else_try),
-			(eq, ":OK",0),
-	    	(eq, ":home_theater",theater_N),
-	      	(assign, reg0, theater_N),
-	      	(assign, ":OK",1),
-	      	#(display_message, "@Debug: Theater_N"),
-	    (else_try),
-	    	(eq, ":OK",0),
-	    	(assign, reg0, 0),
-	    	(assign, ":OK",1),
-	    	#(display_message, "@Debug: Can't Find"),
-	    (try_end),
-    (try_end),
+    (assign, ":min_distance", 9999999),
+    (assign, ":closest_center", -1),
+    (assign, reg0, 0),     
+    (try_for_range, ":center_no", centers_begin, centers_end),
+        (party_is_active, ":center_no"), #TLD
+        (store_distance_to_party_from_party, ":party_distance", ":party", ":center_no"),
+        (lt, ":party_distance", ":min_distance"),
+        (assign, ":min_distance", ":party_distance"),
+        (assign, ":closest_center", ":center_no"),
+    (try_end),     
+	(party_get_slot, reg0, ":closest_center", slot_center_theater),
+    # (str_store_party_name, s8, ":closest_center"),
+    # (display_message, "@found center {s8}"),
+    # (try_begin),
+        # (eq, reg0, theater_SE),
+        # (display_message, "@Debug: Theater_SE"),
+    # (else_try),
+        # (eq, reg0,theater_SW),
+        # (display_message, "@Debug: Theater_SW"),
+    # (else_try),
+        # (eq, reg0,theater_C),
+        # (display_message, "@Debug: Theater_C"),
+    # (else_try),
+        # (eq, reg0,theater_N),
+        # (display_message, "@Debug: Theater_N"),
+    # (else_try),
+        # (display_message, "@Debug: Can't Find"),
+    # (try_end),
 ]),
 
 # script_find_closest_enemy_town_or_host_only 
@@ -24784,6 +24861,7 @@ command_cursor_scripts = [
 		(try_end),
 	(else_try),
 		(neq, ":party_id", "p_main_party"),
+        (party_set_extra_text, ":party_id", "str_empty_string"), #just to be sure any extra text doesn't reappear if party ID is reused
 		(remove_party, ":party_id"),
 		(try_begin),
 			(eq, "$cheat_mode",1),
@@ -25518,6 +25596,59 @@ command_cursor_scripts = [
         (le, "$savegame_version", 40),
         (assign, "$savegame_version", 4028),
     (try_end),
+    
+    (try_begin), #Change skill assignments; inform player about NPC respec
+        (le, "$savegame_version", 4028),
+        (assign, "$savegame_version", 4029),
+        (tutorial_box, "@This update has changed the assignment of some skills to their attributes. If you would like to review your companions' skills, you can now import/export them if you ask them about their skills from the party menu."),
+        (display_message, "@This update has changed the assignment of some skills to their attributes. If you would like to review your companions' skills, you can now import/export them if you ask them about their skills from the party menu."),
+    (try_end),
+    
+    (try_begin), #reset war start global
+        (lt, "$savegame_version", 4110),
+        (assign, "$savegame_version", 4110),
+        (assign, "$tld_start_war_by_day_or_level", 0),
+    (try_end),
+    
+    (try_begin), #reset war start global
+        (lt, "$savegame_version", 4115),
+        (assign, "$savegame_version", 4115),
+        ] + (is_a_wb_script==1 and [
+        (assign, "$tld_town_player_speed_multi", 120),
+         ] or []) + [ 
+    (try_end),  
+    
+    (try_begin), #update troop flags and captain slots
+        (lt, "$savegame_version", 4121),
+        (assign, "$savegame_version", 4121),
+        (troop_set_faction, "trp_a5_dun_night_wolf", fac_dunland),
+        (troop_set_type, "trp_a5_dun_night_wolf", tf_dunland),
+        (troop_set_type, "trp_dwarf_captain", tf_dwarf),
+        (troop_set_type, "trp_woodmen_captain", tf_male),
+        (troop_set_type, "trp_umbar_captain", tf_male),
+        (troop_set_type, "trp_mordor_uruk_captain", tf_uruk),
+        (troop_set_type, "trp_moria_captain", tf_uruk),
+        
+        (assign, ":subfac", 0), #assign gondor subfacs
+        (try_for_range, ":troop", trp_pel_captain, trp_end_leaders),
+            (val_add, ":subfac", 1),
+            (troop_set_slot, ":troop", slot_troop_subfaction, ":subfac"),
+        (try_end),
+        
+        (try_for_range_backwards, ":troop", trp_greenwood_captain, trp_end_leaders),
+            (store_troop_faction, ":fac", ":troop"),
+            (try_for_range, ":town", centers_begin, centers_end), #includes advance camps
+                (store_faction_of_party, ":town_faction", ":town"),
+                (eq, ":fac", ":town_faction"),
+                # (party_set_slot, ":town", slot_town_captain, ":troop"),
+                # (eq, ":town_faction", fac_gondor),
+                (troop_get_slot, ":troop_subfac", ":troop", slot_troop_subfaction),
+                (neq, ":troop_subfac", subfac_pelargir), #bugged because of troop overwrite
+                (party_slot_eq, ":town", slot_party_subfaction, ":troop_subfac"),
+                (party_set_slot, ":town", slot_town_captain, ":troop"),
+            (try_end),
+        (try_end),
+    (try_end),      
 ]),
 
 #Kham
@@ -26536,8 +26667,8 @@ command_cursor_scripts = [
 ("cf_init_kill_quest_faction", [
 
 	(neg|faction_slot_eq, "$players_kingdom", slot_faction_side, faction_side_good), # Evil Only
+    (ge, "$tld_war_began", 1),
 	(store_character_level, ":player_level", "trp_player"),
-	(ge, ":player_level", "$tld_player_level_to_begin_war"),
 	
 	(call_script, "script_cf_get_random_enemy_center_in_theater", "p_main_party",),
 	(assign, ":target_center", reg0),

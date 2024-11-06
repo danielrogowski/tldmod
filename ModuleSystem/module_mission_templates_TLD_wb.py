@@ -8,6 +8,20 @@ from module_constants import *
 
 ## cpp: Currently you can move outside of the boundries. TODO: Fix it. :)
 
+common_siege_refill_ammo = (60, 0, 0, [],
+  [#refill ammo of defenders every minute
+    (get_player_agent_no, ":player_agent"),
+    (try_for_agents, ":cur_agent"),
+      (agent_is_alive,":cur_agent"),
+      (neq, ":cur_agent", ":player_agent"),
+      (agent_get_team, ":agent_team", ":cur_agent"),
+      (this_or_next|eq, ":agent_team", "$defender_team"),
+      (this_or_next|eq, ":agent_team", "$defender_team_2"),
+      (eq, ":agent_team", "$defender_team_3"),
+      (agent_refill_ammo, ":cur_agent"),
+    (try_end),
+    ])
+
 common_init_deathcam_wb = (0, 0, ti_once, [],
 [
   (assign, "$tld_camera_on", 0),
@@ -1359,13 +1373,13 @@ tld_ai_is_kicked = (0.2, 0, 0, [(eq,"$field_ai_lord",1)],
 #Attack/Block start
 tld_melee_ai = (0, 0, 0, [(eq,"$field_ai_lord",1),
 
-    (try_for_agents,":agent1"),
-       #TLD Check
-      (agent_get_troop_id, ":lord", ":agent1"),
-      (this_or_next|is_between, ":lord", kingdom_heroes_begin, kingdom_heroes_end),
-      (this_or_next|eq, ":lord", "trp_nazgul"),
-      (eq, ":lord", "trp_black_numenorean_sorcerer"),
-    (try_end),
+    # (try_for_agents,":agent1"),
+       # #TLD Check
+      # (agent_get_troop_id, ":lord", ":agent1"),
+      # (this_or_next|is_between, ":lord", kingdom_heroes_begin, kingdom_heroes_end),
+      # (this_or_next|eq, ":lord", "trp_nazgul"),
+      # (eq, ":lord", "trp_black_numenorean_sorcerer"),
+    # (try_end),
   ],
   [
     (store_mission_timer_a_msec, ":batch_time"),
@@ -1963,18 +1977,7 @@ hp_shield_trigger = (ti_on_agent_hit, 0, 0, [
   (store_trigger_param_1, ":agent"),
 
   (agent_slot_eq, ":agent", slot_agent_hp_shield_active, 1),
-
-  (assign, ":continue", 0),
-  (try_begin),
-    (gt, "$nazgul_in_battle", 1), #There are nazguls
-    (agent_is_active, "$temp2"),
-    (assign, ":continue", 1),
-  (else_try),
-    (agent_is_human, ":agent"),
-    (assign, ":continue", 1),
-  (try_end),
-
-  (eq, ":continue", 1),],
+  ],
   
   [  
     (store_trigger_param_1, ":agent"),
@@ -2222,100 +2225,7 @@ health_restore_on_kill = (ti_on_agent_killed_or_wounded, 0, 0,
   ])
 
 
-nazgul_attack = (20, 0, ti_once, [
-      (gt, "$nazgul_in_battle", 1), #Has to be 2 nazgul
 
-      (store_mission_timer_a, ":mission_time_a"),
-      (store_random_in_range, ":ran_time", 45, 60),
-      (ge, ":mission_time_a", ":ran_time"), #Random time between 45 - 60 secs
-
-      (store_random_in_range, ":random", 0, 100),
-      (store_faction_of_party, ":faction", "p_main_party"),
-      (faction_get_slot, ":side", ":faction", slot_faction_side),
-
-      (le, ":random", 40), #40% Chance every 20 seconds
-
-      (try_begin),
-        (eq, ":side", faction_side_good),
-        (assign, ":color", color_bad_news),
-      (else_try),
-        (eq, "$tld_war_began", 2),
-        (eq, ":side", faction_side_hand),
-        (assign, ":color", color_bad_news),
-      (else_try),
-        (assign, ":color", color_good_news),
-      (try_end),
-
-
-      (display_message, "@A Nazgul has joined the battle!", ":color"),
-      (str_store_string, s30, "@Feeeeel.....ourrr.....wraaaath!"),
-      (call_script, "script_troop_talk_presentation", "trp_nazgul", 7, 0),
-
-      (get_player_agent_no, ":player"),
-      (call_script, "script_find_exit_position_at_pos4", ":player"),
-      (set_spawn_position, pos4), 
-
-      (spawn_agent, "trp_nazgul"),
-      (assign, "$temp2", reg0), #Save the nazgul agent
-      (agent_set_team, "$temp2", 2),
-      (agent_get_horse, ":nazgul_horse", "$temp2"),
-      (agent_set_slot, ":nazgul_horse", slot_agent_hp_shield_active, 1),
-      (agent_set_slot, ":nazgul_horse", slot_agent_hp_shield, 100000),
-      (team_set_relation, 2, "$nazgul_team", 1),
-      (agent_get_team, ":player_team", ":player"),
-      (team_set_relation, ":player_team", 2, -1),
-      (set_show_messages, 0),
-      (team_give_order, 2, grc_everyone, mordr_charge),
-      (set_show_messages, 1),
-
-      ],
-
-      [ (store_mission_timer_a, ":mission_time_a"),
-        (agent_set_slot, "$temp2", slot_nazgul_timer, ":mission_time_a"),
-        (set_show_messages, 0),
-        (team_give_order, 2, grc_everyone, mordr_charge),
-        (set_show_messages, 1),
-    ])
-
-nazgul_run_away = (20, 0, ti_once,
-    [ 
-      (gt, "$nazgul_in_battle", 1), #Has to be 2 nazgul
-      
-      (agent_is_active, "$temp2"),
-
-      (store_mission_timer_a, ":mission_time_a"),
-      (agent_get_slot, ":time_active", "$temp2", slot_nazgul_timer),
-      (val_add, ":time_active", 60),
-      (agent_get_kill_count, ":kills", "$temp2"),
-      (this_or_next|ge, ":mission_time_a", ":time_active"),
-      (ge, ":kills", 10),
-    ],
-
-    [
-      (call_script, "script_find_exit_position_at_pos4", "$temp2"),
-      (agent_start_running_away, "$temp2", pos4),
-      (agent_set_scripted_destination_no_attack, "$temp2", pos4),
-
-      (store_faction_of_party, ":faction", "p_main_party"),
-      (faction_get_slot, ":side", ":faction", slot_faction_side),
-
-      (try_begin),
-        (eq, ":side", faction_side_good),
-        (assign, ":color", color_bad_news),
-      (else_try),
-        (eq, "$tld_war_began", 2),
-        (eq, ":side", faction_side_hand),
-        (assign, ":color", color_bad_news),
-      (else_try),
-        (assign, ":color", color_good_news),
-      (try_end),
-
-
-      (display_message, "@The Nazgul is leaving the battle.", ":color"),
-      (str_store_string, s30, "@It......Beckonsssss....."),
-      (call_script, "script_troop_talk_presentation", "trp_nazgul", 7, 0),
-
-    ])
 
 tld_kill_or_wounded_triggers = (ti_on_agent_killed_or_wounded, 0, 0, [
     (this_or_next|check_quest_active, "qst_blank_quest_04"),
@@ -3810,6 +3720,80 @@ battle_encounters_effects = [
         [(set_fog_distance, 500, 0x010101),(assign,"$lightning_cycle",0),]),
 
 
+# check for Fellbeast chance at battle start
+(ti_after_mission_start, 0, 120, [
+
+    #check involved factions (not player party)
+    (assign, ":encountered_party_2_faction", -1),
+    (try_begin),
+        (gt, "$g_encountered_party_2", 0),
+        (store_faction_of_party, ":encountered_party_2_faction","$g_encountered_party_2"),
+    (try_end),
+    (this_or_next|eq, "$g_encountered_party_faction", fac_mordor),
+    (eq, ":encountered_party_2_faction", fac_mordor),
+    
+    #no fellbeast assigned yet
+    (neg|party_slot_eq, "$g_encountered_party", slot_party_battle_encounter_effect, FELLBEAST),
+    (neg|party_slot_eq, "$g_encountered_party_2", slot_party_battle_encounter_effect, FELLBEAST),
+
+    (gt, "$g_starting_strength_enemy_party", 1000),
+    (this_or_next|gt, "$g_starting_strength_friends", 1000),
+    (gt, "$g_starting_strength_main_party", 1000),
+    
+    (store_add, ":battle_importance", "$g_starting_strength_enemy_party", "$g_starting_strength_main_party"),
+    (val_add, ":battle_importance",  "$g_starting_strength_friends"), #this counts player strength double, but it doesn't need to be exact
+    (store_random_in_range, ":chance", 0, 20000),
+    (gt, ":battle_importance", ":chance"),
+        
+  ],[
+
+    #here, set nazgul_in_battle and nazgul_team
+    (try_begin),
+        (eq, "$g_encountered_party_faction", fac_mordor),
+        (assign, ":nazgul_party", "$g_encountered_party"),
+    (else_try),
+        (gt, "$g_encountered_party_2", 0),
+        (store_faction_of_party, ":encountered_party_2_faction","$g_encountered_party_2"),
+        (eq, ":encountered_party_2_faction", fac_mordor),
+        (assign, ":nazgul_party", ":encountered_party_2_faction"),
+    (try_end),
+    (party_set_slot, ":nazgul_party", slot_party_battle_encounter_effect, FELLBEAST),
+	(try_begin),
+		(eq, "$nazgul_team", -1), 
+		(try_for_agents,":agent"),
+			(eq, "$nazgul_team", -1),
+			(agent_get_party_id, ":party_id", ":agent"),
+            (eq, ":party_id", ":nazgul_party"),
+			(agent_get_team, "$nazgul_team",":agent"),
+		(try_end),
+	(try_end),
+]),
+
+# check for Fellbeast chance at battle start
+(8, 0, ti_once, [
+    (assign, ":continue", 0),
+    (try_begin),
+        (party_slot_eq, "$g_encountered_party", slot_party_battle_encounter_effect, FELLBEAST),
+        (assign, ":continue", 1),
+    (else_try),
+        (gt, "$g_encountered_party_2", 1),
+        (party_slot_eq, "$g_encountered_party_2", slot_party_battle_encounter_effect, FELLBEAST),
+        (assign, ":continue", 1),
+    (try_end),
+    (eq, ":continue", 1),
+  ],[
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos1, ":player_agent"),
+    (position_move_y, pos1, 10000),
+    (position_move_z, pos1, 10000),
+    (set_spawn_position, pos1),
+    (spawn_scene_prop, "spr_fellbeast"),
+    (assign, "$nazgul_in_battle", reg0), #store fellbeast prop in global
+    (display_message, "@fellbeast spawned"),
+    (prop_instance_play_sound, "$nazgul_in_battle", snd_nazgul_skreech_long),
+]),
+
 ]
 
 voice_commands = [(ti_on_order_issued,0,3, [
@@ -4493,6 +4477,7 @@ tld_calculate_wounded = (ti_on_agent_killed_or_wounded, 0, 0, [], [
     (try_end),
     (val_add, ":chance", ":surgery"),
     #(val_div, ":chance", 100),
+    (val_add, ":chance", 10),
     (val_min, ":chance", 90),
     
     (assign, reg77, ":chance"),
@@ -4507,13 +4492,13 @@ tld_calculate_wounded = (ti_on_agent_killed_or_wounded, 0, 0, [], [
         (le, ":rnd", ":chance"),
         (set_trigger_result, 2), #wound
         # (try_begin),
-            # (agent_is_ally, ":agent_no"),
+            # (neg|agent_is_ally, ":agent_no"),
             # (display_message, "@{s55} wounded, surgery {reg75}, level {reg76}, chance: {reg77}"),
         # (try_end),
     (else_try),
         (set_trigger_result, 1), #kill
         # (try_begin),
-            # (agent_is_ally, ":agent_no"),
+            # (neg|agent_is_ally, ":agent_no"),
             # (display_message, "@{s55} killed, surgery {reg75}, level {reg76}, chance: {reg77}"),
         # (try_end),
     (try_end),
@@ -4603,28 +4588,28 @@ tld_animated_town_agents = [
         (scene_prop_get_instance, ":instance_no", "spr_troop_civ_cheer", ":count"),
         (prop_instance_get_position, pos2, ":instance_no"),
         (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
-        (prop_instance_get_position, pos3,":instance_no"),
-        (get_distance_between_positions, ":distance", pos3, pos4),
-        (is_between, ":distance", 350, 3000), #only if player isn't too close, but also not too far either (avoid too many sounds)
+        # (prop_instance_get_position, pos3,":instance_no"),
+        # (get_distance_between_positions, ":distance", pos3, pos4),
+        # (is_between, ":distance", 350, 3000), #only if player isn't too close, but also not too far either (avoid too many sounds)
         (agent_set_scripted_destination, ":agent", pos2),
         (store_random_in_range, ":chance", 0, 100),
         (le, ":chance", 25),
         (agent_set_animation, ":agent", "anim_cheer"),
-        (le, ":chance", 4),
-        (agent_get_troop_id,":troop", ":agent"),
-        (troop_get_type,reg1,":troop"),
-        (try_begin),
-            (is_between, reg1, tf_urukhai, tf_orc_end),
-            (agent_play_sound, ":agent", "snd_meeting_uruk"),
-        (else_try),
-            (eq, reg1, tf_orc),
-            (agent_play_sound, ":agent", "snd_meeting_orc"),
-        (else_try),
-            (is_between, reg1, tf_elf_begin, tf_elf_end),
-            (agent_play_sound, ":agent", "snd_meeting_elf"),
-        (else_try),				
-            (agent_play_sound, ":agent", "snd_meeting_man"),
-        (try_end),
+        # (le, ":chance", 4),
+        # (agent_get_troop_id,":troop", ":agent"),
+        # (troop_get_type,reg1,":troop"),
+        # (try_begin),
+            # (is_between, reg1, tf_urukhai, tf_orc_end),
+            # (agent_play_sound, ":agent", "snd_meeting_uruk"),
+        # (else_try),
+            # (eq, reg1, tf_orc),
+            # (agent_play_sound, ":agent", "snd_meeting_orc"),
+        # (else_try),
+            # (is_between, reg1, tf_elf_begin, tf_elf_end),
+            # (agent_play_sound, ":agent", "snd_meeting_elf"),
+        # (else_try),				
+            # (agent_play_sound, ":agent", "snd_meeting_man"),
+        # (try_end),
     (try_end),
 
     #worker stand
@@ -4670,31 +4655,112 @@ tld_animated_town_agents = [
         (agent_play_sound, ":agent", ":sound"),
     (try_end),
 
-    #dogs
-    (scene_prop_get_num_instances, ":num_props", "spr_animal_dog"),
-    (try_for_range, ":count", 0, ":num_props"),
-        (scene_prop_get_instance, ":instance_no", "spr_animal_dog", ":count"),
-        (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+    # #dogs
+    # (scene_prop_get_num_instances, ":num_props", "spr_animal_dog"),
+    # (try_for_range, ":count", 0, ":num_props"),
+        # (scene_prop_get_instance, ":instance_no", "spr_animal_dog", ":count"),
+        # (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
+        # (store_random_in_range, ":chance", 0, 100),
+        # (assign, ":sound", 0),
+        # (assign, ":anim", 0),
+        # (try_begin),
+            # (le, ":chance", 8),
+            # (assign, ":sound", "snd_distant_dog_bark"),
+            # (assign, ":anim", "anim_wolf_snap"),
+            # (le, ":chance", 6),
+            # (assign, ":anim", "anim_horse_rear"),
+            # (le, ":chance", 3),
+            # (assign, ":sound", "snd_warg_lone_woof"),
+            # (assign, ":anim", "anim_wolf_snap"),
+        # (else_try), #move around a bit
+            # (le, ":chance", 20),
+            # (store_random_in_range, ":x", -800, 800),
+            # (store_random_in_range, ":y", -800, 800),
+            # (agent_get_position, pos2, ":agent"),
+            # (position_move_x, pos2, ":x"),
+            # (position_move_y, pos2, ":y"),
+            # (agent_set_scripted_destination, ":agent", pos2),
+            # (display_message, "@dog moves away"),
+        # (try_end),
+        # (try_begin),
+            # (gt, ":sound", 0),
+            # (agent_play_sound, ":agent", ":sound"),
+        # (try_end),
+        # (try_begin),
+            # (gt, ":anim", 0),
+            # (agent_set_animation, ":agent", ":anim"),
+        # (try_end),
+    # (try_end),
+
+    #animals
+    (try_for_agents, ":agent"),
+        (neg|agent_is_human, ":agent"), #only animals
+        (agent_get_item_id, ":item_no", ":agent"),
+        (gt, ":item_no", 1),
+        (item_get_type, ":type", ":item_no"),
+        (eq, ":type", itp_type_animal),
+        (str_store_item_name, s12, ":item_no"),
+        (item_get_horse_scale, ":scale", ":item_no"),        
+
+        (agent_get_slot, ":agent_prop", ":agent", slot_agent_assigned_prop),
+        (prop_instance_get_variation_id, ":var", ":agent_prop"),
+        (eq, ":var", 0), #so we can disable moving around if necessary
+        (prop_instance_get_position, pos3, ":agent_prop"), #base position
+        (agent_get_position, pos2, ":agent"),
+        
+        (agent_get_slot, ":anim_1", ":agent", slot_agent_troll_swing_status), #animation 1   
+        (agent_get_slot, ":anim_2", ":agent", slot_agent_troll_swing_move), #animation 2
+        (agent_get_slot, ":sound_1", ":agent", slot_agent_last_hp), #sound 1
+        (agent_get_slot, ":sound_2", ":agent",  slot_agent_mount_side), #sound 2
+        (agent_get_slot, ":move_chance", ":agent",  slot_agent_mount_dead), #chance to move per second
+        (val_max, ":move_chance", 5),
+        
         (store_random_in_range, ":chance", 0, 100),
         (assign, ":sound", 0),
         (assign, ":anim", 0),
         (try_begin),
             (le, ":chance", 8),
-            (assign, ":sound", "snd_distant_dog_bark"),
-            (assign, ":anim", "anim_wolf_snap"),
+            (assign, ":sound", ":sound_1"),
+            (assign, ":anim", ":anim_1"),
             (le, ":chance", 6),
-            (assign, ":anim", "anim_horse_rear"),
+            (assign, ":anim", ":anim_2"),
             (le, ":chance", 3),
-            (assign, ":sound", "snd_warg_lone_woof"),
-            (assign, ":anim", "anim_wolf_snap"),
+            (assign, ":sound", ":sound_2"),
+            (assign, ":anim", ":anim_2"),
+        (else_try), #move back to base if too far
+            (le, ":chance", ":move_chance"),
+            (get_distance_between_positions, ":dist", pos2, pos3),
+            (ge, ":dist", 1000),
+            #(agent_set_scripted_destination, ":agent", pos3),
+            (agent_stop_running_away, ":agent"),
+            (agent_start_running_away, ":agent", pos3),
         (else_try), #move around a bit
-            (le, ":chance", 20),
-            (store_random_in_range, ":x", -800, 800),
-            (store_random_in_range, ":y", -800, 800),
+            (le, ":chance", ":move_chance"),
+            (store_random_in_range, ":x", 400, 1000),
+            (store_random_in_range, ":y", 400, 1000),
+            (try_begin),
+                (is_between, ":chance", 14, 18),
+                (val_mul, ":y", -1),
+            (else_try),
+                (le, ":chance", 14),
+                (val_mul, ":x", -1),
+                (le, ":chance", 11),
+                (val_mul, ":y", -1),
+            (try_end),
+            (try_begin),
+                (le, ":scale", 35),
+                (val_mul, ":x", 10),
+                (val_mul, ":y", 10),
+                (assign, reg78, ":scale"),
+                #(display_message, "@{s12} scale {reg78}"),
+            (try_end),
             (agent_get_position, pos2, ":agent"),
             (position_move_x, pos2, ":x"),
             (position_move_y, pos2, ":y"),
-            (agent_set_scripted_destination, ":agent", pos2),
+            #(agent_set_scripted_destination, ":agent", pos2),
+            (agent_stop_running_away, ":agent"),
+            (agent_start_running_away, ":agent", pos2),
+            #(display_message, "@{s12} moves away"),
         (try_end),
         (try_begin),
             (gt, ":sound", 0),
@@ -4704,6 +4770,76 @@ tld_animated_town_agents = [
             (gt, ":anim", 0),
             (agent_set_animation, ":agent", ":anim"),
         (try_end),
+
+        (le, ":scale", 35),
+        (agent_get_position, pos2, ":agent"),
+        (agent_get_position, pos4, ":player_agent"),
+        (get_distance_between_positions, ":dist_2", pos2, pos4),
+        # (assign, reg78, ":dist_2"),
+        # (display_message, "@dist: {reg78}"),
+        (try_begin),
+            # (le, ":dist_2", 900),
+            # (agent_slot_eq, ":agent", slot_agent_time_counter, 0), #visibility
+            # (agent_set_visibility, ":agent", 1),
+            # (agent_set_slot, ":agent", slot_agent_time_counter, 1),
+            # #(display_message, "@{s12} reappears"),
+        # (else_try),
+            # (agent_slot_eq, ":agent", slot_agent_time_counter, 1), #visibility
+            (gt, ":dist_2", 800),
+            #(display_message, "@{s12} disappears"),
+            (agent_fade_out, ":agent"),
+            #(agent_set_visibility, ":agent", 0),
+            (agent_get_slot, ":instance_no", ":agent", slot_agent_assigned_prop),
+            (scene_prop_get_slot, ":num_agents", ":instance_no", slot_prop_agent_2), #number of spawned animals
+            (val_sub, ":num_agents", 1),
+            (scene_prop_set_slot, ":instance_no", slot_prop_agent_2, ":num_agents"),
+            # (agent_set_slot, ":agent", slot_agent_time_counter, 0), 
+        (try_end),    
+    (try_end),
+
+    #critters (rats, spiders) spawn when player is nearby, run in a random direction, and fade out if player moves away (avoid shadow bug)
+    (try_for_prop_instances, ":instance_no"),
+        (prop_instance_get_scene_prop_kind, ":prop_type", ":instance_no"),
+        (this_or_next|eq, ":prop_type", "spr_animal_spider"),
+        (eq, ":prop_type", "spr_animal_rat"),
+        (prop_instance_get_position, pos5, ":instance_no"),
+        (get_distance_between_positions, ":dist", pos4, pos5),
+        (le, ":dist", 900),
+        (scene_prop_get_slot, ":num_agents", ":instance_no", slot_prop_agent_2), #number of spawned animals
+        
+        (store_random_in_range, reg78, 0, 100),
+        (this_or_next|le, reg78, 10),
+        (eq, ":num_agents", 0),
+        (lt, ":num_agents", 4),
+            
+        (set_spawn_position, pos5),
+        (scene_prop_get_slot, ":animal", ":instance_no",  slot_prop_playing_sound),
+        (spawn_horse,":animal", 0),
+        (agent_set_stand_animation, reg0, "anim_horse_stand"),
+        (val_add, ":num_agents", 1),
+        (scene_prop_set_slot, ":instance_no", slot_prop_agent_2, ":num_agents"), 
+        (scene_prop_set_slot, ":instance_no", slot_prop_agent_1, reg0),
+        (agent_set_slot, reg0, slot_agent_assigned_prop, ":instance_no"),
+        (agent_set_slot, reg0, slot_agent_troll_swing_status, 0), #animation 1   
+        (agent_set_slot, reg0, slot_agent_troll_swing_move, 0), #animation 2
+        (agent_set_slot, reg0, slot_agent_last_hp, 0), #sound 1
+        (agent_set_slot, reg0, slot_agent_mount_side, 0), #sound 2
+        (agent_set_slot, reg0, slot_agent_mount_dead, 40), #move chance per 1 second
+        (agent_set_speed_modifier, reg0, 1),
+        (agent_set_speed_limit, reg0, 1),
+        (store_random_in_range, ":direction", 0, 360),
+        (position_rotate_z, pos5, ":direction"),
+        (position_move_y, pos5, 800),
+        (agent_start_running_away, reg0, pos5),
+    (try_end),
+ 
+    #chicken sounds
+    (scene_prop_get_num_instances, ":num_props", "spr_animal_chicken"),
+    (try_for_range, ":count", 0, ":num_props"),
+        (scene_prop_get_instance, ":instance_no", "spr_animal_chicken", ":count"),
+        (store_random_in_range, ":chance", 0, 100),
+        (le, ":chance", 8),        
+        (prop_instance_play_sound, ":instance_no", "snd_kura"),
     (try_end),
 
     #priests / worshippers
@@ -4748,6 +4884,7 @@ tld_animated_town_agents = [
             (lt, ":dist", 3000),
             (agent_add_relation_with_agent, ":fighter_1", ":fighter_2", -1),
             (ge, ":fighter_2", 1),
+            (neq, ":prop_type", "spr_troop_archer_fight_single"), #archer target should stay neutral
             (agent_add_relation_with_agent, ":fighter_2", ":fighter_1", -1),
             #(display_message, "@start fight"),
         (try_end),
@@ -4769,21 +4906,26 @@ tld_animated_town_agents = [
         (neq, ":troop_no", trp_npc18), #Turmbathu
         (agent_get_position, pos5, ":agent"),
         (get_distance_between_positions, ":dist", pos4, pos5),
-        (is_between, ":dist", 300, 1500),
+        (is_between, ":dist", 300, 1500), #so it doesn't trigger during dialog
         (store_random_in_range, ":chance", 0, 100),
         (gt, ":chance", 70),
         (agent_set_look_target_agent, ":agent", ":player_agent"),
         (gt, ":chance", 90),
         (try_begin),
-            (gt, ":chance", 95),
+            (gt, ":chance", 96),
             (neg|faction_slot_eq, "$ambient_faction", slot_faction_side, faction_side_good),
             (agent_set_animation, ":agent", "anim_troll_roar"),
             (agent_set_animation_progress, ":agent", 20), #skip a part of the animation
         (else_try),
             (agent_set_animation, ":agent", "anim_greet_simple"),
         (try_end),
+        (gt, ":chance", 93),
+        (store_mission_timer_a, ":timer"),
+        (neg|agent_slot_ge, ":agent", slot_agent_knocked_down, ":timer"), #reused for tracking if recently waved.
         (str_store_agent_name, s7, ":agent"),
-        (display_message, "@{s7} waves at you."),       
+        (display_message, "@{s7} waves at you."),        
+        (val_add, ":timer", 20),
+        (agent_set_slot, ":agent", slot_agent_knocked_down, ":timer"),
     (try_end),
       ]),        
 ]
@@ -4889,7 +5031,7 @@ tld_positional_sound_props = [
             (party_get_slot, ":a","$current_town",slot_center_ambient_sound_always),
             (try_begin),(gt,":a",0),(play_sound, ":a", sf_looping),(try_end),
         (else_try),
-            (play_sound, "$bs_day_sound", sf_looping),
+            (play_sound, "$bs_day_sound", sf_looping|sf_2d),
         (try_end),
         (neg|is_currently_night),
         (try_begin),
@@ -4897,7 +5039,7 @@ tld_positional_sound_props = [
             (party_get_slot, ":a","$current_town",slot_center_ambient_sound_day),
             (try_begin),(gt,":a",0),(play_sound, ":a", sf_looping),(try_end),
         (else_try),
-            (play_sound, "$bs_night_sound", sf_looping),
+            (play_sound, "$bs_night_sound", sf_looping|sf_2d),
         (try_end),
 
     (try_end),
@@ -5262,5 +5404,5 @@ tld_points_of_interest = [
         # (spawn_scene_prop, "spr_barrier_8m"),
         # (agent_set_slot, ":agent", slot_agent_assigned_prop, reg0),
     # (try_end), 
-      # ]),    
+      # ]), 
 ]

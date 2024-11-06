@@ -1711,42 +1711,12 @@ custom_tld_bow_always = [
 	  
 custom_tld_init_battle = (ti_before_mission_start,0,0,[],
   [ (assign,"$trolls_in_battle",0),	
-	(assign,"$nazgul_in_battle",0),	
 	(assign,"$wargs_in_battle",0), (eq, "$wargs_in_battle", 0), #MV: to get rid of build warnings - remove on use
 	(assign,"$animal_is_present",0), #Init Animals - Kham
 	(assign,"$warg_to_be_replaced",-1),	#  this warg needs replacing
 	(assign,"$nazgul_team", -1), # will be found when needed
 	(call_script, "script_check_agent_armor"), # check for berserker trait
 	#(set_rain, 0,100), #switch off vanilla rain and snow
-
-	# CC: Maybe we could add a chance that if the player is playing as a mordor orc, a nazgul may come to his aid?
-
-	# CC: Fixed the broken system. It was checking *parties* against *party templates*, plus some other bugs.
-	(try_begin),
-		(party_get_template_id, ":p_template_1", "$g_encountered_party"),
-		(neg|main_party_has_troop, "trp_npc5"), #Glorfindel scares Nazguls away.
-		(assign, ":p_template_2", -1),
-		(try_begin),
-			(gt, "$g_encountered_party_2", 0),
-			(party_get_template_id, ":p_template_2", "$g_encountered_party_2"),
-		(try_end),
-		(this_or_next|eq, ":p_template_1", "pt_mordor_war_party"),
-		(eq, ":p_template_2", "pt_mordor_war_party"),
-		(store_random_in_range,":die_roll",0,101),
-		(try_begin),
-			(gt, ":die_roll", 95),
-			(assign,"$nazgul_in_battle",3),	
-			(display_log_message, "@Three Nazgul are circling in the sky above the battlefield!"),
-		(else_try),
-			(gt, ":die_roll", 70),
-			(assign,"$nazgul_in_battle",2),	
-			(display_log_message, "@Two Nazgul are circling in the sky above the battlefield!"),
-		(else_try),
-			(gt, ":die_roll", 55),
-			(assign,"$nazgul_in_battle",1),	
-			(display_log_message, "@A Nazgul is circling in the sky above the battlefield!"),
-		(try_end),
-	(try_end),
 	
 	(try_for_range, ":npc",companions_begin,companions_end), #reset KO tracking for companions
 		(troop_set_slot,":npc",slot_companion_agent_id,0),
@@ -1992,200 +1962,6 @@ custom_tld_spawn_troop = (ti_on_agent_spawn, 0, 0, [],
   (set_show_messages, 1),
 ])
 
-# mtarini nazgul sweeps. improved by cppcoder.
-nazgul_sweeps = (4,1.2,5,[
-	#(this_or_next|key_is_down, key_n),
-	(gt,"$nazgul_in_battle",0),
-	(store_random_in_range,reg0,0,100),
-	#(this_or_next|key_is_down, key_n),
-	#(le,reg0,"$nazgul_in_battle"), 
-	(store_mul, reg1, "$nazgul_in_battle", 5), # 5% chance every 2 seconds, for each nazgul present
-	(le,reg0,reg1),	
-	(display_log_message, "@Nazgul sweep!"),
-	# if nazgul team is not computed, compute it
-	(try_begin),
-		(eq, "$nazgul_team", -1), 
-		(try_for_agents,":agent"),
-			(eq, "$nazgul_team", -1),
-			(agent_get_party_id, ":party_id", ":agent"),
-			(ge, ":party_id", 0),
-			(party_get_template_id, ":party_template", ":party_id"),
-			(eq, ":party_template", "pt_mordor_war_party"),
-			(agent_get_team, "$nazgul_team",":agent"),
-		(try_end),
-	(try_end),
-	#(assign, reg0, "$nazgul_team"),
-	#(display_message, "@Nazgul Team = {reg0}"),
-	(store_random_in_range, ":long_skretch", 0,2),
-	# play sound
-	(get_player_agent_no, ":player_agent"), #for messages and sound origin
-	(try_begin),
-		(ge,":long_skretch",1),
-		(agent_play_sound, ":player_agent", "snd_nazgul_skreech_long" ),
-		#(display_log_message, "@Debug: LONG sweep!"),
-	(else_try),
-		(agent_play_sound, ":player_agent", "snd_nazgul_skreech_short"),
-		#(display_log_message, "@Debug: SHORT sweep!"),
-	(try_end), 
-
-	(try_for_agents,":victim"), # psycological effect:
-		(agent_is_alive,":victim"),
-		(agent_get_team, reg1, ":victim"),
-		(this_or_next|eq, "$nazgul_team", -1),
-		(teams_are_enemies, reg1, "$nazgul_team"),
-		(agent_is_human,":victim"),
-		(try_begin), # long skretch can make the horse rage twice (but only 66% of times)
-			(assign, ":horse_rage_twice",":long_skretch"),
-			(store_random_in_range,":die_roll",1,4),
-			(eq,":die_roll",1),		
-		(try_end), 
-
-		(agent_get_troop_id, ":trp_victim", ":victim"),
-		(agent_get_horse,":horse",":victim"),
-		(store_attribute_level, ":int", ":trp_victim", ca_intelligence),
-		(store_skill_level, ":riding", "skl_riding", ":trp_victim"),
-		(store_random_in_range,":die_roll_int",1,26),
-
-		(try_begin), 		# the horses could rear
-			(ge,":horse",0), # there's an horse being riden
-                        # Arsakes: exclude animals (which have hidden riders so their "mounts" don't escape)
-                        (neg|is_between, ":trp_victim", warg_ghost_begin, warg_ghost_end),
-                        (neg|is_between, ":trp_victim", "trp_spider", "trp_dorwinion_sack"),
-                        (neq, ":trp_victim", "trp_multiplayer_profile_troop_male"), (neq, ":trp_victim", "trp_werewolf"),
-
-			(try_begin), 
-				# if rider failed intelligece test: both horse and rider panic
-				(ge, ":die_roll_int" , ":int"), 
-				(try_begin),
-					(ge,":horse_rage_twice",1),
-					(agent_set_animation, ":horse", "anim_horse_rear_twice"), 
-				(else_try), 
-					(agent_set_animation, ":horse", "anim_horse_rear_fast_blend"), 
-				(try_end),
-        
-				(try_begin), #always let the player know what affects him
-					(eq, ":player_agent", ":victim"),
-					(display_log_message, "@You and your horse panic, the Nazgul cries are unbearable!"),
-				(try_end), 
-			(else_try), 
-				# if rider success on intelligence test: he won't panic, horse could
-				(store_random_in_range,":die_roll_riding",1,13),
-				(ge, ":die_roll_riding" , ":riding"), # riding test: horse is a victim if 1d12 rolls over riding skill
-				(agent_set_animation, ":horse", "anim_horse_rear"),
-				#(agent_play_sound,":horse","snd_neigh"),
-        
-				(try_begin), #always let the player know what affects him
-					(eq, ":player_agent", ":victim"),
-					(display_log_message, "@Your horse panics, the Nazgul cries are unbearable!"),
-				(try_end), 
-			# (else_try), 
-				# (assign, ":horse_resisted", 1),
-			(try_end), 
-		(try_end), 
-		
-		(try_begin), # the guys can go nuts
-			(ge, ":die_roll_int" , ":int"), # it is a victim if 1d25 rolled under intelligence	  
-			(try_begin), 
-				# mounted characters panic
-				(ge,":horse",0), 
-				(try_begin),
-					(ge,":horse_rage_twice",1),
-					(agent_set_animation, ":victim", "anim_nazgul_noooo_mounted_long"), 
-				(else_try), 
-					(agent_set_animation, ":victim", "anim_nazgul_noooo_mounted_short"),
-				(try_end), 
-			(else_try), 
-				# unmounted characters panic
-				(try_begin),
-					(ge,":long_skretch",1),
-					(agent_set_animation, ":victim", "anim_nazgul_noooo_long"),
-				(else_try), 
-					(agent_set_animation, ":victim", "anim_nazgul_noooo_short"),
-				(try_end), 
-			(try_end),
-      
-			(try_begin), #always let the player know what affects him
-				(eq, ":player_agent", ":victim"),
-				(display_log_message, "@You cower in terror, the Nazgul cries are unbearable!"),
-			(try_end),
-      
-		(try_end), 
-		# show message?
-        # MV: commented out - resistance not important, it's the other way around, effects are important
-		# (get_player_agent_no, ":player_agent"),
-		# (eq,":player_agent", ":victim"),
-		# (eq,":human_resisted", 1),
-		# (display_log_message,"@Panic resisted!"),
-		# (eq,":horse_resisted", 1),
-		# (display_log_message,"@Horse panic avoided!"),
-    (try_end),
-	(store_random_in_range,":die_roll",1,4),
-	(ge,":die_roll",2), # twice in 2 there is will an attack!
-  ],[ # physical attack on random agent
-	(assign,":random_agent",-1), # he will suffer a physical attack!
-	(assign,":random_agent_score",99999),
-	(mission_cam_get_position, 2),
-	(get_player_agent_no, ":player_agent"),
-	(try_for_agents,":victim"),
-		(agent_is_alive,":victim"),
-		(agent_is_human,":victim"),
-		(agent_get_team, reg1, ":victim"),
-		(neg|eq, ":victim",":player_agent"),
-		
-		(this_or_next|eq, "$nazgul_team", -1),
-		(teams_are_enemies, reg1, "$nazgul_team"),
-			
-		(agent_get_position, 1,":victim"),
-		(position_is_behind_position, 1,2), # a troop never suffers an attack if visible on the screen
-		
-		# this one is eligible for physical effect,
-		(store_random_in_range,":die_roll",1,10000),
-		(ge, ":random_agent_score",":die_roll"),
-		(assign, ":random_agent_score", ":die_roll"),
-		(assign, ":random_agent", ":victim"),
-    (try_end),
-
-	(gt, ":random_agent", -1),
-	(agent_get_troop_id, reg1, ":random_agent"),
-	(troop_get_type, reg2, reg1),
-	# make it scream like a pig
-	(try_begin),
-		(this_or_next|eq, reg2, tf_troll ),
-		(is_between, reg2, tf_orc_begin , tf_orc_end ),
-		(agent_play_sound,":random_agent","snd_horror_scream_orc"),
-	(else_try),
-		(eq, reg1, tf_female ),
-		(agent_play_sound,":random_agent","snd_horror_scream_woman"),
-	(else_try),
-		(agent_play_sound,":random_agent","snd_horror_scream_man"),
-	(try_end),
-	# get it killed...  (trick! self kill with hidden message... is there a better way?) NO, THERE IS NOT. GA
-	(agent_set_hit_points,":random_agent",0,1), # this still doesn't kill it
-	(set_show_messages,0),
-	#--
-	(agent_get_kill_count, ":killed", ":random_agent"),
-	(agent_deliver_damage_to_agent,":random_agent",":random_agent"), 
-	(agent_get_kill_count, ":killed_1", ":random_agent"),
-	#--
-	(set_show_messages,1),
-	
-	# display kill in a log message of appropriate color
-	# changed 0xFFAAFFAA to color_good_news -CC
-	(assign, ":text_color", color_good_news),
-	(try_begin),
-		(agent_is_ally, ":random_agent"),
-		# changed 0xFFFFAAAA to color_bad_news -CC
-		(assign, ":text_color", color_bad_news),
-	(try_end),
-	(str_store_string, s10, "@knocked unconscious"),	
-	(try_begin),
-		(gt, ":killed_1", ":killed"),
-		(str_store_string, s10, "@killed"),
-	(try_end),
-	(str_store_agent_name, s11, ":random_agent"),
-	(display_log_message, "@Nazgul diving attack on {s11}!"),
-	(display_log_message, "@{s11} is {s10} in the Nazgul attack!",":text_color"),
-])
 
 # if player attempts to ride non matching mount, mount rebels (mtarini)
 tld_player_cant_ride = (1.90,1.5,0.5,[
@@ -3913,7 +3689,7 @@ HD_ladders_rise = (0,25,ti_once, [],[(scene_prop_get_instance,":ladder", "spr_si
 			 (prop_instance_get_position,pos1,":ladder"),
 			 (position_rotate_x,pos1,-120),
 			 (prop_instance_animate_to_position,":ladder",pos1,900),
-			 (play_sound,"snd_distant_carpenter"),
+			 #(play_sound,"snd_distant_carpenter"),
 
 			 (scene_prop_get_instance,":ladder", "spr_siege_ladder_14m", 1),
 			 (prop_instance_get_position,pos1,":ladder"),
@@ -4793,32 +4569,55 @@ nazgul_flying = ((is_a_wb_mt==1) and [
     # slot 42: target agent
     (4, 0, 0, 
     [(key_is_down, key_n),
+    (ge, "$nazgul_in_battle", 1),
     (display_message, "@key clicked"),
+    (scene_prop_slot_eq, "$nazgul_in_battle", 41, 0), #in circling mode?
+    (mission_cam_get_position, pos2),
+    (prop_instance_get_position, pos1, "$nazgul_in_battle"),
+    (position_is_behind_position, pos1, pos2), #make sure that they don't "turn" when in camera
+    (display_message, "@attack!"),
     ],
-    [(get_player_agent_no, ":player_agent"),
+    [(set_fixed_point_multiplier, 100),
+    (get_player_agent_no, ":player_agent"),
+    (agent_get_position, pos5, ":player_agent"),
+    (assign, ":target_agent", 0),
+    (try_for_agents, ":agent_no"),
+        (eq, ":target_agent", 0),
+        (agent_is_alive, ":agent_no"),
+        (agent_is_human, ":agent_no"),
+        (neq, ":agent_no", ":player_agent"),
+        (agent_get_position, pos6, ":agent_no"),
+        (get_distance_between_positions, ":dist", pos5, pos6),
+        (lt, ":dist", 5000),
+        (neg|scene_prop_slot_eq, "$nazgul_in_battle", 42, ":agent_no"), #not previous target agent
+        #(agent_get_team, ":agent_team", ":agent_no"),
+        #(teams_are_enemies, ":agent_team", "$nazgul_team"),
+        (assign, ":target_agent", ":agent_no"),
+    (try_end),
+    (gt, ":target_agent", 0),
     (scene_prop_get_num_instances, ":num_instances", "spr_fellbeast"),
     (ge, ":num_instances", 1),
     (scene_prop_get_instance, ":instance_no", "spr_fellbeast", 0), #assume there's always only one
     (prop_instance_is_valid, ":instance_no"),
-    (scene_prop_slot_eq, ":instance_no", 41, 0),
-    (scene_prop_set_slot, ":instance_no", 41, 2), #attack
-    (scene_prop_set_slot, ":instance_no", 42, ":player_agent"), #target
+    (scene_prop_slot_eq, ":instance_no", 41, 0), #in circling mode?
+    (scene_prop_set_slot, ":instance_no", 41, 2), #set attack mode
+    (scene_prop_set_slot, ":instance_no", 42, ":target_agent"), #store target
     (scene_prop_set_slot, ":instance_no", slot_prop_temp_hp_1, 50), #reset temp hp before attack
     
-    (agent_get_position, pos3, ":player_agent"),
+    (agent_get_position, pos3, ":target_agent"),
     (prop_instance_get_position, pos2, ":instance_no"),
     (get_distance_between_positions, ":speed", pos2, pos3),
-    (val_div, ":speed", 40), #speed is dist/9
+    (val_div, ":speed", 60), #speed is dist/40
     (prop_instance_animate_to_position, ":instance_no", pos3, ":speed"),
+    (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_short" ),
 	]),
 
-    #Nazgul attack abort
+    #Nazgul attack update and abort
     (0.5, 0, 0, 
     [
     ],
     [
     (set_fixed_point_multiplier, 100),
-    #(get_player_agent_no, ":player_agent"),
     (scene_prop_get_num_instances, ":num_instances", "spr_fellbeast"),
     (ge, ":num_instances", 1),
     (scene_prop_get_instance, ":instance_no", "spr_fellbeast", 0),
@@ -4840,14 +4639,27 @@ nazgul_flying = ((is_a_wb_mt==1) and [
         (val_add, ":height", 200),
         (position_set_z, pos3, ":height"),      
         (get_distance_between_positions, ":dist", pos2, pos3),
-        (store_div, ":speed", ":dist", 30), #speed is dist/9
+        (store_div, ":speed", ":dist", 45), #speed is dist/45
         (prop_instance_animate_to_position, ":instance_no", pos3, ":speed"), 
+
+        (le, ":dist", 3000), #slow down a bit when closing in
+        (store_div, ":speed", ":dist", 30), #speed is dist/30
+        (prop_instance_animate_to_position, ":instance_no", pos3, ":speed"),         
         
-        (le, ":dist", 1200),   #closed in? attack!
+        (le, ":dist", 800),   #closed in? attack!
         (agent_get_position, pos3, ":target_agent"), #reset roation
         (prop_instance_play_sound, ":instance_no", "snd_nazgul_skreech_short" ),
+        (agent_play_sound, ":target_agent", "snd_blunt_hit"),
         (copy_position, pos69, pos3), #needed for script
         (call_script, "script_aoe_pushback", 50, 400), #50 damage, 4m radius
+        
+        (try_for_agents, ":agent", pos69, 2000), #morale effect
+            (agent_get_team, ":agent_team", ":agent"),
+            (teams_are_enemies, ":agent_team", "$nazgul_team"),
+            (agent_get_slot, ":morale_bonus", ":agent", slot_agent_morale_modifier),
+            (val_sub, ":morale_bonus", 25),
+            (agent_set_slot, ":agent", slot_agent_morale_modifier, ":morale_bonus"),
+        (try_end),
         
         (scene_prop_set_slot, ":instance_no", 41, 3), #retreat
         # (init_position, pos2), #set new target pos

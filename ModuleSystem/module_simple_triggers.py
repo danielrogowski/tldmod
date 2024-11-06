@@ -1436,12 +1436,7 @@ simple_triggers = [
   
   # (37) Updating player icon in every frame
   (0,[
-      
-      #Piggyback for item score
-      ] + (is_a_wb_trigger==1 and [
-        (call_script, "script_init_item_score"),
-        ] or []) + [
-      
+  
       (troop_get_inventory_slot, ":cur_horse", "trp_player", ek_horse), #horse slot
       # determine if archer or not
       
@@ -3104,19 +3099,23 @@ simple_triggers = [
         (neg|faction_slot_eq, ":faction", slot_faction_home_theater, ":active_theater"), #not in home theater
         
         (faction_get_slot, ":strength", ":faction", slot_faction_strength),
-        (gt, ":strength", 1500), #Kham- don't create adv camps when lower than 1500
+        (gt, ":strength", 3000), #Kham- don't create adv camps when lower than 1500 #InVain -- fac_str_weak = 3000
         
         (faction_get_slot, ":adv_camp", ":faction", slot_faction_advance_camp),
         (neg|party_is_active, ":adv_camp"), #not already established
         
         (faction_get_slot, ":camp_requested_hours", ":faction", slot_faction_advcamp_timer),
-        (val_add, ":camp_requested_hours", 5*24), # 3 days after faction changes theater or previous camp destroyed - Changed to 5 Days (kham)
+        (val_add, ":camp_requested_hours", 7*24), # 3 days after faction changes theater or previous camp destroyed - Changed to 5 Days (kham) - changed to 7 days (InVain)
         (ge, ":cur_hours", ":camp_requested_hours"),
         
-        (store_random_in_range, ":rand", 0, 20000),
-		(lt, ":rand", ":strength"), #faction strength /200 is spawn chance
+        (store_sub, ":time_bonus", ":cur_hours", ":camp_requested_hours"),
+        (val_mul, ":time_bonus", 13), #adds up to ~300 fac str equivalent per day, which increases chances by 10% per day
+        
+        (store_random_in_range, ":rand", 0, 30000),
+        (val_sub, ":rand", ":time_bonus"),
+		(lt, ":rand", ":strength"), #faction strength /300 is spawn chance
         #(lt, ":rand", 30), # 30% chance every 6 hours
-        (val_sub, ":strength", 500),
+        (val_sub, ":strength", 1000),
         (faction_set_slot, ":faction", slot_faction_strength, ":strength"), #simulate effort of establishing an advance camp (hopefully slows down steamrolling)
         
         # set up the advance camp
@@ -3195,8 +3194,8 @@ simple_triggers = [
 					(str_store_party_name, s1, ":capital"),
 					(spawn_around_party, ":capital", "pt_volunteers"),
 					(assign, ":reserve_party_cap", reg0),
-					(party_add_members, ":reserve_party_cap", "trp_looter", 1), #.. or change_screen_exchange_with_party will crash #InVain: dunno if needed in this context too, keeping just in case.
-					(party_remove_members, ":reserve_party_cap", "trp_looter", 1),
+					(party_add_members, ":reserve_party_cap", "trp_mercenaries_end", 1), #.. or change_screen_exchange_with_party will crash #InVain: dunno if needed in this context too, keeping just in case.
+					(party_remove_members, ":reserve_party_cap", "trp_mercenaries_end", 1),
 					(troop_set_slot, "trp_player", slot_troop_player_reserve_party, ":reserve_party_cap"),
 					(party_attach_to_party, ":reserve_party_cap", ":capital"),
 					(party_set_name, ":reserve_party_cap", "@{playername}'s Reserves"),
@@ -3548,8 +3547,8 @@ simple_triggers = [
         (call_script, "script_defend_center", "trp_knight_1_6", "p_town_minas_tirith"),
         (call_script, "script_defend_center", "trp_knight_1_7", "p_town_minas_tirith"),
         (call_script, "script_defend_center", "trp_knight_1_8", "p_town_minas_tirith"),
-        (call_script, "script_defend_center", "trp_knight_6_1", "p_town_minas_tirith"),
-        (call_script, "script_defend_center", "trp_knight_6_2", "p_town_minas_tirith"),
+        # (call_script, "script_defend_center", "trp_knight_6_1", "p_town_minas_tirith"),
+        # (call_script, "script_defend_center", "trp_knight_6_2", "p_town_minas_tirith"),
       (try_end),
       
       (try_begin),
@@ -3588,8 +3587,8 @@ simple_triggers = [
         (call_script, "script_accompany_marshall", "trp_knight_1_6", "trp_knight_1_3"),
         (call_script, "script_accompany_marshall", "trp_knight_1_7", "trp_knight_1_3"),
         (call_script, "script_accompany_marshall", "trp_knight_1_8", "trp_knight_1_3"),
-        (call_script, "script_accompany_marshall", "trp_knight_6_1", "trp_knight_1_3"),
-        (call_script, "script_accompany_marshall", "trp_knight_6_2", "trp_knight_1_3"),
+        # (call_script, "script_accompany_marshall", "trp_knight_6_1", "trp_knight_1_3"),
+        # (call_script, "script_accompany_marshall", "trp_knight_6_2", "trp_knight_1_3"),
       (try_end),
       
       (try_begin),
@@ -3917,11 +3916,16 @@ simple_triggers = [
         (try_begin), #Isengard Last Stand
             (eq, "$lore_mode", 1),
             (eq, ":faction_no", fac_isengard),
-            (le, ":fac_strength", fac_str_guardian),
+            (store_sub, ":capital_siegable_str", "$g_fac_str_siegable", fac_str_weak-fac_str_very_weak),
+            (le, ":fac_strength", ":capital_siegable_str"),
+            (party_slot_eq, "p_town_isengard", slot_center_destroyed, 0), #double check
+            (party_slot_eq, "p_town_isengard", slot_center_is_besieged_by, -1), #triple check
             (neg|check_quest_active, qst_guardian_party_quest),
             (neg|check_quest_finished, qst_guardian_party_quest),
             (eq, ":player_side", faction_side_good),
-            (faction_slot_ge, fac_rohan, fac_str_ok), #Rohan still okay?
+            (faction_slot_ge, fac_rohan, fac_str_guardian), #Rohan still okay?
+            (party_slot_eq, "p_town_edoras", slot_center_destroyed, 0), #double check            
+            (party_slot_eq, "p_town_edoras", slot_center_is_besieged_by, -1), #triple check
             (call_script, "script_find_theater", "p_main_party"),
             (eq, reg0, theater_SW), #player in Rohan?
             (call_script, "script_send_on_conversation_mission", tld_cc_gandalf_rohan_quest_start),

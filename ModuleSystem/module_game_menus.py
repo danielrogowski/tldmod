@@ -186,6 +186,16 @@ game_menus = [
         (try_end),
        ]),
 	  ("spacer",[],"_",[]),
+
+	("change_war_start_mode",[(try_begin),(eq, "$tld_start_war_by_day_or_level", 0),(str_store_string, s7, "@by level"), (display_message, "@can only be set at game start; see options to adjust level"),
+								 (else_try),(str_store_string, s7, "@by day"),(display_message, "@can only be set at game start; see options to adjust day"),(try_end),
+	    ],"War Starts:  {s7}",[
+	    (store_sub,"$tld_start_war_by_day_or_level",1,"$tld_start_war_by_day_or_level"),(val_clamp,"$tld_start_war_by_day_or_level",0,2),(jump_to_menu, "mnu_start_phase_2"),]), 
+
+	("toggle_tutorial",[(try_begin),(eq, "$tld_show_tutorials", 0),(str_store_string, s7, "@ON"), 
+								 (else_try),(str_store_string, s7, "@OFF"),(display_message, "@If you are new to TLD, tutorial messages are recommended"),(try_end),
+	    ],"Pop-Up Tutorials:  {s7}",[
+	    (store_sub,"$tld_show_tutorials",1,"$tld_show_tutorials"),(val_clamp,"$tld_show_tutorials",0,2),(jump_to_menu, "mnu_start_phase_2"),]), 
 	  
 	   ] + (is_a_wb_menu==1 and [
 	  ("change_tld_options",[],"Change TLD options.",[(start_presentation, "prsnt_tld_mod_options")]),
@@ -657,9 +667,9 @@ game_menus = [
 		(set_visitors, 19, "trp_i5_mordor_num_assassin",			5),
 		(set_visitors, 20, "trp_c4_mordor_num_horseman",	5),
 		(set_visitors, 21, "trp_c5_mordor_num_knight",		5),
-		(set_visitors, 22, "trp_black_numenorean_captain",			5),
-		(set_visitors, 23, "trp_black_numenorean_lieutenant",		4),
-		(set_visitors, 25, "trp_high_captain_of_mordor",			4),
+		(set_visitors, 22, "trp_c5_mordor_num_knight",			5),
+		(set_visitors, 23, "trp_c5_mordor_num_knight",		4),
+		(set_visitors, 25, "trp_i5_mordor_num_champion",			4),
 		(set_visitors, 26, "trp_ac4_harondor_horse_archer",		6),
 		(set_visitors, 27, "trp_ac5_harondor_black_snake",		6),
 		(str_store_string, s16, "str_custom_battle_2"),
@@ -1251,7 +1261,7 @@ game_menus = [
 		(assign,":enemy_n",4),
 		(assign,":ally_entry",1),
 		(assign,":enemy_entry",30),
-		(try_for_range,":troop","trp_mercenaries_end","trp_looter"),
+		(try_for_range,":troop","trp_mercenaries_end","trp_last"),
 		    (neg|troop_is_hero,":troop"),
 			(troop_get_type,":troop_faction",":troop"),
 			(neq,":troop_faction",tf_troll), #GA: no trolls on battlefield
@@ -1457,7 +1467,7 @@ game_menus = [
 ( "start_eye",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^Your Master is the Lidless Eye^Choose your Race", "none",[(assign, "$last_menu", "mnu_start_eye")],[
  ("start_or"  ,[],"an ORC, serving the Lidless Eye"       ,[(jump_to_menu,"mnu_start_eye_orc"),]),
- ("start_ur"  ,[],"an URUK, the new breed of Orcs"        ,[(call_script,"script_start_as_one","trp_i1_mordor_uruk_snaga"),  (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_ur"  ,[],"an URUK, the new breed of Orcs"        ,[(assign,"$player_current_troop_type","trp_i1_mordor_uruk_snaga"),  (jump_to_menu,"mnu_start_as_one"),]),
  ("start_em"  ,[],"a MAN, subjugated by Sauron"           ,[(jump_to_menu,"mnu_start_eye_man"),]),
  ("spacer",[],"_",[]),
  ("go_back"     ,[],"Go back",[(jump_to_menu, "mnu_start_evil")]),    ]
@@ -1465,19 +1475,19 @@ game_menus = [
 ( "start_hand",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^Your Master is the White Hand^Choose your Race", "none",[(assign, "$last_menu", "mnu_start_hand")],[
  ("start_whor",[],"an ORC, serving the White Hand",          [(jump_to_menu,"mnu_start_hand_orc"),]),
- ("start_isur",[],"one of the URUK-HAI, bred in Isengard",           [(call_script,"script_start_as_one","trp_i1_isen_uruk_snaga"),(jump_to_menu,"mnu_start_as_one"),]),
- ("start_duma",[],"a MAN of Dunland, the Western Plains",    [(call_script,"script_start_as_one","trp_i1_dun_wildman"),       (jump_to_menu,"mnu_choose_gender"),]), #(jump_to_menu,"mnu_choose_skill"),]),
+ ("start_isur",[],"one of the URUK-HAI, bred in Isengard",           [(assign,"$player_current_troop_type","trp_i1_isen_uruk_snaga"),(jump_to_menu,"mnu_start_as_one"),]),
+ ("start_duma",[],"a MAN of Dunland, the Western Plains",    [(assign,"$player_current_troop_type","trp_i1_dun_wildman"),       (jump_to_menu,"mnu_choose_gender"),]), #(jump_to_menu,"mnu_choose_skill"),]),
  ("spacer",[],"_",[]),
  ("go_back"     ,[],"Go back",[(jump_to_menu, "mnu_start_evil")]),    ]
  ),
 ( "start_good_man",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Select your people:", "none",[(assign, "$last_menu", "mnu_start_good_man")],[
   ("start_go",[],"GONDOR, the Kingdom of the White Tower",[(jump_to_menu,"mnu_start_gondor"),]),
-  ("start_ro",[],"ROHAN, the Horse people"               ,[(call_script,"script_start_as_one","trp_i1_rohan_youth"),           (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_du",[],"DUNEDAIN, the ancient dynasty of Men"  ,[(call_script,"script_start_as_one","trp_a1_arnor_scout"),        (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_be",[],"BEORNINGS, the Bear people"            ,[(call_script,"script_start_as_one","trp_i1_beorning_man"),     (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_wo",[],"WOODMEN, from the eaves of Mirkwood"   ,[(call_script,"script_start_as_one","trp_i1_woodmen_man"),     (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_da",[],"the northern Kingdom of DALE"          ,[(call_script,"script_start_as_one","trp_i1_dale_militia"),         (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_ro",[],"ROHAN, the Horse people"               ,[(assign,"$player_current_troop_type","trp_i1_rohan_youth"),           (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_du",[],"DUNEDAIN, the ancient dynasty of Men"  ,[(assign,"$player_current_troop_type","trp_a1_arnor_scout"),        (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_be",[],"BEORNINGS, the Bear people"            ,[(assign,"$player_current_troop_type","trp_i1_beorning_man"),     (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_wo",[],"WOODMEN, from the eaves of Mirkwood"   ,[(assign,"$player_current_troop_type","trp_i1_woodmen_man"),     (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_da",[],"the northern Kingdom of DALE"          ,[(assign,"$player_current_troop_type","trp_i1_dale_militia"),         (jump_to_menu,"mnu_choose_gender"),]),
   ("spacer"  ,[],"_",[]),  
   ("go_back" ,[],"Go back",[
   	#(jump_to_menu, "mnu_start_good")
@@ -1485,9 +1495,9 @@ game_menus = [
  ),
 ( "start_good_elf",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^which Forest do you live in, Elder?", "none",[(assign, "$last_menu", "mnu_start_good_elf")],[
-  ("start_ri", [],"RIVENDELL, of Lord Elrond"            ,[(call_script,"script_start_as_one","trp_a1_riv_scout"),      (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_lo", [],"LOTHLORIEN, of Lady Galadriel"        ,[(call_script,"script_start_as_one","trp_a1_lorien_scout"),     (jump_to_menu,"mnu_choose_gender"),]),
-  ("start_mi", [],"MIRKWOOD, land of the Silvan Elves"   ,[(call_script,"script_start_as_one","trp_a1_greenwood_scout"),      (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_ri", [],"RIVENDELL, of Lord Elrond"            ,[(assign,"$player_current_troop_type","trp_a1_riv_scout"),      (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_lo", [],"LOTHLORIEN, of Lady Galadriel"        ,[(assign,"$player_current_troop_type","trp_a1_lorien_scout"),     (jump_to_menu,"mnu_choose_gender"),]),
+  ("start_mi", [],"MIRKWOOD, land of the Silvan Elves"   ,[(assign,"$player_current_troop_type","trp_a1_greenwood_scout"),      (jump_to_menu,"mnu_choose_gender"),]),
   ("spacer" , [],"_",[]),  
   ("go_back", [],"Go back",[
   	#(jump_to_menu, "mnu_start_good")
@@ -1495,8 +1505,8 @@ game_menus = [
  ),
 ( "start_good_dwarf",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Select your Lineage:", "none",[(assign, "$last_menu", "mnu_start_good_dwarf")],[
-  ("start_er", [],"a dweller of EREBOR"                  ,[(call_script,"script_start_as_one","trp_i1_dwarf_apprentice"),   (jump_to_menu,"mnu_start_as_one"),]),
-  ("start_ih", [],"a miner of the IRON HILLS"            ,[(call_script,"script_start_as_one","trp_i2_iron_hills_miner"),     (jump_to_menu,"mnu_start_as_one"),]),
+  ("start_er", [],"a dweller of EREBOR"                  ,[(assign,"$player_current_troop_type","trp_i1_dwarf_apprentice"),   (jump_to_menu,"mnu_start_as_one"),]),
+  ("start_ih", [],"a miner of the IRON HILLS"            ,[(assign,"$player_current_troop_type","trp_i2_iron_hills_miner"),     (jump_to_menu,"mnu_start_as_one"),]),
   ("spacer" , [],"_",[]),  
   ("go_back", [],"Go back",[
   	#(jump_to_menu, "mnu_start_good")
@@ -1506,12 +1516,12 @@ game_menus = [
  "^^^^^^^^^^Where are you from, in Gondor?", "none",[(assign, "$last_menu", "mnu_start_gondor")],[
  ("quick_start_gondor"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(assign, "$cheat_mode", 1),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (call_script,"script_start_as_one","trp_c1_gon_nobleman"), (jump_to_menu,"mnu_start_phase_2" ),]),
  ("start_mt",[],"MINAS TIRITH, the Capital"                    ,[(troop_set_slot, "trp_player", slot_troop_subfaction, subfac_regular),(jump_to_menu,"mnu_start_gondor_mt"),]),
- ("start_ls",[],"LOSSARNACH, the Fiefdom of the Axemen"        ,[(call_script,"script_start_as_one","trp_i1_loss_woodsman"),  (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_lossarnach),  	   (jump_to_menu,"mnu_choose_gender"),]),
- ("start_la",[],"LAMEDON, the Fiefdom of the Mountain Clansmen",[(call_script,"script_start_as_one","trp_i1_lam_clansman"),     (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_ethring),   	   (jump_to_menu,"mnu_choose_gender"),]),
- ("start_pg",[],"PINNATH GELIN, the Fiefdom of Green Hills"    ,[(call_script,"script_start_as_one","trp_i1_pinnath_plainsman"), (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_pinnath_gelin),   (jump_to_menu,"mnu_choose_gender"),]),
- ("start_do",[],"DOL AMROTH, the Fiefdom of Swan Knights"      ,[(call_script,"script_start_as_one","trp_i1_amroth_recruit"),        (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_dol_amroth),	   (jump_to_menu,"mnu_choose_gender"),]),
- ("start_pe",[],"PELARGIR, the Coastal Fiefdom"                ,[(call_script,"script_start_as_one","trp_i1_pel_watchman"), 		(troop_set_slot, "trp_player", slot_troop_subfaction, subfac_pelargir),        (jump_to_menu,"mnu_choose_gender"),]),
- ("start_bl",[],"BLACKROOT VALE, the Fiefdom of Archers"       ,[(call_script,"script_start_as_one","trp_a1_blackroot_hunter"), 	(troop_set_slot, "trp_player", slot_troop_subfaction, subfac_blackroot),	   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_ls",[],"LOSSARNACH, the Fiefdom of the Axemen"        ,[(assign,"$player_current_troop_type","trp_i1_loss_woodsman"),  (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_lossarnach),  	   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_la",[],"LAMEDON, the Fiefdom of the Mountain Clansmen",[(assign,"$player_current_troop_type","trp_i1_lam_clansman"),     (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_ethring),   	   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_pg",[],"PINNATH GELIN, the Fiefdom of Green Hills"    ,[(assign,"$player_current_troop_type","trp_i1_pinnath_plainsman"), (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_pinnath_gelin),   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_do",[],"DOL AMROTH, the Fiefdom of Swan Knights"      ,[(assign,"$player_current_troop_type","trp_i1_amroth_recruit"),        (troop_set_slot, "trp_player", slot_troop_subfaction, subfac_dol_amroth),	   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_pe",[],"PELARGIR, the Coastal Fiefdom"                ,[(assign,"$player_current_troop_type","trp_i1_pel_watchman"), 		(troop_set_slot, "trp_player", slot_troop_subfaction, subfac_pelargir),        (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_bl",[],"BLACKROOT VALE, the Fiefdom of Archers"       ,[(assign,"$player_current_troop_type","trp_a1_blackroot_hunter"), 	(troop_set_slot, "trp_player", slot_troop_subfaction, subfac_blackroot),	   (jump_to_menu,"mnu_choose_gender"),]),
  ("spacer",[],"_",[]),
  ("go_back"     ,[],"Go back",[
  	#(jump_to_menu, "mnu_start_good")
@@ -1521,10 +1531,10 @@ game_menus = [
  "^^^^^^^^^^Select your people:", "none",[(assign, "$last_menu", "mnu_start_eye_man")],[
  ("quick_start_harad"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(assign, "$cheat_mode", 1),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (call_script,"script_start_as_one","trp_c2_harondor_scout"), (jump_to_menu,"mnu_start_phase_2" ),]),
  ("start_hr",[],"HARADRIM, the desert people from the South",    [(jump_to_menu,"mnu_start_haradrim"),]),  
- ("start_bn",[],"Black NUMENOREANS, the renegades from the West",[(call_script,"script_start_as_one","trp_i2_mordor_num_renegade"),(jump_to_menu,"mnu_start_numenorean"),]),
- ("start_um",[],"UMBAR, the pirates from the South Seas",        [(call_script,"script_start_as_one","trp_i1_corsair_youth"),            (jump_to_menu,"mnu_choose_gender"),]),
- ("start_rh",[],"RHUN, the barbarians from the East",            [(call_script,"script_start_as_one","trp_i1_rhun_tribesman"),           (jump_to_menu,"mnu_choose_gender"),]),
- ("start_kh",[],"KHAND, the savage people from South-East",      [(call_script,"script_start_as_one","trp_i1_khand_bondsman"),         (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_bn",[],"Black NUMENOREANS, the renegades from the West",[(assign,"$player_current_troop_type","trp_i2_mordor_num_renegade"),(jump_to_menu,"mnu_start_numenorean"),]),
+ ("start_um",[],"UMBAR, the pirates from the South Seas",        [(assign,"$player_current_troop_type","trp_i1_corsair_youth"),            (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_rh",[],"RHUN, the barbarians from the East",            [(assign,"$player_current_troop_type","trp_i1_rhun_tribesman"),           (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_kh",[],"KHAND, the savage people from South-East",      [(assign,"$player_current_troop_type","trp_i1_khand_bondsman"),         (jump_to_menu,"mnu_choose_gender"),]),
  ("spacer",[],"_",[]),
  ("go_back",[],"Go back",[
  	#(jump_to_menu, "mnu_start_eye")
@@ -1534,8 +1544,8 @@ game_menus = [
 ( "start_eye_uruk",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Where do you lurk?", "none",[(assign, "$last_menu", "mnu_start_eye_uruk")],[
  ("quick_start_uruk"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(assign, "$cheat_mode", 1),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (call_script,"script_start_as_one","trp_i1_mordor_uruk_snaga"), (jump_to_menu,"mnu_start_phase_2" ),]),
- ("start_arm_uruk",[],"in the armies amassed at MORDOR", [(call_script,"script_start_as_one","trp_i1_mordor_uruk_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
- ("start_cav_uruk",[],"in the caves of DOL GULDUR",      [(call_script,"script_start_as_one","trp_i1_mordor_uruk_snaga"), (call_script, "script_player_join_faction", "fac_guldur"), (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_arm_uruk",[],"in the armies amassed at MORDOR", [(assign,"$player_current_troop_type","trp_i1_mordor_uruk_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_cav_uruk",[],"in the caves of DOL GULDUR",      [(assign,"$player_current_troop_type","trp_i1_mordor_uruk_snaga"), (call_script, "script_player_join_faction", "fac_guldur"), (jump_to_menu,"mnu_start_as_one"),]),
  ("spacer" ,[],"_"  ,[]),
  ("go_back",[],"Go back",[
  	#(jump_to_menu, "mnu_start_eye")
@@ -1544,8 +1554,8 @@ game_menus = [
 ( "start_eye_orc",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Where do you lurk?", "none",[(assign, "$last_menu", "mnu_start_eye_orc")],[
  ("quick_start_orc"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(assign, "$cheat_mode", 1),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (call_script,"script_start_as_one","trp_i1_mordor_orc_snaga"), (jump_to_menu,"mnu_start_phase_2" ),]),
- ("start_arm",[],"in the armies amassed at MORDOR", [(call_script,"script_start_as_one","trp_i1_mordor_orc_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
- ("start_cav",[],"in the caves of DOL GULDUR",      [(call_script,"script_start_as_one","trp_i1_guldur_orc_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_arm",[],"in the armies amassed at MORDOR", [(assign,"$player_current_troop_type","trp_i1_mordor_orc_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_cav",[],"in the caves of DOL GULDUR",      [(assign,"$player_current_troop_type","trp_i1_guldur_orc_snaga"),   (jump_to_menu,"mnu_start_as_one"),]),
  ("spacer" ,[],"_"  ,[]),
  ("go_back",[],"Go back",[
  	#(jump_to_menu, "mnu_start_eye")
@@ -1554,9 +1564,9 @@ game_menus = [
 ( "start_hand_orc",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Where do you lurk?", "none",[(assign, "$last_menu", "mnu_start_hand_orc")],[
  ("quick_start_moria"     ,[(eq, cheat_switch, 1),],"[dev: quick start Moria]",[(assign, "$cheat_mode", 1),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (call_script,"script_start_as_one","trp_i1_moria_snaga"), (jump_to_menu,"mnu_start_phase_2" ),]),
- ("start_armis",[],"in the Armies amassed at ISENGARD",[(call_script,"script_start_as_one","trp_i1_isen_orc_snaga"),(jump_to_menu,"mnu_start_as_one"),]),
- ("start_minmo",[],"in the Mines of MORIA"            ,[(call_script,"script_start_as_one","trp_i1_moria_snaga"),       (jump_to_menu,"mnu_start_as_one"),]),
- ("start_cliff",[],"in the cliffs of Mount GUNDABAD",  [(call_script,"script_start_as_one","trp_i1_gunda_goblin"),      (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_armis",[],"in the Armies amassed at ISENGARD",[(assign,"$player_current_troop_type","trp_i1_isen_orc_snaga"),(jump_to_menu,"mnu_start_as_one"),]),
+ ("start_minmo",[],"in the Mines of MORIA"            ,[(assign,"$player_current_troop_type","trp_i1_moria_snaga"),       (jump_to_menu,"mnu_start_as_one"),]),
+ ("start_cliff",[],"in the cliffs of Mount GUNDABAD",  [(assign,"$player_current_troop_type","trp_i1_gunda_goblin"),      (jump_to_menu,"mnu_start_as_one"),]),
  ("spacer" ,[],"_",[]),
  ("go_back",[],"Go back",[
  	#(jump_to_menu, "mnu_start_hand")
@@ -1564,15 +1574,15 @@ game_menus = [
  ),
 ( "start_gondor_mt",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^^^^Select your Lineage", "none",[(assign, "$last_menu", "mnu_start_gondor_mt")],[
- ("start_1_com",[],"Commoner" ,[(call_script,"script_start_as_one","trp_i1_gon_levy"),(jump_to_menu,"mnu_choose_gender"),]),
- ("start_2_hib",[],"High-born",[(call_script,"script_start_as_one","trp_c1_gon_nobleman"),(jump_to_menu,"mnu_choose_gender"),]),
+ ("start_1_com",[],"Commoner" ,[(assign,"$player_current_troop_type","trp_i1_gon_levy"),(jump_to_menu,"mnu_choose_gender"),]),
+ ("start_2_hib",[],"High-born",[(assign,"$player_current_troop_type","trp_c1_gon_nobleman"),(jump_to_menu,"mnu_choose_gender"),]),
  ("spacer" ,[],"_"        ,[]),
  ("go_back",[],"Go back"  ,[(jump_to_menu, "mnu_start_gondor")]),    ]
  ),
 ( "start_haradrim",menu_text_color(0xFF000000)|mnf_disable_all_keys,
  "^^^^^^^You are one of the Haradrim,^a Man of the Desert.^Select your line", "none",[(assign, "$last_menu", "mnu_start_haradrim")],[
- ("start_1_des",[],"Desert Man",                          [(call_script,"script_start_as_one","trp_i1_harad_levy"),   (jump_to_menu,"mnu_choose_gender"),]),
- ("start_2_far",[],"Far Harad Tribesman",                 [(call_script,"script_start_as_one","trp_i2_far_harad_tribesman"),    (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_1_des",[],"Desert Man",                          [(assign,"$player_current_troop_type","trp_i1_harad_levy"),   (jump_to_menu,"mnu_choose_gender"),]),
+ ("start_2_far",[],"Far Harad Tribesman",                 [(assign,"$player_current_troop_type","trp_i2_far_harad_tribesman"),    (jump_to_menu,"mnu_choose_gender"),]),
 # ("start_3",[],"Harondor Noble",                      [(call_script,"script_start_as_one","trp_c2_harondor_scout"),(jump_to_menu,"mnu_choose_gender"),]),
  ("spacer",[],"_",[]),
  ("go_back",[],"Go back",[(jump_to_menu, "mnu_start_eye_man")]),    ]
@@ -1608,7 +1618,8 @@ game_menus = [
  ),
 ( "choose_skill",mnf_disable_all_keys|menu_text_color(0xFF0000FF),
  "^^^^^^^^FOR DEVS:^*normally*, at this point^you would go to edit skills^and then face...","none",[
-	 (try_begin),
+	 (call_script, "script_start_as_one", "$player_current_troop_type"),
+     (try_begin),
      (eq, cheat_switch, 0),
      (jump_to_menu, "mnu_auto_return"), # comment this line to let devs skip skill/face editing
      (try_end),
@@ -1650,10 +1661,10 @@ game_menus = [
 	],
 	    
     [
-     ("quick_default"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (jump_to_menu,"mnu_start_phase_2" ),]),
+     ("quick_default"     ,[(eq, cheat_switch, 1),],"[dev: quick start]",[(call_script, "script_start_as_one", "$player_current_troop_type"),(assign, "$tld_option_cutscenes", 0),(assign, "$tld_option_town_menu_hidden", 0), (jump_to_menu,"mnu_start_phase_2" ),]),
 	 ("start_default",[], "Become a {s23} (Default)", [(troop_add_proficiency_points, "trp_player", 10),(jump_to_menu, "mnu_choose_skill")]),
-     ("start_up1", [(gt,reg0,0)], "Become a {s21} (Easy)", [(call_script, "script_start_as_one", reg0),(troop_add_proficiency_points, "trp_player", 15), (try_begin), (eq, reg55, 1), (call_script, "script_player_join_faction", "fac_guldur"), (try_end), (jump_to_menu, "mnu_choose_skill")]),
-     ("start_up2", [(gt,reg1,0)], "Become a {s22} (Easy)", [(call_script, "script_start_as_one", reg1),(troop_add_proficiency_points, "trp_player", 15), (try_begin), (eq, reg55, 1), (call_script, "script_player_join_faction", "fac_guldur"), (try_end), (jump_to_menu, "mnu_choose_skill")]),
+     ("start_up1", [(gt,reg0,0)], "Become a {s21} (Easy)", [(assign,"$player_current_troop_type", reg0),(troop_add_proficiency_points, "trp_player", 15), (try_begin), (eq, reg55, 1), (call_script, "script_player_join_faction", "fac_guldur"), (try_end), (jump_to_menu, "mnu_choose_skill")]),
+     ("start_up2", [(gt,reg1,0)], "Become a {s22} (Easy)", [(assign,"$player_current_troop_type", reg1),(troop_add_proficiency_points, "trp_player", 15), (try_begin), (eq, reg55, 1), (call_script, "script_player_join_faction", "fac_guldur"), (try_end), (jump_to_menu, "mnu_choose_skill")]),
      ("spacer",[],"_",[]), 
      ("go_back"     ,[],"Go back",[(troop_clear_inventory, "trp_player"), (try_for_range, ":i", 0,6), (troop_raise_proficiency, "trp_player", ":i", -10),(try_end),
      	(try_begin), (eq, "$intro_presentation_stage", 33), (start_presentation, "prsnt_faction_selection_hand"),(else_try),
@@ -2134,7 +2145,7 @@ game_menus = [
 				(faction_get_slot,":troop",":faction",slot_faction_tier_2_troop),# get troop from faction, you can set other tier
 				(try_begin),
 					(le,":troop",0),#if there are any problems with troop, it's set to normal bandit
-					(assign,":troop","trp_bandit"),
+					(assign,":troop","trp_mountain_goblin"),
 				(try_end),
 				(set_visitors,1,":troop",5),
                 
@@ -3107,11 +3118,12 @@ game_menus = [
      ("order_siege_wo",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege West Osgiliath.",
+     ],"{!}Order Gothmog to besiege West Osgiliath.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_west_osgiliath", 0),
         (party_set_slot, "p_town_west_osgiliath", slot_center_is_besieged_by, ":king_party"),
@@ -3120,17 +3132,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_west_osgiliath"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges West Osgiliath!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges West Osgiliath!", 0x30FFC8),
         (change_screen_map),
       ]),
 	  ("order_siege_MT",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Erech.",
+     ],"{!}Order Gothmog to besiege Minas Tirith.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_minas_tirith", 0),
         (party_set_slot, "p_town_minas_tirith", slot_center_is_besieged_by, ":king_party"),
@@ -3139,17 +3152,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_minas_tirith"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Erech!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Erech!", 0x30FFC8),
         (change_screen_map),
       ]),
 	 ("order_siege_pinnath",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Pinnath Gelin.",
+     ],"{!}Order Gothmog to besiege Pinnath Gelin.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_pinnath_gelin", 0),
         (party_set_slot, "p_town_pinnath_gelin", slot_center_is_besieged_by, ":king_party"),
@@ -3158,17 +3172,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_pinnath_gelin"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Pinnath Gelin!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Pinnath Gelin!", 0x30FFC8),
         (change_screen_map),
       ]),
 	 ("order_siege_edhellond",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Edhellond.",
+     ],"{!}Order Gothmog to besiege Edhellond.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_edhellond", 0),
         (party_set_slot, "p_town_edhellond", slot_center_is_besieged_by, ":king_party"),
@@ -3177,17 +3192,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_edhellond"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Edhellond!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Edhellond!", 0x30FFC8),
         (change_screen_map),
       ]),
      ("order_siege_candros",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Edoras.",
+     ],"{!}Order Gothmog to besiege Edoras.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_edoras", 0),
         (party_set_slot, "p_town_edoras", slot_center_is_besieged_by, ":king_party"),
@@ -3196,17 +3212,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_edoras"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Edoras!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Edoras!", 0x30FFC8),
         (change_screen_map),
       ]),
      ("order_siege_cairandros",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Cair Andros.",
+     ],"{!}Order Gothmog to besiege Cair Andros.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_cair_andros", 0),
         (party_set_slot, "p_town_cair_andros", slot_center_is_besieged_by, ":king_party"),
@@ -3215,17 +3232,18 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_cair_andros"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Cair Andros!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Cair Andros!", 0x30FFC8),
         (change_screen_map),
       ]),
 	("order_siege_pelargir",[
         (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Gothmog to besiege Pelargir.",
+     ],"{!}Order Gothmog to besiege Pelargir.",
       [ (troop_get_slot, ":king_party", "trp_mordor_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_pelargir", 0),
         (party_set_slot, "p_town_pelargir", slot_center_is_besieged_by, ":king_party"),
@@ -3234,18 +3252,19 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_pelargir"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Gothmog besieges Pelargir!", 0x30FFC8),
+        #(display_message, "@Gothmog besieges Pelargir!", 0x30FFC8),
         (change_screen_map),
       ]),
      ("order_siege_wemnet",[
         (troop_get_slot, ":king_party", "trp_isengard_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Saruman to besiege Edoras.",
+     ],"{!}Order Saruman to besiege Edoras.",
       [
         (troop_get_slot, ":king_party", "trp_isengard_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_edoras", 0),
         (party_set_slot, "p_town_edoras", slot_center_is_besieged_by, ":king_party"),
@@ -3254,18 +3273,19 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_edoras"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Saruman besieges Edoras!", 0x30FFC8),
+        #(display_message, "@Saruman besieges Edoras!", 0x30FFC8),
         (change_screen_map),
       ]),
      ("order_siege_dale",[
         (troop_get_slot, ":king_party", "trp_rhun_lord", slot_troop_leaded_party),
         (party_is_active, ":king_party"),
-     ],"Order Partitava to besiege Dale.",
+     ],"{!}Order Partitava to besiege Dale.",
       [
         (troop_get_slot, ":king_party", "trp_rhun_lord", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-		(try_for_range, ":unused", 0, 40),
+		(try_for_range, ":unused", 0, 150),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
+            (party_upgrade_with_xp, ":king_party", 100, 0),
 		(try_end),
         (party_relocate_near_party, ":king_party", "p_town_dale", 0),
         (party_set_slot, "p_town_dale", slot_center_is_besieged_by, ":king_party"),
@@ -3274,7 +3294,7 @@ game_menus = [
         (party_set_ai_object, ":king_party", "p_town_dale"),
         (party_set_flags, ":king_party", pf_default_behavior, 1),
         (party_set_slot, ":king_party", slot_party_ai_substate, 1),
-        (display_message, "@Partitava besieges Dale!", 0x30FFC8),
+        #(display_message, "@Partitava besieges Dale!", 0x30FFC8),
         (change_screen_map),
       ]),
      ("back_mtest",[],"Back to main test menu.", [(jump_to_menu, "mnu_camp_mvtest"),]),
@@ -3306,9 +3326,6 @@ game_menus = [
         (faction_get_slot, ":king", "$ambient_faction", slot_faction_marshall),
         (troop_get_slot, ":king_party", ":king", slot_troop_leaded_party),
         (party_detach, ":king_party"),
-        (try_for_range, ":unused", 0, 40),
-			(call_script, "script_cf_reinforce_party", ":king_party"),
-		(try_end),
         (party_relocate_near_party, ":king_party", center_list[y][0], 0),
         (party_set_slot, center_list[y][0], slot_center_is_besieged_by, ":king_party"),
         (call_script, "script_party_set_ai_state", ":king_party", spai_besieging_center, center_list[y][0]),
@@ -3319,6 +3336,9 @@ game_menus = [
         (try_for_range, ":unused", 0, 80),
 			(call_script, "script_cf_reinforce_party", ":king_party"),
 		(try_end),
+        (try_for_range, ":unused", 0, 50),
+            (party_upgrade_with_xp, center_list[y][0], 5000, 0),
+        (try_end),
         (str_store_party_name, s10, center_list[y][0]),
 		(display_message, "@{s10} besieged!", 0x30FFC8),
         (change_screen_map),
@@ -3607,7 +3627,7 @@ game_menus = [
     	]),
     ("player_control_allies",[],"Battlesize set to {reg66}", [(options_set_battle_size, reg66),]),
      ] or []) + [
-    ("spawn_orc_horde",[],"Spawn Orc Horde", [(set_spawn_radius,3),(spawn_around_party, "p_main_party", "pt_mordor_war_party"),(display_message, "@Orc Horde Spawned!"),]),
+    ("spawn_orc_horde",[],"Spawn Orc Horde with Nazgul", [(set_spawn_radius,3),(spawn_around_party, "p_main_party", "pt_mordor_war_party"),(display_message, "@Orc Horde Spawned!"),(party_set_slot, reg0, slot_party_battle_encounter_effect, FELLBEAST),]),
     ("spawn_ent_party",[],"Spawn Ent Party", [(set_spawn_radius,3),(spawn_around_party, "p_main_party", "pt_ents"),]),    
     ("spawn_vet_archer",[],"Spawn Vet Archer", [(set_spawn_radius,3),(spawn_around_party, "p_main_party", "pt_vet_archer"),(display_message, "@Vet Archer Spawned!"),(assign, ":party", reg0),(call_script, "script_party_wound_all_members", ":party"),]),
     ("melee_ai_test",[],"Melee AI Test", [
@@ -3875,49 +3895,25 @@ game_menus = [
 
     #swy-- added these two by per khamukkamu request, they make sense:
     ("strat_tweaks_influence_gain_rate",
-      [
-        (try_begin),
-          (eq, "$tld_option_influence_gain_rate", 0),
-          (str_store_string, s7, "@Normal"),
-        (else_try),
-          (eq, "$tld_option_influence_gain_rate", 1),
-          (str_store_string, s7, "@Doubled"),
-        (else_try),
-          (eq, "$tld_option_influence_gain_rate", 2),
-          (str_store_string, s7, "@Tripled"),
-        (else_try),
-          (eq, "$tld_option_influence_gain_rate", 3),
-          (str_store_string, s7, "@Quadrupled"),
-        (try_end),
+      [ (store_mul, reg0, "$tld_option_influence_gain_rate", 20),
+        (val_add, reg0, 100),
       ],
-      "Influence gain rate: {s7}",
+      "Influence gain rate: {reg0}%",
       [
         (val_add, "$tld_option_influence_gain_rate", 1),
-        (val_mod, "$tld_option_influence_gain_rate", 4),
+        (val_mod, "$tld_option_influence_gain_rate", 6),
         (jump_to_menu, "mnu_auto_strat_tweak"),
       ]
     ), #0,1,2,3
 
     ("strat_tweaks_rank_gain_rate",
-      [
-        (try_begin),
-          (eq, "$tld_option_rank_gain_rate", 0),
-          (str_store_string, s7, "@Normal"),
-        (else_try),
-          (eq, "$tld_option_rank_gain_rate", 1),
-          (str_store_string, s7, "@Doubled"),
-        (else_try),
-          (eq, "$tld_option_rank_gain_rate", 2),
-          (str_store_string, s7, "@Tripled"),
-        (else_try),
-          (eq, "$tld_option_rank_gain_rate", 3),
-          (str_store_string, s7, "@Quadrupled"),
-        (try_end),
+      [(store_mul, reg0, "$tld_option_rank_gain_rate", 20),
+        (val_add, reg0, 100),
       ],
-      "Rank gain rate: {s7}",
+      "Rank gain rate: {reg0}%",
       [
         (val_add, "$tld_option_rank_gain_rate", 1),
-        (val_mod, "$tld_option_rank_gain_rate", 4),
+        (val_mod, "$tld_option_rank_gain_rate", 6),
         (jump_to_menu, "mnu_auto_strat_tweak"),
       ]
     ), #0,1,2,3
@@ -4807,7 +4803,13 @@ game_menus = [
 	    ],"Town NPCs always accessible from Menus:  {s7}",[
 	    (store_sub,"$tld_option_town_menu_hidden",1,"$tld_option_town_menu_hidden"),(val_clamp,"$tld_option_town_menu_hidden",0,2),(jump_to_menu, "mnu_camp_cheat"),(val_add, "$cheatmode_used", 1), (assign, reg78, "$cheatmode_used"), (display_message,"@Cheats used: {reg78}")]),     
      
-    ("cheat_add_prisoners", [], "Add 10 prisoners",  [(party_add_prisoners, p_main_party, trp_a1_arnor_scout, 10),(display_message, "@Added 10 prisoners."), ]),
+    ("cheat_add_prisoners", [], "Add 10 random prisoners",  
+    [(try_for_range, ":unused", 0, 6),
+        (store_random_in_range, ":troop", trp_i1_woodmen_man, regular_troops_end),
+        (neg|troop_is_hero, ":troop"),
+        (party_add_prisoners, p_main_party, ":troop", 2),
+      (try_end),
+      (display_message, "@Added 10 prisoners."), ]),
 	#("cheat_get_item", [], "Gain a free magic item", [(jump_to_menu, "mnu_cheat_free_magic_item")]),
 	("cheat_add_xp", [], "Add 1000 experience to player.", [(add_xp_to_troop, 1000, "trp_player"), (display_message, "@Added 1000 experience to player."), ]),	  	
     ("camp_mod_2",    [],
@@ -5009,6 +5011,10 @@ game_menus = [
           (call_script, "script_encounter_init_variables"),
           (assign, "$encountered_party_hostile", 0),
           (assign, "$encountered_party_friendly", 0),
+          
+          #InVain: In order to get correct numbers we need to count them twice if it's a new encounter
+          (call_script, "script_encounter_calculate_fit"),
+          (assign, reg22, reg10),
           
           #MV: Quest exceptions
           (assign, ":is_quest_party", 0),
@@ -5592,20 +5598,54 @@ game_menus = [
 		(troop_set_slot, ":troop_no", slot_troop_routed_enemies, 0),
 	(try_end),
 	
-		(call_script, "script_party_calculate_strength", "p_main_party", 1), #skip player
-		(assign, ":player_party_strength", reg0),
-		(val_div, ":player_party_strength", 5),
-		(call_script, "script_party_calculate_strength", "p_collective_enemy", 0),
-		(assign, ":enemy_party_strength", reg0),
-		(val_div, ":enemy_party_strength", 5),
-		#(call_script,"script_inflict_casualties_to_party", "p_main_party", ":enemy_party_strength"),
-		(inflict_casualties_to_party_group, "p_main_party", ":enemy_party_strength", "p_temp_casualties"),
-		(call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
-		(str_store_string_reg, s8, s0),
-		#(call_script,"script_inflict_casualties_to_party", "$g_encountered_party", ":player_party_strength"),
-		(inflict_casualties_to_party_group, "$g_encountered_party", ":player_party_strength", "p_temp_casualties"),
-		(call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
-		(str_store_string_reg, s9, s0),
+		# (call_script, "script_party_calculate_strength", "p_main_party", 1), #skip player
+		# (assign, ":player_party_strength", reg0),
+		# (val_div, ":player_party_strength", 5),
+
+		(try_begin), (encountered_party_is_attacker),
+            (party_collect_attachments_to_party, "p_main_party", "p_collective_ally"),
+            (call_script, "script_party_calculate_strength", "p_collective_ally", 1), #exclude player
+            (assign, ":total_player_and_followers_strength", reg0),
+            (val_div, ":total_player_and_followers_strength", 10),
+
+            (party_collect_attachments_to_party, "$g_encountered_party", "p_collective_enemy"),
+            (call_script, "script_party_calculate_strength", "p_collective_enemy", 0),
+            (assign, ":enemy_party_strength", reg0),
+            (val_div, ":enemy_party_strength", 10), 
+
+            #(call_script,"script_inflict_casualties_to_party", "$g_encountered_party", ":player_party_strength"),
+            (inflict_casualties_to_party_group, "$g_encountered_party", ":total_player_and_followers_strength", "p_temp_casualties"),
+            (call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
+            (str_store_string_reg, s9, s0),   
+                    
+            #(call_script,"script_inflict_casualties_to_party", "p_main_party", ":enemy_party_strength"),
+            (inflict_casualties_to_party_group, "p_main_party", ":enemy_party_strength", "p_temp_casualties"),
+            (call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
+            (str_store_string_reg, s8, s0),
+		(else_try), #if player side is aggressive, give them a boost in autocalc
+            (party_collect_attachments_to_party, "p_main_party", "p_collective_ally"),
+            (call_script, "script_party_calculate_strength", "p_collective_ally", 1), #exclude player
+            (assign, ":total_player_and_followers_strength", reg0),
+            (val_div, ":total_player_and_followers_strength", 10),
+
+            #(call_script,"script_inflict_casualties_to_party", "$g_encountered_party", ":player_party_strength"),
+            (inflict_casualties_to_party_group, "$g_encountered_party", ":total_player_and_followers_strength", "p_temp_casualties"),
+            (call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
+            (str_store_string_reg, s9, s0),
+            
+            (party_collect_attachments_to_party, "$g_encountered_party", "p_collective_enemy"),
+            (call_script, "script_party_calculate_strength", "p_collective_enemy", 0),
+            (assign, ":enemy_party_strength", reg0),
+            (val_div, ":enemy_party_strength", 10),        
+                    
+            #(call_script,"script_inflict_casualties_to_party", "p_main_party", ":enemy_party_strength"),
+            (inflict_casualties_to_party_group, "p_main_party", ":enemy_party_strength", "p_temp_casualties"),
+            (call_script, "script_print_casualties_to_s0", "p_temp_casualties", 0),
+            (str_store_string_reg, s8, s0),
+		(try_end),
+
+
+        
 		(party_collect_attachments_to_party, "$g_encountered_party", "p_collective_enemy"),
 		#(assign, "$cant_leave_encounter", 0),
 		(assign, "$no_soldiers_left", 0),
@@ -7292,12 +7332,11 @@ game_menus = [
 
 ( "moria_must_escape",city_menu_color, # dungeon crawl: way out of moria
  "^^The book seems to give the account of the last attempt of dwarves to resettle in Moria.\
- Attempt which apparently ended with gruesome death for all involved. Perusing the book, \
- you stumble on the words 'true silver'! Studying the pages you suddenly understand \
- that those are the descriptions of dwarven stashes somewhere on the lower levels. Hah! \
- Would not it be cool to uncover the long lost dwarven mithril!? \
- ^You eagerly follow the directions, into a narrow winding tunnel and down... \
- ^...^After a couple of hours of fruitless search you understand that you are lost deep in Moria and need to find a way out.",
+ Attempt which apparently ended with gruesome death for all involved. As you ponder their dark fate, \
+ you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^ \
+ Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction, \
+ into a narrow winding tunnel and down... \
+ ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.",
     "none",[(set_background_mesh, "mesh_town_moria"),],[
 	  ("moria_exit_scene",[], "Find your way out!",[
 			(modify_visitors_at_site,"scn_moria_deep_mines"),
@@ -7543,7 +7582,7 @@ game_menus = [
 	  ("moria_enter",[
 				(eq, "$current_town", "p_town_moria"),
 				(this_or_next|eq, "$found_moria_entrance", 1),(eq,"$cheat_mode",1), (eq, "$moria_book_given",0),
-	        ], "Return into main hall of Moria trough the secret entrance",[
+	        ], "Return into main hall of Moria through the secret entrance",[
 			(modify_visitors_at_site,"scn_moria_center",),
 			(reset_visitors),
             (set_visitor,1,"trp_player"),
@@ -9150,7 +9189,7 @@ game_menus = [
 	   	  (eq,"$entry_to_town_forbidden",0), 
           (party_get_slot, ":healer", "$current_town", slot_town_healer),
           (gt, ":healer", 1),
-          (troop_slot_eq, "$g_talk_troop", slot_troop_met_previously, 1),
+          (troop_slot_eq, ":healer", slot_troop_met_previously, 1),
           (str_store_troop_name, s40, ":healer"),
        ],"Speak with {s40}.",[
              (set_jump_mission,"mt_conversation_encounter"),
@@ -9532,7 +9571,7 @@ game_menus = [
             (party_get_slot, ":healer", "$current_town", slot_town_healer),
             (gt, ":healer", 1),
             (val_add, ":check_count", 1),
-            (troop_slot_eq, "$g_talk_troop", slot_troop_met_previously, 1), #no town slot for healer met
+            (troop_slot_eq, ":healer", slot_troop_met_previously, 1), #no town slot for healer met
             (val_add, ":count", 1),
         (try_end),  
         (eq, ":count", ":check_count"),
