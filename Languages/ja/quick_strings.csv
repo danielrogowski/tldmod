@@ -2,6 +2,11 @@ qstr_Received_{reg0}_dama|{reg0}のダメージを受けました。
 qstr_Gate_is_breached!|門が破られました！
 qstr_Gate_opens..._You_ha|門が開きます・・・ 中つ国で最も神聖な場所に辿り着きました！
 qstr_Secret_place_discove|秘密の場所を発見しました！
+; qstr_Nothing_of_interest.|Nothing of interest...
+; qstr_No_inventory_space..|No inventory space...
+; qstr_We_don_t_know_you_en|We don't know you enough to give you this...
+; qstr_Take_it_friend_it_s_|Take it, friend, it's yours.
+; qstr_Take_it_we_don_t_nee|Take it, we don't need it anyway.
 qstr_Next_Page|次のページ
 qstr_Action|アクション
 qstr_Mount|騎乗
@@ -85,15 +90,18 @@ qstr_Proficiencies|熟練度
 qstr_1H_Weapons^2H_Weapon|片手武器^両手武器^長柄武器^弓^クロスボウ^投てき
 qstr_Equipment|装備
 qstr_The_Last_Days_Mod_Op|The Last Days Modオプション
+; qstr_War_Starts_after_Day|War Starts after Day: 
 qstr_War_Starts_at_Level:|戦争の始まるレベル:
 qstr_Battle_Formations_an|戦闘陣形とAI:
 qstr_Native|Native
 qstr_TLD_FormAI__Original|TLD FormAI(オリジナル)
 qstr_TLD_New_FormAI|TLD New FormAI
+qstr_Beta_Formations_Twea|ベータ版の陣形の調整
 qstr_Siege_AI:__|攻城戦AI:  
 qstr_Basic__better_perfor|標準(低負荷)
 qstr_Advanced|高度
 ; qstr_Campaign_difficulty:|Campaign difficulty:  
+; qstr_Brutal|Brutal
 qstr_Hard|難しい
 qstr_Default|標準
 qstr_Easy|やさしい
@@ -103,6 +111,7 @@ qstr_Permanent_death_for_|指揮官とコンパニオンが死亡する:
 qstr_Permanent_death_for_p|プレイヤーが死亡する(あなたの事ですよ！):
 qstr_Battle_morale_system|戦場における士気システム:
 qstr_Animal_ambushes:__|動物の襲撃:
+; qstr_Player_speed_buff_in|Player speed buff in towns:  
 qstr_Fallen_rider_damage_|落馬ダメージの報告:
 qstr_No_Messages|メッセージなし
 qstr_Player_damage_only|プレイヤーのみ
@@ -111,16 +120,15 @@ qstr_Preferred_Camera_Mod|優先するカメラモード:
 qstr_Default_Camera|標準
 qstr_Free_Mode_Custom_Cam|カスタムカメラのフリーモード
 qstr_Fixed_Over_The_Shoul|肩口からの視点の固定ポジション
-qstr_Prevent_AI_from_taki|AIが守備的になるのを無効化:
 qstr_Brighter_Nights:__|夜を明るくする:
 qstr_Done|完了
 qstr_Gameplay_Tweaks|ゲームプレイに関する調整
-qstr_Beta_Formations_Twea|ベータ版の陣形の調整
 ; qstr_Set_to_Native_if_you|Set to Native if you encounter any types of AI problems during battle.
 ; qstr_Disable_cutscenes_if|Disable cutscenes if you encounter any crashes at the start of the war.
-; qstr_Campaign_Difficulty_a|Campaign Difficulty affects abundance of volunteers, lord party size, and strength income for allied factions.
-qstr_War_Will_Start_at_Le|レベル{reg0}で戦争開始
+; qstr_Campaign_Difficulty_a|Campaign Difficulty affects abundance of volunteers, lord party size, initial player faction strength, basic strength income for allied factions, and strength income from player victories.
+; qstr_Please_be_aware_that|Please be aware that the game is balanced for default difficulty. The other difficulty settings are not tested.
 ; qstr_Be_aware_that_many_q|Be aware that many quests and campaign mechanics scale with player level. Increasing this setting will give you more time to prepare, but will make the war unfold quicker.
+; qstr_Requires_TLD_NewForm|Requires TLD NewFormAI
 qstr_Troop_Tree|兵科ツリー
 qstr__Click_on_a_unit_for|(ユニットをクリックすると詳細表示)
 qstr_Weapons|武器
@@ -138,7 +146,7 @@ qstr_Extended_Formations_|陣形とAIの詳細なオプション
 qstr_Put_player_in_divisi|プレイヤーの所属分隊:
 qstr_None|なし
 qstr_Army_rotates_to_face|敵勢の中心に面するように軍団を回転させる:
-qstr_Prevent_AI_from_takin|AIが守備的になるのを無効化:
+qstr_Prevent_AI_from_taki|AIが守備的になるのを無効化:
 qstr_AI_Controls_Troops_W|プレイヤーが倒された後にAIが兵を指揮:
 qstr_You_gained_{reg0}_Re|{s0}のリソースポイントを{reg0}獲得しました。
 qstr_You_lost_{reg0}_Reso|{s0}のリソースポイントを{reg0}失いました。
@@ -172,12 +180,17 @@ qstr_its|その
 qstr_[no_upkeep_costs]|[維持費なし]
 qstr_Short_of_Resource_Po|リソースポイントが足りません！！
 qstr_{s10}_will_soon_reas|{s10}が、まもなくあなたのパーティから{s12}兵士を呼び戻します！
+; qstr_{s10}_has_reassigned|{s10} has reassigned troops from your reserves.
 qstr_Superior_orders_from|{s11}より、次の兵士の異動命令が下されました:
 qstr_{reg12}_{s10}_left_t|{reg12}名の{s10}がパーティを離れました！
 qstr_Fangorn_claimed_{reg|ファンゴルンの森にて、あなたの部隊のうち{reg0}名が死亡、{reg1}名が負傷しました！
 qstr_You_were_wounded_in_|あなたはファンゴルンの森で負傷しました!
+qstr_Grimbold|グリムボルド
+; qstr_Theodred|Theodred
+qstr_Gamling|ギャムリング
 qstr_{s1}_of_{s3}_was_def|{s3}の{s1}が戦いに敗れました。
 qstr_{s2}_have_razed_{s1}|{s2}が{s1}を壊滅させました！
+; qstr_{s1}_Scouts|{s1} Scouts
 qstr_Left_for_dead_but_mi|瀕死の状態で放置されていましたが、奇跡的に生き延びました。 {reg1?{reg1} 時間{reg2?s:}:NEVER}
 qstr_1_Res.Pt__{s2}_|1リソースポイント({s2})
 qstr_{reg1}_Res.Pts__{s2}|{reg1}リソースポイント({s2})
@@ -280,6 +293,7 @@ qstr_{s0}^TOTAL:_{reg3}__|{s0}^合計:{reg3}({s2})
 qstr_^None|^なし
 qstr_near_the_Great_East_|東街道の近くにある、 荒れ果てたむかしの道
 qstr_near_what_is_left_of|その一部をかろうじて残す古森街道の近くにある、 かつてこの深い森を横切っていた古代のドワーフ道
+; qstr_near_the_old_cross_r|near the old cross-roads, where the Ithilien road meets the road to Osgiliath
 qstr_close_to_the_Hand_sh|オルサンクの塔の方角を指し示す、 手の形をしたサルマンの印の近く
 qstr_in_sight_of_the_maje|白の都、ミナス・ティリスの壮大な城壁を望む一帯
 qstr_in_sight_of_Edoras_t|ローハンの首都、エドラスを望む一帯
@@ -592,11 +606,12 @@ qstr_There_is_much_to_reg|後悔や嘆き悲しむべきことは尽きず、 �
 ; qstr_Gandalf_asked_you_to|Gandalf asked you to either help Theoden defend {s3} or find out what is happening in Isengard.
 qstr_Ents|エント
 ; qstr_Hail_{playername}!_I|Hail, {playername}! I hope you are unhurt? At any rate, I am pleased you aided my friend Fangorn, or you may know him as Treebeard. The tree shepherds are very mighty, but it was likely that they marched to their doom. You have perhaps saved them from a great peril, Commander, and for that I am glad. I would not like to see the oldest of all living things pass from the world, no, not just yet… no, not before they see the Entwives again, I should hope.
-; qstr_Missing_String|Missing String
+; qstr_I_did_what_I_could.|I did what I could.
 ; qstr_Well_thank_you_{play|Well, thank you, {playername}, and farewell. We may meet again, ere the waning of the moon!
 ; qstr_Hail_{playername}!_I_|Hail, {playername}! I hope you are unhurt? At any rate, you seem to have lain your blade to the right foe. No enemy has yet taken the Hornburg, and likely none ever shall – not while the likes of you defend Helm’s Gate, I’ll warrant!
 ; qstr_Your_deed_has_greatl|Your deed has greatly helped my design, better even than I could have hoped or planned. Farewell, {playername}, and thank you. We may meet again, ere the waning of the moon!
-; qstr_{Playername}_I_will_|{Playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back.
+; qstr_{playername}_I_will_|{playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back.
+; qstr_I...|I...
 ; qstr_You_have_failed_me_{|You have failed me, {playername} – or perhaps it is I who have failed you. Perhaps there was some flaw in my design, some grave blunder I did not recognise… The terror of Mordor comes. Leave me now, {playername}. We may meet again… or perhaps not.
 qstr_Bagginsssss..._Ssssh|バギンズ・・・ ホビット庄・・・
 qstr_I..._don_t_know!|な・・・ なんの事だ！
@@ -679,7 +694,6 @@ qstr_have_taken_measure_o|はあなたの所属勢力の現在の力を把握し
 qstr_loses_Faction_Streng|は補給線を乱されたため、 勢力ポイントが下がりました。
 qstr_loses_Faction_Strengt|は野営を破壊されたため、 勢力ポイントが下がりました。
 qstr_gains_Faction_Streng|はあなたの勝利の報に勇気づけられ、 勢力ポイントが上がりました。
-qstr_Something_wrong_not_|なにかがおかしい、兵の数が足りない
 qstr_Raiders|襲撃隊
 qstr_have_won_the_sea_bat|はこの海戦に勝利し、あなたの兵は殲滅されました。 これで勢いを得た敵は、攻勢を強めるでしょう。
 qstr_loses_Faction_Strength|は破壊的な襲撃を受けたため、 勢力ポイントが下がりました。
@@ -705,23 +719,16 @@ qstr_Inventory|インベントリ
 qstr_Show_stats|能力値を表示
 qstr_Show_item_details__|アイテムの詳細を表示
 qstr_Troop_detail|兵の詳細
-qstr_{s1}^|{s1}^
 qstr_{s1}Level:_{reg1}^|{s1}レベル: {reg1}^
 qstr_{s1}Hit_Points:_{reg|{s1}ヒットポイント: {reg1}
 qstr_{s1}Atributes:_^___S|{s1}属性: ^   体力:^
-qstr_{s2}^{reg1}^|{s2}^{reg1}^
 qstr_{s1}___Agility:|{s1}   敏捷性:
-qstr_{s2}{reg1}|{s2}{reg1}
 qstr_{s1}Main_skills:_^|{s1}主なスキル: ^
 qstr_{s1}___Power_Strike:|{s1}   強打:^
-qstr_{s2}{reg1}^|{s2}{reg1}^
 qstr_{s1}___Athletics:^|{s1}   アスレチック:^
 qstr_{s1}___Riding:^|{s1}   乗馬:^
-qstr_{s2}_^|{s2}-^
 qstr_{s1}___Power_Throw:^|{s1}   豪投:^
 qstr_{s1}___Power_Draw:^^|{s1}   弓術:^^
-qstr_{s2}{reg1}^^|{s2}{reg1}^^
-qstr_{s2}_^^|{s2}-^^
 qstr_{s1}Weapons:^|{s1}武器:^
 qstr_{s1}___One_Handed:^|{s1}   片手武器:^
 qstr_{s1}___Two_Handed:^|{s1}   両手武器:^
@@ -730,7 +737,6 @@ qstr_{s1}___Archery:^|{s1}   弓:^
 qstr_{s1}___Crossbow:^|{s1}   クロスボウ:^
 qstr_{s1}___Throwing:^|{s1}   投てき:^
 qstr_{s1}___Slings:|{s1}   スリング:
-qstr_{s2}_|{s2}-
 qstr__Click_on_the_troop_|(兵をクリックすると回転します)^^装備(兜、鎧、手袋、ブーツ)を^^クリックすると詳細が表示されます。
 qstr_ready_bows_and_missi|打ち方構え
 qstr_ready_side_arms|補助武器構え
@@ -752,10 +758,30 @@ qstr_You_got_{reg1}_exper|あなたは熊の姿で{reg1}の経験値を獲得し
 qstr_Your_ability_to_chan|あなたが姿を変える能力を持つ事は明らかになりました。 これよりあなたは自然において、 人間であると同時に熊としても認識されます。
 qstr_You_change_back_to_h|あなたは人間の姿に戻った・・・
 ; qstr_Refill_Ammunition|Refill Ammunition
+; qstr_Take_a_closer_look..|Take a closer look...
+; qstr_Look_around...|Look around...
+; qstr_You_see_the_Pelennor|You see the Pelennor laid out before you. Behind that, faintly, the ruin of Osgiliath, once the capital of Gondor, of which Minas Tirith was only a fortress. And then, looming on the verge of sight, the jagged edges of the Mountains of Mordor, and beyond that, again a yet deeper gloom. Ever have the Men of the White City dwelt in sight of that shadow.
+; qstr_As_you_look_from_the|As you look from the Island’s high prow down to where Anduin, the Great River, splits into two arms, you understand why Cair Andros means 'Ship of Long Foam'.
+; qstr_This_place_was_once_|This place was once an elven haven, but today only ruins tell of its inheritance. Few still know their true meaning.
+; qstr_Tirith_Aear_the_Sea_|Tirith Aear, the Sea-ward Tower - Its slow bell has been guiding sailors for many centuries.
+; qstr_You_kneel_to_pay_you|You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words.
+; qstr_You_wonder_about_the|You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance.
+; qstr_Alkarondas_Castle_of|Alkarondas, Castle of the Sea. Named after the famed flagship of Ar-Pharazôn, this great black ship is the pride of the corsair fleet - and the terror of Gondor's coasts.
+; qstr_The_Mmakil_greatest_|The Mûmakil, greatest beasts of this age! Terrible in warfare, bearing towers and archers into battle. Their trunks calling like trumpets of war will make the Men of Gondor tremble with fear.
+; qstr_A_new_Power_is_risin|A new Power is rising. Against it the old alliances and policies will not stand. Its victory is at hand; and there will be rich reward for those that aided it.
+; qstr_As_you_explore_the_c|As you explore the caverns underneath the Ring of Isengard, where thousands of orcs work to supply the growing armies of the White Hand, you gain confidence in the rise of a new power and the demise of the old world.
+; qstr_The_Ring_of_Isengard|The Ring of Isengard is flooded, its rocky walls lay in ruin. It will take a while until all the filth of Saruman is washed away and the Isen may run clean again. Who knows, maybe this place will yet become again a garden filled with orchards and trees and clean water.
+; qstr_Amon_Hen_the_Hill_of|Amon Hen, the Hill of Seeing, grants a commanding view over the surrounding lands. However, if you sought the ancient high seat in hope of gaining directions on your own course, you now realize that this on you to decide.
+; qstr_As_the_lights_begin_|As the lights begin to flicker and dance, you see them: grim faces and evil, and noble faces and sad. Many faces proud and fair, and weeds in their silver hair. But all foul, all rotting, all dead.
+; qstr_This_must_be_the_spi|This must be the spider nest. Without hesitation, you light a torch and burn down the webs.
+; qstr_A_flock_of_ravens_ci|A flock of ravens circles around you. You do not understand what they say, what news they bring from distant lands. Yet you feel comforted, knowing that these wise animals are of old friends to the King under the Mountain.
+; qstr_Looking_around_you_d|Looking around, you do not understand the significance of this place.
+; qstr_Looking_around_you_f|Looking around, you feel that you do not know this people well enough to understand the significance of this place.
 qstr_Your_mount_stumbles!|あなたの馬がよろめいています！どうやら足をくじいているようです。
 qstr_Bitten_by_your_own_w|あなたのワーグが噛み付いてきました！
 qstr_You_weigh_too_much_f|ポニーに乗るには、あなたは重すぎます！
 qstr_Your_mount_rears_ref|あなたの馬は座り込んでしまい、命令を拒絶しています！
+qstr_Delivered_{reg60}_da|{reg60}のダメージを与えました。
 qstr_Cannot_Change_Camera|一人称視点ではカメラモードの変更はできません。
 qstr_Switch_Back_to_3rd_P|三人称視点に切り替えてカメラモードを変更する。
 qstr_Fixed_Custom_Camera|固定カスタムカメラ
@@ -766,6 +792,7 @@ qstr_Press_Ctrl_+_Down_to|Ctrl+下矢印キーで中央
 qstr_Fixed_Camera___Right|固定カメラ - 右肩
 qstr_Fixed_Camera___Left_|固定カメラ - 左肩
 qstr_Fixed_Camera___Cente|固定カメラ - 中央
+; qstr_The_Nazgul_retreats!|The Nazgul retreats!
 qstr_Shield_is_too_big_to|盾は大きすぎて弓と同時には扱えません。
 ; qstr_{s7}_waves_at_you.|{s7} waves at you.
 ; qstr_You_happen_upon_an_O|You happen upon an Old Guesthouse. As you inspect the weathered stone building, you notice a group of boys playing among the pillars, the only children you have seen in Minas Tirith.  One of them greets you and you wave back. Your heart is gladdened and you forget, for a brief moment, the sorrow of war.
@@ -779,8 +806,6 @@ qstr_You_look_through_Hen|あなたは夕陽の窓とも呼ばれるヘンネス
 ; qstr_You_find_yourself_in_|You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. Raising your weapon high, you snarl your defiance at the unseen foe in this place. This may have been a place of wonder once... but now, with the true power you have gained, you realize you have nothing to fear from the forgotten past of a broken world.
 ; qstr_With_trepidation_you|With trepidation, you look within the silver basin. The water shows you visions of horror; blood and terror and grief. You recoil... but then, the visions vanish and you see instead a clear night sky, with what seems to be a silver boat floating across the expanse. A sense of calm washes over you. Hope is not wholly gone.
 ; qstr_The_Lady_s_garden_li|The Lady's garden lies peacefully in the bright daylight. You sense nothing out of the ordinary...
-; qstr_You_kneel_to_pay_you|You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words.
-; qstr_You_wonder_about_the|You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance.
 ; qstr_Halt!_You_are_not_al|Halt! You are not allowed to enter here!
 ; qstr_Halt!_You_are_not_all|Halt! You are not allowed to enter here without the Lady's leave!
 qstr_While_visiting_towns|町や拠点、野営のなかでは、歩き回っている人々と話をすることができます。 話の内容は各勢力によって違い、 自分たちの考えだったり、 うわさ話だったりします。 どちらもその人物の文化と所属勢力についての理解を深めるだけのものですが、 秘密の場所のヒントや、 旅をする上や指輪戦争を戦う上でのヒントやコツを話してくれる事もあります。
@@ -799,20 +824,12 @@ qstr_Formations_turned_OF|陣形はオプションメニューで無効にされ
 qstr_Division_{reg1}_{s2}_g|{s2}第{reg1}分隊は、保存された位置へ移動します・・・
 qstr_Division_{reg1}_{s2}_f|{s2}第{reg1}分隊は、横隊を組みます(保存済み)。
 qstr_Division_{reg1}_{s2}_fo|{s2}第{reg1}分隊は、横隊を{reg0}列組みます(保存済み)。
-qstr_Delivered_{reg60}_da|{reg60}のダメージを与えました。
-qstr_DEBUG__Health_Regen_|DEBUG (Health Regen): {s1} regains {reg0}% health.  = +{reg1}% STR
+; qstr_A_Nazgul_on_a_winged|A Nazgul on a winged steed circles over the battle field!
 qstr_Your_bear_form_has_{|熊の姿でのHPは{reg2}/{reg1}です！
 qstr_Some_of_your_human_t|あなたの兵のうち、いくらかは人間にもかかわらず闇の力にひるんでいません(ナイト系の兵は夜間のペナルティを受けません)。
 qstr_You_are_filled_with_|敵の姿を目にしたあなたは、怒りで満たされました(狂戦士が発動しました)。
 qstr_Your_mount_is_scared|あなたの馬は{s5}に怯えています！
 ; qstr_Your_mount_is_scared_|Your mount is scared by the {s5}, but you can master it!
-qstr_Nazgul_sweep!|ナズグールの攻撃！
-qstr_You_and_your_horse_p|ナズグールの耐え難い叫び声に、あなたと馬は動揺しています！
-qstr_Your_horse_panics_th|ナズグールの耐え難い叫び声に、あなたの馬が動揺しています！
-qstr_You_cower_in_terror_|ナズグールの耐え難い叫び声に、あなたは恐怖ですくみあがりました！
-qstr_knocked_unconscious|気を失いました
-qstr_Nazgul_diving_attack|ナズグールが{s11}を攻撃しました!
-qstr_{s11}_is_{s10}_in_th|ナズグールの攻撃により、{s11}が{s10}！
 qstr_Received_{reg66}_dam|{reg66}のダメージを受けました。
 qstr_You_yell_for_your_ho|あなたは自分の馬を呼びました。
 qstr_You_do_not_need_to_r|まだ檄を飛ばす必要はありません。
@@ -854,6 +871,8 @@ qstr_on_the_right_flank|右翼
 qstr_through_the_center|中央
 qstr_Attackers_charge_{s2|攻撃側の軍勢は{s2}より攻撃します
 qstr_Attackers_charge_{s1|攻撃側の軍勢は{s1}より攻撃します
+; qstr_Hold_this_area_to_st|Hold this area to stop defender reinforcements from here!
+; qstr_Defender_reinforceme|Defender reinforcement point taken!
 qstr_{s1}_rallied_to_your|あなたの魅力の力によって{s1}が味方の軍勢に檄を飛ばしました。
 qstr_Last_attacker_wave._|攻撃側の最後の攻撃です。退却しますか？
 qstr_Attackers_almost_def|攻撃側は敗北寸前です。退却しますか？
@@ -865,9 +884,11 @@ qstr_Ballista:_turn_CURSO|投石器:カーソルキーで旋回、 左SHIFTで�
 qstr_Ballista:_out_of_ammo|投石器:弾切れです
 qstr_The_ladders_on_Deepi|奥の防壁にはしごがかけられました！気をつけてください！
 qstr_THREE.._TWO..._ONE..|3・・・ 2・・・ 1・・・ はじめ！
-qstr_You_have_come_upon_t|頂きに視る椅子のおかれたゴンドールの見張りの塔であり、視る山と呼ばれるアモン・ヘンの廃墟にやってきました。^^過去の栄光をしのぶ事はできますが、長いあいだ忘れ去られた場所です。
-qstr_You_have_come_upon_th|最後の同盟においてダゴルラドの戦いが行われた、死者の沼地にやってきました。^^かつて緑豊かだったここ一帯は湿地に飲み込まれ、 いまや緑といえば油光りのする陰気な水面上に鉛色の雑草のくずが見られるだけです。^^霧の中には枯れた草とくさったアシが、訪れなくなって久しい夏のみすぼらしい影のように浮かび、 濁った深みには人間、エルフ、そしてオークの死体が浮いています。^^空気は冷たく、じとじとしており、水面を漂うエルフの死体の目にろうそくの火が躍るのを見たあなたは、 体が震えるのを抑えられません。
-qstr_You_have_entered_the|かつて緑森大森林と呼ばれた闇の森南部へやってきました。^^ドル・グルドゥアの要塞がすぐ近くにあり、森に暗い影を落としています。 この一帯の木々は弱々しく、そこらじゅうが腐っています。 古代のオークの木々は腐って菌類におおわれ、 大量の蜘蛛の巣が幹から幹へとからみあっています。^^あたりの暗い空気はまったく動きがなくて息が詰まり、 まるでゆっくりと窒息させられているように感じます。
+; qstr_You_have_come_upon_t|You have come upon the ruins of Amon Hen, the Hill of Sight, a Gondorian watch-tower atop which rests the Seat of Seeing.^^You feel that you should seek the high-seat and maybe gain a glimpse of far-sight that may counsel you on your further course.
+; qstr_You_have_come_upon_th|You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^ In the darkness of night, you see lights like misty flames flickering slowly above unseen candles. Oddly compelled, you follow them deeper into the maze of puddles and streams.
+; qstr_You_have_come_upon_the|You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^The marshlands have swallowed up what was once a grassy plain, and now the only green is the scum of livid weed on the dark greasy surfaces of the sullen waters. ^^In the grey light of day, you don't see anything that catches your interest.
+; qstr_You_have_entered_the|You have entered the woods of Southern Mirkwood, once known as Greenwood the Great^^The woods feel sickly and full of decay. The place is crawling with spiders. There must be a nest around here somewhere...
+; qstr_You_have_found_the_G|You have found the Glittering Caves, one of the marvels of the Northern World.
 qstr_You_have_found_the_D|伝説の槍が眠っていると思われる、ドワーフの倉庫を発見しました。 この事を{s3}に報告しましょう。
 qstr_Leave_the_Warehouse?|倉庫を去りますか？
 qstr_Leave_the_place_in_s|黙ってこの場を去りますか？
@@ -885,10 +906,15 @@ qstr_The_guards_have_spott|衛兵に発見されました！
 qstr_Alarm_Level_is_now_at_|警戒レベルが2になりました！
 ; qstr_Enemy_reinforcements_|Enemy reinforcements arrived.
 ; qstr_Venture_deeper_into_|Venture deeper into the forest and find a way onward.
+; qstr_You_have_evaded_the_|You have evaded the patrols and crept close to the ruins. Find and kill the sorcerer! Do not let the guards stop you.
+; qstr_Kill_the_Sorcerer!|Kill the Sorcerer!
 qstr_The_sorcerer_has_fle|妖術師は逃げてしまいました！
 qstr_Report_this_ill_news|この残念な結果を、すぐにお方さまに報告しなければなりません。
-qstr_The_sorcerer_is_flee|妖術師が逃げています！はやく倒してください！
+; qstr_You_have_been_spotte|You have been spotted! Fight!
+; qstr_The_ritual_has_begun|The ritual has begun! You must hasten to disturb it!
 qstr_The_sorcerer_has_joi|妖術師が戦闘に加わりました！倒してください！
+qstr_The_sorcerer_is_flee|妖術師が逃げています！はやく倒してください！
+; qstr_base_troop:_{reg77}_|base troop: {reg77}, upgrade: {reg78}
 qstr_The_sorcerer_is_dead|妖術師は死亡しました！
 qstr_The_battle_is_won!|戦闘に勝利しました！
 qstr_A_band_of_tribal_orc|部族オークの一団が現れました！
@@ -921,6 +947,12 @@ qstr_Look_at_my_over_the_|わしのショルダーショットを見てみい、
 qstr_You_wish_old_man_my_|お言葉ですが、ご老体、私のショルダーショットのほうがずっとキレイですよ！
 qstr_You_should_really_se|おぬしは執政デネソールのフェースブックにある写真を見たか？ありゃ凄いぞ！
 qstr_Press_Space_to_conti|スペースキーを押してください・・・
+; qstr_BY_LEVEL_/_by_day|BY LEVEL / by day
+; qstr_by_level_/_BY_DAY|by level / BY DAY
+; qstr_War_start_mode_can_o|War start mode can only be set at game start; see options to adjust level or date.
+qstr_ON|オン
+qstr_OFF|オフ
+; qstr_If_you_are_new_to_TL|If you are new to TLD, tutorial messages are recommended
 qstr_{s24}__{reg13}____{r|{s24} ({reg13}) - 次の昇格まであと{reg20}^
 qstr_Influence:^_{reg11}_|影響力ポイント:^ {reg11} ({s16})^
 qstr_Resource_Points:^_{r|リソースポイント:^ {reg12} ({s16})^
@@ -953,21 +985,10 @@ qstr_{s2}^_________{s4}:_|{s2}^ {s4}:{reg1} ({s23})
 qstr__________Faction_str|各勢力の勢力ポイント一覧:^{s2}
 qstr_{s1}^^Factions_are_n|{s1}^^通常、勢力ポイントが{reg1}を下回った勢力は包囲攻撃を受けます。
 qstr_Savagery|蛮行
-qstr_{s2}^^{s5}^{s6}|{s2}^^{s5}^{s6}
 qstr_Traits_gained:^{s2}|特殊能力:^{s2}
 qstr_^^You_are_{s17}.|^^あなたは{s17}にいます。
 qstr_Assassins_in_the_cam|暗殺者がいます、身を守ってください！
-qstr_Ally_party_size:_{re|友軍の兵数:{reg1}
-qstr_Enemy_party_size:_{r|敵軍の兵数:{reg1}
-qstr_Party_count:_{reg0}|パーティの総数:{reg0}
-qstr_Party_position__{reg|パーティの位置 ({reg2}、{reg3})。
-qstr_Party_size_increased|パーティの兵数が{reg0}から {reg1}に増えました！
-qstr_Faction_strengths_re|各勢力の勢力ポイント一覧:^{s2}
-qstr_Attacking_enemy_part|敵パーティの{s11}を攻撃する
-qstr_Unknown_{reg3}_|不明({reg3})
-qstr_ON|オン
 qstr_OFF__cheat_|オフ(チート)
-qstr_OFF|オフ
 qstr_All_messages|すべてのメッセージ
 qstr_{reg0}__will_most_li|{reg0}(セーブデータの破損する可能性が高いです)
 qstr_{reg0}__could_possib|{reg0}(セーブデータの破損する可能性があります)
@@ -975,9 +996,6 @@ qstr_Normal|通常
 qstr_Defender_only|防御側のみ
 qstr_Halved|半分
 qstr_Battles_only|戦闘のみ
-qstr_Doubled|2倍
-qstr_Tripled|3倍
-qstr_Quadrupled|4倍
 qstr_You_drank_the_Ent_Wa|エント水を飲みました・・・
 qstr_You_used_the_Orc_Bre|オークビールを飲みました。
 qstr_You_and_your_compani|あなたとコンパニオンたちは一口づつミルヴォールを飲みました。 元気がみなぎり、力が湧いてきました。
@@ -999,8 +1017,6 @@ qstr_^^^Defeated...^^^Sca|^^^敗れた・・・^^^ファンゴルンの森に散
 qstr_Troll_caged_in_wheel|トロルは車輪付きの檻に入れられました。
 qstr_A_second_troll_is_ca|二頭目のトロルは車輪付きの檻に入れられました。
 qstr_Here_you_are.|どうぞ。
-qstr_Player_was_moved_to_|プレイヤーは{s10}へ移動されました。
-qstr_neutral_whereabouts|どこかの中立地
 qstr_any|すべて
 qstr_woman|女
 qstr_gondor|ゴンドール
@@ -1059,9 +1075,9 @@ qstr__This_castle_seems_t|この城には誰も住んでいないようです。
 qstr__Your_own_banner_flie|町の門に、 あなたの軍旗が掲げられています。
 qstr__You_see_the_banner_o|町の門に、 {s7}の軍旗が掲げられています。
 qstr__The_townsfolk_here_|この町の住民は独立を宣言しています。
+qstr_Get_book.|本を取る。
 qstr_Go_to_the_secret_ent|モリアの秘密の入り口へ行く
 qstr_Search_for_a_secret_|モリアの秘密の入り口を探す
-qstr_Get_book.|本を取る。
 qstr_The_{reg6?town_s:cas|{reg6?町の:城の}食料の備蓄は、 あと{reg3}日分です。
 qstr_The_{reg6?town_s:cast|{reg6?町の:城の}食料の備蓄は底をつき、 守備兵は飢えに苦しんでいます。
 qstr_You_re_preparing_to_|城壁への攻撃準備をします。 準備完了まで{reg9}時間かかります。
@@ -1096,8 +1112,7 @@ qstr_the_Hall|大広間
 qstr_the_Great_Chamber_of|スロールの朝見の間
 qstr_Stay_indoors_for_som|屋内に宿営する(一晩につきリソースポイントを{reg1}消費します)
 qstr_Camp_outside_for_som|野外に野営を張る(無料)
-; qstr_As_you_enter_the_vas|As you enter the vast caverns underneath the Ring of Isengard, where thousands of orcs work to supply the growing armies of the White Hand, you gain confidence in the rise of a new power and the demise of the old world.
-; qstr_You_have_found_the_G|You have found the Glittering Caves, one of the marvels of the Northern World.
+; qstr_You_are_not_allowed_|You are not allowed to enter.
 ; qstr_As_the_party_member_|As the party member with the highest Bargainer skill ({reg2}), {reg3?you estimate:{s3} estimates} that it will take {reg4} hours to find the most notable persons in town. [Costs {reg5}/{reg6} influence]
 ; qstr_You_have_already_fou|You have already found all persons of interest.
 ; qstr_the_captain_of_the_g|the captain of the garrison, and the civil authority.
@@ -1138,17 +1153,14 @@ qstr_You_defeated_{reg5}_e|あなたは{reg5}名の敵を倒しました。
 qstr_You_failed_to_defeat|あなたは敵をひとりも倒せませんでした。
 qstr_The_sorcerer_slain_y|妖術師は殺され、あなたとあなたの部下たちは速やかに怪我の応急処置を済ませると、 すべるように夜の闇へと消えていきました。 背後ではおぞましい金切声がそこかしこに上がり、 あなたは暗闇の中にあなたたちの姿を探す、 たくさんの血走った視線を感じました。 間もなく怒りは失望に変わって追跡の気配は消え、 いつもの闇の森の深い静寂にとってかわられました。 あなたは脱出に成功しました。
 qstr_The_sorcerer_slipped|妖術師はあなたの捕獲の手の間からするりと身をかわし、 這いまわる虫のようにみずからの住処の闇の中へと消えていきました。 任務失敗の失望感で心は重いながらも、 あなたとあなたの部下たちは速やかに怪我の応急処置を済ませ、 夜の闇の中を撤収していきました。 背後からはからかいの金切り声が聞こえ、 闇をつらぬくような、 たくさんの血走った視線を感じました。 間もなく笑い声とののしりは消え、 いつもの闇の森の深い静寂にとってかわられました。 あなたは脱出しました。
-; qstr_You_approach_a_heavi|You approach a heavily guarded region of the forest... ^^ You have to decide whether you venture forward on your own, or take some troops with you.
+; qstr_You_approach_a_heavi|You approach a heavily guarded region of the forest... ^^ You have to decide whether you venture forward on your own, or take some troops with you. ^Choose your actions carefully, because the more attention you attract, the better the sorcerer will be guarded.^Speed will be more important than heavy armor.
 ; qstr_You_have_a_good_chan|You have a good chance of avoiding the guards and slipping through unnoticed.
 ; qstr_You_may_have_a_chanc|You may have a chance of avoiding the guards.
 ; qstr_You_will_probably_ha|You will probably have to fight the guards.
 qstr_You_wait_for_darknes|あなたはあたりが夜の闇におおわれるのを待っています・・・
 qstr_You_are_quickly_disc|あなたはすぐに発見されてしまいました。
 qstr_You_advance_stealthi|あなたは身を隠しつつ、森のなかへと進んでいきました。
-qstr_You_have_evaded_the_|あなたは衛兵を避けつつ、廃墟へと忍び寄りました！
-qstr_You_have_found_the_s|妖術師を見つけました！
 qstr_You_cannot_leave_unt|衛兵をふりきらないと、この場所から移動できません！
-qstr_Kill_him_quickly_bef|逃げる前に素早く倒してください！
 qstr_Enraged_by_the_death|{s4}の死に大きな怒りを覚えたあなたは、 {s3}の軍勢に対する復讐を宣言しました。 これより数日間、 あなたはできるだけ多くの{s3}の兵を破壊しなければなりません。 あなたの部下たちがこの誓いを目撃したのはあなたもよく認識しており、 誓いを破る者と呼ばれる事はさけなければなりません。 さあ血の宴をはじめましょう！
 qstr_flooded._Somebody_or|水没している。 何者かがアイゼンの堤防を破壊したに違いない。
 qstr_destroyed._Only_smol|破壊されている。 火のくすぶる廃墟だけが残っている。
@@ -1159,6 +1171,8 @@ qstr_Breaking_camp...|野営を撤収しました・・・
 ; qstr_Party_morale_is_low.|Party morale is low. Troops desert from your party.
 ; qstr_Desertion|Desertion
 ; qstr_{s1}_has_deserted_fr|{s1} has deserted from your party.
+; qstr_You_don_t_have_enoug|You don't have enough troops to guard all your prisoners. Their chance of escaping is increased.
+; qstr_{s1}_has_escaped_fro|{s1} has escaped from your party.
 qstr_You_have_left_{s1}.|あなたは{s1}を後にしました。
 qstr_You_are_entering_{s1|あなたは{s1}({s2})に入りました。
 qstr_You_are_entering_{s1}|あなたは{s1}に入りました。
@@ -1540,7 +1554,7 @@ qstr_Lend_your_experience|経験豊富な軍医の{s3}を{s1}に貸す。
 qstr_No_commander_should_|{playername}よ、 指揮官としてはこのような事は話しづらいのだが、 先日我が部隊を閲兵していたところ、 なんと剣の握り方も知らぬ者がいるではないか。 彼らには勇気の意味を実際に示してやる必要がある。 {playername}よ、おぬしは名の知れた戦士だ。 私の代わりに兵を鍛えてやってくれないか？ 引き受けてくれれば非常に有り難い。
 qstr_No_commander_should_h|{playername}よ、 指揮官としてはこのような事は話しづらいのだが、 先日我が部隊を閲兵していたところ、 何名かを不適格者として処刑するはめになった。 彼らには根性を叩き込んでくれる骨のある者が必要だ。 根性の足りない者は殺してしまうような者がな。 {playername}よ、おぬしは名の知れた戦士だ。 私の代わりに兵を鍛えてやってくれないか？ 引き受けてくれれば決して後悔はさせないぞ。
 qstr_{s9}_asked_you_to_rai|{s9}に{s14}を{reg1}名育て上げ、 彼に引き渡すよう頼まれた。
-qstr_{s9}_asked_you_to_hu|{s9}より、 {s4}という名のおたずね者を捕らえるよう依頼された。 おたずね者は現在、 {s3}に潜んでいるとされている。
+; qstr_{s9}_asked_you_to_hu|{s9} asked you to hunt down a traitor named {s4}. He is currently believed to be at {s3}.
 qstr_{s9}_asked_you_to_defe|{s9}の要請により、 {s3}へ向かう、 みっつの難民の一行を護衛する事となった。
 qstr_{s9}_asked_you_to_hun|{s9}の要請により、 {s3}へ向かう、 みっつの難民の一行を襲撃する事となった。
 qstr_{s9}_asked_you_to_ca|{s9}より、 みっつのグループに分かれて逃亡中の奴隷どもを、 生きたまま{s4}へ連れ戻すよう、頼まれた。 すべてのグループは{s3}を目指して移動しているらしい。
@@ -1699,8 +1713,21 @@ qstr_{s1}_Slaves|{s1}の奴隷
 qstr_The_{s11}_of_{s10}_a|{s10}の{s11}より、 {s12}を{s13}まで護衛するよう、 頼まれた。
 qstr__Guards_slaughter_hi|衛兵、この者を殺せ！
 qstr_Slaughter_him_for_fr|こいつを殺せ、新鮮な人肉を食わせてやるぞ！
+; qstr_near_the_smithy|near the smithy
+; qstr_near_the_local_autho|near the local authority
+; qstr_near_the_warehouse|near the warehouse
 qstr_This_is_{s5}_Command|ここは{s5}です、 指揮官殿。
 qstr_{s6}_This_place_and_|{s6} この拠点と周辺一帯は、 {s8}の{s7}の領土です。
+; qstr_Hear_now_commander._|Hear now, commander. I am currently out of assignment, yet I would rather meet our enemies in the field than wait for them to come here. I hear you're a capable leader. Would you have me?
+; qstr_My_party_was_wiped_o|My party was wiped out in the last battle and I don't want to be assigned to the next best fool. I hear you're a capable leader. Could you use another warrior?
+; qstr_{s9}_joined_your_par|{s9} joined your party
+; qstr_A_pity!_I_sure_would|A pity! I sure would have liked to fight in your party-
+; qstr_Too_bad_you_will_reg|Too bad, you will regret not taking me with you.
+; qstr_Lead_me_to_the_{s3}|Lead me to the {s3}
+; qstr_Lead_me_to_the_local|Lead me to the local authority
+; qstr_Lead_me_to_the_Lord_|Lead me to the Lord's hall
+; qstr_Lead_me_to_your_comm|Lead me to your commanders
+; qstr_Lead_me_to_the_capta|Lead me to the captain of the garrison
 qstr_Hey_scum!_I_can_fix_|{おい、おまえ/ちょっとあなた}！あごの形を直して{やろうか/あげるわ}。
 qstr_Watch_where_you_re_g|うろちょろ{するな/しないでよ}、この虫けら{めが/}！
 qstr_I_don_t_like_your_fa|{気にいらん顔つきだな/ぶさいくね}！直して{やろう/あげるわ}。

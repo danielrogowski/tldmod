@@ -20,7 +20,7 @@ ground_specs = [
     ("desert",gtf_overlay|gtf_dusty|gtf_has_color,"ground_desert", 2.5,"ground_forest_under_desert",(0.2,0.2,0.2)), #(1.4,1.2,0.4)
     ("forest",gtf_overlay|gtf_has_color,"ground_forest",4.2,"ground_earth_under_grass",(0.4,0.4,0.4)), #(0.6,0.42,0.28)
     ("pebbles",gtf_overlay|gtf_has_color,"pebbles",8.1,"ground_pebbles_under_path",(0.7,0.7,0.7)),
-    ("village",gtf_overlay|gtf_has_color,"ground_village",16.0,"ground_village_under_path",(0.7,0.7,0.7)), #(1.0,0.9,0.59)
+    ("village",gtf_overlay|gtf_has_color,"ground_village",24.0,"ground_village_under_path",(0.7,0.7,0.7)), #(1.0,0.9,0.59)
     ("path",gtf_overlay|gtf_dusty|gtf_has_color,"ground_path",6.0,"none",(0.3,0.3,0.3)), #(0.93,0.68,0.34)
 ]
 
@@ -37,7 +37,7 @@ def save_ground_specs():
   file.close()
 
 def save_c_header():
-  file = open("./ground_spec_codes.h","w")
+  file = open("./ground_spec_codes.h","w", encoding='utf-8')
   file.write("#ifndef _GROUND_SPEC_CODES_H\n")
   file.write("#define _GROUND_SPEC_CODES_H\n\n")
   file.write("typedef enum {\n")
@@ -50,16 +50,16 @@ def save_c_header():
   file.close()
   
 def save_python_header():
-  file = open("../header/header_ground_types.py","w")
-  for ig in xrange(len(ground_specs)):
+  file = open("../header/header_ground_types.py","w", encoding='utf-8')
+  for ig in range(len(ground_specs)):
     ground_spec = ground_specs[ig]
     file.write("ground_%s = %d\n"%(ground_spec[0], ig))
   file.write("\n\n")
   file.close()
 
-print "Exporting ground_spec data..."
+print("Exporting ground_spec data...")
 save_ground_specs()
 #save_c_header()
 save_python_header()
-#print "Finished."
+#print("Finished.")
   

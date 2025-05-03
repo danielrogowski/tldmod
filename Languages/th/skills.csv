@@ -1,9 +1,9 @@
 skl_trade|ทักษะในการต่อรอง
 skl_trade_desc|ทำให้ช่างเหล็กและผู้เชี่ยวชาญด้านอุปทานร่วมมือกันมากขึ้นและนำเสนออุปกรณ์ที่ดีกว่า (สกิลปาร์ตี้)
 skl_leadership|ความเป็นผู้นำ
-; skl_leadership_desc|Every point increases maximum number of troops you can command by 5 (3 for companions), increases your party morale and coherence in battle. Makes more and stronger volunteers willing to follow you. (Personal skill)
+skl_leadership_desc|ทุกแต้มที่เพิ่มขึ้นจะช่วยเพิ่มจำนวนทหารสูงสุดที่เจ้าสามารถบัญชาการได้ 5 นาย (3 นายสำหรับสหายร่วมรบ) นอกจากนี้ยังช่วยเพิ่ม ขวัญกำลังใจและความเป็นปึกแผ่นของกองทัพในสนามรบ อีกทั้งยังทำให้ อาสาสมัครที่แข็งแกร่งและมากขึ้นยินดีติดตามเจ้า (สกิลส่วนตัว)
 skl_prisoner_management|การจัดการนักโทษ
-; skl_prisoner_management_desc|Every level of this skill increases maximum number of prisoners by %d. Improves chances of capturing and keeping prisoners .(Leader skill)
+skl_prisoner_management_desc|ทุกระดับของสกิลนี้จะเพิ่มจำนวนเชลยสูงสุดได้อีก %d. และช่วยเพิ่มโอกาสในการ จับกุมและควบคุมเชลยให้อยู่ในกองของเจ้า (สกิลกองทัพ)
 skl_persuasion|พรานป่า
 skl_persuasion_desc|ความสามารถในการเอาตัวรอดและใช้ประโยนช์จากป่า ความสามารถนี้จะส่งผลต่อกองทัพในการเคลื่อนที่และการซ่อนตัวในป่า (สกิลที่ส่งผลทั้งกองทัพ)
 skl_engineer|-----
@@ -15,13 +15,13 @@ skl_surgery_desc|ทุกเวลเวลของสกิลจะเพิ
 skl_wound_treatment|การดูแลรักษาบาดแผล
 skl_wound_treatment_desc|อัตราการฟื้นฟูของกองทัพเพิ่มขึ้น 20%% ต่อเลเวลของสกิล (สกิลที่ส่งผลทั้งกองทัพ)
 skl_inventory_management|การจัดการช่องเก็บของ
-; skl_inventory_management_desc|Increases inventory capacity by +6 per skill level. Reduces food consumption. (Leader skill)
+skl_inventory_management_desc|เพิ่มความจุช่องเก็บของ +6 ต่อระดับสกิล และ ลดการบริโภคเสบียงอาหาร (สกิลผู้นำ)
 skl_spotting|การสังเกต
 skl_spotting_desc|เพิ่มระยะการมองเห็นของกองทัพ 10%% ต่อเลเวลสกิล (สกิลที่ส่งผลทั้งกองทัพ)
 skl_pathfinding|การสำรวจเส้นทาง
 skl_pathfinding_desc|เพิ่มความเร็วในการเดินทัพ 3%% ต่อเลเวลสกิล (สกิลสำหรับผู้นำกองทัพ)
 skl_tactics|การวางกลยุทธ
-; skl_tactics_desc|Improves battle advantage. Increases battle join distance for enemy parties and decreases battle join distance for friendly parties by 3%% per level. (Leader skill)
+skl_tactics_desc|เพิ่มความได้เปรียบในสนามรบ และ เพิ่มระยะที่กองทัพศัตรูสามารถเข้าร่วมการต่อสู้ได้ ขณะเดียวกันลดระยะที่กองทัพฝ่ายพันธมิตรสามารถเข้าร่วมได้ลง 3%% ต่อระดับสกิล (สกิลผู้นำ)
 skl_tracking|การสะกดรอย
 skl_tracking_desc|การสะกดรอยจะละเอียด มีข้อมูลมากยิ่งขึ้น (สกิลที่ส่งผลทั้งกองทัพ)
 skl_trainer|การฝึกทหาร
@@ -37,7 +37,7 @@ skl_athletics_desc|เพิ่มความเร็วในการวิ�
 skl_shield|การใช้โล่
 skl_shield_desc|ลดความเสียหายของโล่ (8 %% ต่อระดับทักษะ) เพิ่มความเร็วและการครอบคลุมของโล่ ลดความสารถของโล่เมื่อใช้กับธนู (ความสามารถส่วนตัว)
 skl_weapon_master|การควบคุมอาวุธ
-skl_weapon_master_desc|ทำให้การเพิ่มค่าความเชี่ยวชาญในการใช้อาวุธง่ายขึ้น และเพิ่มขีดจำกัดความเชี่ยวชาญในการใช้อาวุธ\nขีดจำกัดเป็นไปดังต่อไปนี้:60, 100, 140, 180, 220, 260, 300, 340, 380, 420\n(ทักษะส่วนบุคคล)
+skl_weapon_master_desc|ทำให้การเพิ่มค่าความเชี่ยวชาญในการใช้อาวุธง่ายขึ้น และเพิ่มขีดจำกัดความเชี่ยวชาญในการใช้อาวุธ ขีดจำกัดเป็นไปดังต่อไปนี้:60, 100, 140, 180, 220, 260, 300, 340, 380, 420 (ทักษะส่วนบุคคล)
 skl_power_draw|แรงน้าวสายธนู
 skl_power_draw_desc|ทำให้ตัวละครสามารถใช้ธนูที่ทรงพลังมากยิ่งขึ้น แต่ละเลเวลของสกิลนี้(มากที่สุดคือ4 บวกด้วย ค่าแรงน้าวสายธนูที่ธนูต้องการ) เพิ่มค่าความเสียหายจากธนู 14%% (สกิลส่วนบุคคล)
 skl_power_throw|แรงในการขว้าง

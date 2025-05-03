@@ -484,6 +484,7 @@ fugitive_1
 fugitive_2
 fugitive_3
 fugitive_4
+fugitive_5
 follow_spy_talk
 follow_spy_talk_2
 spy_partners_talk
@@ -492,6 +493,7 @@ runaway_serf_intro_1
 runaway_serf_intro_2
 runaway_serf_intro_3
 runaway_serf_go_back
+runaway_serf_slaughter
 runaway_serf_talk_caught
 runaway_serf_talk_again_return
 runaway_serf_talk_again_return_2
@@ -605,6 +607,9 @@ town_dweller_talk
 town_dweller_ask_fugitive
 town_dweller_ask_info
 town_dweller_ask_rumor
+town_dweller_ask_join
+town_dweller_ask_join_yes
+town_dweller_ask_join_no
 town_dweller_ask_directions
 town_dweller_ask_directions2
 town_dweller_ask_directions3

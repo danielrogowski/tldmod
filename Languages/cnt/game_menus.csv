@@ -5,7 +5,10 @@ mno_faction_intros|了解中土世界的不同陣營
 mno_go_bback|返回
 menu_start_phase_2|^^^^^              中土世界。陰影正在東方蔓延， ^              潛伏已久的邪惡勢力重現世間。 ^              自由之民準備應戰，面對紀元前所未見的大戰。 ^ 人類、精靈、矮人和半獸人；各將扮演好自己的角色。 ^^              至於是什麼樣的角色，讓我們拭目以待...
 mno_go_forth|         向你所擇之路前進...
+; mno_change_war_start_mode|War Starts:  {s7}
+; mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|修改TLD設定。
+; mno_see_info_pages|TLD game concepts.
 menu_start_game_3|^^^^^^^^選擇你的場景：
 mno_custom_battle_scenario_1|小規模衝突，剛鐸陣營vs哈拉德
 mno_custom_battle_scenario_12|選擇戰鬥陣營
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|查閱工資費用。
 mno_view_character_report|查閱人物報告。
 mno_view_party_size_report|查閱隊伍上限。
 mno_view_morale_report|查閱隊伍士氣。
-mno_view_character_report_02|NPC狀態確認。
 mno_view_faction_strengths_report|查閱陣營力量。
 mno_view_traits_report|查閱人物特質。
 mno_resume_travelling|繼續旅程。
@@ -47,7 +49,6 @@ mno_continue_dot|繼續。
 menu_custom_battle_durin_end|^^^^^^那是一場令人景仰的最後一戰，但終究無力回天。^^你和你的人馬擊殺了{reg5}名敵人。^你在戰鬥中親自斬殺了{reg7}個對手。
 mno_replay_cbd|再玩一次這場戰鬥。
 mno_continue_dot_cbd|繼續。
-mno_dot_go_back|.                 返回
 menu_start_good|^^^^^^^^^^選擇你的種族：
 mno_start_ma|人類
 mno_start_el|精靈
@@ -113,7 +114,6 @@ mno_start_2_bn|在多爾哥多，死靈法師的要塞
 menu_choose_gender|^^^^^^^^^^你的性別？
 mno_start_male|男性
 mno_start_female|女性
-mno_proc|正常進行
 menu_start_as_one|^^^^^^^^^^你是何種士兵？
 mno_start_default|成為{s23} (預設)
 mno_start_up1|成為{s21} (簡單)
@@ -127,8 +127,8 @@ mno_camp_action|使用物品。
 mno_camp_wait_here|在這裡紮營一段時間。
 mno_camp_options|修改TLD設定。
 mno_Dev_Menu|開發者選單
-menu_dev_menu|這些是開發選單，可以為您提供很多作弊/工具來玩。^^ 但是，這將導致一些WIP事件，觸發，戰役改變導致破壞遊戲。^^ 請自負使用風險！ ^^ 此外，在回報錯誤時，請註明你有使用開發選單。
-mno_Cheat_enable|啟用作弊/模組設定。
+; menu_dev_menu|These are development options that give you a lot of cheats/tools to play with.^^ However, this will result in some WIP events, triggers, campaign changes that could be game breaking.^^ Use at your own risk! ^^ Also, when reporting bugs, please tell us that you are using the Dev Menu.
+mno_cheat_enable|啟用作弊/模組設定。
 menu_game_options|^^^^^^^^點擊切換設定：
 mno_game_options_war_level_start|戰爭始於等級：{s1}
 mno_game_options_restrict_items|限制玩家裝備：{s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|攻城力量需求：{s7}
 mno_strat_tweaks_siege_relax_rate|攻城力量。需求。鬆弛率：{reg1}
 mno_strat_tweaks_regen_rate|力量恢復率：{s7}
 mno_strat_tweaks_siege_regen_limit|陣營力量恢復速度減緩至：{reg1}
-mno_strat_tweaks_influence_gain_rate|影響力增加率：{s7}
-mno_strat_tweaks_rank_gain_rate|階級增加率：{s7}
+; mno_strat_tweaks_influence_gain_rate|Influence gain rate: {reg0}%
+; mno_strat_tweaks_rank_gain_rate|Rank gain rate: {reg0}%
 mno_strat_tweaks_back|返回調整選單。
 menu_camp_action|^^^^^^^^^     哪件物品？
 mno_camp_drink_water|喝下樹人之水！
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|{s1}依然遭到圍困，攻城營地中飛揚�
 mno_talk_to_siege_commander|要求和指揮官會面。
 mno_join_siege_with_allies|加入下一輪的進攻。
 mno_join_siege_stay_back|命令你的士兵加入下一輪的進攻而不親自參與。
-menu_moria_must_escape|^^這本書似乎紀錄矮人最後一次嘗試在摩瑞亞定居的日子。這個嘗試最終以全部人慘死做結。繼續閱讀，你注意到'真銀'等字！細讀那幾頁之後你豁然理解那是在描述底層某處的矮人儲藏。哈！如果能找到那些失傳的秘銀不就酷斃了嗎！？^你飢渴的跟隨指示，進入一道狹窄又曲折的隧道向下走...^...^經過幾個小時的無功搜索你發覺到自己走失在摩瑞亞底部並需要找到一條出路。
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|尋找你的出路！
 menu_castle_outside|你在{s2}的外面。{s11}{s3}{s4}
-mno_moria_enter|從秘密出入口回到摩瑞亞的主殿
-mno_moria_enter_door|進入摩瑞亞。
 mno_cheat_steal_book_door|拿起書
+; mno_moria_enter|Return into main hall of Moria through the secret entrance
+mno_moria_enter_door|進入摩瑞亞。
 mno_castle_start_siege|圍攻這個{reg6?城鎮:城堡}。
 mno_castle_leave|離開
 menu_castle_besiege|你正在圍攻{s1}。{s2}{s3}
@@ -291,7 +291,7 @@ menu_town_brawl_won|^^^^^你擊敗了所有對手和前來鎮壓的守衛。你�
 menu_close|沒什麼。
 menu_town|你抵達了{s60}。{s12}{s13}
 mno_town_menu_0|前往某處。
-; mno_town_menu_0_door|Inspect...
+mno_town_menu_0_door|檢查...
 mno_town_approach|接近{s1}...
 mno_town_castle|前往{s1}。
 mno_town_castle_door|進入城堡的門。
@@ -305,6 +305,7 @@ mno_town_prison_door|前往訓練場
 mno_talk_to_castle_commander|訪問{s61}的兵營 。
 mno_speak_with_elder|與{s6}談話。
 ; mno_town_ask|Ask around for persons of import...
+; mno_player_initiate_siege|Attack the {reg6?town:castle}...
 mno_isengard_underground|前往地下洞穴。
 mno_isengard_underground_door|前往地下洞穴
 mno_tirith_toplevel|爬到頂層。
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^你遵循傳聞而發現了{s1}。你現在可以探索
 mno_explore|探索這個地方。
 menu_ring_hunter_lair|^^^^你跟著戒指獵人的蹤跡穿過幽暗密林並抵達{s1}。你看見他們準備帶著一個箱子離開。
 mno_attack_lair|馬上攻擊他們
-mno_leave_bandit_lair|暫時離開。
 menu_gondor_reinforcement_event|^^^^^剛鐸的烽火被點燃了，米那斯提力斯在呼救！^^南方的領主們將立刻邁向北方去從即將降臨的黑暗中保衛白之城。
 mno_gondor_reinforcement_event_close|關閉
 menu_gondor_beacons|你抬頭望向{s1}，其中一座剛鐸的烽火台，用來對北方和南方剛鐸發出警報。
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|關閉
 menu_center_besieged_event|^^^^^一位信使抵達並報告{s1}正遭到{s3}的{s2}圍攻。
 mno_center_besieged_event_close|關閉
 menu_guardian_party_spawned|^^^^^斥候報告說{s6}在{s7}附近聚集了一支人數眾多的軍隊，想要拚死捍衛他們的首都。
+mno_guardian_party_spawned_close|關閉
 mno_intro_next|繼續...
 mno_start_defend_caravan|保衛商隊！
 mno_start_raid_caravan|掠奪商隊！
@@ -391,7 +392,6 @@ mno_leave_refugees|暫時不管他們...
 mno_evil_war_tut_continue|繼續...
 menu_alternate_training_fight|你將會面對{reg5}個對手。你準備好了嗎？
 mno_training_continue|開始訓練...
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|再試一次...
 mno_alternate_training_finish|離開競技場...
 menu_custom_battle_choose_faction1|^^^^^^^^^^選擇己方和優勢：
@@ -415,7 +415,7 @@ mno_cb_mordor3|哈拉德
 mno_cb_mordor4|東方人
 mno_cb_mordor5|摩瑞亞
 mno_cb_mordor6|剛達巴
-mno_cb_mordor7|盧恩
+; mno_cb_mordor7|Rhûn
 mno_cb_mordor8|海盜
 mno_rescue_mission|在黑夜的掩護下潛入巫師的巢穴。
 mno_next_rescue_scene_door|繼續向前！
@@ -437,23 +437,14 @@ mno_leave_pyre|離開火葬堆。
 menu_town_ruins|當你靠近，你看到{s1}已是{s2}。
 mno_ruin_menu_0|探索這個地方。
 mno_ruin_leave|離開...
-menu_premutiny|無
 menu_death|你已經被殺害了。雖然戰爭仍舊如火如荼，但你將不再是它的一部分了。
 menu_animal_ambush|你和你的同伴發現跟隊伍的其他人走散了，忽然間...
 menu_animal_ambush_success|{s2}在你面前如同收割麥子一般地{reg0?倒下:倒下}！很快地所有攻擊者都躺在地上，受傷或已死亡。{s3}
 menu_animal_ambush_fail|動物撕咬你{reg0?,:和你的同伴{reg2?,:,}}但幸運的是你設法打退了牠們。希望牠們不會再次攻擊你。
-; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
-; mno_isengard_continue|Continue
+menu_isengard_flooding|^^^^^@你被死去的敵人和勝利的盟友包圍，包括樹人；他們咆哮、轟鳴、吹號，直到石頭在奧桑克塔周圍裂開並掉落。他們就像呼嘯的狂風，打破柱子，把巨石的雪崩扔下井道，將巨大的石板像葉子一樣拋向空中……這是你前所未見的場景。布雷戈拉德——或者你所知道的迅速樹梁——大步走過來，僅停下來說：「{playername}！小心！離塔遠點——我們很快就會打破大壩，將艾辛河帶入這個山谷，雖然只是一小會兒。我想你會發現很難一直站在這裡！」你迅速接受他的建議，匆匆離開奧桑克塔。午夜時分，艾辛格開始被黑色的潛流和水池填滿。當你看到煙霧和蒸汽在空中冒出巨大的柱子，並且一股巨大的蒸汽捲繞著塔，直到它看起來像一座高聳的雲峰，底下燃燒著，頂上被月光照亮時，你不禁顫抖。樹人的憤怒來得緩慢，但擁有不可抵擋的力量……
+mno_isengard_continue|繼續
 menu_build_your_scene|你可以打造自己的戰場場景。首先在遊戲設定中打開編輯模式，然後選擇底下任意一個存位(你需要先在M&B啟動螢幕設定中將編輯模式切換為ON，然後進入場景中按Ctrl+E打開編輯模式)。  你可以將你創造的場景提交給TLD製作組(TLD/SceneObj資料夾中的sco檔)，做得好的話，它將會作為隨機戰場之一出現在以後的版本中！^^ 記得說明你想要自己作的場景出現在地圖上的哪個地方。^ 附加提示：避免製作深水、陡峭或其他難以通行的地形，除非你是經驗豐富的場景製作者並且知道如何利用AI網格讓AI部隊避開指定區域。^ (#0-1 用於攻擊方，#4用於防守方，別碰#5-8
-mno_scene1|大型平原(file scn custom 1.sco)
-mno_scene2|中型平原(file scn custom 2.sco)
-mno_scene3|小型平原(file scn custom 3.sco)
-mno_scene4|大型草原(file scn custom 4.sco)
-mno_scene5|中型草原(file scn custom 5.sco)
-mno_scene6|小型草原(file scn custom 6.sco)
-mno_scene7|大型森林(file scn custom 7.sco)
-mno_scene8|中型森林(file scn custom 8.sco)
-mno_scene9|小型森林(file scn custom 9.sco)
 mno_back_3dot|返回...
 mno_back|返回。
 mno_next|下一個...
+; mno_previous|Previous...

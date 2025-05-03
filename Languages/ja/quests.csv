@@ -7,7 +7,7 @@ qst_raise_troops_text|{reg1}名の{s14}を育て上げて {彼/彼女}に引き�
 qst_escort_messenger|{s14}まで 伝令を護衛せよ
 qst_escort_messenger_text|None
 qst_hunt_down_fugitive|{s4}を追え
-qst_hunt_down_fugitive_text|{s9}より、{s4}という名前のおたずね者を 捕まえるよう頼まれた。 おたずね者は現在、 {s3}に潜んでいるとされている。
+; qst_hunt_down_fugitive_text|{s9} asked you to hunt down the traitor named {s4}. He is currently believed to be at {s3}.
 qst_bring_back_runaway_serfs|脱走した奴隷を連れ戻せ
 qst_bring_back_runaway_serfs_text|三手に分かれて逃走中の奴隷を {s2}に連れ戻すよう、 {s9}より依頼された。 すべての群れは {s3}の方角へ逃げているらしい。
 qst_follow_spy|密会現場まで間者を追跡せよ
@@ -78,27 +78,4 @@ qst_deliver_gift_text|{s2}からの{s1}の{s4}を、 {s3}に届けるように�
 qst_ring_hunters|指輪狩り一味
 qst_ring_hunters2|指輪狩り一味 - 完了
 qst_deliver_message_hobbit|心配するホビット
-qst_blank_quest_01|難民を守れ
-qst_blank_quest_02|難民を襲え
-qst_blank_quest_03|海戦
-qst_blank_quest_04|{s7}の {s6}を {s35}名殺せ
-qst_blank_quest_05|{s36}の兵を{s35}名殺せ
-qst_blank_quest_06|戦闘で{s35}を倒せ
-
-
-
-
-
-
-
-
-
-qst_blank_quest_16|拠点を補強せよ
-qst_blank_quest_17|戦場で{reg22}名の{s6}を殺せ
-
-
-
-
-qst_guardian_party_quest|アイゼンガルドの最後の抵抗
-qst_quests_end|Quests End
 qst_quests_end_text|。

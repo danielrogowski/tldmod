@@ -22,12 +22,12 @@ class Game_Menu_Template(object):
     """See the documentation of module_game_menus"""
     self.id = id
     self.flags = flags
-    self.text = text
+    self.text = text.replace('{!}', '[[!]]')
     self.mesh = mesh
     self.opers = opers
     self.optn_id = optn_id
     self.optn_cond = optn_cond
-    self.optn_text = optn_text
+    self.optn_text = optn_text.replace('{!}', '[[!]]')
     self.optn_consq = optn_consq
   
   def generate_menus(self, input_list, pagelen=13):
@@ -53,12 +53,12 @@ class Game_Menu_Template(object):
           "list_len" : len(input_list),
           "list_item": input_list[page_group + page],
           "list_index": page_group + page,
-          "current_page": page_group/pagelen + 1,
-          "num_pages": len(input_list)/pagelen + 1,
+          "current_page": page_group//pagelen + 1,
+          "num_pages": len(input_list)//pagelen + 1,
       }
       
       if type(str_or_obj) == str:
-        return str_or_obj.format(**format_fields)
+        return str_or_obj.format(**format_fields).replace('[[!]]', '{!}')
       else:
         formatted_obj = []
         try:
@@ -71,7 +71,7 @@ class Game_Menu_Template(object):
     
     menus = []
 
-    for page_group in xrange(0, len(input_list), pagelen):
+    for page_group in range(0, len(input_list), pagelen):
       page = 0
       optns = []
       next_page = page_group + pagelen

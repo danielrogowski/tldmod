@@ -749,7 +749,7 @@ tld_archer_hold_fire = (1, 0, ti_once, [(eq,"$field_ai_archer_aim",1)],
           (eq, "$cheat_mode",1),
           (eq,":counter",0),
           (assign, reg1, ":distance"),
-         # (display_message, "@DEBUG: Distance: {reg1}"),
+         # (display_message, "@{!}DEBUG: Distance: {reg1}"),
         (end_try),
 
         (ge, ":distance", 7000),
@@ -866,7 +866,7 @@ tld_archer_aim_fix = (0, 0, 0, [(eq,"$field_ai_archer_aim",1)],
        #     (assign, reg10, ":counter"),
        #     (assign, reg11, ":bone"),
             #(assign, reg12, ":continue"),
-            #(display_message, "@DEBUG: OVERRRIDING AIM x{reg10}!. TARGETTING {reg11}."),
+            #(display_message, "@{!}DEBUG: OVERRRIDING AIM x{reg10}!. TARGETTING {reg11}."),
       #  (try_end),
     ])
 
@@ -985,7 +985,7 @@ tld_troll_aim_fix = (0, 0, 0, [(gt,"$trolls_in_battle",0)],
        #     (assign, reg10, ":counter"),
        #     (assign, reg11, ":bone"),
             #(assign, reg12, ":continue"),
-            #(display_message, "@DEBUG: OVERRRIDING AIM x{reg10}!. TARGETTING {reg11}."),
+            #(display_message, "@{!}DEBUG: OVERRRIDING AIM x{reg10}!. TARGETTING {reg11}."),
       #  (try_end),
     ])
 
@@ -1122,7 +1122,7 @@ kham_damage_fallen_riders = (ti_on_agent_killed_or_wounded, 0, 0, [],
     # (assign, reg34, ":skill_riding"),     ### DIAGNOSTIC ### - Riding Skill
     # (assign, reg35, ":riding_reduction"), ### DIAGNOSTIC ### - Damage Reduction %
     # (assign, reg36, ":damage"),           ### DIAGNOSTIC ### - Raw Reduced Damage
-    # (display_message, "@DEBUG: {reg36} Damage: {reg30} + {reg31}x{reg32}/125 * (1 - {reg34}*8/100) = {reg30} + {reg33} - {reg35}", color_bad_news),
+    # (display_message, "@{!}DEBUG: {reg36} Damage: {reg30} + {reg31}x{reg32}/125 * (1 - {reg34}*8/100) = {reg30} + {reg33} - {reg35}", color_bad_news),
 
     (set_show_messages, 0),
     (store_agent_hit_points, ":health", ":agent_rider", 1),
@@ -1243,6 +1243,7 @@ tld_ai_kicking = (1, 0, 0, [(eq,"$field_ai_lord",1)],
        #TLD Check
       (agent_get_troop_id, ":lord", ":agent1"),
       (troop_slot_eq, ":lord", slot_troop_has_combat_ai, 1), 
+      (agent_is_alarmed, ":agent1"),
 
       #(this_or_next|is_between, ":lord", kingdom_heroes_begin, kingdom_heroes_end),
       #(this_or_next|eq, ":lord", "trp_nazgul"),
@@ -1387,6 +1388,7 @@ tld_melee_ai = (0, 0, 0, [(eq,"$field_ai_lord",1),
     (try_for_agents,":agent1"),
       (agent_is_human, ":agent1"),
       (agent_is_active, ":agent1"),
+      (agent_is_alarmed, ":agent1"), #this check is needed in town mission, so agents don't draw their weapon on their own.
       (agent_get_slot, ":check_time", ":agent1", slot_agent_tick_check_time),
       (try_begin), #Batching Start
         (ge, ":batch_time", ":check_time"),#check agents in batches, splits the workload across as many frames as possible
@@ -2214,7 +2216,7 @@ health_restore_on_kill = (ti_on_agent_killed_or_wounded, 0, 0,
       (str_store_troop_name, s1, ":troop_killer"),
       (assign, reg0, ":health_regeneration"),
       (assign, reg1, ":strength"),   
-      (display_message, "@DEBUG (Health Regen): {s1} regains {reg0}% health.  = +{reg1}% STR"),
+      (display_message, "@{!}DEBUG (Health Regen): {s1} regains {reg0}% health.  = +{reg1}% STR"),
     (try_end),
     
     # Regenerates the given health amount.
@@ -2531,7 +2533,7 @@ AI_triggers_moto = [
   (0, .3, 0, [(eq, "$tld_option_formations", 2),(game_key_clicked, gk_order_1)], [
     (game_key_is_down, gk_order_1), #player is holding down key?
     (assign, "$temp_action_cost", 1),
-    #(display_message, "@DEBUG: F1 Held"),
+    #(display_message, "@{!}DEBUG: F1 Held"),
     (get_player_agent_no, ":player"), 
     (try_begin),
       (agent_slot_eq, ":player", slot_agent_tournament_point, 0),
@@ -2543,7 +2545,7 @@ AI_triggers_moto = [
 
 (.5, 0, 0, [(eq, "$tld_option_formations", 2),(eq, "$temp_action_cost", 1),(neg|game_key_is_down, gk_order_1)], [   
     (assign, "$temp_action_cost", 0),
-    #(display_message, "@DEBUG: F1 Let Go"),
+    #(display_message, "@{!}DEBUG: F1 Let Go"),
     (get_player_agent_no, ":player"),
     (try_begin),
       (agent_slot_eq, ":player", slot_agent_tournament_point, 1),
@@ -3656,11 +3658,18 @@ battle_encounters_effects = [
 
 (ti_before_mission_start, 0, ti_once, [
 
-    (party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM),
+    (party_slot_ge, "p_main_party", slot_party_battle_encounter_effect, 1),
 
   ],[
 
-  (set_rain, 1, 500),
+    (try_begin),
+        (party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM),
+        (set_rain, 1, 300),
+        (set_skybox, 10, 11),
+    (else_try),
+        (party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SAURON_DARKNESS),
+        (set_skybox, 10, 11),
+    (try_end),
 
 ]),
 
@@ -3670,7 +3679,7 @@ battle_encounters_effects = [
   (neq, ":encounter_effect", NO_EFFECT_PRESENT),
 
   ],[
-
+  (set_fixed_point_multiplier, 1000),
   (party_get_slot, ":encounter_effect", "p_main_party", slot_party_battle_encounter_effect),
   (assign, ":fog_str", 500), #default
 
@@ -3681,29 +3690,33 @@ battle_encounters_effects = [
 
   (try_begin),
     (eq, ":encounter_effect", LORIEN_MIST),
-    #(set_rain, 2,500), #yellow thingies in elven places
+    (set_startup_ambient_light, 45, 45, 30),
     (set_fog_distance,":fog_str",0xFFF09D),
-    #(display_message, "@DEBUG: LORIEN_MIST"),
+    #(display_message, "@{!}DEBUG: LORIEN_MIST"),
     (call_script, "script_lorien_mist_effect"), 
   (else_try),
     (eq, ":encounter_effect", SAURON_DARKNESS),
+    (set_startup_sun_light, 10, 10, 10),(set_startup_ambient_light, 30, 30, 30),
     (set_fog_distance,":fog_str",0x212020),
-    (store_random_in_range, ":cloud_amount", 65, 90),
-    (set_global_cloud_amount, ":cloud_amount"),
-    #(display_message, "@DEBUG: SAURON_DARKNESS"),
+    #(display_message, "@{!}DEBUG: SAURON_DARKNESS"),
     (call_script, "script_sauron_darkness_effect"), 
   (else_try),
     (eq, ":encounter_effect", SARUMAN_STORM),
-    #(set_rain, 1,300), 
-    (set_fog_distance, 500, 0x010101),
-    (store_random_in_range, ":cloud_amount", 65, 90),
-    (set_global_cloud_amount, ":cloud_amount"),
-    #(display_message, "@DEBUG: SARUMAN_STORM"),
+    (set_startup_sun_light, 10, 10, 10),(set_startup_ambient_light, 30, 30, 30),
+    (try_begin),
+        (is_currently_night),(eq, "$bright_nights", 1), (set_fog_distance,900,0x777777),
+     (else_try),
+        (is_currently_night),(set_fog_distance,700,0x777777),
+     (else_try),
+        (set_fog_distance,1200,0x999999),
+    (try_end),
+    #(display_message, "@{!}DEBUG: SARUMAN_STORM"),
     (call_script, "script_saruman_storm_effect"), 
   (else_try),
     (eq, ":encounter_effect", GULDUR_FOG),
+    (set_startup_sun_light, 15, 25, 15),(set_startup_ambient_light, 30, 45, 30),
     (set_fog_distance,":fog_str",0x4B6047),
-    #(display_message, "@DEBUG: GULDUR_FOG"),
+    #(display_message, "@{!}DEBUG: GULDUR_FOG"),
     (call_script, "script_guldur_fog_effect"), 
   (try_end),
 
@@ -3712,12 +3725,12 @@ battle_encounters_effects = [
 
 # Thunder storms
   
-  (3, 0.2, 5, [(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (store_random_in_range,":rnd",1,4),(eq,":rnd",1),(set_fog_distance, 200, 0xaaaaaa),],
+  (3, 0.2, 5, [(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (set_fixed_point_multiplier, 100),(store_random_in_range,":rnd",1,8),(eq,":rnd",1),(set_fog_distance, 150, 0xFFFFFF),],
         [(set_fog_distance, 500, 0x010101),(get_player_agent_no,":plyr"),(agent_play_sound, ":plyr", "snd_thunder"),(assign, "$lightning_cycle",1),]),
-  (0.4,0.1, 5,[(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (eq,"$lightning_cycle",1),(set_fog_distance, 650, 0x777777),],   ###### Lightning afterflashes 
+  (0.4,0.1, 5,[(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (eq,"$lightning_cycle",1),(set_fixed_point_multiplier, 100),(set_fog_distance, 650, 0x777777),],   ###### Lightning afterflashes 
         [(set_fog_distance, 500, 0x010101),(assign,"$lightning_cycle",2),]),
-  (0.5,0.1, 5,[(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (eq,"$lightning_cycle",2),(set_fog_distance, 620, 0x555555),],
-        [(set_fog_distance, 500, 0x010101),(assign,"$lightning_cycle",0),]),
+  (0.5,0.1, 5,[(party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), (eq,"$lightning_cycle",2),(set_fixed_point_multiplier, 100),(set_fog_distance, 620, 0x555555),],
+        [(set_fog_distance,100000,0x999999),(assign,"$lightning_cycle",0),]),
 
 
 # check for Fellbeast chance at battle start
@@ -3734,15 +3747,17 @@ battle_encounters_effects = [
     
     #no fellbeast assigned yet
     (neg|party_slot_eq, "$g_encountered_party", slot_party_battle_encounter_effect, FELLBEAST),
-    (neg|party_slot_eq, "$g_encountered_party_2", slot_party_battle_encounter_effect, FELLBEAST),
-
+    (try_begin),
+        (gt, "$g_encountered_party_2", 0),
+        (neg|party_slot_eq, "$g_encountered_party_2", slot_party_battle_encounter_effect, FELLBEAST),
+    (try_end),
+    
     (gt, "$g_starting_strength_enemy_party", 1000),
     (this_or_next|gt, "$g_starting_strength_friends", 1000),
     (gt, "$g_starting_strength_main_party", 1000),
     
-    (store_add, ":battle_importance", "$g_starting_strength_enemy_party", "$g_starting_strength_main_party"),
-    (val_add, ":battle_importance",  "$g_starting_strength_friends"), #this counts player strength double, but it doesn't need to be exact
-    (store_random_in_range, ":chance", 0, 20000),
+    (store_add, ":battle_importance", "$g_starting_strength_enemy_party", "$g_starting_strength_friends"),
+    (store_random_in_range, ":chance", 0, 6000),
     (gt, ":battle_importance", ":chance"),
         
   ],[
@@ -3770,28 +3785,45 @@ battle_encounters_effects = [
 ]),
 
 # check for Fellbeast chance at battle start
-(8, 0, ti_once, [
+(4, 0, ti_once, [
     (assign, ":continue", 0),
     (try_begin),
         (party_slot_eq, "$g_encountered_party", slot_party_battle_encounter_effect, FELLBEAST),
         (assign, ":continue", 1),
+        (assign, ":nazgul_party", "$g_encountered_party"),
     (else_try),
         (gt, "$g_encountered_party_2", 1),
         (party_slot_eq, "$g_encountered_party_2", slot_party_battle_encounter_effect, FELLBEAST),
         (assign, ":continue", 1),
+        (assign, ":nazgul_party", "$g_encountered_party_2"),
     (try_end),
     (eq, ":continue", 1),
+	(try_begin),
+		(eq, "$nazgul_team", -1), 
+		(try_for_agents,":agent"),
+			(eq, "$nazgul_team", -1),
+			(agent_get_party_id, ":party_id", ":agent"),
+            (eq, ":party_id", ":nazgul_party"),
+			(agent_get_team, "$nazgul_team",":agent"),
+		(try_end),
+        (assign, reg78, "$nazgul_team"),
+        (get_player_agent_no, ":player_agent"),
+        (agent_get_team, reg77,":player_agent"),
+	(try_end),        
   ],[
     (set_fixed_point_multiplier, 100),
     (get_player_agent_no, ":player_agent"),
     (agent_get_position, pos1, ":player_agent"),
+    (agent_get_team, reg77,":player_agent"),
     (position_move_y, pos1, 10000),
     (position_move_z, pos1, 10000),
+    (store_random_in_range, ":rotation", 0, 360),
+    (position_rotate_z, pos1, ":rotation", 1),
     (set_spawn_position, pos1),
     (spawn_scene_prop, "spr_fellbeast"),
     (assign, "$nazgul_in_battle", reg0), #store fellbeast prop in global
-    (display_message, "@fellbeast spawned"),
     (prop_instance_play_sound, "$nazgul_in_battle", snd_nazgul_skreech_long),
+    (display_message, "@A Nazgul on a winged steed circles over the battle field!")
 ]),
 
 ]
@@ -4012,17 +4044,17 @@ beorning_shapeshift = [
         (agent_is_active, ":horse"), (agent_is_alive, ":horse"),
         (agent_get_item_id, ":horse_item", ":horse"), (eq, ":horse_item", "itm_bear"),
     ],[
-        (display_log_message, "@DEBUG: Ti on item wielded"),
+        (display_log_message, "@{!}DEBUG: Ti on item wielded"),
         (store_trigger_param_1,":agent"),
         (store_trigger_param_2,":item"),
         (try_begin),
             (ge, ":item", 0),
             (agent_unequip_item, ":agent", ":item"),
-            # (display_log_message, "@DEBUG: Unequip"),
+            # (display_log_message, "@{!}DEBUG: Unequip"),
         (end_try),
         (agent_equip_item, ":agent", "itm_warg_ghost_lance", 1),
         (agent_set_wielded_item, ":agent", "itm_warg_ghost_lance"),
-        #(display_log_message, "@DEBUG: Item equipped"),
+        #(display_log_message, "@{!}DEBUG: Item equipped"),
     ]),
 
     # Periodic weapon re-wield (2sec)
@@ -5321,6 +5353,7 @@ tld_points_of_interest = [
 
     (try_for_prop_instances, ":instance_no", "spr_secret_guardian"), #guardians, can also be used for persons of interest, very nice!
         (prop_instance_get_variation_id, ":var1", ":instance_no"),
+        (prop_instance_get_variation_id, ":var2", ":instance_no"),
         (prop_instance_get_position, pos5, ":instance_no"),
         (get_distance_between_positions, ":dist", pos4, pos5),
         (assign, ":speak_dist", 0),
@@ -5347,6 +5380,22 @@ tld_points_of_interest = [
             (assign, ":rank_req", 40),
             (assign, ":speak_dist", 500),
             (str_store_string, s1, "@Halt! You are not allowed to enter here without the Lady's leave!"),
+        (else_try),
+            (eq, ":scene", scn_umbar_camp_center),
+            (eq, ":var1", 1),
+            (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+            (assign, ":rank_req", 2),
+            (assign, ":speak_dist", 500),
+        (else_try),
+            (eq, ":scene", scn_harad_camp_center),
+            (eq, ":var1", 1),
+            (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+            (assign, ":rank_req", 2),
+            (assign, ":speak_dist", 500),
+        (else_try), #fallback
+            (party_slot_eq, "$current_town", slot_exploration_point_1, 0),
+            (assign, ":rank_req", ":var2"),
+            (assign, ":speak_dist", 500),            
         (try_end), 
 
         (scene_prop_get_slot, ":agent", ":instance_no", slot_prop_agent_1),
@@ -5356,7 +5405,7 @@ tld_points_of_interest = [
             (agent_slot_eq, ":agent", slot_agent_assigned_prop, 0),
             (position_rotate_z, pos5, 180),
             (set_spawn_position, pos5),
-            (spawn_scene_prop, "spr_barrier_8m"),
+            (spawn_scene_prop, "spr_barrier_player_8m"),
             (agent_set_slot, ":agent", slot_agent_assigned_prop, reg0),
         (try_end),
 

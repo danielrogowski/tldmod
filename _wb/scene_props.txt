@@ -1,5 +1,5 @@
 scene_propsfile version 1
- 2092
+ 2095
 spr_invalid_object 0 0 question_mark 0 0
 
 
@@ -87,7 +87,7 @@ spr_ai_limiter_8m 16392 0 barrier_8m bo_barrier_8m 0
 spr_ai_limiter_16m 16392 0 barrier_16m bo_barrier_16m 0
 
 
-spr_Shield 8192 0 0 boshield 0
+spr_barrier_player_8m 81933 0 barrier_8m bo_barrier_8m 0
 
 
 spr_shelves 0 0 shelves boshelves 0
@@ -219,7 +219,7 @@ spr_destroy_bridge_b 0 0 destroy_bridge_b bo_destroy_bridge_b 0
 spr_destroy_bridge_b_E 0 0 destroy_bridge_b 0 0
 
 
-spr_Catapult 0 0 catapult bo_catapult 0
+spr_Catapult 0 0 Catapult bo_Catapult 0
 
 
 spr_broom 0 0 broom 0 0
@@ -246,49 +246,49 @@ spr_grave_a 0 0 grave_a bo_grave_a 0
 spr_village_house_e 0 0 village_house_e bo_village_house_e 0
 
 
-spr_village_house_e_E 0 0 village_house_e 0 0
+spr_arabian_house_a2 0 0 arabian_house_a2 bo_arabian_house_a2 0
 
 
 spr_village_house_f 0 0 village_house_f bo_village_house_f 0
 
 
-spr_village_house_f_E 0 0 village_house_f 0 0
+spr_arabian_village_house_a 0 0 arabian_village_house_a bo_arabian_village_house_a 0
 
 
 spr_village_house_g 0 0 village_house_g bo_village_house_g 0
 
 
-spr_village_house_g_E 0 0 village_house_g 0 0
+spr_arabian_village_house_b 0 0 arabian_village_house_b bo_arabian_village_house_b 0
 
 
 spr_village_house_h 0 0 village_house_h bo_village_house_h 0
 
 
-spr_village_house_h_E 0 0 village_house_h 0 0
+spr_arabian_village_house_c 0 0 arabian_village_house_c bo_arabian_village_house_c 0
 
 
 spr_village_house_i 0 0 village_house_i bo_village_house_i 0
 
 
-spr_village_house_i_E 0 0 village_house_i 0 0
+spr_arabian_village_house_d 0 0 arabian_village_house_d bo_arabian_village_house_d 0
 
 
 spr_village_house_j 0 0 village_house_j bo_village_house_j 0
 
 
-spr_village_house_j_E 0 0 village_house_j 0 0
+spr_arabian_village_stable 0 0 arabian_village_stable bo_arabian_village_stable 0
 
 
 spr_village_wall_a 0 0 village_wall_a bo_village_wall_a 0
 
 
-spr_village_wall_a_E 0 0 village_wall_a 0 0
+spr_arabian_village_hut 0 0 arabian_village_hut bo_arabian_village_hut 0
 
 
 spr_village_wall_b 0 0 village_wall_b bo_village_wall_b 0
 
 
-spr_village_wall_b_E 0 0 village_wall_b 0 0
+spr_arabian_village_stairs 11 0 arabian_village_stairs bo_arabian_village_stairs 0
 
 
 spr_village_snowy_house_a 0 0 village_snowy_house_a bo_village_snowy_house_a 0
@@ -333,25 +333,25 @@ spr_village_snowy_stable_a 0 0 village_snowy_stable_a bo_village_snowy_stable_a 
 spr_village_straw_house_a 0 0 village_straw_house_a bo_village_straw_house_a 0
 
 
-spr_village_straw_house_a_E 0 0 village_straw_house_a 0 0
+spr_awning_long_b 0 0 awning_long_b bo_awning_long 0
 
 
 spr_village_stable_a 0 0 village_stable_a bo_village_stable_a 0
 
 
-spr_village_stable_a_E 0 0 village_stable_a 0 0
+spr_awning_long 0 0 awning_long bo_awning_long 0
 
 
 spr_village_shed_a 0 0 village_shed_a bo_village_shed_a 0
 
 
-spr_village_shed_a_E 0 0 village_shed_a 0 0
+spr_awning_a 0 0 awning_a bo_awning 0
 
 
 spr_village_shed_b 0 0 village_shed_b bo_village_shed_b 0
 
 
-spr_village_shed_b_E 0 0 village_shed_b 0 0
+spr_awning_c 0 0 awning_c bo_awning 0
 
 
 spr_dungeon_door_cell_a 0 0 dungeon_door_cell_a bo_dungeon_door_cell_a 0
@@ -520,85 +520,85 @@ spr_arena_sign 0 0 arena_arms 0 0
 spr_castle_h_battlement_a 0 0 castle_h_battlement_a bo_castle_h_battlement_a 0
 
 
-spr_castle_h_battlement_a_E 0 0 castle_h_battlement_a 0 0
+spr_castle_h_battlement_c 0 0 castle_h_battlement_c bo_castle_h_battlement_c 0
 
 
 spr_castle_h_battlement_b 0 0 castle_h_battlement_b bo_castle_h_battlement_b 0
 
 
-spr_castle_h_battlement_b_E 0 0 castle_h_battlement_b 0 0
+spr_castle_h_corner_c 0 0 castle_h_corner_c bo_castle_h_corner_c 0
 
 
 spr_castle_h_battlement_a2 0 0 castle_h_battlement_a2 bo_castle_h_battlement_a2 0
 
 
-spr_castle_h_battlement_a2_E 0 0 castle_h_battlement_a2 0 0
+spr_snowy_castle_battlement_b 0 0 snowy_castle_battlement_b bo_snowy_castle_battlement_b 0
 
 
 spr_castle_h_battlement_b2 0 0 castle_h_battlement_b2 bo_castle_h_battlement_b2 0
 
 
-spr_castle_h_battlement_b2_E 0 0 castle_h_battlement_b2 0 0
+spr_snowy_castle_battlement_corner_a 0 0 snowy_castle_battlement_corner_a bo_snowy_castle_battlement_corner_a 0
 
 
 spr_castle_h_corner_a 0 0 castle_h_corner_a bo_castle_h_corner_a 0
 
 
-spr_castle_h_corner_a_E 0 0 castle_h_corner_a 0 0
+spr_snowy_castle_battlement_corner_b 0 0 snowy_castle_battlement_corner_b bo_snowy_castle_battlement_corner_b 0
 
 
 spr_castle_h_stairs_a 0 0 castle_h_stairs_a bo_castle_h_stairs_a 0
 
 
-spr_castle_h_stairs_a_E 0 0 castle_h_stairs_a 0 0
+spr_snowy_castle_battlement_corner_c 0 0 snowy_castle_battlement_corner_c bo_snowy_castle_battlement_corner_c 0
 
 
 spr_castle_h_stairs_b 0 0 castle_h_stairs_b bo_castle_h_stairs_b 0
 
 
-spr_castle_h_stairs_b_E 0 0 castle_h_stairs_b 0 0
+spr_snowy_castle_battlement_stairs_a 0 0 snowy_castle_battlement_stairs_a bo_snowy_castle_battlement_stairs_a 0
 
 
 spr_castle_h_gatehouse_a 0 0 castle_h_gatehouse_a bo_castle_h_gatehouse_a 0
 
 
-spr_castle_h_gatehouse_a_E 0 0 castle_h_gatehouse_a 0 0
+spr_snowy_castle_battlement_stairs_b 0 0 snowy_castle_battlement_stairs_b bo_snowy_castle_battlement_stairs_b 0
 
 
 spr_castle_h_keep_a 0 0 castle_h_keep_a bo_castle_h_keep_a 0
 
 
-spr_castle_h_keep_a_E 0 0 castle_h_keep_a 0 0
+spr_snowy_castle_gate_house_a 0 0 snowy_castle_gate_house_a bo_snowy_castle_gate_house_a 0
 
 
 spr_castle_h_keep_b 0 0 castle_h_keep_b bo_castle_h_keep_b 0
 
 
-spr_castle_h_keep_b_E 0 0 castle_h_keep_b 0 0
+spr_snowy_castle_round_tower_a 0 0 snowy_castle_round_tower_a bo_snowy_castle_round_tower_a 0
 
 
 spr_castle_h_house_a 0 0 castle_h_house_a bo_castle_h_house_a 0
 
 
-spr_castle_h_house_a_E 0 0 castle_h_house_a 0 0
+spr_snowy_castle_square_keep_a 0 0 snowy_castle_square_keep_a bo_snowy_castle_square_keep_a 0
 
 
 spr_castle_h_house_b 0 0 castle_h_house_b bo_castle_h_house_b 0
 
 
-spr_castle_h_house_b_E 0 0 castle_h_house_b 0 0
+spr_snowy_castle_stairs_a 11 0 snowy_castle_stairs_a bo_snowy_castle_stairs_a 0
 
 
 spr_castle_h_house_c 0 0 castle_h_house_c bo_castle_h_house_b 0
 
 
-spr_castle_h_house_c_E 0 0 castle_h_house_c 0 0
+spr_church_a 0 0 church_a bo_church_a 0
 
 
 spr_castle_h_battlement_barrier 0 0 castle_h_battlement_barrier bo_castle_h_battlement_barrier 0
 
 
-spr_castle_h_battlement_barrier_E 0 0 castle_h_battlement_barrier 0 0
+spr_church_tower_a 0 0 church_tower_a bo_church_tower_a 0
 
 
 spr_castle_f_keep_a 0 0 castle_f_keep_a bo_castle_f_keep_a 0
@@ -610,90 +610,88 @@ spr_full_keep_b 0 0 full_keep_b bo_full_keep_b 0
 spr_castle_f_battlement_a 0 0 castle_f_battlement_a bo_castle_f_battlement_a 0
 
 
-spr_castle_f_battlement_a_E 0 0 castle_f_battlement_a 0 0
+spr_castle_f_battlement_c 0 0 castle_f_battlement_c bo_castle_f_battlement_c 0
 
 
 spr_castle_f_battlement_a_destroyed 0 0 castle_f_battlement_a_destroyed bo_castle_f_battlement_a_destroyed 0
 
 
-spr_castle_f_battlement_a_destroyed_E 0 0 castle_f_battlement_a_destroyed 0 0
+spr_castle_f_battlement_d 0 0 castle_f_battlement_d bo_castle_f_battlement_d 0
 
 
 spr_castle_f_battlement_b 0 0 castle_f_battlement_b bo_castle_f_battlement_b 0
 
 
-spr_castle_f_battlement_b_E 0 0 castle_f_battlement_b 0 0
+spr_castle_f_battlement_e 0 0 castle_f_battlement_e bo_castle_f_battlement_e 0
 
 
 spr_castle_f_battlement_corner_a 0 0 castle_f_battlement_corner_a bo_castle_f_battlement_corner_a 0
 
 
-spr_castle_f_battlement_corner_a_E 0 0 castle_f_battlement_corner_a 0 0
+spr_castle_f_battlement_corner_c 0 0 castle_f_battlement_corner_c bo_castle_f_battlement_corner_c 0
 
 
 spr_castle_f_battlement_corner_b 0 0 castle_f_battlement_corner_b bo_castle_f_battlement_corner_b 0
 
 
-spr_castle_f_battlement_corner_b_E 0 0 castle_f_battlement_corner_b 0 0
+spr_castle_f_battlement_d 0 0 castle_f_battlement_d bo_castle_f_battlement_d 0
 
 
 spr_castle_f_stairs_a 0 0 castle_f_stairs_a bo_castle_f_stairs_a 0
 
 
-spr_castle_f_stairs_a_E 0 0 castle_f_stairs_a 0 0
+spr_castle_f_sally_port_elevation 0 0 castle_f_sally_port_elevation bo_castle_f_sally_port_elevation 0
 
 
 spr_castle_f_tower_a 0 0 castle_f_tower_a bo_castle_f_tower_a 0
 
 
-spr_castle_f_tower_a_E 0 0 castle_f_tower_a 0 0
+spr_castle_f_door_a 0 0 castle_f_tower_a bo_castle_f_door_a 0
 
 
 spr_castle_f_wall_stairs_a 0 0 castle_f_wall_stairs_a bo_castle_f_wall_stairs_a 0
 
 
-spr_castle_f_wall_stairs_a_E 0 0 castle_f_wall_stairs_a 0 0
+spr_castle_f_sally_door_a 0 0 castle_f_sally_door_a bo_castle_f_sally_door_a 0
 
 
 spr_castle_f_wall_stairs_b 0 0 castle_f_wall_stairs_b bo_castle_f_wall_stairs_b 0
 
 
-spr_castle_f_wall_stairs_b_E 0 0 castle_f_wall_stairs_b 0 0
+spr_castle_f_doors_top_a 0 0 castle_f_doors_top_a bo_castle_f_doors_top_a 0
 
 
 spr_castle_f_wall_way_a 0 0 castle_f_wall_way_a bo_castle_f_wall_way_a 0
 
 
-spr_castle_f_wall_way_a_E 0 0 castle_f_wall_way_a 0 0
+spr_mosque_a 0 0 mosque_a bo_mosque_a 0
 
 
 spr_castle_f_wall_way_b 0 0 castle_f_wall_way_b bo_castle_f_wall_way_b 0
 
 
-spr_castle_f_wall_way_b_E 0 0 castle_f_wall_way_b 0 0
+spr_square_keep_b 0 0 square_keep_b bo_square_keep_b 0
 
 
 spr_castle_f_gatehouse_a 0 0 castle_f_gatehouse_a_compat bo_castle_f_gatehouse_a 0
 
 
-spr_castle_f_gatehouse_a_E 0 0 castle_f_gatehouse_a_compat 0 0
+spr_square_keep_c 0 0 square_keep_c bo_square_keep_c 0
 
 
 spr_stone_minaret_a 0 0 stone_minaret_a bo_stone_minaret_a 0
 
 
-spr_stone_minaret_a_E 0 0 stone_minaret_a 0 0
+spr_square_keep_d 0 0 square_keep_d bo_square_keep_d 0
 
 
 spr_banner_pole 0 0 banner_pole bo_banner_pole 0
 
 
-spr_custom_banner_01 0 0 custom_banner_01 0 1
--40  6 521 3 1224979098644774912 144115188075855998 7 4 0 30 2 1224979098644774912 0 520 3 1224979098644774913 1224979098644774912 13 1982 2 31 1224979098644774913 3 0 
+spr_square_keep_e 0 0 square_keep_e bo_square_keep_e 0
 
 
-spr_custom_banner_02 0 0 custom_banner_02 0 1
--40  6 521 3 1224979098644774912 144115188075855998 7 4 0 30 2 1224979098644774912 0 520 3 1224979098644774913 1224979098644774912 13 1982 2 31 1224979098644774913 3 0 
+spr_square_keep_f 0 0 square_keep_f bo_square_keep_f 0
 
 
 spr_banner_a 0 0 b_arms_gondor 0 0
@@ -1085,7 +1083,7 @@ spr_chair_trestle 0 0 chair_trestle 0 0
 spr_wheel 0 0 wheel bowheel 0
 
 
-spr_ladder 0 0 ladder boladder 0
+spr_ladder 0 0 ladder boladder_new 0
 
 
 spr_cart 0 0 cart bo_cart_new 0
@@ -1112,49 +1110,49 @@ spr_railing_a 0 0 railing_a bo_railing_a 0
 spr_battlement_a 0 0 battlement_a bo_battlement_a 0
 
 
-spr_battlement_a_E 0 0 battlement_a 0 0
+spr_castle_battlement_c 0 0 castle_battlement_c bo_castle_battlement_c 0
 
 
 spr_battlement_a_destroyed 0 0 battlement_a_destroyed bo_battlement_a_destroyed 0
 
 
-spr_battlement_a_destroyed_E 0 0 battlement_a_destroyed 0 0
+spr_castle_battlement_corner_c 0 0 castle_battlement_corner_c bo_castle_battlement_corner_c 0
 
 
 spr_round_tower_a 0 0 round_tower_a bo_round_tower_a 0
 
 
-spr_round_tower_a_E 0 0 round_tower_a 0 0
+spr_castle_battlement_c 0 0 castle_battlement_c bo_castle_battlement_c 0
 
 
 spr_small_round_tower_a 0 0 small_round_tower_a bo_small_round_tower_a 0
 
 
-spr_small_round_tower_a_E 0 0 small_round_tower_a 0 0
+spr_small_round_tower_roof_a 0 0 small_round_tower_roof_a bo_small_round_tower_roof_a 0
 
 
 spr_square_keep_a 0 0 square_keep_a bo_square_keep_a 0
 
 
-spr_square_keep_a_E 0 0 square_keep_a 0 0
+spr_square_tower_roof_a 0 0 square_tower_roof_a 0 0
 
 
 spr_gate_house_a 0 0 gate_house_a bo_gate_house_a 0
 
 
-spr_gate_house_a_E 0 0 gate_house_a 0 0
+spr_castle_battlement_corner_c 0 0 castle_battlement_corner_c bo_castle_battlement_corner_c 0
 
 
 spr_gate_house_b 0 0 gate_house_b bo_gate_house_b 0
 
 
-spr_gate_house_b_E 0 0 gate_house_b 0 0
+spr_arena_wall_a 0 0 arena_wall_a bo_arena_wall_ab 0
 
 
 spr_small_wall_a 0 0 small_wall_a bo_small_wall_a 0
 
 
-spr_small_wall_a_E 0 0 small_wall_a 0 0
+spr_small_wall_b 0 0 small_wall_b bo_small_wall_b 0
 
 
 spr_small_wall_c 0 0 small_wall_c bo_small_wall_c 0
@@ -1172,133 +1170,133 @@ spr_small_wall_c_destroy_E 0 0 small_wall_c_destroy 0 0
 spr_small_wall_d 0 0 small_wall_d bo_small_wall_d 0
 
 
-spr_small_wall_d_E 0 0 small_wall_d 0 0
+spr_small_wall_connect_a 0 0 small_wall_connect_a bo_small_wall_connect_a 0
 
 
 spr_small_wall_e 0 0 small_wall_e bo_small_wall_d 0
 
 
-spr_small_wall_e_E 0 0 small_wall_e 0 0
+spr_castle_courtyard_house_extension_a 0 0 castle_courtyard_house_extension_a bo_castle_courtyard_house_extension_a 0
 
 
 spr_town_house_a 0 0 town_house_a bo_town_house_a 0
 
 
-spr_town_house_a_E 0 0 town_house_a 0 0
+spr_castle_courtyard_house_extension_b 0 0 castle_courtyard_house_extension_b bo_castle_courtyard_house_extension_b 0
 
 
 spr_town_house_b 0 0 town_house_b bo_town_house_b 0
 
 
-spr_town_house_b_E 0 0 town_house_b 0 0
+spr_castle_f_door_a 100352 0 castle_f_door_a bo_castle_f_door_a 0
 
 
 spr_town_house_c 0 0 town_house_c bo_town_house_c 0
 
 
-spr_town_house_c_E 0 0 town_house_c 0 0
+spr_castle_e_sally_door_a 100352 0 castle_e_sally_door_a bo_castle_e_sally_door_a 0
 
 
 spr_town_house_d 0 0 town_house_d bo_town_house_d 0
 
 
-spr_town_house_d_E 0 0 town_house_d 0 0
+spr_arabian_house_a 0 0 arabian_house_a bo_arabian_house_a 0
 
 
 spr_town_house_e 0 0 town_house_e bo_town_house_e 0
 
 
-spr_town_house_e_E 0 0 town_house_e 0 0
+spr_arabian_house_b 0 0 arabian_house_b bo_arabian_house_b 0
 
 
 spr_town_house_f 0 0 town_house_f bo_town_house_f 0
 
 
-spr_town_house_f_E 0 0 town_house_f 0 0
+spr_arabian_house_c 0 0 arabian_house_c bo_arabian_house_c 0
 
 
 spr_town_house_g 0 0 town_house_g bo_town_house_g 0
 
 
-spr_town_house_g_E 0 0 town_house_g 0 0
+spr_arabian_house_d 0 0 arabian_house_d bo_arabian_house_d 0
 
 
 spr_town_house_h 0 0 town_house_h bo_town_house_h 0
 
 
-spr_town_house_h_E 0 0 town_house_h 0 0
+spr_arabian_house_e 0 0 arabian_house_e bo_arabian_house_e 0
 
 
 spr_town_house_i 0 0 town_house_i bo_town_house_i 0
 
 
-spr_town_house_i_E 0 0 town_house_i 0 0
+spr_arabian_house_f 0 0 arabian_house_f bo_arabian_house_f 0
 
 
 spr_town_house_j 0 0 town_house_j bo_town_house_j 0
 
 
-spr_town_house_j_E 0 0 town_house_j 0 0
+spr_arabian_house_g 0 0 arabian_house_g bo_arabian_house_g 0
 
 
 spr_town_house_l 0 0 town_house_l bo_town_house_l 0
 
 
-spr_town_house_l_E 0 0 town_house_l 0 0
+spr_arabian_house_h 0 0 arabian_house_h bo_arabian_house_h 0
 
 
 spr_town_house_m 0 0 town_house_m bo_town_house_m 0
 
 
-spr_town_house_m_E 0 0 town_house_m 0 0
+spr_arabian_house_i 0 0 arabian_house_i bo_arabian_house_i 0
 
 
 spr_town_house_n 0 0 town_house_n bo_town_house_n 0
 
 
-spr_town_house_n_E 0 0 town_house_n 0 0
+spr_instrument_lyre 0 0 lyre 0 0
 
 
 spr_town_house_o 0 0 town_house_o bo_town_house_o 0
 
 
-spr_town_house_o_E 0 0 town_house_o 0 0
+spr_instrument_lute 0 0 lute 0 0
 
 
 spr_town_house_p 0 0 town_house_p bo_town_house_p 0
 
 
-spr_town_house_p_E 0 0 town_house_p 0 0
+spr_stone_house_a 0 0 stone_house_a bo_stone_house_a 0
 
 
 spr_town_house_q 0 0 town_house_q bo_town_house_q 0
 
 
-spr_town_house_q_E 0 0 town_house_q 0 0
+spr_stone_house_b 0 0 stone_house_b bo_stone_house_b 0
 
 
 spr_passage_house_b 0 0 passage_house_b bo_passage_house_b 0
 
 
-spr_passage_house_b_E 0 0 passage_house_b 0 0
+spr_stone_house_c 0 0 stone_house_c bo_stone_house_c 0
 
 
 spr_passage_house_c 0 0 passage_house_c bo_passage_house_c 0
 
 
-spr_passage_house_c_E 0 0 passage_house_c 0 0
+spr_stone_house_d 0 0 stone_house_d bo_stone_house_d 0
 
 
 spr_passage_house_c_door 0 0 passage_house_c_door bo_passage_house_c_door 0
 
 
-spr_passage_house_c_door_E 0 0 passage_house_c_door 0 0
+spr_stone_house_e 0 0 stone_house_e bo_stone_house_e 0
 
 
 spr_house_extension_c 0 0 house_extension_c bo_house_extension_a 0
 
 
-spr_house_extension_c_E 0 0 house_extension_c 0 0
+spr_stone_house_f 0 0 stone_house_f bo_stone_house_f 0
 
 
 spr_house_roof_door 0 0 house_roof_door bo_house_roof_door 0
@@ -1310,61 +1308,61 @@ spr_door_extension_a 0 0 door_extension_a bo_door_extension_a 0
 spr_stairs_arch_a 0 0 stairs_arch_a bo_stairs_arch_a 0
 
 
-spr_stairs_arch_a_E 0 0 stairs_arch_a 0 0
+spr_arena_circle_a 0 0 arena_circle_a bo_arena_circle_a 0
 
 
 spr_town_house_r 0 0 town_house_r bo_town_house_r 0
 
 
-spr_town_house_r_E 0 0 town_house_r 0 0
+spr_house_extension_e 0 0 house_extension_e bo_house_extension_e 0
 
 
 spr_town_house_s 0 0 town_house_s bo_town_house_s 0
 
 
-spr_town_house_s_E 0 0 town_house_s 0 0
+spr_house_extension_f 0 0 house_extension_f bo_house_extension_f 0
 
 
 spr_town_house_t 0 0 town_house_t bo_town_house_t 0
 
 
-spr_town_house_t_E 0 0 town_house_t 0 0
+spr_house_extension_g 0 0 house_extension_g bo_house_extension_g 0
 
 
 spr_town_house_u 0 0 town_house_u bo_town_house_u 0
 
 
-spr_town_house_u_E 0 0 town_house_u 0 0
+spr_house_extension_h 0 0 house_extension_h bo_house_extension_h 0
 
 
 spr_town_house_v 0 0 town_house_v bo_town_house_v 0
 
 
-spr_town_house_v_E 0 0 town_house_v 0 0
+spr_house_extension_i 0 0 house_extension_i bo_house_extension_i 0
 
 
 spr_town_house_w 0 0 town_house_w bo_town_house_w 0
 
 
-spr_town_house_w_E 0 0 town_house_w 0 0
+spr_passage_house_d 0 0 passage_house_d bo_passage_house_d 0
 
 
 spr_town_house_y 0 0 town_house_y bo_town_house_y 0
 
 
-spr_town_house_y_E 0 0 town_house_y 0 0
+spr_brewery_pool 0 0 brewery_pool bo_brewery_pool 0
 
 
 spr_town_house_z 0 0 town_house_z bo_town_house_z 0
 
 
-spr_town_house_z_E 0 0 town_house_z 0 0
+spr_weavery_loom_a 0 0 weavery_loom_a bo_weavery_loom_a 0
 
 
 spr_windmill 0 0 windmill bo_windmill 0
 
 
-spr_windmill_E 0 0 windmill 0 0
+spr_weavery_spinning_wheel 0 0 weavery_spinning_wheel bo_weavery_spinning_wheel 0
 
 
 spr_windmill_fan_turning 65536 0 windmill_fan_turning bo_windmill_fan_turning 0
@@ -1373,7 +1371,7 @@ spr_windmill_fan_turning 65536 0 windmill_fan_turning bo_windmill_fan_turning 0
 spr_windmill_fan 0 0 windmill_fan bo_windmill_fan 0
 
 
-spr_windmill_fan_E 0 0 windmill_fan 0 0
+spr_winery_barrel_shelf 0 0 winery_barrel_shelf bo_winery_barrel_shelf 0
 
 
 spr_earth_wall_a 0 0 earth_wall_a bo_earth_wall_a 0
@@ -1385,61 +1383,61 @@ spr_earth_wall_b 0 0 earth_wall_b bo_earth_wall_b 0
 spr_earth_stairs_b 0 0 earth_stairs_b bo_earth_stairs_b 0
 
 
-spr_earth_stairs_b_E 0 0 earth_stairs_b 0 0
+spr_earth_stairs_a 0 0 earth_stairs_a bo_earth_stairs_a 0
+
+
+spr_earth_tower_small_b 0 0 earth_tower_small_b bo_earth_tower_small_b 0
 
 
 spr_earth_tower_small_a 0 0 earth_tower_small_a bo_earth_tower_small_a 0
 
 
-spr_earth_tower_small_a_E 0 0 earth_tower_small_a 0 0
-
-
 spr_earth_gate_house_a 0 0 earth_gate_house_a bo_earth_gate_house_a 0
 
 
-spr_earth_gate_house_a_E 0 0 earth_gate_house_a 0 0
+spr_earth_gate_house_b 0 0 earth_gate_house_b bo_earth_gate_house_b 0
 
 
 spr_earth_gate_a 0 0 earth_gate_a bo_earth_gate_a 0
 
 
-spr_earth_gate_a_E 0 0 earth_gate_a 0 0
+spr_earth_tower_a 0 0 earth_tower_a bo_earth_tower_a 0
 
 
 spr_earth_square_keep_a 0 0 earth_square_keep_a bo_earth_square_keep_a 0
 
 
-spr_earth_square_keep_a_E 0 0 earth_square_keep_a 0 0
+spr_earth_stairs_c 0 0 earth_stairs_c bo_earth_stairs_c 0
 
 
 spr_earth_house_a 0 0 earth_house_a bo_earth_house_a 0
 
 
-spr_earth_house_a_E 0 0 earth_house_a 0 0
+spr_earth_sally_gate_right 0 0 earth_sally_gate_right bo_earth_sally_gate_right 0
 
 
 spr_earth_house_b 0 0 earth_house_b bo_earth_house_b 0
 
 
-spr_earth_house_b_E 0 0 earth_house_b 0 0
+spr_siege_wall_a 0 0 siege_wall_a bo_siege_wall_a 0
 
 
 spr_earth_house_c 0 0 earth_house_c bo_earth_house_c 0
 
 
-spr_earth_house_c_E 0 0 earth_house_c 0 0
+spr_earth_wall_a2 0 0 earth_wall_a2 bo_earth_wall_a2 0
 
 
 spr_earth_house_d 0 0 earth_house_d bo_earth_house_d 0
 
 
-spr_earth_house_d_E 0 0 earth_house_d 0 0
+spr_earth_wall_b2 0 0 earth_wall_b2 bo_earth_wall_b2 0
 
 
 spr_town_house_aa 0 0 town_house_aa bo_town_house_aa 0
 
 
-spr_town_house_aa_E 0 0 town_house_aa 0 0
+spr_siege_large_shield_a 0 0 siege_large_shield_a bo_siege_large_shield_a 0
 
 
 spr_snowy_house_a 0 0 snowy_house_a bo_snowy_house_a 0
@@ -1481,49 +1479,49 @@ spr_snowy_trunks_a 0 0 snowy_trunks_a bo_snowy_trunks_a 0
 spr_square_stairs_a 0 0 square_stairs_a bo_square_stairs_a 0
 
 
-spr_square_stairs_a_E 0 0 square_stairs_a 0 0
+spr_square_extension_a 0 0 square_extension_a bo_square_extension_a 0
 
 
 spr_castle_courtyard_house_a 0 0 castle_courtyard_house_a bo_castle_courtyard_house_a 0
 
 
-spr_castle_courtyard_house_a_E 0 0 castle_courtyard_house_a 0 0
+spr_courtyard_gate_a 0 0 courtyard_entry_a bo_courtyard_entry_a 0
 
 
 spr_castle_courtyard_house_b 0 0 castle_courtyard_house_b bo_castle_courtyard_house_b 0
 
 
-spr_castle_courtyard_house_b_E 0 0 castle_courtyard_house_b 0 0
+spr_courtyard_gate_b 0 0 courtyard_entry_b bo_courtyard_entry_b 0
 
 
 spr_castle_courtyard_house_c 0 0 castle_courtyard_house_c bo_castle_courtyard_house_c 0
 
 
-spr_castle_courtyard_house_c_E 0 0 castle_courtyard_house_c 0 0
+spr_courtyard_gate_c 0 0 courtyard_entry_c bo_courtyard_entry_c 0
 
 
 spr_castle_courtyard_a 0 0 castle_courtyard_a bo_castle_courtyard_a 0
 
 
-spr_castle_courtyard_a_E 0 0 castle_courtyard_a 0 0
+spr_courtyard_gate_snowy 0 0 courtyard_entry_snowy bo_courtyard_entry_a 0
 
 
 spr_gatehouse_b 0 0 gatehouse_b bo_gatehouse_b 0
 
 
-spr_gatehouse_b_E 0 0 gatehouse_b 0 0
+spr_castle_e_battlement_a 0 0 castle_e_battlement_a bo_castle_e_battlement_a 0
 
 
 spr_castle_gaillard 0 0 castle_gaillard bo_castle_gaillard 0
 
 
-spr_castle_gaillard_E 0 0 castle_gaillard 0 0
+spr_castle_e_battlement_c 0 0 castle_e_battlement_c bo_castle_e_battlement_c 0
 
 
 spr_castle_e_tower 0 0 castle_e_tower bo_castle_e_tower 0
 
 
-spr_castle_e_tower_E 0 0 castle_e_tower 0 0
+spr_castle_e_battlement_a_destroyed 0 0 castle_e_battlement_a_destroyed bo_castle_e_battlement_a_destroyed 0
 
 
 spr_stand_thatched 0 0 stand_thatched bo_stand_thatched 0
@@ -1532,43 +1530,43 @@ spr_stand_thatched 0 0 stand_thatched bo_stand_thatched 0
 spr_arena_block_c 0 0 arena_block_c bo_arena_block_c 0
 
 
-spr_arena_block_c_E 0 0 arena_block_c 0 0
+spr_castle_e_corner 0 0 castle_e_corner bo_castle_e_corner 0
 
 
 spr_arena_block_f 0 0 arena_block_f bo_arena_block_def 0
 
 
-spr_arena_block_f_E 0 0 arena_block_f 0 0
+spr_castle_e_corner_b 0 0 castle_e_corner_b bo_castle_e_corner_b 0
 
 
 spr_arena_block_i 0 0 arena_block_i bo_arena_block_ghi 0
 
 
-spr_arena_block_i_E 0 0 arena_block_i 0 0
+spr_castle_e_corner_c 0 0 castle_e_corner_c bo_castle_e_corner_c 0
 
 
 spr_arena_palisade_a 0 0 arena_palisade_a_new bo_arena_palisade_a_new 0
 
 
-spr_arena_palisade_a_E 0 0 arena_palisade_a 0 0
+spr_castle_e_gate_house_a 0 0 castle_e_gate_house_a bo_castle_e_gate_house_a 0
 
 
 spr_arena_barrier_a 0 0 arena_barrier_a_new bo_arena_barrier_a_new 0
 
 
-spr_arena_barrier_a_E 0 0 arena_barrier_a_new 0 0
+spr_castle_e_keep_a 0 0 castle_e_keep_a bo_castle_e_keep_a 0
 
 
 spr_arena_barrier_b 0 0 arena_barrier_b_new bo_arena_barrier_bc_new 0
 
 
-spr_arena_barrier_b_E 0 0 arena_barrier_b_new 0 0
+spr_castle_e_house_a 0 0 castle_e_house_a bo_castle_e_house_a 0
 
 
 spr_arena_tower_c 0 0 arena_tower_c bo_arena_tower_abc 0
 
 
-spr_arena_tower_c_E 0 0 arena_tower_c 0 0
+spr_castle_e_house_b 0 0 castle_e_house_b bo_castle_e_house_b 0
 
 
 spr_arena_spectator_a 0 0 arena_spectator_a 0 0
@@ -1667,61 +1665,61 @@ spr_stone_ball 0 0 stone_ball 0 0
 spr_village_house_a 0 0 village_house_a bo_village_house_a 0
 
 
-spr_village_house_a_E 0 0 village_house_a 0 0
+spr_village_wall_manger 0 0 wall_manger_a bo_wall_manger_a 0
 
 
 spr_village_house_b 0 0 village_house_b bo_village_house_b 0
 
 
-spr_village_house_b_E 0 0 village_house_b 0 0
+spr_granary_a 0 0 granary_a bo_granary_a 0
 
 
 spr_village_house_c 0 0 village_house_c bo_village_house_c 0
 
 
-spr_village_house_c_E 0 0 village_house_c 0 0
+spr_full_stable_a 0 0 full_stable_a bo_full_stable_a 0
 
 
 spr_village_house_d 0 0 village_house_d bo_village_house_d 0
 
 
-spr_village_house_d_E 0 0 village_house_d 0 0
+spr_full_stable_b 0 0 full_stable_b bo_full_stable_b 0
 
 
 spr_farm_house_a 0 0 farm_house_a bo_farm_house_a 0
 
 
-spr_farm_house_a_E 0 0 farm_house_a 0 0
+spr_full_stable_c 0 0 full_stable_c bo_full_stable_c 0
 
 
 spr_farm_house_b 0 0 farm_house_b bo_farm_house_b 0
 
 
-spr_farm_house_b_E 0 0 farm_house_b 0 0
+spr_full_stable_d 0 0 full_stable_d bo_full_stable_d 0
 
 
 spr_farm_house_c 0 0 farm_house_c bo_farm_house_c 0
 
 
-spr_farm_house_c_E 0 0 farm_house_c 0 0
+spr_village_steppe_a 0 0 village_steppe_a bo_village_steppe_a 0
 
 
 spr_mountain_house_a 0 0 mountain_house_a bo_mountain_house_a 0
 
 
-spr_mountain_house_a_E 0 0 mountain_house_a 0 0
+spr_village_steppe_b 0 0 village_steppe_b bo_village_steppe_b 0
 
 
 spr_mountain_house_b 0 0 mountain_house_b bo_mountain_house_b 0
 
 
-spr_mountain_house_b_E 0 0 mountain_house_b 0 0
+spr_village_steppe_c 0 0 village_steppe_c bo_village_steppe_c 0
 
 
 spr_village_hut_a 0 0 village_hut_a bo_village_hut_a 0
 
 
-spr_village_hut_a_E 0 0 village_hut_a 0 0
+spr_village_steppe_d 0 0 village_steppe_d bo_village_steppe_d 0
 
 
 spr_crude_fence 0 0 fence bo_fence 0
@@ -1757,7 +1755,7 @@ spr_siege_ladder_14m 0 0 siege_ladder_evil_14m bo_siege_ladder_14m 0
 spr_portcullis 0 0 portcullis_a bo_portcullis_a 0
 
 
-spr_portcullis_E 0 0 portcullis_a 0 0
+spr_portcullis_new 0 0 portculis_new bo_portcullis_a 0
 
 
 spr_bed_a 0 0 bed_a bo_bed_a 0
@@ -1847,13 +1845,13 @@ spr_chain_10m 0 0 chain_10m 0 0
 spr_bridge_modular_a 0 0 bridge_modular_a bo_bridge_modular_a 0
 
 
-spr_bridge_modular_a_E 0 0 bridge_modular_a 0 0
+spr_village_steppe_e 0 0 village_steppe_e bo_village_steppe_e 0
 
 
 spr_bridge_modular_b 0 0 bridge_modular_b bo_bridge_modular_b 0
 
 
-spr_bridge_modular_b_E 0 0 bridge_modular_b 0 0
+spr_village_steppe_f 0 0 village_steppe_f bo_village_steppe_f 0
 
 
 spr_stone_step_a 0 0 floor_stone_a bo_floor_stone_a 0
@@ -2127,79 +2125,79 @@ spr_invisible_pillar 0 0 invisible_pillar bo_invisible_pillar 0
 spr_gon_castle_h_battlement_a 0 0 gon_castle_h_battlement_a bo_castle_h_battlement_a_tld 0
 
 
-spr_gon_castle_h_battlement_a_E 0 0 gon_castle_h_battlement_a 0 0
+spr_arabian_castle_battlement_a 0 0 arabian_castle_battlement_a bo_arabian_castle_battlement_a 0
 
 
 spr_gon_castle_h_battlement_b 0 0 gon_castle_h_battlement_b bo_castle_h_battlement_b 0
 
 
-spr_gon_castle_h_battlement_b_E 0 0 gon_castle_h_battlement_b 0 0
+spr_arabian_castle_battlement_b_destroyed 0 0 arabian_castle_battlement_b_destroyed bo_arabian_castle_battlement_b_destroyed 0
 
 
 spr_gon_castle_h_battlement_a2 0 0 gon_castle_h_battlement_a2 bo_castle_h_battlement_a_tld 0
 
 
-spr_gon_castle_h_battlement_a2_E 0 0 gon_castle_h_battlement_a2 0 0
+spr_arabian_castle_battlement_c 0 0 arabian_castle_battlement_c bo_arabian_castle_battlement_c 0
 
 
 spr_gon_castle_h_battlement_b2 0 0 gon_castle_h_battlement_b2 bo_castle_h_battlement_b2 0
 
 
-spr_gon_castle_h_battlement_b2_E 0 0 gon_castle_h_battlement_b2 0 0
+spr_arabian_castle_battlement_d 0 0 arabian_castle_battlement_d bo_arabian_castle_battlement_d 0
 
 
 spr_gon_castle_h_corner_a 0 0 gon_castle_h_corner_a bo_castle_h_corner_a 0
 
 
-spr_gon_castle_h_corner_a_E 0 0 gon_castle_h_corner_a 0 0
+spr_arabian_castle_corner_a 0 0 arabian_castle_corner_a bo_arabian_castle_corner_a 0
 
 
 spr_gon_castle_h_stairs_a 0 0 gon_castle_h_stairs_a bo_castle_h_stairs_a_tld 0
 
 
-spr_gon_castle_h_stairs_a_E 0 0 gon_castle_h_stairs_a 0 0
+spr_arabian_castle_stairs 11 0 arabian_castle_stairs bo_arabian_castle_stairs 0
 
 
 spr_gon_castle_h_stairs_b 0 0 gon_castle_h_stairs_b bo_castle_h_stairs_b 0
 
 
-spr_gon_castle_h_stairs_b_E 0 0 gon_castle_h_stairs_b 0 0
+spr_arabian_castle_stairs_b 11 0 arabian_castle_stairs_b bo_arabian_castle_stairs_b 0
 
 
 spr_gon_castle_h_gatehouse_a 0 0 gon_castle_h_gatehouse_a bo_castle_h_gatehouse_a_tld 0
 
 
-spr_gon_castle_h_gatehouse_a_E 0 0 gon_castle_h_gatehouse_a 0 0
+spr_arabian_castle_stairs_c 11 0 arabian_castle_stairs_c bo_arabian_castle_stairs_c 0
 
 
 spr_gon_castle_h_keep_a 0 0 gon_castle_h_keep_a bo_castle_h_keep_a 0
 
 
-spr_gon_castle_h_keep_a_E 0 0 gon_castle_h_keep_a 0 0
+spr_arabian_castle_battlement_section_a 0 0 arabian_castle_battlement_section_a bo_arabian_castle_battlement_section_a 0
 
 
 spr_gon_castle_h_keep_b 0 0 gon_castle_h_keep_b bo_castle_h_keep_b 0
 
 
-spr_gon_castle_h_keep_b_E 0 0 gon_castle_h_keep_b 0 0
+spr_arabian_castle_gate_house_a 0 0 arabian_castle_gate_house_a bo_arabian_castle_gate_house_a 0
 
 
 spr_gon_castle_h_house_a 0 0 gon_castle_h_house_a bo_castle_h_house_a 0
 
 
-spr_gon_castle_h_house_a_E 0 0 gon_castle_h_house_a 0 0
+spr_arabian_castle_house_a 0 0 arabian_castle_house_a bo_arabian_castle_house_a 0
 
 
 spr_gon_castle_h_house_b 0 0 gon_castle_h_house_b bo_castle_h_house_b 0
 
 
-spr_gon_castle_h_house_b_E 0 0 gon_castle_h_house_b 0 0
+spr_arabian_castle_house_b 0 0 arabian_castle_house_b bo_arabian_castle_house_b 0
 
 
 spr_gon_castle_h_house_c 0 0 gon_castle_h_house_c bo_castle_h_house_b 0
 
 
-spr_gon_castle_h_house_c_E 0 0 gon_castle_h_house_c 0 0
+spr_arabian_castle_keep_a 0 0 arabian_castle_keep_a bo_arabian_castle_keep_a 0
 
 
 spr_gon_castle_h_battlement_barrier 0 0 gon_castle_h_battlement_barrier bo_castle_h_battlement_barrier 0
@@ -2692,7 +2690,7 @@ spr_evil_gondor_gate_tower 0 0 mt_gate_tower_evil bo_mt_tower 0
 
 
 spr_evil_gondor_gate_house 0 0 mt_gate_house_evil bo_mt_gate_house_evil 1
--40  6 4 0 2273 0 1798 2 450 469277 5 0 1798 2 700 5091469 3 0 
+-40  13 4 0 2273 0 31 2 144115188075856587 1 1798 2 450 469277 5 0 2273 0 1798 2 200 469277 2391 3 40 40 50 2390 3 5 5 10 2392 3 25 25 25 5 0 1798 2 700 5091469 3 0 
 
 
 spr_gondor_mt_bridge_modular_a 0 0 mt_bridge_modular_a bo_bridge_modular_a 0
@@ -2758,55 +2756,55 @@ spr_gondor_mt_stairs_arch_a_E 0 0 mt_stairs_arch_a 0 0
 spr_gondor_mt_town_house_a 0 0 mt_town_house_a bo_town_house_a 0
 
 
-spr_gondor_mt_town_house_a_E 0 0 mt_town_house_a 0 0
+spr_town_house_steppe_a 0 0 town_house_steppe_a bo_town_house_steppe_a 0
 
 
 spr_gondor_mt_town_house_b 0 0 mt_town_house_b bo_town_house_b 0
 
 
-spr_gondor_mt_town_house_b_E 0 0 mt_town_house_b 0 0
+spr_town_house_steppe_b 0 0 town_house_steppe_b bo_town_house_steppe_b 0
 
 
 spr_gondor_mt_town_house_c 0 0 mt_town_house_c bo_town_house_c 0
 
 
-spr_gondor_mt_town_house_c_E 0 0 mt_town_house_c 0 0
+spr_town_house_steppe_c 0 0 town_house_steppe_c bo_town_house_steppe_c 0
 
 
 spr_gondor_mt_town_house_d 0 0 mt_town_house_d bo_town_house_d 0
 
 
-spr_gondor_mt_town_house_d_E 0 0 mt_town_house_d 0 0
+spr_town_house_steppe_d 0 0 town_house_steppe_d bo_town_house_steppe_d 0
 
 
 spr_gondor_mt_town_house_f 0 0 mt_town_house_f bo_town_house_f 0
 
 
-spr_gondor_mt_town_house_f_E 0 0 mt_town_house_f 0 0
+spr_town_house_steppe_e 0 0 town_house_steppe_e bo_town_house_steppe_e 0
 
 
 spr_gondor_mt_town_house_h 0 0 mt_town_house_h bo_town_house_h 0
 
 
-spr_gondor_mt_town_house_h_E 0 0 mt_town_house_h 0 0
+spr_town_house_steppe_f 0 0 town_house_steppe_f bo_town_house_steppe_f 0
 
 
 spr_gondor_mt_town_house_i 0 0 mt_town_house_i bo_town_house_i 0
 
 
-spr_gondor_mt_town_house_i_E 0 0 mt_town_house_i 0 0
+spr_town_house_steppe_g 0 0 town_house_steppe_g bo_town_house_steppe_g 0
 
 
 spr_gondor_mt_town_house_j 0 0 mt_town_house_j bo_town_house_j 0
 
 
-spr_gondor_mt_town_house_j_E 0 0 mt_town_house_j 0 0
+spr_town_house_steppe_h 0 0 town_house_steppe_h bo_town_house_steppe_h 0
 
 
 spr_gondor_mt_town_house_l 0 0 mt_town_house_l bo_town_house_l 0
 
 
-spr_gondor_mt_town_house_l_E 0 0 mt_town_house_l 0 0
+spr_town_house_steppe_i 0 0 town_house_steppe_i bo_town_house_steppe_i 0
 
 
 spr_gondor_mt_wall 0 0 mt_wall bo_mt_wall 0
@@ -2974,13 +2972,13 @@ spr_pel_lighthouse 0 0 pel_lighthouse 0 0
 spr_gondor_tower_b_vp 0 0 gondor_tower_b_color bo_gondor_tower_b 0
 
 
-spr_gondor_tower_b_vp_E 0 0 gondor_tower_b_color 0 0
+spr_arabian_ramp_a 0 0 arabian_ramp_a bo_arabian_ramp_a 0
 
 
 spr_gondor_ship_vp 0 0 gondor_ship_color bo_gondor_ship 0
 
 
-spr_gondor_ship_vp_E 0 0 gondor_ship_color 0 0
+spr_arabian_ramp_b 0 0 arabian_ramp_b bo_arabian_ramp_b 0
 
 
 spr_gondor_ship_oars 0 0 gondor_ship_oars 0 0
@@ -3113,7 +3111,7 @@ spr_rohan_long_stair_E 0 0 rohan_long_stair 0 0
 spr_rohan_wall 0 0 rohan_wall_curved bo_rohan_wall_curved 0
 
 
-spr_rohan_wall_E 0 0 rohan_wall 0 0
+spr_rohan_wall_straight 0 0 rohan_wall bo_rohan_wall 0
 
 
 spr_HD 0 0 helms_deep bo_helms_deep 0
@@ -3137,7 +3135,7 @@ spr_Village_fire_big_no_smoke 0 0 0 0 1
 
 spr_gate_destructible 32768 4000 gate_tld bo_gate_tld 3
 -40  19 2071 1 1224979098644774912 1841 2 1224979098644774913 1224979098644774912 4 0 32 2 1224979098644774913 0 2107 2 1224979098644774913 100 1814 2 1224979098644774912 1224979098644774913 3 0 31 2 144115188075856128 1 1851 2 1 1224979098644774912 2124 1 100 722 3 1 100 1 1970 1 1 1972 1 889 2133 2 1224979098644774914 72057594037927936 1736 2 1224979098644774914 0 1771 2 1224979098644774914 2 1762 2 1224979098644774914 1 1733 2 1224979098644774914 1 510 3 1224979098644774912 1 1224979098644774914 
--43  23 2071 1 1224979098644774912 1851 2 1 1224979098644774912 1969 3 6 1 40 1969 3 29 1 30 723 2 1 85 1860 3 1224979098644774912 1 400 600 1 142 1106 1 1585267068834414594 530 3 1224979098644774913 1224979098644774912 1 1 2 188 1224979098644774913 1810 2 1224979098644774914 1505 4 0 32 2 1224979098644774914 0 6 3 1224979098644774915 0 1224979098644774914 1811 3 1224979098644774916 1505 1224979098644774915 1851 2 1 1224979098644774916 1840 2 1224979098644774917 1224979098644774916 1840 2 1224979098644774918 1224979098644774912 31 2 1224979098644774917 1224979098644774918 722 2 1 -10000 1855 2 1224979098644774916 1 3 0 3 0 
+-43  23 2071 1 1224979098644774912 1851 2 1 1224979098644774912 1969 3 6 1 40 1969 3 29 1 30 723 2 1 -90 1860 3 1224979098644774912 1 400 600 1 142 1106 1 1585267068834414594 530 3 1224979098644774913 1224979098644774912 1 1 2 188 1224979098644774913 1810 2 1224979098644774914 1505 4 0 32 2 1224979098644774914 0 6 3 1224979098644774915 0 1224979098644774914 1811 3 1224979098644774916 1505 1224979098644774915 1851 2 1 1224979098644774916 1840 2 1224979098644774917 1224979098644774916 1840 2 1224979098644774918 1224979098644774912 31 2 1224979098644774917 1224979098644774918 722 2 1 -10000 1855 2 1224979098644774916 1 3 0 3 0 
 -42  3 600 1 141 1969 3 29 1 3 1969 3 30 1 10 
 
 
@@ -3452,16 +3450,16 @@ spr_tree1_beech_d 0 0 beech_d bo_beech_d 0
 spr_tree1_beech_e 0 0 beech_e bo_beech_e 0
 
 
-spr_tree1_tree_12_a 0 0 tree_12_a bo_tree_12_a 0
-
-
-spr_tree1_tree_12_b 0 0 tree_12_b bo_tree_12_b 0
-
-
-spr_tree1_tree_12_c 0 0 tree_12_c bo_tree_12_c 0
-
-
 spr_trees_end 0 0 spike_a 0 0
+
+
+spr_fireplace_d_interior 0 0 fireplace_d bo_fireplace_d 0
+
+
+spr_harbour_a 0 0 harbour_a bo_harbour_a 0
+
+
+spr_ramp_small_a 0 0 ramp_small_a bo_ramp_small_a 0
 
 
 spr_football_ball 0 0 stone_ball 0 0
@@ -3852,24 +3850,34 @@ spr_isen_good_ring_10 0 0 isen_good_ring_10 bo_isen_good_ring_10 0
 spr_isen_isengard_throne 0 0 isengard_throne bo_isengard_throne 0
 
 
-spr_dead_marshes_a 0 0 dead_a 0 1
--40  2 1955 3 0 0 47 1965 1 27 
+spr_dead_marshes_a 65536 0 deadmarshes_1 0 3
+-40  2 2071 1 1224979098644774912 1813 2 1224979098644774912 0 
+-45  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 1850 2 6 1224979098644774912 722 3 6 200 1 728 2 1224979098644774913 6 32 2 1224979098644774913 0 1969 3 27 6 3 
+-46  12 2071 1 1224979098644774912 4 0 550 3 1224979098644774912 0 0 510 3 1224979098644774912 0 1 1969 3 27 6 60 2124 1 100 1850 2 6 1224979098644774912 722 2 6 -100 1860 3 1224979098644774912 6 700 5 0 1813 2 1224979098644774912 0 3 0 
 
 
-spr_dead_marshes_b 0 0 dead_b 0 1
--40  2 1955 3 0 0 47 1965 1 27 
+spr_dead_marshes_b 65536 0 deadmarshes_2 0 3
+-40  2 2071 1 1224979098644774912 1813 2 1224979098644774912 0 
+-45  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 1850 2 6 1224979098644774912 722 3 6 200 1 728 2 1224979098644774913 6 32 2 1224979098644774913 0 1969 3 27 6 3 
+-46  12 2071 1 1224979098644774912 4 0 550 3 1224979098644774912 0 0 510 3 1224979098644774912 0 1 1969 3 27 6 60 2124 1 100 1850 2 6 1224979098644774912 722 2 6 -100 1860 3 1224979098644774912 6 700 5 0 1813 2 1224979098644774912 0 3 0 
 
 
-spr_dead_marshes_c 0 0 dead_c 0 1
--40  2 1955 3 0 0 47 1965 1 27 
+spr_dead_marshes_c 65536 0 deadmarshes_3 0 3
+-40  2 2071 1 1224979098644774912 1813 2 1224979098644774912 0 
+-45  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 1850 2 6 1224979098644774912 722 3 6 200 1 728 2 1224979098644774913 6 32 2 1224979098644774913 0 1969 3 27 6 3 
+-46  12 2071 1 1224979098644774912 4 0 550 3 1224979098644774912 0 0 510 3 1224979098644774912 0 1 1969 3 27 6 60 2124 1 100 1850 2 6 1224979098644774912 722 2 6 -100 1860 3 1224979098644774912 6 700 5 0 1813 2 1224979098644774912 0 3 0 
 
 
-spr_dead_marshes_d 0 0 dead_d 0 1
--40  2 1955 3 0 0 47 1965 1 27 
+spr_dead_marshes_d 65536 0 deadmarshes_4 0 3
+-40  2 2071 1 1224979098644774912 1813 2 1224979098644774912 0 
+-45  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 1850 2 6 1224979098644774912 722 3 6 200 1 728 2 1224979098644774913 6 32 2 1224979098644774913 0 1969 3 27 6 3 
+-46  12 2071 1 1224979098644774912 4 0 550 3 1224979098644774912 0 0 510 3 1224979098644774912 0 1 1969 3 27 6 60 2124 1 100 1850 2 6 1224979098644774912 722 2 6 -100 1860 3 1224979098644774912 6 700 5 0 1813 2 1224979098644774912 0 3 0 
 
 
-spr_dead_marshes_e 0 0 dead_e 0 1
--40  2 1955 3 0 0 47 1965 1 27 
+spr_dead_marshes_e 65536 0 deadmarshes_5 0 3
+-40  2 2071 1 1224979098644774912 1813 2 1224979098644774912 0 
+-45  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 1850 2 6 1224979098644774912 722 3 6 200 1 728 2 1224979098644774913 6 32 2 1224979098644774913 0 1969 3 27 6 3 
+-46  12 2071 1 1224979098644774912 4 0 550 3 1224979098644774912 0 0 510 3 1224979098644774912 0 1 1969 3 27 6 60 2124 1 100 1850 2 6 1224979098644774912 722 2 6 -100 1860 3 1224979098644774912 6 700 5 0 1813 2 1224979098644774912 0 3 0 
 
 
 spr_isen_wood_construction_b 0 0 isen_wood_construction_b bo_isen_wood_construction_b 0
@@ -4183,7 +4191,7 @@ spr_elf_treehouse 0 0 elf_treehouse bo_elf_treehouse 0
 spr_rohan_woodstairs 0 0 rohan_woodstairs bo_rohan_woodstairs 0
 
 
-spr_rohan_woodstairs_E 0 0 rohan_woodstairs 0 0
+spr_arabian_lighthouse_a 0 0 arabian_lighthouse_a bo_arabian_lighthouse_a 0
 
 
 spr_thranduil_hall_entrance 0 0 thranduil_hall_entrance bo_thranduil_hall_entrance 0
@@ -5821,19 +5829,19 @@ spr_Dale_Bell 0 0 Dale_bell 0 0
 spr_village_wall 0 0 village_wall bo_village_wall 0
 
 
-spr_well_shaft 0 0 well_shaft bo_well_shaft 0
+spr_well_shaft 0 0 well_shaft_new bo_well_shaft 0
 
 
-spr_small_wall_f 0 0 small_wall_f bo_small_wall_f 0
+spr_small_wall_f 0 0 small_wall_f_new bo_small_wall_f 0
 
 
-spr_small_wall_f2 0 0 small_wall_f2 bo_small_wall_f2 0
+spr_small_wall_f2 0 0 small_wall_f2_new bo_small_wall_f2 0
 
 
-spr_gon_small_wall_a_1 0 0 arabian_wall_a bo_arabian_wall_a 0
+spr_gon_small_wall_a_1 0 0 arabian_wall_a_gon bo_arabian_wall_a 0
 
 
-spr_stairs_a 0 0 stairs_a bo_stairs_a 0
+spr_stairs_a 0 0 stairs_a_new bo_stairs_a 0
 
 
 spr_animal_goat 16384 0 bry_goat 0 1
@@ -5857,19 +5865,19 @@ spr_animal_aurochs 16384 0 spak_yak1 0 1
 
 
 spr_animal_wolf 16384 0 wolf 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 969 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 0 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 970 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 0 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
 
 
 spr_animal_bear 16384 0 bear 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 968 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 579 505 3 72057594037927936 15 279 505 3 72057594037927936 16 279 505 3 72057594037927936 17 15 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 969 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 579 505 3 72057594037927936 15 279 505 3 72057594037927936 16 279 505 3 72057594037927936 17 15 
 
 
 spr_animal_spider 16384 0 arrow_helper_blue 0 1
--40  4 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 510 3 1224979098644774912 3 967 
+-40  4 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 510 3 1224979098644774912 3 968 
 
 
 spr_animal_werewolf 16384 0 mm_warg_a 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 970 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 580 505 3 72057594037927936 15 0 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 971 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 580 505 3 72057594037927936 15 0 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
 
 
 spr_animal_sheep 16384 0 CWE_sheep_mod_a 0 1
@@ -5877,7 +5885,7 @@ spr_animal_sheep 16384 0 CWE_sheep_mod_a 0 1
 
 
 spr_animal_horse 16384 0 CWE_horse_light_a 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 972 1224979098644774913 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 263 505 3 72057594037927936 17 5 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 973 1224979098644774913 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 263 505 3 72057594037927936 17 5 
 
 
 spr_rock_cliff_k_bb 0 0 beefbacon_cliff_01 bo_terrain_cliff_01 0
@@ -6030,7 +6038,7 @@ spr_gon_well_d_cwe 0 0 damask_kolodec_d bo_damask_kolodec_d 0
 spr_gon_well_e_cwe 0 0 df bo_df 0
 
 
-spr_gon_well_f 0 0 fountain bo_fountain 0
+spr_gon_well_f 0 0 fountain_gon bo_fountain 0
 
 
 spr_gondor_palace_cwe 0 0 cwe_royal_Palace_a bo_cwe_royal_Palace_a 0
@@ -6150,7 +6158,8 @@ spr_mordor_clouds_2 69632 0 skybox_cloud_overlay_2 0 0
 spr_mordor_clouds_3 69632 0 skybox_cloud_overlay_3 0 0
 
 
-spr_gate_destructible_retreat 98304 2500 gate_tld_displaced bo_gate_tld_displaced 2
+spr_gate_destructible_retreat 98304 2500 gate_tld_displaced bo_gate_tld_displaced 3
+-40  8 2071 1 1224979098644774912 255 0 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414599 1106 1 1585267068834414598 
 -43  25 2071 1 1224979098644774912 2124 1 100 510 3 1224979098644774912 0 2 1851 2 1 1224979098644774912 1969 3 6 1 40 1969 3 29 1 30 723 2 1 -180 1860 3 1224979098644774912 1 400 600 1 142 1106 1 1585267068834414594 530 3 1224979098644774913 1224979098644774912 1 1 2 188 1224979098644774913 1810 2 1224979098644774914 1505 4 0 32 2 1224979098644774914 0 6 3 1224979098644774915 0 1224979098644774914 1811 3 1224979098644774916 1505 1224979098644774915 1851 2 1 1224979098644774916 1840 2 1224979098644774917 1224979098644774916 1840 2 1224979098644774918 1224979098644774912 31 2 1224979098644774917 1224979098644774918 722 2 1 -10000 1855 2 1224979098644774916 1 3 0 3 0 
 -42  3 600 1 141 1969 3 29 1 3 1969 3 30 1 10 
 
@@ -6252,27 +6261,27 @@ spr_barrier_2m_horizontal 16393 0 barrier_2m_horizontal bo_barrier_2m_horizontal
 
 
 spr_troop_work_wood_hacker_1h 0 0 prop_wood_chopper bo_prop_wood_chopper 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -95 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 949 1 1747 2 72057594037927936 949 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -95 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 950 1 1747 2 72057594037927936 950 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
 -42  16 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 1500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 141 1969 3 29 1 2 1969 3 30 1 10 
 
 
 spr_troop_work_wood_hacker_2h 0 0 prop_wood_chopper bo_prop_wood_chopper 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -130 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 950 1 1747 2 72057594037927936 950 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -130 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 951 1 1747 2 72057594037927936 951 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
 -42  16 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 1500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 141 1969 3 29 1 2 1969 3 30 1 10 
 
 
 spr_troop_work_tree_feller 0 0 wood_a bo_wood_a_bigger 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -160 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 950 1 1747 2 72057594037927936 950 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -160 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 951 1 1747 2 72057594037927936 951 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
 -42  16 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 1500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 141 1969 3 29 1 2 1969 3 30 1 10 
 
 
 spr_troop_work_miner 0 0 PW_rock_a bo_PW_rock_a 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -150 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 954 1 1747 2 72057594037927936 954 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -150 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 955 1 1747 2 72057594037927936 955 1744 2 72057594037927936 2 505 3 72057594037927936 12 5 
 -42  2 600 1 21 1969 3 29 1 3 
 
 
 spr_troop_smith 0 0 prop_smith bo_prop_smith 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 720 3 2 -100 0 1970 1 2 2204 2 1224979098644774913 144115188075856029 522 3 1224979098644774914 1224979098644774913 41 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 948 1 1747 2 72057594037927936 948 1744 2 72057594037927936 1 1730 4 72057594037927936 2 0 1 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 720 3 2 -100 0 1970 1 2 2204 2 1224979098644774913 144115188075856029 522 3 1224979098644774914 1224979098644774913 41 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 949 1 1747 2 72057594037927936 949 1744 2 72057594037927936 1 1730 4 72057594037927936 2 0 1 505 3 72057594037927936 12 5 
 -42  16 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 3500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 13 1969 3 13 1 3 1969 3 19 1 10 
 
 
@@ -6281,17 +6290,17 @@ spr_troop_smith_helper 16384 0 defend_twohanded_WB_frame bo_defend_twohanded_WB_
 
 
 spr_troop_work_hammer 0 0 prop_hammerer bo_prop_hammerer 2
--40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -90 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 948 1 1747 2 72057594037927936 948 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
+-40  23 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -90 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 1779 3 72057594037927936 949 1 1747 2 72057594037927936 949 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
 -42  15 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 1500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 102 1969 3 29 1 1 
 
 
 spr_troop_work_farmer_mattock 0 0 earth_heap bo_earth_heap 2
--40  25 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -100 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 2136 3 1224979098644774917 0 3 2105 2 1224979098644774917 951 1779 3 72057594037927936 1224979098644774917 1 1747 2 72057594037927936 1224979098644774917 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
+-40  25 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -100 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1762 2 72057594037927936 1 2136 3 1224979098644774917 0 3 2105 2 1224979098644774917 952 1779 3 72057594037927936 1224979098644774917 1 1747 2 72057594037927936 1224979098644774917 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
 -42  16 2071 1 1224979098644774912 2124 1 100 1840 2 1224979098644774913 1224979098644774912 4 0 30 2 1224979098644774913 1 2122 3 1224979098644774914 1224979098644774913 100 5 0 2133 2 1224979098644774914 1500 3 0 1700 1 1224979098644774915 1710 2 4 1224979098644774915 710 3 1224979098644774916 1 4 2147483680 2 1224979098644774916 1224979098644774914 600 1 116 1969 3 29 1 3 1969 3 30 1 10 
 
 
 spr_troop_work_farmer_shovel 0 0 earth_heap bo_earth_heap 2
--40  22 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -120 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1779 3 72057594037927936 955 1 1747 2 72057594037927936 955 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
+-40  22 2071 1 1224979098644774912 2124 1 100 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 700 2 2 1 721 3 2 -120 0 1970 1 2 2136 3 1224979098644774913 0 2 2105 2 1224979098644774913 160 521 3 1224979098644774914 144115188075856029 1224979098644774913 1972 1 1224979098644774914 510 3 1224979098644774912 1 72057594037927936 6 3 1224979098644774915 0 5 1804 3 1224979098644774916 72057594037927936 1224979098644774915 32 2 1224979098644774916 1 2147486371 2 1224979098644774916 536870912 1774 3 72057594037927936 1224979098644774916 1224979098644774915 3 0 1779 3 72057594037927936 956 1 1747 2 72057594037927936 956 1744 2 72057594037927936 1 505 3 72057594037927936 12 5 
 -42  7 2124 1 100 1700 1 1224979098644774912 1710 2 4 1224979098644774912 710 3 1224979098644774913 1 4 2147483680 2 1224979098644774913 1500 1969 3 29 1 3 1969 3 30 1 10 
 
 
@@ -6317,19 +6326,19 @@ spr_troop_civ_cheer 16384 0 arrow_helper_blue 0 1
 
 
 spr_troop_priest 16384 0 arrow_helper_blue 0 1
--40  19 2071 1 1224979098644774912 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 1970 1 1 1972 1 886 1771 2 72057594037927936 0 2136 3 72057594037927942 0 100 1743 2 72057594037927936 72057594037927942 505 3 72057594037927936 12 5 510 3 1224979098644774912 1 72057594037927936 1807 2 72057594037927936 1 6 3 1224979098644774913 0 9 1804 3 1224979098644774914 72057594037927936 1224979098644774913 32 2 1224979098644774914 1 1774 3 72057594037927936 1224979098644774914 1224979098644774913 3 0 1779 3 72057594037927936 956 5 1779 3 72057594037927936 111 4 1779 3 72057594037927936 104 6 
+-40  19 2071 1 1224979098644774912 2147483678 2 144115188075856307 0 1850 2 1 1224979098644774912 1970 1 1 1972 1 886 1771 2 72057594037927936 0 2136 3 72057594037927942 0 100 1743 2 72057594037927936 72057594037927942 505 3 72057594037927936 12 5 510 3 1224979098644774912 1 72057594037927936 1807 2 72057594037927936 1 6 3 1224979098644774913 0 9 1804 3 1224979098644774914 72057594037927936 1224979098644774913 32 2 1224979098644774914 1 1774 3 72057594037927936 1224979098644774914 1224979098644774913 3 0 1779 3 72057594037927936 957 5 1779 3 72057594037927936 111 4 1779 3 72057594037927936 104 6 
 
 
 spr_sound_emitter_var1x10_plus_var2_scalable 16384 0 collision_cube 0 1
--40  7 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414599 1106 1 1585267068834414598 
+-40  7 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414600 1106 1 1585267068834414598 
 
 
 spr_sound_emitter_ambient_var1x10_plus_var2_scalable 16384 0 collision_cube 0 1
--40  8 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414599 1106 1 1585267068834414600 1106 1 1585267068834414598 
+-40  8 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414600 1106 1 1585267068834414601 1106 1 1585267068834414598 
 
 
 spr_sound_emitter_occasional_var1x10_plus_var2_scalable 16384 0 collision_cube 0 1
--40  8 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414601 1106 1 1585267068834414602 1106 1 1585267068834414603 
+-40  8 2071 1 1224979098644774912 2124 1 10000 1852 2 2 1224979098644774912 735 2 1224979098644774913 2 31 2 1224979098644774913 10000 1106 1 1585267068834414602 1106 1 1585267068834414603 1106 1 1585267068834414604 
 
 
 spr_sound_fire_big 16384 0 collision_cube 0 1
@@ -6344,7 +6353,7 @@ spr_secret_point_of_interest 16384 0 sphere_1m 0 1
 
 
 spr_secret_guardian 16384 0 arrow_helper_blue 0 1
--40  19 2147483678 2 144115188075856307 0 2071 1 1224979098644774912 1841 2 1224979098644774913 1224979098644774912 4 0 32 2 1224979098644774913 1 2133 2 1224979098644774914 1224979098644774913 5 0 521 3 1224979098644774914 144115188075856029 252 3 0 1850 2 1 1224979098644774912 1970 1 1 1972 1 1224979098644774914 2133 2 1224979098644774915 72057594037927936 1771 2 1224979098644774915 0 1741 2 1224979098644774915 0 2136 3 72057594037927942 0 100 1743 2 1224979098644774915 72057594037927942 510 3 1224979098644774912 1 1224979098644774915 505 3 1224979098644774915 8 1 
+-40  34 2147483678 2 144115188075856307 0 2071 1 1224979098644774912 1841 2 1224979098644774913 1224979098644774912 4 0 32 2 1224979098644774913 1 2133 2 1224979098644774914 1224979098644774913 5 0 521 3 1224979098644774914 144115188075856029 252 3 0 1850 2 1 1224979098644774912 1970 1 1 1972 1 1224979098644774914 2133 2 1224979098644774915 72057594037927936 4 0 1714 2 1224979098644774916 72057594037927936 32 2 1224979098644774916 0 1755 1 1224979098644774916 2096 2 1224979098644774916 0 3 0 1771 2 1224979098644774915 0 1741 2 1224979098644774915 0 2136 3 72057594037927942 0 100 1743 2 1224979098644774915 72057594037927942 510 3 1224979098644774912 1 1224979098644774915 505 3 1224979098644774915 8 1 2124 1 10000 1852 2 1 1224979098644774912 737 2 1224979098644774917 1 4 0 31 2 1224979098644774917 10000 255 0 1106 1 1585267068834414605 1106 1 1585267068834414598 3 0 
 
 
 spr_rock_bridge 0 0 rock_bridge_tld bo_rock_bridge_tld 0
@@ -6363,7 +6372,7 @@ spr_basket_cloth 0 0 basket_cloth bo_apple_basket 0
 
 
 spr_animal_dog 16384 0 wolf_dog 0 1
--40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 971 4 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 559 505 3 72057594037927936 14 579 505 3 72057594037927936 15 144 505 3 72057594037927936 16 210 
+-40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 972 4 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 559 505 3 72057594037927936 14 579 505 3 72057594037927936 15 144 505 3 72057594037927936 16 210 
 
 
 spr_animal_pig 16384 0 pk_pig 0 1
@@ -6371,11 +6380,11 @@ spr_animal_pig 16384 0 pk_pig 0 1
 
 
 spr_animal_boar 16384 0 boar 0 1
--40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 976 5 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 147 505 3 72057594037927936 16 0 
+-40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 977 5 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 147 505 3 72057594037927936 16 0 
 
 
 spr_animal_boar_big 16384 0 boar 0 1
--40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 977 5 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 279 505 3 72057594037927936 16 186 
+-40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 978 5 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 579 505 3 72057594037927936 15 279 505 3 72057594037927936 16 186 
 
 
 spr_animal_chicken 0 0 scla_kura_combine 0 1
@@ -6383,28 +6392,28 @@ spr_animal_chicken 0 0 scla_kura_combine 0 1
 
 
 spr_animal_pony 16384 0 CWE_horse_light_a 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 973 1224979098644774913 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 261 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 974 1224979098644774913 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 261 
 
 
 spr_animal_deer 16384 0 scla_reddeer 0 1
--40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 974 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 579 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 0 
+-40  11 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 975 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 579 505 3 72057594037927936 14 0 505 3 72057594037927936 15 128 505 3 72057594037927936 16 0 
 
 
 spr_animal_camel 16384 0 giles_evil_camel_brown 0 1
--40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 975 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 0 505 3 72057594037927936 15 0 505 3 72057594037927936 16 284 
+-40  12 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 1973 2 976 0 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 0 505 3 72057594037927936 14 0 505 3 72057594037927936 15 0 505 3 72057594037927936 15 0 505 3 72057594037927936 16 284 
 
 
 spr_animal_rat 0 0 earth_heap 0 1
--40  4 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 510 3 1224979098644774912 3 978 
+-40  4 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 510 3 1224979098644774912 3 979 
 
 
 spr_animal_warg 16384 0 warg_1B 0 1
--40  13 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 979 1224979098644774913 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 579 505 3 72057594037927936 15 210 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
+-40  13 2071 1 1224979098644774912 1850 2 1 1224979098644774912 1970 1 1 2136 3 1224979098644774913 1 4 1973 2 980 1224979098644774913 1741 2 72057594037927936 553 510 3 1224979098644774912 1 72057594037927936 505 3 72057594037927936 9 1224979098644774912 505 3 72057594037927936 13 580 505 3 72057594037927936 14 579 505 3 72057594037927936 15 210 505 3 72057594037927936 16 210 505 3 72057594037927936 17 15 
 
 
-spr_fellbeast 327680 0 Fellbeast_FlyAnim bo_woron_flight 2
--40  10 2071 1 1224979098644774912 2136 3 1224979098644774913 0 16 2610 2 1224979098644774912 1224979098644774913 2107 2 1224979098644774913 200 510 3 1224979098644774912 39 1224979098644774913 510 3 1224979098644774912 43 11 2612 4 1224979098644774912 0 35 1500 510 3 1224979098644774912 5 50 510 3 1224979098644774912 6 500 2133 2 144115188075856118 1224979098644774912 
--42  23 2071 1 1224979098644774912 2072 1 1224979098644774913 550 3 1224979098644774912 41 2 530 3 1224979098644774914 1224979098644774912 5 2106 2 1224979098644774914 1224979098644774913 510 3 1224979098644774912 5 1224979098644774914 530 3 1224979098644774915 1224979098644774912 6 2106 2 1224979098644774915 1224979098644774913 510 3 1224979098644774912 6 1224979098644774915 1969 3 29 1 3 1969 3 30 1 10 2147483678 2 1224979098644774914 1 1881 2 1224979098644774912 205 510 3 1224979098644774912 41 3 1850 2 2 1224979098644774912 742 2 1224979098644774916 2 2107 2 1224979098644774916 -1 723 2 2 1224979098644774916 721 2 2 7000 791 1 2 722 3 2 5000 1 723 2 2 45 1860 3 1224979098644774912 2 300 
+spr_fellbeast 98304 10000 fellbeast_anim bo_Fellbeast_Full 2
+-40  12 2071 1 1224979098644774912 2136 3 1224979098644774913 0 16 2610 2 1224979098644774912 1224979098644774913 2107 2 1224979098644774913 200 510 3 1224979098644774912 39 1224979098644774913 510 3 1224979098644774912 43 11 510 3 1224979098644774912 41 0 510 3 1224979098644774912 42 -1 2612 4 1224979098644774912 0 49 2000 510 3 1224979098644774912 5 4 510 3 1224979098644774912 6 3 2133 2 144115188075856118 1224979098644774912 
+-42  45 2071 1 1224979098644774912 2072 1 1224979098644774913 2070 2 1224979098644774914 3 2070 2 1224979098644774915 4 1700 1 1224979098644774916 530 3 1224979098644774917 1224979098644774912 5 2106 2 1224979098644774917 1224979098644774913 510 3 1224979098644774912 5 1224979098644774917 530 3 1224979098644774918 1224979098644774912 6 2106 2 1224979098644774918 1224979098644774913 510 3 1224979098644774912 6 1224979098644774918 1969 3 29 1 3 1969 3 30 1 10 2147483678 2 1224979098644774917 1 1881 2 1224979098644774912 205 510 3 1224979098644774912 41 4 1850 2 2 1224979098644774912 742 2 1224979098644774919 2 2107 2 1224979098644774919 -1 723 2 2 1224979098644774919 721 2 2 7000 791 1 2 722 3 2 5000 1 723 2 2 45 1860 3 1224979098644774912 2 300 1710 2 69 1224979098644774914 12 3 1224979098644774920 69 2000 1770 2 1224979098644774921 1224979098644774920 1788 2 1224979098644774921 144115188075856119 525 3 1224979098644774922 1224979098644774920 21 2105 2 1224979098644774922 25 505 3 1224979098644774920 21 1224979098644774922 3 0 4 0 31 2 1224979098644774914 1224979098644774916 1064 1 200 1570 2 1224979098644774923 1224979098644774915 4 0 31 2 1224979098644774923 8 1523 3 0 3 10 5 0 31 2 1224979098644774923 10 1523 3 0 5 10 3 0 3 0 
 
 
 spr_fallen_king_base 0 0 FK_Base_combined bo_apple_basket 0
@@ -6433,6 +6442,22 @@ spr_bridge_b 0 0 bridge_b bo_bridge_b 0
 
 spr_banner_stand_auto 0 0 battle_banner_stand_a_auto 0 1
 -40  8 521 3 1224979098644774912 144115188075856029 7 520 3 1224979098644774913 1224979098644774912 13 32 2 1224979098644774913 0 2071 1 1224979098644774914 1850 2 1 1224979098644774914 1970 1 1 1974 1 1224979098644774913 510 3 1224979098644774914 1 72057594037927936 
+
+
+spr_secret_loot_prop 536952832 512 sphere_30cm bo_sphere_30cm 3
+-40  37 2071 1 1224979098644774912 2124 1 10000 1852 2 1 1224979098644774912 2370 1 1224979098644774913 4 0 255 0 32 2 1224979098644774913 5 1106 1 1585267068834414606 3 0 2211 1 1224979098644774914 1850 2 2 1224979098644774912 6 3 1224979098644774915 0 10 1811 3 1224979098644774916 2075 1224979098644774915 31 2 1224979098644774912 1224979098644774916 2120 3 1224979098644774917 21 1224979098644774915 543 3 1224979098644774914 1224979098644774917 0 510 3 1224979098644774912 0 1 3 0 2133 2 1224979098644774918 60 16 3 1224979098644774919 -1 3 550 3 1224979098644774912 0 1 1850 2 1 1224979098644774919 710 3 1224979098644774920 1 2 2147483680 2 1224979098644774920 1224979098644774918 2133 2 1224979098644774918 1224979098644774920 1853 2 1224979098644774921 1224979098644774919 510 3 1224979098644774912 1 1224979098644774921 510 3 1224979098644774912 2 1224979098644774919 3 0 4 0 255 0 33 3 1224979098644774921 0 980 2325 2 9 1224979098644774921 1106 1 1585267068834414607 3 0 2136 3 1224979098644774922 70 110 1860 3 1224979098644774912 2 1224979098644774922 
+-46  6 2071 1 1224979098644774912 550 3 1224979098644774912 0 1 1850 2 2 1224979098644774912 1969 3 69 2 4 2136 3 1224979098644774913 70 110 1860 3 1224979098644774912 2 1224979098644774913 
+-44  67 2072 1 1224979098644774912 1852 2 1 1224979098644774912 2124 1 100 1800 2 1224979098644774912 99999 2211 1 1224979098644774913 6 3 1224979098644774914 0 9 1811 3 1224979098644774915 2075 1224979098644774914 31 2 1224979098644774912 1224979098644774915 2120 3 1224979098644774916 21 1224979098644774914 523 3 1224979098644774917 1224979098644774913 1224979098644774916 3 0 4 0 31 2 1224979098644774917 -1 1106 1 1585267068834414608 5 0 2167 2 1224979098644774918 0 2147483678 2 1224979098644774918 1 2133 2 1224979098644774917 -1 1106 1 1585267068834414609 3 0 31 2 1224979098644774917 0 530 3 1224979098644774919 1224979098644774912 1 1840 2 1224979098644774920 1224979098644774912 4 0 2147483678 2 1224979098644774919 1 2133 2 1224979098644774919 19 2133 2 1224979098644774920 0 3 0 521 3 1224979098644774921 144115188075856029 26 2108 2 1224979098644774921 5 1 2 15 144115188075856281 2105 2 1224979098644774921 72057594037927936 2717 2 1224979098644774922 1224979098644774919 4 0 31 2 1224979098644774922 100 2133 2 1224979098644774922 90 3 0 2106 2 1224979098644774922 91 2111 2 1224979098644774922 1 4 0 2190 3 1224979098644774923 144115188075856308 22 3221225502 2 1224979098644774923 0 2147483681 3 144115188075855998 18 96 1530 3 0 1224979098644774919 1224979098644774920 2320 2 9 216172782113783809 530 3 1224979098644774924 1224979098644774912 2 32 2 1224979098644774924 0 1822 2 1224979098644774924 100 5 0 2147483678 2 1224979098644774921 1224979098644774922 2320 2 9 1585267068834414610 5 0 30 2 1224979098644774921 1224979098644774922 1530 3 0 1224979098644774919 1224979098644774920 4 0 542 3 144115188075856281 158 0 2320 2 9 1585267068834414611 5 0 2320 2 9 1585267068834414612 3 0 530 3 1224979098644774924 1224979098644774912 2 32 2 1224979098644774924 0 1822 2 1224979098644774924 100 3 0 1106 1 1585267068834414613 510 3 1224979098644774912 0 0 503 3 1224979098644774913 1224979098644774916 -1 
+
+
+spr_secret_viewpoint 268517376 256 arrow_helper_blue bo_spike_a 4
+-40  11 2071 1 1224979098644774912 2611 4 1224979098644774912 0 100 1000 2124 1 10000 1852 2 1 1224979098644774912 737 2 1224979098644774913 1 4 0 31 2 1224979098644774913 10000 255 0 1106 1 1585267068834414614 1106 1 1585267068834414598 3 0 
+-76  7 2071 1 1224979098644774912 550 3 1224979098644774912 0 0 550 3 1224979098644774912 3 0 1850 2 2 1224979098644774912 1969 3 36 2 4 2136 3 1224979098644774913 700 1100 2611 4 1224979098644774912 0 100 1224979098644774913 
+-44  23 2072 1 1224979098644774912 1700 1 144115188075855904 2124 1 100 1800 2 1224979098644774912 10 1850 2 5 1224979098644774912 1852 2 2 1224979098644774912 736 2 1224979098644774913 2 2107 2 1224979098644774913 10 737 2 1224979098644774914 2 2107 2 1224979098644774914 10 2106 2 1224979098644774914 1000 2123 3 1224979098644774915 1224979098644774914 -100 725 2 5 45 721 2 5 1224979098644774913 722 2 5 1224979098644774914 725 2 5 180 723 2 5 1224979098644774915 1860 3 1224979098644774912 5 160 510 3 1224979098644774912 0 -1 2001 3 1 0 0 2093 2 144115188075855904 0 62 1 0 2012 3 5 1700 0 
+-46  34 2071 1 1224979098644774912 2124 1 100 1851 2 5 1224979098644774912 1852 2 2 1224979098644774912 736 2 1224979098644774913 2 2107 2 1224979098644774913 10 737 2 1224979098644774914 2 2107 2 1224979098644774914 10 2106 2 1224979098644774914 1000 2123 3 1224979098644774915 1224979098644774914 -100 530 3 1224979098644774916 1224979098644774912 0 4 0 32 2 1224979098644774916 -10 1 2 766 1224979098644774912 3 0 2147483680 2 1224979098644774916 -1 2106 2 1224979098644774916 10 725 2 5 45 725 2 5 1224979098644774916 721 2 5 1224979098644774913 722 2 5 1224979098644774914 725 2 5 180 723 2 5 1224979098644774915 1860 3 1224979098644774912 5 50 2012 3 5 600 0 510 3 1224979098644774912 0 1224979098644774916 2147483678 2 1224979098644774916 -225 510 3 1224979098644774912 0 0 1851 2 5 1224979098644774912 1861 1 1224979098644774912 1855 2 1224979098644774912 5 2001 3 0 1600 0 2093 2 144115188075855904 144115188075856135 2611 4 1224979098644774912 0 100 100 
+
+
+spr_arrow_helper_blue 0 0 arrow_helper_blue 0 0
 
 
 spr_save_compartibility4 0 0 0 0 0

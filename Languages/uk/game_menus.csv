@@ -5,7 +5,10 @@ mno_faction_intros|Дізнатися про фракції Середзем'я
 mno_go_bback|Повернутись назад
 menu_start_phase_2|^^^^^ Середзем'я. Темрява зростає на Сході, ^ і темні створіння, що давно ховались, виходять назовні. ^ Вільні народи готуються до війни, якої не бачили вже цілий вік. ^ Люди, Ельфи, Гноми та Орки; усі зіграють свою роль. ^^ Яку саме, між тим, ще буде видно...
 mno_go_forth|Вступити на обраний вами шлях...
+; mno_change_war_start_mode|War Starts:  {s7}
+; mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|Змінити налаштування TLD
+; mno_see_info_pages|TLD game concepts.
 menu_start_game_3|^^^^^^^^Оберіть сценарій:
 mno_custom_battle_scenario_1|Сутичка, Гондор проти Харада
 mno_custom_battle_scenario_12|Оберіть сторони для битви
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|Переглянути вартість утримання
 mno_view_character_report|Переглянути звіт про персонажа.
 mno_view_party_size_report|Переглянути звіт про розміри групи.
 mno_view_morale_report|Переглянути звіт про мораль групи.
-mno_view_character_report_02|Перевірити статус NPC
 mno_view_faction_strengths_report|Переглянути звіт про сили фракції.
 mno_view_traits_report|Переглянути риси.
 mno_resume_travelling|Продовжити подорож.
@@ -47,7 +49,6 @@ mno_continue_dot|Продовжити.
 menu_custom_battle_durin_end|^^^^^^Це був чудовий, але все ж безнадійний бій.^^ Ви і ваші соратники убили {reg5} ворогів.^Ви особисто вбили {reg7} супротивників у бою.
 mno_replay_cbd|Грати цю битву знову.
 mno_continue_dot_cbd|Продовжити.
-mno_dot_go_back|Повернутись назад
 menu_start_good|^^^^^^^^^^Оберіть свою расу:
 mno_start_ma|ЛЮДИНА
 mno_start_el|ЕЛЬФ
@@ -113,7 +114,6 @@ mno_start_2_bn|У фортеці некроманта ДОЛ ГУЛДУР
 menu_choose_gender|Твоя стать?
 mno_start_male|Чоловіча
 mno_start_female|Жіноча
-mno_proc|Продовжуйте як зазвичай
 menu_start_as_one|^^^^^^^^^^Який ти Воїн?
 mno_start_default|Стати {s23} (За замовчуванням)
 mno_start_up1|Стати {s21} (Легко)
@@ -127,8 +127,8 @@ mno_camp_action|Використай предмет.
 mno_camp_wait_here|Влаштувати Табір.
 mno_camp_options|Змінити налаштування TLD
 mno_Dev_Menu|Меню розробника
-menu_dev_menu|Це опції розробників які можуть дозволити вам використовувати деякі чіти і інструменти для гри.^^ Однак це призведе до деяких подій, з триггерами і змін кампанії які можуть зламати гру.^^ Використовуйте на свій страх і ризик! ^^ Також, якщо ви повідомляєте про баги, будь ласка, скажіть нам якщо ви використовували ці опції.
-mno_Cheat_enable|Включити опції чіткодів/модифікації.
+; menu_dev_menu|These are development options that give you a lot of cheats/tools to play with.^^ However, this will result in some WIP events, triggers, campaign changes that could be game breaking.^^ Use at your own risk! ^^ Also, when reporting bugs, please tell us that you are using the Dev Menu.
+mno_cheat_enable|Включити опції чіткодів/модифікації.
 menu_game_options|^^^^^^^^ Натисніть на опцію, щоб змінити її:
 mno_game_options_war_level_start|Війна починається на рівні: {s1}
 mno_game_options_restrict_items|Обмеження в озброєнні гравця: {s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|Поріг рейтингу сили для поча
 mno_strat_tweaks_siege_relax_rate|Темп зростання порога, при якому починаються облоги: {reg1}
 mno_strat_tweaks_regen_rate|Темп відновлення рейтингу сили: {s7}
 mno_strat_tweaks_siege_regen_limit|Сила фракцій відновлюється повільніше з: {reg1}
-mno_strat_tweaks_influence_gain_rate|Приріст очок впливу: {s7}
-mno_strat_tweaks_rank_gain_rate|Приріст очок рангу: {s7}
+; mno_strat_tweaks_influence_gain_rate|Influence gain rate: {reg0}%
+; mno_strat_tweaks_rank_gain_rate|Rank gain rate: {reg0}%
 mno_strat_tweaks_back|Повернутися в меню опцій.
 menu_camp_action|^^^^^^^^^ Який предмет?
 mno_camp_drink_water|Випити ентійскую воду!
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|Під'їхавши до табору напад
 mno_talk_to_siege_commander|Вимагати зустрічі з командувачем.
 mno_join_siege_with_allies|Приєднатися до наступного штурму.
 mno_join_siege_stay_back|Наказати воїнам приєднатися до наступного штурму без вашої участі.
-menu_moria_must_escape|^^В книзі, схоже, описується остання спроба гномів повернутися в Морію. Спроба, яка завершилася трагічною смертю всіх учасників походу. Гортаючи книгу, ви натикаєтеся на слова "справжнє срібло". Уважно вивчивши пошкоджені сторінки, ви розумієте мова тут йде про схованку гномів, розташованих десь на нижніх рівнях. Ха! Знайти давним-давно загублений Міфріл гномів - хіба це не приголомшливо?!^ Ви точно прямуєте всім вказівкам, входите в вузький тунель, йдете вниз ... ^ ... ^ Після пари годин марних пошуків ви розумієте, що заблукали в глибинах Морії і тепер вам потрібно шукати шлях назовні.
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|Шукати шлях назовні!
 menu_castle_outside|Перед вами {s2}.{S11} {s3} {s4}
-mno_moria_enter|Повернутися до головної зали Морії через потаємний хід
-mno_moria_enter_door|Увійти в Морію.
 mno_cheat_steal_book_door|Отримайте книгу
+; mno_moria_enter|Return into main hall of Moria through the secret entrance
+mno_moria_enter_door|Увійти в Морію.
 mno_castle_start_siege|Ні {reg6?town:castle}.
 mno_castle_leave|Продовжити.
 menu_castle_besiege|Ви осадите {s1}. {S2} {s3}
@@ -305,6 +305,7 @@ mno_talk_to_healer|Поговори з {s40}.
 mno_talk_to_castle_commander|Увійти в казарми фракції {s61}.
 mno_speak_with_elder|Увійти в казарми Фракції {s6}.
 mno_town_ask|Питайте навколо про важливих людей...
+; mno_player_initiate_siege|Attack the {reg6?town:castle}...
 mno_isengard_underground|Увійти в підземелля.
 mno_isengard_underground_door|Перейти до підземних печер
 mno_tirith_toplevel|Зійти на верхній рівень.
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^Ви вирішили довіритися чуткам
 mno_explore|Обстежити місцевість.
 menu_ring_hunter_lair|^^^^Пройшовши по сліду Мисливців за Кільцем через Темноліся, ви прибули в {s1}. Ви бачите їх, готових втекти разом з скринею.
 mno_attack_lair|Атакувати їх зараз
-mno_leave_bandit_lair|Піти.
 menu_gondor_reinforcement_event|^^^^^Сигнальні багаття Ґондора запалилися, Мінас Тіріт просить про допомогу! ^^ Лорди з південних володінь тепер виступлять на північ, щоб захищати Біле Місто від насування темряви.
 mno_gondor_reinforcement_event_close|Закрити
 menu_gondor_beacons|Ви бачите {s1}, один з сигнальних маяків Ґондора, за допомогою якого оголошували про початок війни всьому королівству.
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|Закрити
 menu_center_besieged_event|^^^^^Прибув посильний, який повідомив, що {s1} в даний час знаходиться під облогою {s2} з держави {s3}.
 mno_center_besieged_event_close|Закрити
 menu_guardian_party_spawned|^^^^^Розвідники повідомляють, що {s6} зібрав велику армію в околицях {s7}, в останній відчайдушній спробі захистити столицю.
+mno_guardian_party_spawned_close|Закрити
 mno_intro_next|Продовжити...
 mno_start_defend_caravan|Захистити караван!
 mno_start_raid_caravan|Пограбувати караван!
@@ -391,7 +392,6 @@ mno_leave_refugees|Залишимо їх... поки що...
 mno_evil_war_tut_continue|Продовжити...
 menu_alternate_training_fight|Ви будете боротися проти {reg5} супротивників. Ви готові?
 mno_training_continue|Почати тренування...
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|Спробувати знову...
 mno_alternate_training_finish|Покинути арену...
 menu_custom_battle_choose_faction1|^^^^^^^^^^Виберіть вашу сторону і ступінь переваги:
@@ -415,7 +415,7 @@ mno_cb_mordor3|Харадрім
 mno_cb_mordor4|Істерлінг
 mno_cb_mordor5|Морія
 mno_cb_mordor6|Гундабад
-mno_cb_mordor7|Рун
+; mno_cb_mordor7|Rhûn
 mno_cb_mordor8|Корсари
 mno_rescue_mission|Прокрастися в лігво чаклуна під покровом ночі.
 mno_next_rescue_scene_door|Далі!
@@ -437,7 +437,6 @@ mno_leave_pyre|Покинути попелище.
 menu_town_ruins|Після прибуття в поселення ви виявили, що воно зруйновано. {s1} {s2}
 mno_ruin_menu_0|Оглянути місцевість.
 mno_ruin_leave|Продовжити...
-menu_premutiny|ХалепА
 menu_death|Вас вбили. Війна триває, але вже без вашої участі.
 menu_animal_ambush|Заблукавши, ви трохи відстали від своїх, як раптом...
 menu_animal_ambush_success|{s2} {reg0?впали:впав} перед вами, як пшениця для коси! Незабаром всі ваші нападники лежать на підлозі, поранені або мертві. {S3}
@@ -445,15 +444,7 @@ menu_animal_ambush_fail|Тварини мучать кусають вас {reg0?
 menu_isengard_flooding|Ти оточений мертвими ворогами і тріумфуючими союзниками, включаючи ентів; вони ревуть, гудуть і сурмлять, доки камені не тріскаються і не падають навколо Вежі Ортханк. Вони як завиваючий ураган, що ламає колони, скидає лавини валунів у шахти, підкидає величезні плити каменю в повітря, як листя... Це не схоже на те, що ти коли-небудь бачив.^^ Брегалад, або Швидкий Паросток, як ти його знаєш, проходить повз і зупиняється лише для того, щоб сказати: '{playername}! Стережися! Тримайся подалі від Вежі — ми незабаром зламаємо дамбу і направимо Ісен у цю долину на деякий час. Думаю, тобі буде дуже важко стояти тут!' Ти швидко слухаєш його поради і поспішаєш відійти від Ортханка.^^ Близько півночі Ісенгард починає заповнюватися чорними повзучими потоками і калюжами. Ти не можеш не здригнутися, коли бачиш, як дим і пар піднімаються великими стовпами, а велика завивка пари піднімається і звивається навколо Вежі, доки вона не нагадує високий пік хмари, освітлений знизу полум'ям і місячним світлом зверху. Гнів ентів повільний, але володіє непереборною силою...
 mno_isengard_continue|Продовжити
 menu_build_your_scene|Ви можете створити свою власну бойову сцену, використовуючи один із наведених нижче слотів та режим редагування гри (вам потрібно спочатку ввімкнути режим редагування на екрані запуску M&B, а потім натиснути Ctrl+E у межах сцени, щоб отримати доступ до режиму редагування). Ви можете потім представити вашу створену локацію (а саме, файли sco з папки TLD/SceneObj) команді TLD, і, якщо ваша локація вдалася, вона може з'явитися в наступних випусках як одна з випадкових полів битв! ^^Спробуйте визначити, на якій області карти повинна з'являтися ваша локація.^ Пара підказок: уникайте глибокої води, крутих гір і інших непрохідних місць, якщо тільки ви не досвідчений творець локацій і знаєте, як перешкодити переміщенню солдат ІІ в непотрібні місця і направити їх в потрібні.^ (Вхід #0-1 для атакуючих, #4 для захисників, не чіпати #5-8
-mno_scene1|Велика рівнина (file scn custom 1.sco)
-mno_scene2|Середня рівнина (file scn custom 2.sco)
-mno_scene3|Маленька рівнина (file scn custom 3.sco)
-mno_scene4|Великий степ (file scn custom 4.sco)
-mno_scene5|Середній степ (file scn custom 5.sco)
-mno_scene6|Маленький степ (file scn custom 6.sco)
-mno_scene7|Великий ліс (file scn custom 7.sco)
-mno_scene8|Середній ліс (file scn custom 8.sco)
-mno_scene9|Маленький ліс (file scn custom 9.sco)
 mno_back_3dot|Назад...
 mno_back|Повернутись назад.
 mno_next|Далі...
+; mno_previous|Previous...

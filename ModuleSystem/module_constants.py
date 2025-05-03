@@ -172,6 +172,7 @@ slot_item_horse_charge	= slot_item_swing_damage
 
 slot_agent_target_entry_point     = 0 #for town walkers and siege archer reinforcements
 slot_agent_target_x_pos           = 1
+slot_agent_status                 = 1
 slot_agent_target_y_pos           = 2
 slot_agent_is_alive_before_retreat= 3
 slot_agent_is_in_scripted_mode    = 4
@@ -214,6 +215,7 @@ slot_agent_is_running_away		= 25
 
 #InVain
 slot_agent_base_accuracy		= 26 #used for resetting accuracy after unquipping shields
+slot_agent_walker_joined        = 27 #1= accepted; 2= denied
 
 ########################################################
 ##  FACTION SLOTS          #############################
@@ -585,11 +587,24 @@ slot_center_spawn_caravan         = 268
 slot_center_ambient_sound_day    = 270
 slot_center_ambient_sound_always = 271
 slot_center_occasional_sound1_day = 273
-slot_center_occasional_sound2_day = 274
-slot_center_occasional_sound3_day = 275
-slot_center_occasional_sound1_night = 276
-slot_center_occasional_sound2_night = 277
-slot_center_occasional_sound3_night = 278
+slot_center_occasional_sound2_day = 274 #unused
+slot_center_occasional_sound3_day = 275 #unused
+slot_center_occasional_sound1_night = 276 #unused
+slot_center_occasional_sound2_night = 277 #unused
+slot_center_occasional_sound3_night = 278 #unused
+
+slot_center_walker_soldiers_found = 299
+
+#Legendary Places Slots (party slot)
+slot_legendary_visited = 300
+slot_legendary_explored = 301
+
+#Exploration Points Party Slots
+slot_exploration_point_1 = 302
+slot_exploration_point_2 = 303
+slot_exploration_point_3 = 304
+slot_exploration_point_4 = 305
+
 
 #slot_party_type values
 #spt_ruined_center      = 1 # TLD
@@ -668,17 +683,42 @@ pis_ship                        = 2
 ########################################################
 slot_scene_visited              = 0
 slot_scene_belfry_props_begin   = 10
+slot_scene_viewpoint            = 20
+slot_scene_loot_1               = 21
+slot_scene_loot_2               = 22
+slot_scene_loot_3               = 23
+slot_scene_loot_4               = 24
+slot_scene_loot_5               = 25
+slot_scene_loot_6               = 26
+slot_scene_loot_7               = 27
+slot_scene_loot_8               = 28
+slot_scene_loot_9               = 29
 
 ########################################################
 ##  SCENE PROP SLOTS            #############################
 ########################################################
 scene_prop_open_or_close_slot             = 0 #0= closed, 1=open, 2=destroyed
+slot_prop_active                         = 0 #for general use
 slot_prop_agent_1                      = 1 #stores agent_no of assigned gate aggravator
 slot_prop_agent_2                      = 2 #stores agent_no of secondary agent if needed
 slot_prop_playing_sound                   = 3 #0 or 1, may also store sound channel
 slot_prop_sound                           = 4 #stores sound_ID to play, or sound channel
 slot_prop_temp_hp_1                        = 5 #useful for hidden HP calculations
 slot_prop_temp_hp_2                        = 6 #useful for hidden HP calculations
+
+
+#Viking Conquest patch 1.167 parameters for try_for_prop_instances
+somt_object = 1
+somt_entry = 2
+somt_item = 3
+somt_baggage = 4
+somt_flora = 5
+somt_passage = 6
+somt_spawned_item = 7
+somt_spawned_single_ammo_item = 8
+somt_spawned_unsheathed_item = 9
+somt_shield = 10
+somt_temporary_object = 11
 
 ########################################################
 ##  TROOP SLOTS            #############################
@@ -1240,8 +1280,8 @@ custom_banner_flag_types_end = custom_banner_backgrounds_begin
 custom_banner_flag_map_types_begin = mesh_custom_map_banner_01
 custom_banner_flag_map_types_end = custom_banner_flag_types_begin
 
-custom_banner_flag_scene_props_begin = spr_custom_banner_01
-custom_banner_flag_scene_props_end = spr_banner_a
+custom_banner_flag_scene_props_begin = 0
+custom_banner_flag_scene_props_end = 0
 
 custom_banner_map_icons_begin = icon_custom_banner_01
 custom_banner_map_icons_end = icon_banner_126
@@ -1315,11 +1355,11 @@ arena_grand_prize = 250
 #####################################
 # TLD constants begin (foxyman)
 #
-debug_point_0 = (1106, "@DEBUG: Routine 0", 0xffff00ff)
-debug_point_1 = (1106, "@DEBUG: Routine 1", 0xffff00ff)
-debug_point_2 = (1106, "@DEBUG: Routine 2", 0xffff00ff)
-debug_point_3 = (1106, "@DEBUG: Routine 3", 0xffff00ff)
-debug_point_4 = (1106, "@DEBUG: Routine 4", 0xffff00ff)
+debug_point_0 = (1106, "@{!}DEBUG: Routine 0", 0xffff00ff)
+debug_point_1 = (1106, "@{!}DEBUG: Routine 1", 0xffff00ff)
+debug_point_2 = (1106, "@{!}DEBUG: Routine 2", 0xffff00ff)
+debug_point_3 = (1106, "@{!}DEBUG: Routine 3", 0xffff00ff)
+debug_point_4 = (1106, "@{!}DEBUG: Routine 4", 0xffff00ff)
 
 debug_color = 0xff00ff
 
@@ -1590,7 +1630,7 @@ center_list = [
 	[trp_gondor_captain, trp_smith_mtirith, trp_merchant_mtirith, trp_elder_mtirith, pt_gondor_cap_recruits, trp_gondor_lord, trp_walker_man_gondor_black,trp_walker_man_gondor_blue,trp_walker_man_gondor_white,trp_walker_woman_gondor_bw], 
 	[icon_mfc_gondor],[700],[2,1,4,1,4,1], str_income_high, garrison_limit_evil_med, 1, tld_siegable_capital),
 (p_town_pelargir, [scn_pelargir_center, scn_gondor_castle_a, scn_gondor_prison,scn_gondor_tavern,scn_gondor_arena,scn_pelargir_siege,mesh_town_pelargir],
-	[trp_pel_captain, trp_smith_pelargir, trp_merchant_pelargir, trp_elder_pelargir, pt_pelargir_recruits, trp_knight_1_4, trp_walker_man_gondor_black,trp_walker_man_gondor_blue,trp_walker_woman_gondor_bw,trp_walker_man_gondor_white], 
+	[trp_pel_captain, trp_smith_pelargir, trp_merchant_pelargir, trp_elder_pelargir, pt_pelargir_recruits, trp_gondor_lord, trp_walker_man_gondor_black,trp_walker_man_gondor_blue,trp_walker_woman_gondor_bw,trp_walker_man_gondor_white], 
 	[icon_mfc_pelargir],[500],[4,4,4,6,4,8], str_income_med, garrison_limit_med, 0, tld_siegable_always),
 (p_town_linhir, [scn_linhir_center, scn_gondor_castle_b, scn_gondor_prison,scn_gondor_tavern,scn_gondor_arena,scn_linhir_siege, mesh_ui_default_menu_window],
 	[trp_gondor_captain, trp_smith_linhir, trp_merchant_linhir, trp_elder_linhir, pt_gondor_recruits, trp_gondor_lord, trp_walker_man_gondor_black,trp_walker_man_gondor_green,trp_walker_woman_gondor_bw,trp_walker_woman_gondor_b], 
@@ -1623,17 +1663,17 @@ center_list = [
 	[trp_ithilien_captain, trp_smith_candros, trp_merchant_candros, trp_elder_cairandros, pt_gondor_recruits, trp_gondor_lord, trp_i1_gon_levy,trp_i2_gon_watchman,trp_a4_ithilien_ranger,trp_i3_gon_footman], 
 	[icon_mfc_gondor],[500],[2,1,4,1,4,1], str_income_low, garrison_limit_med, 0, tld_siegable_always),
 (p_town_calembel, [scn_ethring_center, scn_gondor_castle, scn_gondor_prison,scn_gondor_tavern,scn_gondor_arena, scn_ethring_siege, mesh_town_calembel],
-	[trp_lam_captain, trp_smith_calembel, trp_merchant_calembel, trp_elder_ethring, pt_lamedon_recruits, trp_knight_1_1, trp_i1_gon_levy,trp_walker_man_gondor_black,trp_walker_man_gondor_green,trp_walker_woman_gondor_b], 
+	[trp_lam_captain, trp_smith_calembel, trp_merchant_calembel, trp_elder_ethring, pt_lamedon_recruits, trp_knight_6_1, trp_i1_gon_levy,trp_walker_man_gondor_black,trp_walker_man_gondor_green,trp_walker_woman_gondor_b], 
 	[icon_mfc_ethring],[500],[2,2,2,5,2,8], str_income_low, garrison_limit_low, 1, tld_siegable_normal),
 # Rohan centers
 (p_town_edoras, [scn_edoras_center, scn_edoras_castle, scn_rohan_prison,scn_rohan_tavern,scn_rohan_arena, scn_edoras_siege,mesh_town_edoras],
 	[trp_rohan_captain, trp_smith_edoras, trp_merchant_edoras, trp_elder_edoras, pt_rohan_cap_recruits, trp_rohan_lord,  trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d, trp_walker_woman_rohan_t], 
 	[icon_mfc_rohan],[900],[2,8,3,4,3,6], str_income_high, garrison_limit_high, 1, tld_siegable_capital),
 (p_town_aldburg, [scn_aldburg_center, scn_rohan_castle, scn_rohan_prison,scn_rohan_tavern,scn_rohan_arena, scn_aldburg_siege, mesh_ui_default_menu_window],
-	[trp_rohan_captain, trp_smith_aldburg, trp_merchant_aldburg, trp_elder_aldburg, pt_rohan_recruits, trp_knight_1_11, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
+	[trp_rohan_captain, trp_smith_aldburg, trp_merchant_aldburg, trp_elder_aldburg, pt_rohan_recruits, trp_knight_1_14, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
 	[icon_mfc_rohan],[500],[2,3,2,5,2,8], str_income_med, garrison_limit_med, 1, tld_siegable_normal),
 (p_town_hornburg, [scn_hornburg_center, -1, scn_rohan_prison,scn_rohan_tavern, -1, scn_hornburg_siege,mesh_town_hornburg],
-	[trp_rohan_captain, trp_smith_hornburg, trp_merchant_hornburg, trp_elder_hornburg, pt_rohan_recruits, trp_rohan_lord, trp_walker_man_rohan_t, trp_i2_guardsman_of_rohan, trp_walker_woman_rohan_d,  trp_i3_footman_of_rohan], 
+	[trp_rohan_captain, trp_smith_hornburg, trp_merchant_hornburg, trp_elder_hornburg, pt_rohan_recruits, trp_knight_1_10, trp_walker_man_rohan_t, trp_i2_guardsman_of_rohan, trp_walker_woman_rohan_d,  trp_i3_footman_of_rohan], 
 	[icon_mfc_rohan],[500],[3,8,4,6,4,5], str_income_high, garrison_limit_high, 1, tld_siegable_capital),
 (p_town_east_emnet, [scn_east_emnet_center, scn_rohan_castle_a, scn_rohan_prison,scn_rohan_tavern,scn_rohan_arena, scn_east_emnet_siege, mesh_ui_default_menu_window],
 	[trp_rohan_captain, trp_smith_eastemnet, trp_merchant_eastemnet, trp_elder_eastemnet, pt_rohan_recruits, trp_knight_1_14, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
@@ -1642,10 +1682,10 @@ center_list = [
 	[trp_rohan_captain, trp_smith_westfold, trp_merchant_westfold, trp_elder_westfold, pt_rohan_recruits, trp_knight_1_9, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
 	[icon_mfc_rohan],[500],[2,4,2,5,2,6], str_income_med, garrison_limit_med, 1, tld_siegable_always),
 (p_town_west_emnet, [scn_west_emnet_center, scn_rohan_castle_a, scn_rohan_prison,scn_rohan_tavern,scn_rohan_arena, scn_west_emnet_siege, mesh_town_west_emnet],
-	[trp_rohan_captain, trp_smith_westemnet, trp_merchant_westemnet, trp_elder_westemnet, pt_rohan_recruits, trp_knight_1_10, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
+	[trp_rohan_captain, trp_smith_westemnet, trp_merchant_westemnet, trp_elder_westemnet, pt_rohan_recruits, trp_knight_1_9, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
 	[icon_mfc_rohan],[500],[2,8,3,4,3,6], str_income_med, garrison_limit_med, 1, tld_siegable_always),
 (p_town_eastfold, [scn_eastfold_center, scn_rohan_castle_b, scn_rohan_prison,scn_rohan_tavern,scn_rohan_arena, scn_eastfold_siege, mesh_ui_default_menu_window],
-	[trp_rohan_captain, trp_smith_eastfold, trp_merchant_eastfold, trp_elder_eastfold, pt_rohan_recruits, trp_knight_1_13, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
+	[trp_rohan_captain, trp_smith_eastfold, trp_merchant_eastfold, trp_elder_eastfold, pt_rohan_recruits, trp_knight_1_14, trp_walker_man_rohan_t, trp_walker_man_rohan_d,trp_walker_woman_rohan_d,  trp_walker_woman_rohan_t], 
 	[icon_mfc_rohan],[500],[3,8,4,6,4,5], str_income_med, garrison_limit_med, 1, tld_siegable_normal),
 # Mordor centers
 (p_town_morannon, [scn_morannon_center, scn_morannon_castle, scn_mordor_prison,scn_mordor_tavern,scn_mordor_arena, scn_morannon_siege,mesh_town_morannon],
@@ -1701,10 +1741,10 @@ center_list = [
 	[icon_mfc_imladris],[900],[2,1,4,1,4,1], str_income_high, garrison_limit_med, 2, tld_siegable_capital),
 
 (p_town_woodsmen_village, [scn_woodsmen_village2_center, -1, -1,-1,-1,scn_woodsmen_village2_siege, mesh_ui_default_menu_window],
-	[trp_woodmen_captain, trp_smith_woodmen, trp_merchant_woodmen, trp_elder_wvillage, pt_woodman_recruits, trp_beorn_lord, trp_i1_woodmen_man, trp_beorn_walker, trp_i2_woodmen_forester, trp_beorn_walker_fem], 
+	[trp_woodmen_captain, trp_smith_woodmen, trp_merchant_woodmen, trp_elder_wvillage, pt_woodman_recruits, trp_knight_4_11, trp_i1_woodmen_man, trp_beorn_walker, trp_i2_woodmen_forester, trp_beorn_walker_fem], 
 	[icon_mfc_northmen],[500],[2,1,4,1,4,1], str_income_low, garrison_limit_med, 1, tld_siegable_always),
 (p_town_beorning_village, [scn_beorning_village_center, -1, -1,-1,-1,scn_beorning_village_siege, mesh_ui_default_menu_window],
-	[trp_beorning_captain, trp_smith_beorn_v, trp_merchant_beorn_v, trp_elder_beorn_v, pt_beorn_recruits, trp_beorn_lord, trp_i1_beorning_man, trp_i1_woodmen_man, trp_beorn_walker,  trp_beorn_walker_fem], 
+	[trp_beorning_captain, trp_smith_beorn_v, trp_merchant_beorn_v, trp_elder_beorn_v, pt_beorn_recruits, trp_knight_4_12, trp_i1_beorning_man, trp_i1_woodmen_man, trp_beorn_walker,  trp_beorn_walker_fem], 
 	[icon_mfc_northmen],[500],[2,1,4,1,4,1], str_income_low, garrison_limit_med, 1, tld_siegable_always),
 (p_town_beorn_house, [scn_woodsmen_village_center, scn_beorn_castle, -1,-1, scn_beorn_arena,scn_woodsmen_village_siege,mesh_town_beorns_house],
 	[trp_beorning_captain, trp_smith_beorn, trp_merchant_beorn, trp_elder_beorn, pt_beorn_recruits, trp_beorn_lord, trp_i1_beorning_man, trp_i1_woodmen_man, trp_beorn_walker, trp_beorn_walker_fem], 
@@ -1721,7 +1761,7 @@ center_list = [
 	[trp_dale_captain, trp_smith_dale, trp_merchant_dale, trp_elder_dale, pt_dale_recruits, trp_dale_lord,trp_townsman,trp_i1_dale_militia,trp_watchman,trp_townsman], 
 	[icon_mfc_dale],[900],[2,1,4,1,4,1], str_income_med, garrison_limit_high, 0, tld_siegable_capital),
 (p_town_esgaroth, [scn_esgaroth_center, scn_esgaroth_castle, scn_rohan_prison,scn_rohan_tavern,scn_dale_arena,scn_esgaroth_siege,mesh_town_esgaroth],
-	[trp_dale_captain, trp_smith_esgaroth, trp_merchant_esgaroth, trp_elder_esgaroth, pt_dale_recruits, trp_dale_lord,trp_townsman,trp_i1_dale_militia,trp_watchman,trp_townsman], 
+	[trp_dale_captain, trp_smith_esgaroth, trp_merchant_esgaroth, trp_elder_esgaroth, pt_dale_recruits, trp_knight_5_3,trp_townsman,trp_i1_dale_militia,trp_watchman,trp_townsman], 
 	[icon_mfc_dale],[500],[2,1,4,1,4,1], str_income_low, garrison_limit_med, 1, tld_siegable_normal),
 
 (p_town_dunland_camp, [scn_dunland_camp_center, -1, -1,-1,-1,scn_dunland_camp_siege, mesh_town_evilcamp],
@@ -1893,10 +1933,11 @@ routes_list = [
  (p_town_beorn_house,	   p_town_woodsmen_village, p_town_beorning_village),
 ]
 
-lords_spawn = [ (trp_knight_1_1, p_town_calembel),
+lords_spawn = [ 
+                #(trp_knight_1_1, p_town_calembel),
 				(trp_knight_1_2, p_town_minas_tirith),
                 (trp_knight_1_3, p_town_dol_amroth),
-                (trp_knight_1_4, p_town_pelargir),
+                #(trp_knight_1_4, p_town_pelargir),
                 (trp_knight_1_5, p_town_erech),
                 (trp_knight_1_6, p_town_pinnath_gelin),
                 (trp_knight_1_7, p_town_west_osgiliath),
@@ -1907,7 +1948,14 @@ lords_spawn = [ (trp_knight_1_1, p_town_calembel),
                 (trp_knight_5_2, p_town_dale),
                 (trp_knight_6_1, p_town_calembel),
                 (trp_knight_6_2, p_town_pinnath_gelin),
-				(trp_knight_4_11, p_town_woodsmen_village)
+                (trp_knight_4_11, p_town_woodsmen_village),
+				(trp_knight_4_12, p_town_beorning_village),
+                (trp_knight_1_9, p_town_west_emnet),
+                (trp_knight_1_10, p_town_hornburg),
+                (trp_knight_1_11, p_town_edoras),
+                (trp_knight_1_12, p_town_edoras),
+                (trp_knight_1_13, p_town_westfold),
+                (trp_knight_1_14, p_town_aldburg),
 ]
 
 #### banner colors #0-130
@@ -2426,10 +2474,6 @@ end       = 0
 
 ##Kham PBOD Additions END
 
-#Legendary Places Slots (party slot)
-slot_legendary_visited = 300
-slot_legendary_explored = 301
-
 #Aiming slots (agent slot)
 agent_aim_overridden = 302
 
@@ -2457,11 +2501,6 @@ slot_troop_player_reserve_adv_camp = 309
 low_party_morale = 30
 high_party_morale = 70
 
-#Exploration Points Party Slots
-slot_exploration_point_1 = 302
-slot_exploration_point_2 = 303
-slot_exploration_point_3 = 304
-slot_exploration_point_4 = 305
 
 
 # VC Presentantion Constants

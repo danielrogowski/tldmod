@@ -41,7 +41,7 @@ dlga_hobbit_merry_talk_met:close_window|Вітаю, мессір Меррі.
 dlga_hobbit_pippin_talk_met:close_window|Вітаю, мессір Піппін.
 dlga_start:hd_defense_01|Добре, що ти тут, {playername}. Мене звуть Арагорн, син Араторна, і я спадкоємець Ісілдура - бачиш, це Андуріл, Полум'я Заходу, яке я несу в битві. Зламаний клинок знову сяє! Незабаром війська Саурона дійдуть до цих стін. Я прошу вас допомогти мені і захистити Рохіррім, заради честі Володаря Знаку. Нехай настане година, коли ми разом оголимо мечі!
 dlga_start:hd_defense_01.1|Ой лишенько! Усе тут виглядає зубожілим, {playername}, але тепер, коли ти з нами, все піде на краще! Слава Україні. Я Леголас з Лихолісся ,насправді мені не дуже подобається це місце, а ще менше мені подобається наближення орди Сарумана. Я б усе віддав за ще одну сотню своїх воїнів  тут! Нас надто мало, надто мало. Нам знадобиться ваша допомога, командире, хоча ми, можливо, лише кілька листків у лісі. Давай, я покажу тобі, де наші луки будуть найбільш корисними…
-dlga_start:hd_defense_01.2|Я радий тебе бачити, брате! Я Гімлі, син Глоїна. Це велике військо, яке зараз виступає проти нас, але моя сокира вже рветься у бій, і я знаю, що ви відчуваєте те саме! Дайте нам ряд орчих ший, щоб вирубати, і простір, щоб розігнатися, і ми разом навчимо їх значення слову "страх". Міцні ноги й тверді сокири — ось що пронесе нас крізь ніч! Ай ой! Нам обом вистачить. Барук Хазад! Khazaˆd ai-meˆnu!
+; dlga_start:hd_defense_01.2|Right glad am I to see you, kinsman! I am Gimli, son of Gloin. It is a great host that comes now against us, but my axe is restless in my hand, and I know you feel the same! Give us a row of orc-necks to hew and room to swing, and together we shall teach them the meaning of fear. Stout feet and hard axes, that is what will carry us through the night! Ai oi! There are enough for both of us. Baruk Khazâd! Khazâd ai-mênu!
 dlga_hd_defense_01:close_window|А  зараз давайте трохи відпочинемо. До ночі ворог буде тут.
 dlga_start:aragorn_thanks_hd|{playername}, я радий ,що ти досі живий. Люди втомилися від битви, але завдяки тобі вони бачать світанок нового дня. Горяни здалися, і їх буде залучено до роботи, щоб виправити зло, яке вони заподіяли, після чого, я сподіваюся, вони повернуться на свої землі. Їх легко обдурив Саруман, бо багато було в них відібрано, і багато ще належить повернути; нам доведеться подивитися, що можна зробити для них пізніше.
 dlga_aragorn_thanks_hd:close_window|Я сподіваюся, що наші шляхи знову перетнуться, {playername}. А зараз я з вами прощаюся , тому що я їду за дуже терміновим дорученням. З першим ранковим світлом ми повинні йти, мої друзі та я, і піти темною дорогою з цієї долини. {playername}, часи лихі, але твоя доблесть тішить серця всіх вільних народів усюди, від півночі до півдня. Боріться добре, і ми можемо зустрітися знову за тінями!
@@ -159,7 +159,7 @@ dlga_ziggy_no:close_window.1|Дуже добре, Командире.
 dlga_ziggy_yes:ziggy_choose_prisoners|Чудово. Кого саме Ви згодні віддати?
 dlga_ziggy_choose_prisoners:ziggy_no|В мене немає відповідних кандидатур, щоб запропонувати тобі.
 dlga_ziggy_chosen_prisoner:ziggy_ritual|Дякую вам, Командире! Хвилинку... так, цей згодиться... Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
-dlga_ziggy_chosen_prisoner:ziggy_ritual.1|Так так, хто у нас тут? Гордий, відчайдушний? Зляканий, як йому і належить? Зараз я дам тобі причину боятися, будь певен! Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
+; dlga_ziggy_chosen_prisoner:ziggy_ritual.1|What have we here? Proud, defiant? Fearful, as you should be? Now shall I give you a reason for fear, indeed! Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
 dlga_ziggy_ritual:ziggy_ritual_succeed|О так звісно. Увага, Командире! Побач що я, Зігурфель, зумів досягти! Ви чули про вовків Анґбанду? Про Драуґлуінів, або про могутнього Карчарота який вбив Гуана, гончаки Валінора? Як Темний Лорд обплутував і запечатував полонений дух в посудину для своїх цілей, так і я зловив менший дух і підпорядкував його нам у вигляді жахливого темного звіра! Він не такий сильний як прямі нащадки Драуґлуіна, але і він послужить нам на славу.
 dlga_ziggy_ritual:ziggy_ritual_succeed.1|Завжди приємно втоптати ворога в землю.
 dlga_ziggy_ritual:ziggy_choose_prisoners|Тьху! Цей був занадто слабкий! Марно! Дайте мені когось по сильніше, Командире, того хто не зламається!
@@ -190,7 +190,6 @@ dlga_player_hire_trolls_take:player_hire_trolls_how_many|Це буде кошт�
 dlga_player_hire_trolls_take:close_window.2|Я передумав
 dlga_player_hire_trolls_how_many:player_hire_troll_buy_done|Страшний звір. І від тепер, він належить мені!
 dlga_player_hire_trolls_how_many:player_hire_troll_armoured|У битвах, з захисними пластинами з заліза, вони будуть краще захищені. Так і зроби!
-dlga_player_hire_troll_armoured:player_hire_trolls_how_many|{s55}
 dlga_player_hire_trolls_how_many:player_hire_troll_buy_not_enough|Я передумав
 dlga_player_hire_troll_buy_not_enough:close_window|Даремно витрачаю час ...
 dlga_player_hire_troll_buy_done:close_window|Тепер гарненько подбай про цього здорованя, і він подбає про тебе! Ха!
@@ -233,7 +232,9 @@ dlga_party_encounter_lord_hostile_attacker_2:close_window|Не атакуйте!
 dlga_party_encounter_lord_hostile_attacker_2:close_window.1|Ми будемо боротися до кінця!
 dlga_party_encounter_offer_dont_fight:close_window|Я в боргу перед тобою, чи не так? Що ж... тоді добре. Цього разу я тебе відпущу.
 dlga_party_encounter_offer_dont_fight:close_window.1|Ха-ха. Але я буду боротися з тобою.
-dlga_start:close_window.13|Забирайся звідси, мерзенний жебрак.
+; dlga_start:close_window.13|Mmmh...
+; dlga_start:close_window.14|The lord is in deep thought and must not be disturbed!
+dlga_start:close_window.15|Забирайся звідси, мерзенний жебрак.
 dlga_start:lord_start|Чи не {playername} це випадком, мій хоробрий боєць...
 dlga_start:lord_start.1|Радий знову тебе бачити, {playername}...
 dlga_start:lord_start.2|Ми знову зустрілися, {playername}...
@@ -276,7 +277,6 @@ dlga_lord_start:lord_generic_mission_completed.5|Ваші люди звелич�
 dlga_lord_start:kill_quest_failed|Я чув що Ви не впоралися з моїм дорученням. Я засмучений, {playername}.
 dlga_lord_start:lord_generic_mission_completed.6|Ваші люди звеличують Вашу хоробрість в бою,, {playername}. Ви заслужили мою повагу.
 dlga_kill_quest_failed:close_window|Наступного разу я постараюся бути краще.
-dlga_lord_start:lord_follow_spy_completed|{s4}
 dlga_lord_start:lord_follow_spy_half_completed|Прокляття на твою голову! Я хотів ДВОХ бранців, {playername} - що мені користі від одного! Я вже знаю все, що відомо цьому шпигуну, мені потрібен був сам вербувальник. Тут половина оплати за половину роботи. Бери і забирайся.
 dlga_lord_start:lord_follow_spy_half_completed.1|Я просив захопити двох бранців, {playername}, не одного. Двох. Однак я вважаю, що ви захопили вербувальника, більш важливого з них. Спостерігач більше не наважиться повернутися сюди і стане марним для свого господаря. Що ж, краще, ніж нічого. Але, як ти розумієш, за половину успіху дають половину нагороди.
 dlga_lord_start:lord_follow_spy_failed|І справді, {playername}, ти зовсім некомпетентний шпигун. Проваливши завдання по захопленню шпигуна І його вербувальника, ти маєш нову висоту невдачі. Забудь про будь яку винагороду, що було мною обіцяно.
@@ -294,6 +294,7 @@ dlga_lord_start:lord_hunt_refugees_failed|{playername}, наші шпигуни 
 dlga_lord_hunt_refugees_failed:lord_hunt_refugees_failed_1|Вони були занадто верткими, господарю. Я не зміг їх вистежити.
 dlga_lord_hunt_refugees_failed_1:lord_pretalk|Може бути Ви недостатньо вправні для командування арміями, які поставлять цей світ на коліна, якщо Ви не можете впоратися з купкою поранених і хворих!^^Ідіть, і моліться щоб я дав вам другий шанс!
 dlga_lord_start:lord_generic_mission_completed.9|Будь я проклятий, ви зробили це, {playername}! Всі раби повернуті і готові до збору врожаю. Ви повністю відпрацювали свою нагороду. Ось, тримайте, з моїми найкращими побажаннями.
+; dlga_lord_start:lord_generic_mission_completed.10|Well done, but you've done it, {playername}. The slaves are back and they're busy preparing for the harvest. I guess you had to kill some of them in order to make the others obey. Can't be helped, but I'll only reward you for those that have returned, not the ones you left rotting in the wilderness.
 dlga_lord_start:lord_bring_back_runaway_serfs_failed|{playername}, я з нетерпінням чекав моїх рабів, але ви їх не повернули. Поясніть мені будь ласка! Вас ввели в оману?, або ви настільки невмілий?
 dlga_lord_bring_back_runaway_serfs_failed:lord_bring_back_runaway_serfs_failed_1a|Вибачте мене, {s65}, ті раби виявилися слизькими, немов вугри.
 dlga_lord_bring_back_runaway_serfs_failed_1a:lord_pretalk|Пфф, це навряд чи виправдовує твій провал, {playername}. Тепер прошу мене вибачити, але я повинен дістати нових рабів для прибирання полів перш, ніж настане голод.
@@ -362,13 +363,9 @@ dlga_tell_dorwinion_sack:tell_dorwinion_sack_2|Дуже цікаво. Цей с�
 dlga_tell_dorwinion_sack_2:tell_dorwinion_sack_3|А також там був мішок а в ньому рунійський шолом. Чи може це може допомогти нам дізнатися що сталося з Списами?
 dlga_tell_dorwinion_sack_3:lord_pretalk|Каравани часто грабують на дорозі. Цей шолом належав рунійському розвіднику. Ідіть вниз по річці до Рунійського моря і шукайте торгові шляхи, і можливо там Ви знайдете те, що шукаєте. ВАЖЛИВО: ЦЕЙ КВЕСТ ЗНАХОДИТЬСЯ В РОЗРОБЦІ. ДАЛІ БУДЕ...
 dlga_lord_talk:lord_healer_wound_ask|Мені доводилося чути що Ви - майстерний цілитель. Це правда, Чи можете ви допомогти мені?
-dlga_lord_healer_wound_ask:lord_pretalk|{s1}
-dlga_lord_healer_wound_ask:lord_healer_wound_ask_check|{s1}
 dlga_lord_healer_wound_ask_check:lord_healer_wound_heal|В мене та моїх людей є рани, які не загояться самі собою. Чи можете ви допомогти нам?
 dlga_lord_healer_wound_ask_check:lord_healer_injured_ask|Я та мої люди були поранені в недавній битві, і у нас немає часу на довгий відпочинок. Чи зможете ви, що-небудь зробити?
 dlga_lord_healer_wound_ask_check:lord_pretalk|Не зараз.
-dlga_lord_healer_wound_heal:lord_healers_wound_check|{s1}
-dlga_lord_healer_injured_ask:lord_healers_injured_check|{s1}
 dlga_lord_healers_injured_check:lord_healers_injured_heal|Так, ходімо з нами.
 dlga_lord_healers_wound_check:lord_healers_wound_heal|Так, ходімо з нами.
 dlga_lord_healers_wound_check:lord_pretalk|Не зараз.
@@ -378,7 +375,7 @@ dlga_ring_hunters_start:ring_hunters_check|{playername}, Ви добре себ�
 dlga_ring_hunters_check:ring_hunters_1|Так, пане, у мене загін досвідчених, загартованих битвою воїнів. Ми готові на все.
 dlga_ring_hunters_check:ring_hunters_check_failed|Боюся що немає, пан
 dlga_ring_hunters_check_failed:lord_pretalk|Тоді ви ще не готові взятися за це завдання, {playername}. Ідіть і зберіть більше воїнів.
-dlga_ring_hunters_1:ring_hunters_2|Чудово. Північ з недавнього часу опоганює зграя грабіжників, які розоряють поселення і підстерігають мандрівників у пошуках кілець будь-якого виду і цінності. Вам потрібно вистежити цих бандитів і покласти край їхнім діям. Ті, що врятувалися від їх останнього розграбування говорять про двох загонах. Перший повертається з награбованими речами у табір на узліссі Темнолісся. Другий повільно просувається поруч з Будинком Беорнів у великому числі, і я боюся того що може статися, якщо їх не зупинити.
+; dlga_ring_hunters_1:ring_hunters_2|Excellent. The North has recently been plagued by a marauding band of outlaws who raid villages and ambush travellers, searching for rings of any kind.^^   You are to hunt these bandits down and put an end to their quest. Survivors of their last pillaging have reported two groups.^^   The first is returning with loot to their encampment on the eaves of Mirkwood. The other advances towards Beorn's House in great numbers and I fear what may happen if they are left unimpeded.
 dlga_ring_hunters_2:ring_hunters_what|Пане, що вони можуть шукати?
 dlga_ring_hunters_2:ring_hunters_accept|Пане, я зроблю все можливе, щоб зупинити цих... 'Мисливців за Кільцем'
 dlga_ring_hunters_2:ring_hunters_reject|Я поки не готов ий-а до цього завдання.
@@ -577,12 +574,12 @@ dlga_lord_mission_mirkwood_sorcerer_1:lord_mission_mirkwood_sorcerer_2|Шука�
 dlga_lord_mission_mirkwood_sorcerer_2:lord_pretalk|Як накажете, Володарка. Я докладу всіх зусиль, щоб знищити зло.
 dlga_lord_mission_mirkwood_sorcerer_2:lord_mission_mirkwood_sorcerer_rejected|Вибачте мене, Володарка. Є невідкладні справи, які повинні бути виконані, перш ніж я зможу допомогти вам в цій справі.
 dlga_lord_mission_mirkwood_sorcerer_rejected:lord_pretalk|Розумію, {playername}. Але я не можу чекати надто довго, чинити опір його магії стає все складніше.
-dlga_lord_tell_mission:lord_mission_deliver_message|{s13} очікує мого листа, але мені ні з ким його передати. Мені відомо, що прямує до {s4} і знаходиться там і зараз. Якщо ви вирушаєте в ту ж сторону, не могли б ви доставити листа? Тільки воно повинно досягти одержувача не пізніше, ніж через 30 днів.
+; dlga_lord_tell_mission:lord_mission_deliver_message|I need to send a letter to {s13} who should be currently at {s4}. If you will be heading towards there, would you deliver it to {reg11?her:him}? The letter needs to be in {reg11?her:his} hands in 30 days.
 dlga_lord_mission_deliver_message:lord_mission_deliver_message_accepted|Це не проблема! Мені якраз туди і треба їхати у {s4}.
 dlga_lord_mission_deliver_message:lord_mission_deliver_message_rejected|Боюся, що {s13} нескоро зустрінеться на моєму шляху, {s65}. Краще вам передати цей лист комусь іншому.
-dlga_lord_mission_deliver_message_accepted:close_window|Дякую, {playername}. Ось лист. Так, і нехай {s13} отримає мій уклін.
+; dlga_lord_mission_deliver_message_accepted:close_window|I appreciate it, {playername}. Here's the letter. Give my regards to {s13} when you see {reg11?her:him}.
 dlga_lord_mission_deliver_message_rejected:lord_pretalk|А, ну що ж, гаразд. Що ж, впевнений, знайду кого-небудь іншого
-dlga_lord_tell_mission:lord_mission_deliver_message.1|{s13} з держави {s15} очікує мого листа, але мені ні з ким його передати. Мені відомо що прямує він до {s4} і знаходиться там і зараз. Якщо ви вирушаєте у ту ж саму сторону не могли б  ви доставити листа? Тільки воно повинно досягти одержувача не пізніше, ніж через 40 днів.
+; dlga_lord_tell_mission:lord_mission_deliver_message.1|I need to deliver a letter to {s13} of {s15}, who must be at {s4} currently. If you are going towards there, would you deliver my letter to  {reg11?her:him}? The letter needs to reach  {reg11?her:him} in 40 days.
 dlga_lord_tell_mission:lord_mission_told|Є одне невідкладна справа... Мій гонець повинен доставити відомості про наших планах полководцям, які виїхали у {s14}. Його подорож вже кілька разів відкладалося через всіляких небезпек на дорозі, але зараз він обов'язково повинен прорватися. Так ось, я хочу, щоб він, щонайменше, поїхав під гарною охороною. Я довіряю вам, {playername}, тому я був би вам вдячний, якби ви довезли його в цілості й схоронності до пункту призначення - {s14}.
 dlga_lord_tell_mission:lord_mission_told.1|У мене є друг, сивий ветеран. Він дуже хворий. У його стару рану потрапила інфекція, і якщо його якомога скоріше не огляне лікар, то він напевно помре. Цей старий дуже дорогий мені, {playername}, але ще й упертий, як баран, і не підпускає до себе місцевих лікарів, тому що вважає їх невмілими. Я чув, що при тобі є досвідчений лікар і костоправ. Якби ти дозволив йому поїхати зі мною і оглянути мого друга, {reg3?Вона:він} зумі в-ла б переконати впертого в необхідності лікування. Прошу тебе, я буду в неоплатному боргу перед тобою, якщо ти виконаєш моє прохання.
 dlga_lord_tell_mission_raise_troops:lord_tell_mission_raise_troops_2|Які воїни вам потрібні? І скільки?
@@ -594,7 +591,7 @@ dlga_lord_mission_raise_troops_told:lord_mission_raise_troops_rejected|Я зар
 dlga_lord_mission_raise_troops_accepted:close_window|Ви зняли з мене важкий тягар турбот, {playername}. Я накажу сотникам привести вам новобранців і передати їх під ваше командування. Крім того, я подбаю про ваше постачанні, щоб відшкодувати витрати. Ось, тримайте, думаю, цього вистачить. Дякую за допомогу.
 dlga_lord_mission_raise_troops_alternate:close_window|Це цікава пропозиція, {playername}. Я накажу своїм сержантам відправити новобранців на тренувальне поле. Йди за ними і продемонструй їм кілька уроків. Я буду спостерігати за тобою. Заздалегідь дякую тобі за допомогу.
 dlga_lord_mission_raise_troops_rejected:lord_pretalk|Ах, так, звичайно. Більшого я і не чекав. Що ж, удачі в такому випадку.
-dlga_lord_tell_mission:lord_mission_hunt_down_fugitive_told|У мене є проблема з якою ти можеш мені допомогти, мова йде про злочинця лиходія відомого як {s4}. Він убив одного з моїх людей і з тих пір ховається від правосуддя. Нещодавно мені стало відомо, що його бачили у {s3}. Якщо ти вистежиш його та зробиш над ним швидкий суд, то я дам тобі нагороду за цю послугу.
+; dlga_lord_tell_mission:lord_mission_hunt_down_fugitive_told|I have something you could help with, an issue with the traitor known as {s4}.  He moves from place to place, spreading the insidious poison of doubt. He sows fear and undermines the resolve of our warriors.  He acts on behalf of our enemies, that much is certain. Yet so far he has always been able to slip from my grasp.  There has been news recently that he has been seen at {s3}.  You might be able to hunt him down and deliver him swift justice, and I'll reward you in turn.
 dlga_lord_mission_hunt_down_fugitive_told:lord_mission_hunt_down_fugitive_accepted|Тоді я розшукаю його і сам-а приведу вирок у виконання.
 dlga_lord_mission_hunt_down_fugitive_told:lord_mission_hunt_down_fugitive_rejected|Я зараз маю зробити багато справ, щоб когось ловити.
 dlga_lord_mission_hunt_down_fugitive_accepted:close_window|Відмінно, {playername}. Я був би тобі дуже вдячний, і, звичайно, твоя хоробрість не залишиться непоміченою. Що ж, вдалого полювання.
@@ -647,7 +644,7 @@ dlga_start:castle_guard_players|Який буде наказ, Командире
 dlga_castle_guard_players:close_window|Відкрий двері. Мені потрібно увійти.
 dlga_castle_guard_players:close_window.1|Не зважай.
 dlga_start:castle_guard_sneaked_intro_1|Геть звідси, жебрак! Ти смердиш!
-dlga_start:close_window.14|Забирайся, поки моє терпіння не скінчилося, жебрак!
+dlga_start:close_window.16|Забирайся, поки моє терпіння не скінчилося, жебрак!
 dlga_castle_guard_sneaked_intro_1:castle_guard_sneaked_intro_2|Я хочу увійти в зал і поговорити з володарем.
 dlga_castle_guard_sneaked_intro_1:close_window|[Піти]
 dlga_castle_guard_sneaked_intro_2:close_window|Агов ти, що {здурів, мужик/з'їхала з глузду, бабо}? Жебраків не пускають у тронний зал. Забирайся, або я з тебе відбивну зроблю.
@@ -724,8 +721,10 @@ dlga_woodelf_help_2:woodelf_help_3.1|Ти? Звичайно ти! Я бачив,
 dlga_woodelf_help_3:close_window|Доброго шляху тобі, Торбал. Гадаю, що ми ще зустрінемося.
 dlga_healers_meet:healer_who|Що ти робиш?
 dlga_healers_meet:healers_ask|Мені потрібна твоя допомога.
+; dlga_healers_ask:healers_ask_2|What can I do for you, friend?
 dlga_healers_ask_2:healer_wound_ask|У мене та моїх компаньйонів серйозні рани, на лікування яких просто часу не достатньо. Чи можеш ти зцілити наші рани?
 dlga_healers_ask_2:healer_injured_ask|Я та мої люди були поранені в недавній битві, і у нас немає часу на довгий відпочинок. Чи зможете ви, що-небудь зробити?
+dlga_healers_ask_2:close_window|Нічого.
 dlga_healers_meet:close_window|Нічого.
 dlga_healers_injured_check:healers_injured_heal|Так, ходімо з нами.
 dlga_healers_wound_check:healers_wound_heal|Так, ходімо з нами.
@@ -741,8 +740,8 @@ dlga_sad_elf_2:sad_elf_choice|Вісті з моря. І з далеких бе�
 dlga_sad_elf_choice:sad_elf_leave|Я відчуваю твій біль. Ти сповна розділив з нами тяготи цієї війни. Можеш вирушати.
 dlga_sad_elf_choice:sad_elf_no|Ельфи не повинні покидати Середзем'я на розтерзання темряві. У цій війні ми боремося не за себе, і кожен повинен зіграти свою роль. Я не можу дозволити тобі піти. [Потрібно досить Лідерства]
 dlga_sad_elf_leave:close_window|Дякую тобі, {мій пане/моя пані}!^^До моря, до моря! Під крики білих чайок,^під завивання вітру, і під бризки білої піни.^Вперед, на захід, назустріч при західного сонця!
-dlga_start:close_window.15|Ти якраз вчасно. Давай об'єднаємо наші війська і дамо ворогові хороший урок.
-dlga_start:close_window.16|Ти робиш велику помилку, намагаючись протистояти нам.
+dlga_start:close_window.17|Ти якраз вчасно. Давай об'єднаємо наші війська і дамо ворогові хороший урок.
+dlga_start:close_window.18|Ти робиш велику помилку, намагаючись протистояти нам.
 dlga_start:ally_thanks_meet|Ось вже не думав, що несподівано знайду друга. Ви дійсно врятували мені життя, а я так і не дізнався вашого імені...
 dlga_start:ally_thanks_meet.1|Твоя допомога була дуже доречною, незнайом цю-ка. Мене звуть {s1}. Можу я дізнатися твоє ім'я?
 dlga_start:ally_thanks_meet.2|Дякую за допомогу, незнайом цю-ка. Нам ще не доводилося зустрічатися, чи не так? Як тебе звати?
@@ -750,13 +749,13 @@ dlga_ally_thanks_meet:ally_thanks_meet_2|Мене звуть {playername}.
 dlga_ally_thanks_meet_2:close_window|Радий зустрічі, {playername}. Мене звуть {s1}, і я навічно у тебе в боргу. Якщо є щось таке, чим я зможу тобі допомогти, просто дай мені знати...
 dlga_ally_thanks_meet_2:close_window.1|Радий зустрічі, {playername}. Тепер я в боргу перед тобою. Сподіваюся, одного разу я зумію відплатити тобі тим же.
 dlga_ally_thanks_meet_2:close_window.2|Радий зустрічі, {playername}. Я {s1}. Дякую за твою допомогу. Сподіваюся, ми ще зустрінемося.
-dlga_start:close_window.17|Ти знову врятува в-ла наші голови, {playername}! Ти й справді найкращий союзник. {S43}
-dlga_start:close_window.18|Ви з'явилися у скрутний час, {playername}! Прийміть мою щиру подяку! {s43}
-dlga_start:close_window.19|Ви з'явилися як ніколи вчасно, {playername}. Я не забуду вашу допомогу. {s43}
-dlga_start:close_window.20|Радий бачити тебе, {playername}. {s43}
-dlga_start:close_window.23|Дякую за допомогу, Командире. Ви врятували {reg1?Нам життя:мені життя}.
-dlga_start:close_window.24|Дякую за допомогу, Командире. Все складалося для нас дуже невдало, але, коли ви з'явилися, ми змогли переломити хід битви.
-dlga_start:close_window.25|Дякую за допомогу, Командире. Те, що ви були неподалік - велика удача.
+dlga_start:close_window.19|Ти знову врятува в-ла наші голови, {playername}! Ти й справді найкращий союзник. {S43}
+dlga_start:close_window.20|Ви з'явилися у скрутний час, {playername}! Прийміть мою щиру подяку! {s43}
+dlga_start:close_window.21|Ви з'явилися як ніколи вчасно, {playername}. Я не забуду вашу допомогу. {s43}
+dlga_start:close_window.22|Радий бачити тебе, {playername}. {s43}
+dlga_start:close_window.25|Дякую за допомогу, Командире. Ви врятували {reg1?Нам життя:мені життя}.
+dlga_start:close_window.26|Дякую за допомогу, Командире. Все складалося для нас дуже невдало, але, коли ви з'явилися, ми змогли переломити хід битви.
+dlga_start:close_window.27|Дякую за допомогу, Командире. Те, що ви були неподалік - велика удача.
 dlga_start:freed_hero_answer|Ти звільни в-ла мене. Я у тебе в боргу,мій друже.
 dlga_freed_hero_answer:freed_hero_answer_1|Ти нікуди не підеш. Тепер ти мій бранець!
 dlga_freed_hero_answer_1:close_window|На жаль мені. Невже удача не посміхнеться мені?
@@ -771,11 +770,13 @@ dlga_defeat_hero_answer_1:close_window|Прокляття! Ви про це по
 dlga_defeat_hero_answer:defeat_hero_answer_2|Цього разу я вас звільняю, але більше не потрапляйте мені на шляху.
 dlga_defeat_hero_answer_2:close_window|Ми ще зустрінемося.
 dlga_start:fugitive_1|Так, що ви хочете?
-dlga_fugitive_1:fugitive_2|Я шукаю втікача злочинця. Його звуть {s4}. Ти підходиш під його опис.
+; dlga_fugitive_1:fugitive_2|I am looking for a {s3} by the name of {s4}. You fit his description.
 dlga_fugitive_1:close_window|Нічого. Вибач за турботу.
 dlga_fugitive_2:fugitive_3|Я не розумію, про що ти говориш. Ти, напевно, сплута в-ла мене з кимось ще.
 dlga_fugitive_3:fugitive_4|Тоді кинь меч на землю. Якщо ти не винен, тобі ж нема чого боятися. Зараз ми вирушимо до начальника варти і з'ясуємо, хто помиляється.
 dlga_fugitive_4:close_window|Прокляття! Ти нікуди не підеш!
+; dlga_start:fugitive_5|So, I caught you at last!
+; dlga_fugitive_5:close_window|You are mistaken. We caught you!
 dlga_start:follow_spy_talk|Доброго дня. Сьогодні гарна погода, чи не так? Якщо ви мене вибачте, я піду по своїх справах.
 dlga_follow_spy_talk:follow_spy_talk_2|Від імені {s1} ви заарештовані!
 dlga_follow_spy_talk_2:close_window|Живим не здамся!
@@ -785,12 +786,15 @@ dlga_spy_partners_talk:spy_partners_talk_2|Від імені {s1} Ви заар�
 dlga_spy_partners_talk_2:close_window|Спершу тобі доведеться з нами битися!
 dlga_spy_partners_talk:close_window|Не звертай на мене уваги. Я просто проходив повз.
 dlga_start:runaway_serf_intro_1|Добрий день, пане-пані.
-dlga_runaway_serf_intro_1:runaway_serf_intro_2|Мене послав ваш пан {s4}, від якого ви зараз біжите. Він не стане карати вас, якщо ви негайно повернетеся.
-dlga_runaway_serf_intro_2:runaway_serf_intro_3|Найдобріший пане-пані, {s1} нас вб'є - життя тут була для нас нестерпним. Ми працювали цілими днями і відправлялися спати голодними. Ми йдемо у {s6}, щоб почати нове життя. Там з нами будуть звертатися, як з людьми.
-dlga_runaway_serf_intro_3:runaway_serf_go_back|Збіглі раби - злочинці за нашими законами. Зараз же повертайтеся у {s1}!
-dlga_runaway_serf_go_back:close_window|Добре, пане-пані, як побажаєте. Ми вирушаємо у {s5}.
-dlga_start:runaway_serf_talk_caught|Доброго дня, пане-пані. Ми прямуємо у {s5}, але, боюся, ми трохи заплутали.
-dlga_runaway_serf_talk_caught:runaway_serf_go_back|Не випробовуйте моє терпіння. Повертайтеся до господаря!
+; dlga_runaway_serf_intro_1:runaway_serf_intro_2|I have been sent by {s4} whom you are running from. {reg11?She:He} will hold back {reg11?her:his} wrath and spare your lifes if you return now.
+; dlga_runaway_serf_intro_2:runaway_serf_intro_3|Have mercy! Going back to {s1} means certain death.{s4} will make us toil until we die of exhaustion, or he will put us to the stake immediately.
+; dlga_runaway_serf_intro_3:runaway_serf_go_back|And this will be all that you maggots deserve. You will go back to {s1}, or I have you slaughtered here and now!
+; dlga_runaway_serf_intro_3:runaway_serf_slaughter|I see. I think I will have to teach you lot a lesson in order to make you obey. Slaughter him!
+; dlga_runaway_serf_go_back:close_window|All right {reg11?mistress:master}. As you wish. We'll head back to {s5} now.
+; dlga_start:runaway_serf_talk_caught|Good day {reg11?mistress:master}. We were heading back to {s5}, but I am afraid we lost our way.
+; dlga_runaway_serf_talk_caught:runaway_serf_go_back|Do not test my patience. You are going back now! (Charisma)
+; dlga_runaway_serf_talk_caught:runaway_serf_slaughter|I see. I think I will have to teach you lot a lesson not to lose your way again. Slaughter him!
+dlga_runaway_serf_slaughter:close_window|Одного разу, ви заплатите за це... Аааггллр!..
 dlga_start:runaway_serf_talk_again_return|Ми вже йдемо назад в {s5} пане-пані.
 dlga_runaway_serf_talk_again_return:runaway_serf_talk_again_return_2|Покваптеся. Чим швидше ви повернетеся, тим краще.
 dlga_runaway_serf_talk_again_return:runaway_serf_talk_again_return_2.1|Добре. Не зупиняйтесь.
@@ -845,7 +849,7 @@ dlga_trainer_choose_weapon_player:trainer_begin_training.3|Лук.
 dlga_trainer_choose_weapon_player:trainer_begin_training.4|Метальна зброя.
 dlga_trainer_choose_weapon_player:trainer_pretalk|Ні, я передума "ла-в".
 dlga_trainer_begin_training:close_window|Добре, ось вам зброя. Коли закінчите тренування, повертайтеся і поговоріть зі мною.
-dlga_start:close_window.26|Забирайся звідси, мерзенний жебрак.
+dlga_start:close_window.28|Забирайся звідси, мерзенний жебрак.
 dlga_start:mayor_begin|Доброго дня, "моя пані - мій пане".
 dlga_start:mayor_talk|Вітаю тебе, мандрівнику. Здається, ви вперше прибули у {s9}. Я управитель цього міста.
 dlga_start:mayor_begin.1|Добрий день, {playername}.
@@ -931,8 +935,8 @@ dlga_merchant_quest_brief:escort_merchant_caravan_quest_brief|Я збираюс�
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_taken|Гаразд. Я супроводжу обоз.
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_stall|Боюся, у мене недостатньо воїнів.
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_stall.1|Вибачте, я не можу зайнятися цим прямо зараз.
-dlga_start:close_window.27|Ми можемо подолати решту шляху самостійно. Дякую.
-dlga_start:close_window.28|Що ж, {s21} вже недалеко. Ми можемо подолати решту шляху самостійно. Дякую, що захистили нас. Нехай щастить.^^[отримано {reg14} очок постачання фракції {s14}]
+dlga_start:close_window.29|Ми можемо подолати решту шляху самостійно. Дякую.
+dlga_start:close_window.30|Що ж, {s21} вже недалеко. Ми можемо подолати решту шляху самостійно. Дякую, що захистили нас. Нехай щастить.^^[отримано {reg14} очок постачання фракції {s14}]
 dlga_start:merchant_caravan_intro_1|Вітаю. Ви будете нас супроводжувати, так?
 dlga_merchant_caravan_intro_1:merchant_caravan_intro_2|Так. Мене звуть {playername}. Я поведу вас у {s1}.
 dlga_merchant_caravan_intro_2:escort_merchant_caravan_talk|Що ж, приємно чути, що ми будемо подорожувати не поодинці. Що нам потрібно робити, як ви вважаєте?
@@ -982,7 +986,7 @@ dlga_prisoner_chat_3:prisoner_slaughter|Тобі доведеться стати
 dlga_prisoner_chat_4:close_window|Ага, як ніби я в змозі втекти! Відчепіться від мене!
 dlga_prisoner_slaughter:prisoner_slaughter_02|Одного разу, ви заплатите за це!
 dlga_prisoner_slaughter:close_window|Одного разу, ви заплатите за це... Аааггллр!..
-dlga_start:close_window.29|Забирайся звідси, мерзенний жебрак.
+dlga_start:close_window.31|Забирайся звідси, мерзенний жебрак.
 dlga_start:town_merchant_talk|Вітаю, Командире. Як я можу вам сьогодні служити?
 dlga_start:town_merchant_talk.1|Доброго дня. Чим можу допомогти?
 dlga_town_merchant_talk:trade_requested_weapons|Я хочу запросити нове спорядження. Покажіть мені, що у вас на складі.
@@ -1007,38 +1011,39 @@ dlga_town_merchant_talk:merchant_gossip|Розкажи-но, про що люд�
 dlga_town_merchant_talk:close_window|До побачення.
 dlga_start:town_dweller_talk|Вибачте?
 dlga_start:town_dweller_talk.1|Добрий день, Командире.
-dlga_town_dweller_talk:town_dweller_ask_fugitive|Я шукаю втікача на ім'я {s4}. Мені сказали, що він може переховуватися тут.
-dlga_town_dweller_ask_fugitive:close_window|Чужинці приходять і йдуть. Якщо він ховається десь тут, то ви обов'язково його знайдете - варто лише пошукати.
+; dlga_town_dweller_talk:town_dweller_ask_fugitive|I am looking for a man named {s4}. Have you seen a stranger here who is acting suspiciously and spreading lies about the war?
+; dlga_town_dweller_ask_fugitive:close_window|Well, I saw a suspicious stranger {s5}. If you are lucky, you may still find him there.
 dlga_town_dweller_talk:town_dweller_ask_info|Що ви можете розповісти про це село?
 dlga_town_dweller_talk:town_dweller_ask_info.1|Що ви можете розповісти про це місце?
 dlga_town_dweller_talk:town_dweller_talk|Ну і як тут живеться?
 dlga_town_dweller_talk:town_dweller_ask_rumor|Які чутки ходять по окрузі останнім часом?
 dlga_town_dweller_ask_rumor:town_dweller_talk|Я не знаю нічого такого, що було б вам цікаво.
+; dlga_town_dweller_ask_join:town_dweller_ask_join_yes|Yes, I could indeed use another hand. Get ready to leave!
+; dlga_town_dweller_ask_join:town_dweller_ask_join_no|No, I have no use for you.
+; dlga_town_dweller_ask_join_yes:close_window|Very well, I will gather my things and join your party.
+; dlga_town_dweller_talk:town_dweller_ask_directions|Can you help me find a place?
+; dlga_town_dweller_ask_directions:town_dweller_ask_directions2|What are you looking for?
+dlga_town_dweller_ask_directions2:close_window|Не зважай.
+; dlga_town_dweller_ask_directions3:close_window|I know where that is. Follow me.
 dlga_town_dweller_brawl:town_dweller_brawl_confirm|Ти мені погрожуєш? Стражники навряд чи чекали, що тут з'явиться такий тип, як ти.
 dlga_town_dweller_brawl_confirm:close_window|О, невже? Давай подивимося, що у тебе є
 dlga_town_dweller_brawl_confirm:close_window.1|Ні, я вас переплутав з деким іншим.
 dlga_town_dweller_talk:close_window|[Піти]
+; dlga_start:close_window.32|Get lost!
+; dlga_start:close_window.33|Leave me alone!
 dlga_start:player_castle_guard_talk|Так, Командире?
 dlga_player_castle_guard_talk:player_castle_guard_talk_2|Як проходить варта, воїне?
 dlga_player_castle_guard_talk_2:player_castle_guard_talk_3|Все тихо, Командире. Доповідати нічого.
 dlga_player_castle_guard_talk_3:close_window|Добре. Тримайте очі відкритими.
-dlga_start:close_window.30|Доброго дня, Командире. Добре, що ви прибули сюди, в {s10}.
-dlga_start:close_window.31|Стеж за своєю поведінкою - і не буде ніяких проблем.
+; dlga_start:close_window.34|Good day, {s24}. It's good having you here in {s10}.
+dlga_start:close_window.35|Стеж за своєю поведінкою - і не буде ніяких проблем.
 dlga_start:hall_guard_easter_egg|Ах, тільки за північ - ось і все. До речі, днями сталося дивовижне пригода - не бажаєте послухати?
 dlga_hall_guard_easter_egg:hall_guard_easter_egg_scene|Так, продовжуй.
 dlga_hall_guard_easter_egg:close_window|Ні, мене не хвилюють плітки.
 dlga_hall_guard_easter_egg_scene:close_window|Що ж... Прибула незвичайна компанія шукачів пригод: людина, гном та ельф - а в же потім...
-dlga_start:hall_guard_talk|Який буде наказ, Командире?
-dlga_start:close_window.32|Нам не можна розмовляти на посаді, Командире.
-dlga_hall_guard_talk:hall_guard_duty|Стій на посаді і дайте мені знати, якщо хтось хоче бачити мене!.
-dlga_hall_guard_duty:close_window|Як побажаєте, Командире.
-dlga_hall_guard_talk:hall_guard_arrest|Я хочу, щоб ви негайно взяли під варту цю людину!
-dlga_hall_guard_arrest:hall_guard_arrest_2|Кого ви хочете взяти під варту, Командире?
-dlga_hall_guard_arrest_2:close_window|А, не звертайте уваги, хлопці.
-dlga_hall_guard_arrest_2:close_window.1|Забудьте про це. Я знайду інший спосіб, як це вирішити.
+dlga_start:close_window.36|Нам не можна розмовляти на посаді, Командире.
 dlga_enemy_defeated:close_window|Аргх! Ненавиджу це.
 dlga_party_relieved:close_window|Дуже дякую, що допомогли нам впоратися з цими виродками.
-dlga_start:battle_reason_stated|Я зроблю кубок з твого черепа!
 dlga_member_chat_00:close_window.1|^^ГАРЧАННЯ!^^
 dlga_member_chat_00:close_window.2|Грррр.....
 dlga_member_chat_00:regular_member_talk|Який буде наказ, Командире?
@@ -1069,32 +1074,33 @@ dlga_party_reinforce:party_reinforce_end.2|На жаль, під вашим по
 dlga_party_reinforce_check:party_reinforce_check_1|Зараз я перевірю списки воїнів...
 dlga_party_reinforce_check_1:party_reinforce_end|Отже ви передумали... ^Як я бачу.
 dlga_party_reinforce_check_1:party_reinforce_end.1|Від цих воїнів нам немає ніякого пуття. ^Заберіть їх назад.
-dlga_start:close_window.33|Ти затримуєш мене! Чаклуни ніколи не спізнюються!
-dlga_start:close_window.34|Воно... вабить до с-с-с-с-себе...
+dlga_start:close_window.37|Ти затримуєш мене! Чаклуни ніколи не спізнюються!
+dlga_start:close_window.38|Ти затримуєш мене! Чаклуни ніколи не спізнюються!
+dlga_start:close_window.39|Воно... вабить до с-с-с-с-себе...
 dlga_start:secret_guardian_let_through|Стійте!
 dlga_secret_guardian_let_through:secret_guardian_let_through1|Я{імя гравця},{s24}. Відпустіть мене!
 dlga_secret_guardian_let_through1:close_window|Так, командире, ви можете йти.
-dlga_start:close_window.36|Агов ти! Ти там живий? Ти, що! Тут небезпечно ходити одному! Ось візьми це!
+dlga_start:close_window.41|Агов ти! Ти там живий? Ти, що! Тут небезпечно ходити одному! Ось візьми це!
 dlga_start:ori_choose_1|Ти добре бився, брате! Не знаю як тобі вдавалося залишатися в живих так довго. Я пам'ятаю що ти не так давно з нами... як раз з того дня як впав Балін... Звідки ти?
 dlga_ori_choose_1:ori_choose_finish|Я був слідопитом, відправленим в ліс поруч з Ведмежим народом. Я Нещодавно почув про похід Баліна і приєднався.
 dlga_ori_choose_1:ori_choose_finish.1|Я далекий родич, колишній охоронець з далекої шахти. Я багато чув про Баліна і вирішив піти з ним.
 dlga_ori_choose_1:ori_choose_finish.2|Я - з Залізних Горбів, ветеран багатьох битв, і рудокоп в мирний час. Я відправився з Баліном, щоб вбивати орків.
 dlga_ori_choose_finish:close_window|Радий знайомству! Я знайшов це, тобі якраз підійде. Ми закріпимося тут і постараємося забрати якомога більше з них з собою!
-dlga_start:close_window.37|Схоже що ти скинув з себе стару іржу і готовий до цієї бійки, вірно? Ось, ковтни цього. Відчуєш себе краще. Нові сили орків наближаються!
-dlga_start:close_window.38|Знімай свої обдерте лахміття і одягай ось це. Ось цим ти будеш захищений трохи краще. Ці орки боляче кусаються!
-dlga_start:close_window.39|Щось величезне наближається! Приготуйтеся!
-dlga_start:close_window.40|Їх занадто багато... але ми - народ Дуріна!
-dlga_start:close_window.41|Ці орки розкрили розлом, набитий скарбами. Ось що я знайшов, тепер ми їм покажемо!
-dlga_start:close_window.42|Ні.... Я чую їх... вони зовні! Вони всюди!
-dlga_start:close_window.43|Тут... Наш пан Балін... ти гідний всього цього...
+dlga_start:close_window.42|Схоже що ти скинув з себе стару іржу і готовий до цієї бійки, вірно? Ось, ковтни цього. Відчуєш себе краще. Нові сили орків наближаються!
+dlga_start:close_window.43|Знімай свої обдерте лахміття і одягай ось це. Ось цим ти будеш захищений трохи краще. Ці орки боляче кусаються!
+dlga_start:close_window.44|Щось величезне наближається! Приготуйтеся!
+dlga_start:close_window.45|Їх занадто багато... але ми - народ Дуріна!
+dlga_start:close_window.46|Ці орки розкрили розлом, набитий скарбами. Ось що я знайшов, тепер ми їм покажемо!
+dlga_start:close_window.47|Ні.... Я чую їх... вони зовні! Вони всюди!
+dlga_start:close_window.48|Тут... Наш пан Балін... ти гідний всього цього...
 dlga_start:party_encounter_hostile_attacker|У вас немає жодних шансів вистояти проти нас. Здавайтеся негайно, або ми всіх вас повбиваємо...
 dlga_party_encounter_hostile_attacker:close_window|Не атакуйте! Ми здаємося.
 dlga_party_encounter_hostile_attacker:close_window.1|Ми будемо боротися до кінця!
 dlga_start:party_encounter_hostile_defender|Що ви хочете?
 dlga_party_encounter_hostile_defender:party_encounter_hostile_ultimatum_surrender|Здайся або помри!
 dlga_party_encounter_hostile_defender:close_window|Нічого. Ми залишимо вас у спокої.
-dlga_start:close_window.45|* Мовчки дивиться на вас *
-dlga_start:battle_reason_stated|Я зроблю кубок з твого черепа!
+dlga_start:close_window.50|* Мовчки дивиться на вас *
+dlga_start:battle_reason_stated|Здайся або помри. Обирай!
 dlga_battle_reason_stated:close_window|Я тебе не боюся. Я буду боротися.
 dlga_start:free|Вітаю. Що я можу зробити для тебе?
 dlga_free:view_char_requested|Розкажи мені про себе.

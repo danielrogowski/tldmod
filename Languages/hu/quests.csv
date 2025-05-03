@@ -7,7 +7,7 @@ qst_raise_troops_text|{s9} megkért hogy képezz ki {reg1} {s14}t és vidd el {n
 qst_escort_messenger|Kísérd el a hírnököt {s14} városába
 qst_escort_messenger_text|Semmi
 qst_hunt_down_fugitive|Vadászd le {s4}t
-qst_hunt_down_fugitive_text|{s9} megkért hogy vadászd le a {s4} nevű szökevényt. Úgy tudják jelenleg {s3} városában található.
+; qst_hunt_down_fugitive_text|{s9} asked you to hunt down the traitor named {s4}. He is currently believed to be at {s3}.
 qst_bring_back_runaway_serfs|Vidd vissza a szökött parasztokat
 qst_bring_back_runaway_serfs_text|{s9} megkért hogy rángass vissza három csoportnyi menekülő rabszolgát {s2} városába. Azt mondta mind a három {s3} irányába szaladt.
 qst_follow_spy|Kövesd a kémet a találkozóra
@@ -78,27 +78,4 @@ qst_deliver_gift_text|Meglettél rá kérve, hogy szállíts le egy {s1}i {s4} t
 qst_ring_hunters|Gyűrűvadászok
 qst_ring_hunters2|Gyűrűvadászok - Teljesítve
 qst_deliver_message_hobbit|Aggódó hobbitok
-qst_blank_quest_01|Védd meg a menekülteket
-qst_blank_quest_02|Vadász le a menekülteket
-qst_blank_quest_03|Tengeri csata
-qst_blank_quest_04|Ölj meg {s35} {s6} nevű ellenfelet {s7} frakciójából
-qst_blank_quest_05|Ölj meg {s35} {s36} egységet.
-qst_blank_quest_06|Győzd le {s35} seregét csatában.
-
-
-
-
-
-
-
-
-
-qst_blank_quest_16|Központ megerősítése
-qst_blank_quest_17|Mészárolj le {reg22} {s6} nevű ellenfelet csatákban.
-
-
-
-
-qst_guardian_party_quest|Vasudvard utolsó helytállása
-qst_quests_end|Küldetések vége
 qst_quests_end_text|.

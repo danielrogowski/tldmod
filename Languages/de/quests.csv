@@ -7,7 +7,7 @@ qst_raise_troops_text|{s9} bat dich, {reg1} {s14} auszubilden und {ihm/ihr} zu �
 qst_escort_messenger|Eskortiere den Boten nach {s14}
 qst_escort_messenger_text|Nichts
 qst_hunt_down_fugitive|Jage {s4}
-qst_hunt_down_fugitive_text|{s9} bat dich, den Flüchtigen names {s4} zu jagen. Er soll sich im Moment in {s3} aufhalten.
+; qst_hunt_down_fugitive_text|{s9} asked you to hunt down the traitor named {s4}. He is currently believed to be at {s3}.
 qst_bring_back_runaway_serfs|Bring die entflohenen Sklaven zurück
 qst_bring_back_runaway_serfs_text|{s9} bat dich, die drei Gruppen entflohener Sklaven nach {s2} zurückzubringen. Er sagte, dass alle drei Gruppen in Richtung {s3} fliehen müssten.
 qst_follow_spy|Folge dem Spion zum Treffen
@@ -78,27 +78,4 @@ qst_deliver_gift_text|Du hast hast ersucht, ein {s4} an {s1} von {s3} nach {s2} 
 qst_ring_hunters|Ringjäger
 qst_ring_hunters2|Ringjäger - Erledigt
 qst_deliver_message_hobbit|Über Hobbits
-qst_blank_quest_01|Verteidige die Flüchtlinge
-qst_blank_quest_02|Jage die Flüchtlinge
-qst_blank_quest_03|Seegefecht
-qst_blank_quest_04|Töte {s35} {s6} {s7}
-qst_blank_quest_05|Töte {s35} {s36}-Truppen.
-qst_blank_quest_06|Besiege {s35} in der Schlacht.
-
-
-
-
-
-
-
-
-
-qst_blank_quest_16|Verstärke eine Garnison
-qst_blank_quest_17|Töte {reg22} {s6} in der Schlacht
-
-
-
-
-qst_guardian_party_quest|Isengarts letzte Verteidigung
-qst_quests_end|Quests End
 qst_quests_end_text|.

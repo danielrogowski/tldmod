@@ -2460,7 +2460,8 @@ ai_scripts = [
       (try_end),
       # host spawning conditions
       (try_for_range, ":hero", kingdom_heroes_begin, kingdom_heroes_end), # cycle through heros w/o hosts and try to spawn a host
-         (neq, ":hero", "trp_isengard_lord"), #Lets not give saruman a host.
+         #(neq, ":hero", "trp_isengard_lord"), #Lets not give saruman a host.
+         (call_script, "script_cf_fails_if_sitting_king", ":hero"),
          (store_troop_faction, ":troop_faction_no", ":hero"),
          (faction_slot_eq, ":troop_faction_no", slot_faction_state, sfs_active),
           
@@ -2892,7 +2893,7 @@ ai_scripts = [
 # Output: s15
 ("theater_name_to_s15",[
      (store_script_param, ":theater", 1),
-     (str_store_string, s15, "@ERROR"),
+     (str_store_string, s15, "@{!}ERROR"),
      (try_begin),(eq, ":theater", theater_SE),(str_store_string, s15, "str_theater_SE"),
       (else_try),(eq, ":theater", theater_SW),(str_store_string, s15, "str_theater_SW"),
       (else_try),(eq, ":theater", theater_C ),(str_store_string, s15, "str_theater_C"),
@@ -3284,7 +3285,7 @@ ai_scripts = [
 	  (try_begin),
 		(eq, cheat_switch, 1),
 		(str_store_party_name, s1 , ":center_no"),
-		(display_message, "@{s1} siege attack!"),
+		(display_message, "@{!}{s1} siege attack!"),
 	  (try_end),
 	  
   ]),

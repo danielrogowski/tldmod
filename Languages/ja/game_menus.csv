@@ -5,7 +5,10 @@ mno_faction_intros|中つ国のさまざまな勢力について調べる
 mno_go_bback|戻る
 menu_start_phase_2|^^^^^ここは中つ国。東に広がる闇は日々ふくれあがり、^遠く忘れ去られてきた暗いものたちが、その姿をあらわす。^自由の民は、長く経験したことのない未曾有の戦いを前に、その身を固くする。^人間、エルフ、ドワーフ、そしてオーク。^すべてのものがそれぞれの運命を演じていく。^^運命の先にあるものは何か、それはまだわからない・・・
 mno_go_forth|定められし運命の道ならば、これを進もう・・・
+; mno_change_war_start_mode|War Starts:  {s7}
+; mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|TLDのオプション
+; mno_see_info_pages|TLD game concepts.
 menu_start_game_3|^^^^^^^^シナリオを選んでください:
 mno_custom_battle_scenario_1|小規模戦闘、 ゴンドール勢 vs ハラド
 mno_custom_battle_scenario_12|所属する勢力を選んでください
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|パーティの維持費を見る
 mno_view_character_report|キャラクター情報を見る
 mno_view_party_size_report|パーティの人数上限を確認する
 mno_view_morale_report|パーティの士気に関する情報を見る
-mno_view_character_report_02|NPCの状態を確認する
 mno_view_faction_strengths_report|各勢力の勢力ポイントを確認する
 mno_view_traits_report|特殊能力を見る
 mno_resume_travelling|旅を続ける
@@ -47,7 +49,6 @@ mno_continue_dot|続ける。
 menu_custom_battle_durin_end|^^^^^^見事な最期の抵抗でしたが、最後には力尽きてしまいました。^^あなたと同胞たちは{reg5}名の敵を倒しました。^あなた個人では{reg7}名の敵を倒しました。
 mno_replay_cbd|この戦闘をもう一度プレイする
 mno_continue_dot_cbd|続ける
-mno_dot_go_back|戻る
 menu_start_good|^^^^^^^^^^種族を選んでください:
 mno_start_ma|人間
 mno_start_el|エルフ
@@ -113,7 +114,6 @@ mno_start_2_bn|妖術師の要塞、ドル・グルドゥア
 menu_choose_gender|^^^^^^^^^^あなたの性別は？
 mno_start_male|男性
 mno_start_female|女性
-mno_proc|通常通り続ける
 menu_start_as_one|^^^^^^^^^^どんな戦士ですか？
 mno_start_default|{s23} (標準)
 mno_start_up1|{s21} (簡単)
@@ -127,8 +127,8 @@ mno_camp_action|アイテムを使う
 mno_camp_wait_here|ここで野営する
 mno_camp_options|TLDのオプション
 mno_Dev_Menu|開発者用メニュー
-menu_dev_menu|これは開発者向けのオプションで、たくさんのチートやツールを利用できます。^^ただ、これらを利用すると開発途中のイベント、トリガー、キャンペーンの^変更などが原因でゲームの動作に支障がでる事があります。^^リスクを理解した上で利用してください！^^バグの報告をする場合は、この開発者メニューを^利用したかどうかも報告してください。
-mno_Cheat_enable|チート/mod作成オプションを有効にする
+; menu_dev_menu|These are development options that give you a lot of cheats/tools to play with.^^ However, this will result in some WIP events, triggers, campaign changes that could be game breaking.^^ Use at your own risk! ^^ Also, when reporting bugs, please tell us that you are using the Dev Menu.
+mno_cheat_enable|チート/mod作成オプションを有効にする
 menu_game_options|^^^^^^^^項目をクリックするとトグルします
 mno_game_options_war_level_start|戦争の始まるレベル:{s1}
 mno_game_options_restrict_items|プレイヤーの装備制限:{s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|包囲攻城戦に必要な勢力ポイント:{s7}
 mno_strat_tweaks_siege_relax_rate|包囲攻城戦の必要条件の緩和レート:{reg1}
 mno_strat_tweaks_regen_rate|勢力ポイントの回復レート:{s7}
 mno_strat_tweaks_siege_regen_limit|勢力ポイントの回復速度が遅くなるしきい値:{reg1}
-mno_strat_tweaks_influence_gain_rate|影響力ポイント獲得レート:{s7}
-mno_strat_tweaks_rank_gain_rate|ランクポイント獲得レート:{s7}
+; mno_strat_tweaks_influence_gain_rate|Influence gain rate: {reg0}%
+; mno_strat_tweaks_rank_gain_rate|Rank gain rate: {reg0}%
 mno_strat_tweaks_back|調整メニューに戻る
 menu_camp_action|^^^^^^^^^ どのアイテムですか？
 mno_camp_drink_water|エント水を飲むぞ！
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|{s1}は依然、包囲されています。 あ�
 mno_talk_to_siege_commander|指揮官に面会を申し入れる。
 mno_join_siege_with_allies|次の攻撃に参加する。
 mno_join_siege_stay_back|部下に次の攻撃に参加するよう指示をし、 自身は後方に待機する。
-menu_moria_must_escape|^^この本には、モリアに再び入植しようとした、最後のドワーフたちの^記録が記されているようだ。そのドワーフたちの試みは、^関わった者すべてが凄惨な死を遂げ、失敗に終わったらしい。^本を注意深く読み進めていくうち、あなたは「まことの銀」という^記述を見つけた！その記述の前後をよく読んでいくうち、これは^さらに深い層のどこかにある、ドワーフの隠し財産に関する^記述であることをついに理解した。やった！長く忘れられた^ドワーフのミスリルを発掘するだなんて、素敵じゃないか！？^あなたは喜び勇んで記述に従い、細くまがりくねった坑道を^深く深く進んでいった・・・^・・・^何も手がかりのないまま二時間ほどが過ぎた頃、あなたは^自分たちがモリアの深層で迷ってしまい、まず出口を探さなければ^ならない事態になった事を悟った。
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|出口を探すんだ！
 menu_castle_outside|ここは{s2}の外です。 {s11} {s3} {s4}
-mno_moria_enter|秘密の入り口を通って、モリアの大広間へ行く
-mno_moria_enter_door|モリアに入る。
 mno_cheat_steal_book_door|本を入手する
+; mno_moria_enter|Return into main hall of Moria through the secret entrance
+mno_moria_enter_door|モリアに入る。
 mno_castle_start_siege|この{reg6?町:城}を包囲する。
 mno_castle_leave|立ち去る。
 menu_castle_besiege|あなたは{s1}の包囲を準備しています。 {s2} {s3}
@@ -305,6 +305,7 @@ mno_trade_with_horse_merchant|{s41}に行く。
 mno_talk_to_castle_commander|{s61}の兵舎へ行く。
 mno_speak_with_elder|{s6}に会う。
 ; mno_town_ask|Ask around for persons of import...
+; mno_player_initiate_siege|Attack the {reg6?town:castle}...
 mno_isengard_underground|地下の洞窟へ行く。
 mno_isengard_underground_door|地下の洞窟へ行く。
 mno_tirith_toplevel|最上層に登る。
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^あなたは噂話を頼りに{s1}を発見しました
 mno_explore|探索を始める。
 menu_ring_hunter_lair|^^^^闇の森から{s1}到着まで指輪狩り一味の痕跡を追跡した。 指輪狩り一味が宝箱を後にする準備を始めている。
 mno_attack_lair|今すぐ攻撃する。
-mno_leave_bandit_lair|今のところは立ち去る。
 menu_gondor_reinforcement_event|^^^^^救援を求めるミナス・ティリスによって、ゴンドールの烽火がともされた！^^迫りくる暗闇から白の都を守るため、これより南方の領主たちが北上するだろう。
 mno_gondor_reinforcement_event_close|閉じる
 menu_gondor_beacons|あなたはゴンドールの南北に危急を知らせる、 ゴンドールの烽火のうちのひとつである{s1}を見上げた。
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|閉じる
 menu_center_besieged_event|^^^^^ただいま伝令があり、{s3}の{s2}によって  {s1}が包囲されたとの報告がありました。
 mno_center_besieged_event_close|閉じる
 menu_guardian_party_spawned|^^^^^偵察隊の報告によると、{s6}は首都防衛のための最後の企てとして、 {s7}周辺に大規模な軍を集結させている模様です。
+mno_guardian_party_spawned_close|閉じる
 mno_intro_next|続ける・・・
 mno_start_defend_caravan|隊商を守れ！
 mno_start_raid_caravan|隊商を襲え！
@@ -391,7 +392,6 @@ mno_leave_refugees|一旦やり過ごす・・・
 mno_evil_war_tut_continue|続ける・・・
 menu_alternate_training_fight|{reg5}名を相手にします。準備はよろしいですか？
 mno_training_continue|訓練をはじめる・・・
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|もう一度やる・・・
 mno_alternate_training_finish|この場を去る・・・
 menu_custom_battle_choose_faction1|^^^^^^^^^^陣営とアドバンテージを選んでください
@@ -415,7 +415,7 @@ mno_cb_mordor3|ハラドリム
 mno_cb_mordor4|東夷
 mno_cb_mordor5|モリア
 mno_cb_mordor6|グンダバド
-mno_cb_mordor7|リューン
+; mno_cb_mordor7|Rhûn
 mno_cb_mordor8|海賊
 mno_rescue_mission|夜の闇にまぎれて妖術師の根城へ潜入する。
 mno_next_rescue_scene_door|さらに進むぞ！
@@ -437,7 +437,6 @@ mno_leave_pyre|この場を去る。
 menu_town_ruins|この{s1}は{s2}
 mno_ruin_menu_0|この場所を探索する。
 mno_ruin_leave|立ち去る・・・
-menu_premutiny|none
 menu_death|あなたは殺されました。 戦争の猛威はいまだ弱まる気配すらありませんが、 あなたの役目はここで終わりました。
 menu_animal_ambush|あなたとコンパニオンは、他の兵とはぐれてしまいました。すると突然・・・
 menu_animal_ambush_success|{s2}{reg0?の一群は:は}、 あなたの前に、 鎌に刈られる小麦のようになぎ倒されました！ 地面に横たわり、 ぴくりとも動きません。 {s3}
@@ -445,15 +444,7 @@ menu_animal_ambush_fail|獣どもはあなた{reg0?:とコンパニオン{reg2?�
 ; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
 ; mno_isengard_continue|Continue
 menu_build_your_scene|下に用意されたスロットのうちのひとつをエディットモードで編集して、 あなたの手で戦場シーンをつくる事ができます。 (M&Bのランチャーの設定でエディットモードをONにしたうえで、 任意のシーンを開いた状態でCtrl+Eを押すとエディットモードになります)。 あなたの作った戦場シーン (TLD/SceneObjフォルダにあるscoファイルです) をTLDの開発チームに送ってくれれば (出来が良ければの話ですが)、 戦場のうちのひとつとしてゲームに登場するかも知れません！^^どの地域で使われる事を想定したシーンなのかを明確にするようにしてください。^ちょっとしたヒントです:深い水場や、険しい山といった侵入不可な地形を登場させるのは、 AIが地形上をどのように移動するのかをしっかりと理解してからにしましょう。^(#0-1は攻撃側、#4は守備側のマップです。#5-8は編集しないでください)
-mno_scene1|Plain Big (file scn custom 1.sco)
-mno_scene2|Plain Med (file scn custom 2.sco)
-mno_scene3|Plain Small (file scn custom 3.sco)
-mno_scene4|Steppe Big (file scn custom 4.sco)
-mno_scene5|Steppe Med (file scn custom 5.sco)
-mno_scene6|Steppe Small (file scn custom 6.sco)
-mno_scene7|Forest Big (file scn custom 7.sco)
-mno_scene8|Forest Med (file scn custom 8.sco)
-mno_scene9|Forest Small (file scn custom 9.sco)
 mno_back_3dot|戻る・・・
 mno_back|戻る。
 mno_next|次へ・・・
+; mno_previous|Previous...

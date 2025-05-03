@@ -2,6 +2,11 @@ qstr_Received_{reg0}_dama|{reg0} 피해 입음.
 qstr_Gate_is_breached!|성문이 뚫렸다!
 qstr_Gate_opens..._You_ha|문이 열린다.... 당신은 가운데 땅에서 가장 신성한 장소에 오게 되었다.
 qstr_Secret_place_discove|비밀 장소 발견됨!
+; qstr_Nothing_of_interest.|Nothing of interest...
+; qstr_No_inventory_space..|No inventory space...
+; qstr_We_don_t_know_you_en|We don't know you enough to give you this...
+; qstr_Take_it_friend_it_s_|Take it, friend, it's yours.
+; qstr_Take_it_we_don_t_nee|Take it, we don't need it anyway.
 qstr_Next_Page|다음 장
 qstr_Action|행동
 qstr_Mount|승마
@@ -85,15 +90,18 @@ qstr_Proficiencies|숙련도들
 qstr_1H_Weapons^2H_Weapon|1H - 한손 무기^2H - 양손 무기^장병기^활^쇠뇌^투척무기
 qstr_Equipment|장비
 qstr_The_Last_Days_Mod_Op|TLD 모드 옵션
+; qstr_War_Starts_after_Day|War Starts after Day: 
 qstr_War_Starts_at_Level:|전쟁이 다음 레벨에 시작됩니다: 
 qstr_Battle_Formations_an|진형과 인공지능: 
 qstr_Native|Native
 qstr_TLD_FormAI__Original|TLD 맞춤 AI (기본)
 qstr_TLD_New_FormAI|TLD 신형 맞춤 AI
+qstr_Beta_Formations_Twea|실험용 진형 설정
 qstr_Siege_AI:__|공성 AI:
 qstr_Basic__better_perfor|기본 (향상된 행동)
 qstr_Advanced|진보된
 ; qstr_Campaign_difficulty:|Campaign difficulty:  
+; qstr_Brutal|Brutal
 ; qstr_Hard|Hard
 ; qstr_Default|Default
 ; qstr_Easy|Easy
@@ -103,6 +111,7 @@ qstr_Permanent_death_for_|군주와 동료들의 영원한 죽음:
 qstr_Permanent_death_for_p|플레이어의 영원한 죽음(바로 당신!):
 qstr_Battle_morale_system|전투 사기 시스템: 
 qstr_Animal_ambushes:__|동물 습격: 
+; qstr_Player_speed_buff_in|Player speed buff in towns:  
 qstr_Fallen_rider_damage_|낙마 대미지 알림:  
 qstr_No_Messages|알림 없음
 qstr_Player_damage_only|오직 플레이어 피해만
@@ -111,16 +120,15 @@ qstr_Preferred_Camera_Mod|우선 카메라 모드:
 qstr_Default_Camera|기본 카메라 모드
 qstr_Free_Mode_Custom_Cam|자유 설정 카메라 모드
 qstr_Fixed_Over_The_Shoul|어깨에 걸친 수정 카메라 모드
-qstr_Prevent_AI_from_taki|AI가 방어적이지 않게 합니다:  
 qstr_Brighter_Nights:__|밝은 야간 시야:  
 qstr_Done|종료
 qstr_Gameplay_Tweaks|게임플레이 수정
-qstr_Beta_Formations_Twea|실험용 진형 설정
 ; qstr_Set_to_Native_if_you|Set to Native if you encounter any types of AI problems during battle.
 ; qstr_Disable_cutscenes_if|Disable cutscenes if you encounter any crashes at the start of the war.
-; qstr_Campaign_Difficulty_a|Campaign Difficulty affects abundance of volunteers, lord party size, and strength income for allied factions.
-qstr_War_Will_Start_at_Le|전쟁이 다음 레벨에 시작됩니다: {s0}
+; qstr_Campaign_Difficulty_a|Campaign Difficulty affects abundance of volunteers, lord party size, initial player faction strength, basic strength income for allied factions, and strength income from player victories.
+; qstr_Please_be_aware_that|Please be aware that the game is balanced for default difficulty. The other difficulty settings are not tested.
 ; qstr_Be_aware_that_many_q|Be aware that many quests and campaign mechanics scale with player level. Increasing this setting will give you more time to prepare, but will make the war unfold quicker.
+; qstr_Requires_TLD_NewForm|Requires TLD NewFormAI
 qstr_Troop_Tree|병종 관계도
 qstr__Click_on_a_unit_for|(유닛을 눌러 세부사항 확인)
 qstr_Weapons|무기
@@ -138,7 +146,7 @@ qstr_Extended_Formations_|확장 진형과 AI 설정
 qstr_Put_player_in_divisi|division에 플레이어 포함
 qstr_None|없음
 qstr_Army_rotates_to_face|군대가 우회하여 적의 중심을 칠 것이다: 
-qstr_Prevent_AI_from_takin|AI가 방어적이지 않게 합니다: 
+qstr_Prevent_AI_from_taki|AI가 방어적이지 않게 합니다: 
 qstr_AI_Controls_Troops_W|플레이어가 기절하면 AI가 부대 조종: 
 qstr_You_gained_{reg0}_Re|당신은 {s0}만큼의 {reg0} 자원 포인트를 획득했습니다.
 qstr_You_lost_{reg0}_Reso|당신은 {s0}만큼의 {reg0} 자원 포인트를 잃었습니다.
@@ -172,12 +180,17 @@ qstr_its|그것의
 qstr_[no_upkeep_costs]|[ 유지비 없음 ]
 qstr_Short_of_Resource_Po|자원 포인트가 모자랍니다!!
 qstr_{s10}_will_soon_reas|{s10}가 곧 당신의 일행에서 {s12}만큼의 병력들을 차출하여 재배치할 것입니다!
+; qstr_{s10}_has_reassigned|{s10} has reassigned troops from your reserves.
 qstr_Superior_orders_from|군대를 재편성하라는 {s11}의 우선명령: 
 qstr_{reg12}_{s10}_left_t|{reg12} {s10} 파티를 떠남!
 qstr_Fangorn_claimed_{reg|팡고른은 당신 부대 중 {reg0} 만큼이 죽고 {reg1}만큼이 부상당했다 주장했다.
 qstr_You_were_wounded_in_|당신은 팡고른에서 부상을 입었습니다!
+qstr_Grimbold|그림볼드
+; qstr_Theodred|Theodred
+qstr_Gamling|감링
 qstr_{s1}_of_{s3}_was_def|{s3} 의 {s1} 가 전투에서 패배하였습니다.
 qstr_{s2}_have_razed_{s1}|{s2} 이/가 {s1} 을/를 박살냈습니다!
+; qstr_{s1}_Scouts|{s1} Scouts
 qstr_Left_for_dead_but_mi|사지에 남겨졌으나 기적적으로 살아남음: {reg1?{reg1} time{reg2?s:}:NEVER}
 qstr_1_Res.Pt__{s2}_|1 Res.Pt ({s2})
 qstr_{reg1}_Res.Pts__{s2}|{reg1} Res.Pts ({s2})
@@ -280,6 +293,7 @@ qstr_{s0}^TOTAL:_{reg3}__|{s0}^총합: {reg3} ({s2})
 qstr_^None|^없음
 qstr_near_the_Great_East_|버려진 옛길, 동부 대로의 근처인
 qstr_near_what_is_left_of|고대시절 울창한 숲을 지나기 위해 쓰이던 난쟁이족들의 길, 오랜숲 길의 잔해 근처인
+; qstr_near_the_old_cross_r|near the old cross-roads, where the Ithilien road meets the road to Osgiliath
 qstr_close_to_the_Hand_sh|오르상크의 탑 방향을 가리키는, 사루만의 손 모양 표식에 가까운
 qstr_in_sight_of_the_maje|하얀 도시, 미나스 티리스의 장엄한 도시 방벽이 보이는
 qstr_in_sight_of_Edoras_t|로한의 수도, 에도라스가 보이는.
@@ -592,11 +606,12 @@ qstr_There_is_much_to_reg|후회하고 애도할 것이 많으며, 앞으로 가
 ; qstr_Gandalf_asked_you_to|Gandalf asked you to either help Theoden defend {s3} or find out what is happening in Isengard.
 qstr_Ents|엔트
 ; qstr_Hail_{playername}!_I|Hail, {playername}! I hope you are unhurt? At any rate, I am pleased you aided my friend Fangorn, or you may know him as Treebeard. The tree shepherds are very mighty, but it was likely that they marched to their doom. You have perhaps saved them from a great peril, Commander, and for that I am glad. I would not like to see the oldest of all living things pass from the world, no, not just yet… no, not before they see the Entwives again, I should hope.
-; qstr_Missing_String|Missing String
+; qstr_I_did_what_I_could.|I did what I could.
 ; qstr_Well_thank_you_{play|Well, thank you, {playername}, and farewell. We may meet again, ere the waning of the moon!
 ; qstr_Hail_{playername}!_I_|Hail, {playername}! I hope you are unhurt? At any rate, you seem to have lain your blade to the right foe. No enemy has yet taken the Hornburg, and likely none ever shall – not while the likes of you defend Helm’s Gate, I’ll warrant!
 ; qstr_Your_deed_has_greatl|Your deed has greatly helped my design, better even than I could have hoped or planned. Farewell, {playername}, and thank you. We may meet again, ere the waning of the moon!
-; qstr_{Playername}_I_will_|{Playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back.
+; qstr_{playername}_I_will_|{playername}, I will ask you a thing now. You are accounted an able captain, and a dutiful one; were you overmastered by great foes? Did you tarry overlong, for caution or even fear? Behold, we are now come into a greater peril than I could have foreseen. The strength of Rohan is broken, her people scattered and shieldless: Helm’s Deep has fallen. The trees are withered untimely, and night lies over the forge-fires of Isengard: the Ents of Fangorn Forest are dead or driven back.
+; qstr_I...|I...
 ; qstr_You_have_failed_me_{|You have failed me, {playername} – or perhaps it is I who have failed you. Perhaps there was some flaw in my design, some grave blunder I did not recognise… The terror of Mordor comes. Leave me now, {playername}. We may meet again… or perhaps not.
 qstr_Bagginsssss..._Ssssh|배기이인스.... 샤아아아아이어...
 qstr_I..._don_t_know!|나... 나는 몰라!
@@ -679,7 +694,6 @@ qstr_have_taken_measure_o|당신 세력의 군사력을 유심히 측정해보�
 qstr_loses_Faction_Streng|보급망의 침범으로 인해 세력 군사력을 잃는다.
 qstr_loses_Faction_Strengt|캠프 파괴로 인해 세력 군사력을 잃는다.
 qstr_gains_Faction_Streng|당신이 거둔 승리가 퍼져 세력 군사력을 얻는다.
-qstr_Something_wrong_not_|무언가 잘못되었다. 되돌리기에 충분한 병력이 없다.
 qstr_Raiders|약탈자들
 qstr_have_won_the_sea_bat|해전에서의 패배가 당신 부대의 사기를 꺾었다. 적은 이 승리를 이용하여 더 자주 공격할 수도 있다.
 qstr_loses_Faction_Strength|파괴적 약탈로 인해 세력 군사력을 잃는다.
@@ -705,23 +719,16 @@ qstr_Inventory|소지품
 qstr_Show_stats|능력치 보이기
 qstr_Show_item_details__|소지품 상세 확인  
 qstr_Troop_detail|부대 상세
-qstr_{s1}^|{s1}^
 qstr_{s1}Level:_{reg1}^|{s1} 레벨: {reg1}^
 qstr_{s1}Hit_Points:_{reg|{s1} 체력: {reg1}
 qstr_{s1}Atributes:_^___S|{s1}Atributes: ^   Strength:^
-qstr_{s2}^{reg1}^|{s2}^{reg1}^
 qstr_{s1}___Agility:|{s1}   민첩:
-qstr_{s2}{reg1}|{s2}{reg1}
 qstr_{s1}Main_skills:_^|{s1} Main skills: ^
 qstr_{s1}___Power_Strike:|{s1}   때리는 힘
-qstr_{s2}{reg1}^|{s2}{reg1}^
 qstr_{s1}___Athletics:^|{s1}   운동능력:^
 qstr_{s1}___Riding:^|{s1}   승마:^
-qstr_{s2}_^|{s2}-^
 qstr_{s1}___Power_Throw:^|{s1}   당기는 힘:^
 qstr_{s1}___Power_Draw:^^|{s1}   당기는 힘:^^
-qstr_{s2}{reg1}^^|{s2}{reg1}^^
-qstr_{s2}_^^|{s2}-^^
 qstr_{s1}Weapons:^|{s1} 무기:^
 qstr_{s1}___One_Handed:^|{s1}   한손 무기:^
 qstr_{s1}___Two_Handed:^|{s1}   양손 무기:^
@@ -730,7 +737,6 @@ qstr_{s1}___Archery:^|{s1}   궁술:^
 qstr_{s1}___Crossbow:^|{s1}   석궁:^
 qstr_{s1}___Throwing:^|{s1}   투척:^
 qstr_{s1}___Slings:|{s1}   Slings:
-qstr_{s2}_|{s2}-
 qstr__Click_on_the_troop_|(클릭해 병력 교대)^^장비 ^(투구,갑옷,장갑,부츠 등)^을 눌러 그들을 표시합니다.
 qstr_ready_bows_and_missi|활과 투척 무기 준비
 qstr_ready_side_arms|보조무기 준비
@@ -752,10 +758,30 @@ qstr_You_got_{reg1}_exper|당신은 곰 형태에서 {reg1}만큼의 경험치�
 qstr_Your_ability_to_chan|당신은 모습을 변화시킬 수 있게 되었습니다. 이제부터 사람과 곰 모습을 통해 야생의 길을 걸을 수 있습니다.
 qstr_You_change_back_to_h|인간 형상으로 돌아왔다...
 ; qstr_Refill_Ammunition|Refill Ammunition
+; qstr_Take_a_closer_look..|Take a closer look...
+; qstr_Look_around...|Look around...
+; qstr_You_see_the_Pelennor|You see the Pelennor laid out before you. Behind that, faintly, the ruin of Osgiliath, once the capital of Gondor, of which Minas Tirith was only a fortress. And then, looming on the verge of sight, the jagged edges of the Mountains of Mordor, and beyond that, again a yet deeper gloom. Ever have the Men of the White City dwelt in sight of that shadow.
+; qstr_As_you_look_from_the|As you look from the Island’s high prow down to where Anduin, the Great River, splits into two arms, you understand why Cair Andros means 'Ship of Long Foam'.
+; qstr_This_place_was_once_|This place was once an elven haven, but today only ruins tell of its inheritance. Few still know their true meaning.
+; qstr_Tirith_Aear_the_Sea_|Tirith Aear, the Sea-ward Tower - Its slow bell has been guiding sailors for many centuries.
+; qstr_You_kneel_to_pay_you|You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words.
+; qstr_You_wonder_about_the|You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance.
+; qstr_Alkarondas_Castle_of|Alkarondas, Castle of the Sea. Named after the famed flagship of Ar-Pharazôn, this great black ship is the pride of the corsair fleet - and the terror of Gondor's coasts.
+; qstr_The_Mmakil_greatest_|The Mûmakil, greatest beasts of this age! Terrible in warfare, bearing towers and archers into battle. Their trunks calling like trumpets of war will make the Men of Gondor tremble with fear.
+; qstr_A_new_Power_is_risin|A new Power is rising. Against it the old alliances and policies will not stand. Its victory is at hand; and there will be rich reward for those that aided it.
+; qstr_As_you_explore_the_c|As you explore the caverns underneath the Ring of Isengard, where thousands of orcs work to supply the growing armies of the White Hand, you gain confidence in the rise of a new power and the demise of the old world.
+; qstr_The_Ring_of_Isengard|The Ring of Isengard is flooded, its rocky walls lay in ruin. It will take a while until all the filth of Saruman is washed away and the Isen may run clean again. Who knows, maybe this place will yet become again a garden filled with orchards and trees and clean water.
+; qstr_Amon_Hen_the_Hill_of|Amon Hen, the Hill of Seeing, grants a commanding view over the surrounding lands. However, if you sought the ancient high seat in hope of gaining directions on your own course, you now realize that this on you to decide.
+; qstr_As_the_lights_begin_|As the lights begin to flicker and dance, you see them: grim faces and evil, and noble faces and sad. Many faces proud and fair, and weeds in their silver hair. But all foul, all rotting, all dead.
+; qstr_This_must_be_the_spi|This must be the spider nest. Without hesitation, you light a torch and burn down the webs.
+; qstr_A_flock_of_ravens_ci|A flock of ravens circles around you. You do not understand what they say, what news they bring from distant lands. Yet you feel comforted, knowing that these wise animals are of old friends to the King under the Mountain.
+; qstr_Looking_around_you_d|Looking around, you do not understand the significance of this place.
+; qstr_Looking_around_you_f|Looking around, you feel that you do not know this people well enough to understand the significance of this place.
 qstr_Your_mount_stumbles!|당신의 탈것이 무너진다! 다리를 저는 것 같다.
 qstr_Bitten_by_your_own_w|당신의 와르그에게 물렸다!
 qstr_You_weigh_too_much_f|당신은 조랑말을 타기에 너무 무겁다!
 qstr_Your_mount_rears_ref|당신의 탈것이 몸을 들었다, 당신의 명령을 거부한다!
+qstr_Delivered_{reg60}_da|{reg60} 만큼의 피해를 입혔습니다.
 qstr_Cannot_Change_Camera|일인칭 시점에서는 카메라 시점을 변경할 수 없습니다.
 qstr_Switch_Back_to_3rd_P|카메라를 돌리려면 3인칭 시점으로 돌아가세요.
 qstr_Fixed_Custom_Camera|개선된 설정 카메라 모드
@@ -766,6 +792,7 @@ qstr_Press_Ctrl_+_Down_to|Ctrl + Down을 눌러 중앙에 맞추기
 qstr_Fixed_Camera___Right|개선된 설정 카메라 - 오른쪽 어깨
 qstr_Fixed_Camera___Left_|개선된 설정 카메라 - 왼쪽 어깨
 qstr_Fixed_Camera___Cente|카메라 중점 조정
+; qstr_The_Nazgul_retreats!|The Nazgul retreats!
 qstr_Shield_is_too_big_to|활과 쓰기에 방패가 너무 크다.
 ; qstr_{s7}_waves_at_you.|{s7} waves at you.
 ; qstr_You_happen_upon_an_O|You happen upon an Old Guesthouse. As you inspect the weathered stone building, you notice a group of boys playing among the pillars, the only children you have seen in Minas Tirith.  One of them greets you and you wave back. Your heart is gladdened and you forget, for a brief moment, the sorrow of war.
@@ -779,8 +806,6 @@ qstr_You_look_through_Hen|당신은 "해지는 창" 헨네스 안눈을 통해 �
 ; qstr_You_find_yourself_in_|You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. Raising your weapon high, you snarl your defiance at the unseen foe in this place. This may have been a place of wonder once... but now, with the true power you have gained, you realize you have nothing to fear from the forgotten past of a broken world.
 ; qstr_With_trepidation_you|With trepidation, you look within the silver basin. The water shows you visions of horror; blood and terror and grief. You recoil... but then, the visions vanish and you see instead a clear night sky, with what seems to be a silver boat floating across the expanse. A sense of calm washes over you. Hope is not wholly gone.
 ; qstr_The_Lady_s_garden_li|The Lady's garden lies peacefully in the bright daylight. You sense nothing out of the ordinary...
-; qstr_You_kneel_to_pay_you|You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words.
-; qstr_You_wonder_about_the|You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance.
 ; qstr_Halt!_You_are_not_al|Halt! You are not allowed to enter here!
 ; qstr_Halt!_You_are_not_all|Halt! You are not allowed to enter here without the Lady's leave!
 qstr_While_visiting_towns|마을, 정착지, 캠프를 방문하는 동안, 당신은 돌아다니는 사람과 이야기를 나눌 수 있습니다. 세력 구성원마다 다른 이야기를 할 것입니다 - 어떤 사람들은 당신에게 그들 자신의 생각을 말해줄 것이고, 어떤 사람들은 떠도는 소문을 말할 것입니다. 둘 다 그 사람의 문화와 세력을 더 잘 이해할 수 있게 도와주고, 그들이 비밀 장소를 찾을 수 있는 단서나 황야를 여행하고 반지 전쟁에서 싸우기 위한 요령을 알려줄 수도 있습니다.
@@ -799,20 +824,12 @@ qstr_Formations_turned_OF|Formations turned OFF in options menu
 qstr_Division_{reg1}_{s2}_g|{reg1} 명의 {s2} division이 기억해둔 지점으로 이동할 것입니다...
 qstr_Division_{reg1}_{s2}_f|division {reg1} {s2} 선형 대형 (기억됨).
 qstr_Division_{reg1}_{s2}_fo|Division {reg1} {s2} forms {reg0} lines (memorized).
-qstr_Delivered_{reg60}_da|{reg60} 만큼의 피해를 입혔습니다.
-qstr_DEBUG__Health_Regen_|디버그 (체력 재생): {s1} 회복 {reg0}% 체력.  = +{reg1}% STR
+; qstr_A_Nazgul_on_a_winged|A Nazgul on a winged steed circles over the battle field!
 qstr_Your_bear_form_has_{|Your bear form has {reg2}/{reg1} HP!
 qstr_Some_of_your_human_t|당신 부대의 인간 중 일부는 어둠에 전혀 굴하지 않는다. (밤 병종은 밤 시간의 패널티를 받지 않습니다)
 qstr_You_are_filled_with_|적들에게 향하는 당신의 눈에 분노만이 가득하다. (광전사 행동).
 qstr_Your_mount_is_scared|당신의 탈것이 {s5}에게 겁을 먹었다!
 ; qstr_Your_mount_is_scared_|Your mount is scared by the {s5}, but you can master it!
-qstr_Nazgul_sweep!|나즈굴이 휩쓴다!
-qstr_You_and_your_horse_p|나즈굴의 견딜 수 없는 울음 소리에, 당신과 당신의 말이 혼란에 빠졌다!
-qstr_Your_horse_panics_th|나즈굴의 견딜 수 없는 울음 소리에, 당신의 말이 혼란에 빠졌다!
-qstr_You_cower_in_terror_|나즈굴의 견딜 수 없는 울음 소리에, 당신은 겁에 질려 움츠러들었다!
-qstr_knocked_unconscious|의식을 잃었다
-qstr_Nazgul_diving_attack|나즈굴이 {s11}을 공격한다!
-qstr_{s11}_is_{s10}_in_th|나즈굴의 공격으로 {s11}은 {s10}!
 qstr_Received_{reg66}_dam|{reg66} 만큼의 피해를 입었습니다.
 qstr_You_yell_for_your_ho|당신은 말에게 소리를 지른다.
 qstr_You_do_not_need_to_r|아직 당신 부대를 집결시킬 필요는 없다.
@@ -854,6 +871,8 @@ qstr_on_the_right_flank|우측에
 qstr_through_the_center|중앙으로
 qstr_Attackers_charge_{s2|공격대원이 {s2}로 돌격
 qstr_Attackers_charge_{s1|공격자가 {s1}로 돌격
+; qstr_Hold_this_area_to_st|Hold this area to stop defender reinforcements from here!
+; qstr_Defender_reinforceme|Defender reinforcement point taken!
 qstr_{s1}_rallied_to_your|{s1}이 당신의 카리스마에 의해 당신의 편에 섰다.
 qstr_Last_attacker_wave._|마지막 공격자 웨이브. 퇴각하시겠습니까?
 qstr_Attackers_almost_def|공격자가 대부분 패배했습니다. 퇴각하시겠습니까?
@@ -865,9 +884,11 @@ qstr_Ballista:_turn_CURSO|노포: 커서로 이동, 좌Shift 키로 조준, Spac
 qstr_Ballista:_out_of_ammo|노포: 탄약이 떨어졌다
 qstr_The_ladders_on_Deepi|협곡 성벽에 사다리! 조심해!
 qstr_THREE.._TWO..._ONE..|셋.. 둘... 하나.... 싸워!
-qstr_You_have_come_upon_t|당신은 아몬 헨, 감시의 언덕, 꼭대기 전망지에 곤도르 감시탑이 자리한 폐허에 접근 중이다^^당신은 이 땅이 한때 위대했으나 오랫동안 잊혀졌음을 감지했다.
-qstr_You_have_come_upon_th|당신은 최후의 동맹 전투 장소인 죽음의 늪에 가까이 가고 있다.^^늪지대는 한때 풀이 무성한 평야를 삼켜버렸고, 이제 유일하게 푸른 것은 음침한 물의 어둡고 기름진 표면에 떠오른 잡초의 찌꺼기 뿐이다.^^죽은 풀과 썩어가는 갈대들이 오랫동안 잊힌 여름의 너덜너덜한 그림자처럼 안개 속에서 어렴풋이 피어오르고, 인간, 요정, 오르크들의 시체가 탁한 깊은 곳을 떠다닌다.^^^공기는 차갑고 축축하며, 수면 바로 아래 요정 시체의 눈에서 촛불 불빛이 깜빡이는 것을 보면 몸을 떨지 않을 수 없다.
-qstr_You_have_entered_the|당신은 한때 위대한 초록숲이라 알려진 머크우드 남쪽 숲으로 들어갔다^^돌 굴두르 요새가 근처에 있으며 숲 위에 어두운 그림자를 드리우고 있다. 이곳의 숲은 병들고 부패한 느낌이 든다. 고대의 참나무는 줄기와 줄기마다 부패와 곰팡이와 엉켜있는 거대한 거미줄로 뒤덮여있다.^공기는 언제까지나 고요하고 어둠고 답답하며 천천히 숨을 조여오는 느낌이다.
+; qstr_You_have_come_upon_t|You have come upon the ruins of Amon Hen, the Hill of Sight, a Gondorian watch-tower atop which rests the Seat of Seeing.^^You feel that you should seek the high-seat and maybe gain a glimpse of far-sight that may counsel you on your further course.
+; qstr_You_have_come_upon_th|You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^ In the darkness of night, you see lights like misty flames flickering slowly above unseen candles. Oddly compelled, you follow them deeper into the maze of puddles and streams.
+; qstr_You_have_come_upon_the|You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^The marshlands have swallowed up what was once a grassy plain, and now the only green is the scum of livid weed on the dark greasy surfaces of the sullen waters. ^^In the grey light of day, you don't see anything that catches your interest.
+; qstr_You_have_entered_the|You have entered the woods of Southern Mirkwood, once known as Greenwood the Great^^The woods feel sickly and full of decay. The place is crawling with spiders. There must be a nest around here somewhere...
+; qstr_You_have_found_the_G|You have found the Glittering Caves, one of the marvels of the Northern World.
 qstr_You_have_found_the_D|당신은 전설의 창이 있을 가능성이 있는 난쟁이 창고를 발견했다. {s3}에게 당신이 발견한 것에 대해 보고하자.
 qstr_Leave_the_Warehouse?|창고를 떠납니까?
 qstr_Leave_the_place_in_s|이 장소를 조용히 떠납니까?
@@ -885,10 +906,15 @@ qstr_The_guards_have_spott|경비가 당신을 발견했습니다!
 qstr_Alarm_Level_is_now_at_|경보 2단계 발령!
 ; qstr_Enemy_reinforcements_|Enemy reinforcements arrived.
 ; qstr_Venture_deeper_into_|Venture deeper into the forest and find a way onward.
+; qstr_You_have_evaded_the_|You have evaded the patrols and crept close to the ruins. Find and kill the sorcerer! Do not let the guards stop you.
+; qstr_Kill_the_Sorcerer!|Kill the Sorcerer!
 qstr_The_sorcerer_has_fle|마술사가 도망쳤습니다!
 qstr_Report_this_ill_news|여주인에게 이 나쁜 소식을 전해줘야한다.
-qstr_The_sorcerer_is_flee|마술사가 도망칩니다! 죽이십시오!
+; qstr_You_have_been_spotte|You have been spotted! Fight!
+; qstr_The_ritual_has_begun|The ritual has begun! You must hasten to disturb it!
 qstr_The_sorcerer_has_joi|마술사가 싸움에 참가했다! 죽여라!
+qstr_The_sorcerer_is_flee|마술사가 도망칩니다! 죽이십시오!
+; qstr_base_troop:_{reg77}_|base troop: {reg77}, upgrade: {reg78}
 qstr_The_sorcerer_is_dead|마술사가 죽었습니다!
 qstr_The_battle_is_won!|전투에서 승리하였습니다!
 qstr_A_band_of_tribal_orc|부족 오르크 부대가 나타났다!
@@ -921,6 +947,12 @@ qstr_Look_at_my_over_the_|내 어깨 위를 봐, {playername}! 멀리서 보아�
 qstr_You_wish_old_man_my_|마음대로 생각하시지, 늙은이, 내 어깨 위가 훨씬 더 아름다워!
 qstr_You_should_really_se|섭정 데네소르의 페이스북 사진들을 봐야해, 굉장해!
 qstr_Press_Space_to_conti|Space 를 눌러 계속합니다...
+; qstr_BY_LEVEL_/_by_day|BY LEVEL / by day
+; qstr_by_level_/_BY_DAY|by level / BY DAY
+; qstr_War_start_mode_can_o|War start mode can only be set at game start; see options to adjust level or date.
+qstr_ON|켜기
+qstr_OFF|끄기
+; qstr_If_you_are_new_to_TL|If you are new to TLD, tutorial messages are recommended
 qstr_{s24}__{reg13}____{r|{s24} ({reg13}) - 다음 승급까지 {reg20}^
 qstr_Influence:^_{reg11}_|영향력:^ {reg11} ({s16})^
 qstr_Resource_Points:^_{r|자원 포인트:^{reg12} ({s16})^
@@ -953,21 +985,10 @@ qstr_{s2}^_________{s4}:_|{s2}^        {s4}: {reg1} ({s23})
 qstr__________Faction_str|         세력 군사력 보고:^{s2}
 qstr_{s1}^^Factions_are_n|{s1}^^팩션은 일반적으로 군사력이 {reg1} 미만이면 공성 대상으로 지정됩니다.
 qstr_Savagery|야만적
-qstr_{s2}^^{s5}^{s6}|{s2}^^{s5}^{s6}
 qstr_Traits_gained:^{s2}|특성 획득:^{s2}
 qstr_^^You_are_{s17}.|^^당신은 {s17}이다.
 qstr_Assassins_in_the_cam|캠프에 암살자가 있다, 방어하라!
-qstr_Ally_party_size:_{re|동맹 부대 규모: {reg1}
-qstr_Enemy_party_size:_{r|적군 부대 규모: {reg1}
-qstr_Party_count:_{reg0}|부대원 수: {reg0}
-qstr_Party_position__{reg|부대 위치 ({reg2},{reg3}).
-qstr_Party_size_increased|부대 규모가 {reg0}에서 {reg1}로 늘어났습니다!
-qstr_Faction_strengths_re|세력 군사력 보고:^{s2}
-qstr_Attacking_enemy_part|{s11}의 적 부대를 공격 중
-qstr_Unknown_{reg3}_|알 수 없음({reg3})
-qstr_ON|켜기
 qstr_OFF__cheat_|끄기 (치트)
-qstr_OFF|끄기
 qstr_All_messages|모든 알림
 qstr_{reg0}__will_most_li|{reg0}(저장 충돌의 원인이 될 가능성이 높음)
 qstr_{reg0}__could_possib|{reg0} (세이브와 충돌할 가능성이 높음)
@@ -975,9 +996,6 @@ qstr_Normal|일반
 qstr_Defender_only|방어자만
 qstr_Halved|절반만
 qstr_Battles_only|전투만
-qstr_Doubled|두배
-qstr_Tripled|세배
-qstr_Quadrupled|네배
 qstr_You_drank_the_Ent_Wa|엔트워터를 들이켰다...
 qstr_You_used_the_Orc_Bre|오르크 맥주를 사용했다.
 qstr_You_and_your_compani|당신과 당신의 동료들은 미루보르를 한 모금 들이켰다. 기분이 상쾌해지고 힘이 솟는다.
@@ -999,8 +1017,6 @@ qstr_^^^Defeated...^^^Sca|^^^패배...^^^팡고른 숲에 흩어졌다... 혼자
 qstr_Troll_caged_in_wheel|바퀴달린 우리에 트롤을 가두었다.
 qstr_A_second_troll_is_ca|바퀴달린 우리에 두번째 트롤을 가두었다.
 qstr_Here_you_are.|여기 있네.
-qstr_Player_was_moved_to_|플레이어가 {s10}으로 이동.
-qstr_neutral_whereabouts|neutral whereabouts
 qstr_any|모두
 qstr_woman|여성
 qstr_gondor|곤도르
@@ -1059,9 +1075,9 @@ qstr__This_castle_seems_t| 이 성은 누구의 것도 아닌 듯 하다.
 qstr__Your_own_banner_flie| 당신 자신의 깃발이 도시 정문에 펄럭이고 있다.
 qstr__You_see_the_banner_o| 도시 정문에 {s7}의 깃발이 펄럭이는 것이 보인다.
 qstr__The_townsfolk_here_| 이 도시의 사람들은 독립을 주장하고 있다.
+qstr_Get_book.|책을 읽는다.
 qstr_Go_to_the_secret_ent|모리아의 비밀 입구로 간다
 qstr_Search_for_a_secret_|모리아의 비밀 입구를 찾는다
-qstr_Get_book.|책을 읽는다.
 qstr_The_{reg6?town_s:cas|{reg6?도시의:성의} 식료품점은 {reg3} 일 동안 지속될 듯 보인다.
 qstr_The_{reg6?town_s:cast|{reg6?도시의:성의} 식료품점은 거의 바닥나 수비군들은 굶주리고 있다.
 qstr_You_re_preparing_to_|당신은 성을 공격할 준비를 하고 있으며, 준비는 {reg9} 시간 뒤에 끝날 것이다.
@@ -1096,8 +1112,7 @@ qstr_the_Hall|회랑
 qstr_the_Great_Chamber_of|스로르의 위대한 회랑
 qstr_Stay_indoors_for_som|이곳에 얼마간 머무른다 (매일 밤 {reg1} 자원 포인트 소모)
 qstr_Camp_outside_for_som|잠시 바깥에 머무른다 (무료)
-; qstr_As_you_enter_the_vas|As you enter the vast caverns underneath the Ring of Isengard, where thousands of orcs work to supply the growing armies of the White Hand, you gain confidence in the rise of a new power and the demise of the old world.
-; qstr_You_have_found_the_G|You have found the Glittering Caves, one of the marvels of the Northern World.
+; qstr_You_are_not_allowed_|You are not allowed to enter.
 ; qstr_As_the_party_member_|As the party member with the highest Bargainer skill ({reg2}), {reg3?you estimate:{s3} estimates} that it will take {reg4} hours to find the most notable persons in town. [Costs {reg5}/{reg6} influence]
 ; qstr_You_have_already_fou|You have already found all persons of interest.
 ; qstr_the_captain_of_the_g|the captain of the garrison, and the civil authority.
@@ -1138,17 +1153,14 @@ qstr_You_defeated_{reg5}_e|당신은 {reg5} 적을 패배시켰다.
 qstr_You_failed_to_defeat|당신은 어떤 적도 패배시키는데 실패했다.
 qstr_The_sorcerer_slain_y|마술사가 죽자, 당신과 당신의 동료들은 서둘러 상처를 살핀 후 밤 속으로 미끄러지듯 빠져나왔다. 불쾌한 목소리가 등 뒤에서 비명을 지르고, 그림자 속에서 자신을 찾는 불타오르는 눈들을 느낄 수 있었다. 곧 분노는 실망으로 바뀌었고, 추격의 소리는 평소 어둠숲의 무거운 고요로 대체된다. 당신은 탈출하는데 성공했다.
 qstr_The_sorcerer_slipped|마술사는 당신의 손아귀를 벗어나 자신의 영역인 어둠 속으로 미끄러지듯 사라졌다. 실패에 마음이 무거워지지만, 당신과 당신의 동료들은 서둘러 상처를 붕대로 감고 밤 속으로 물러났다. 조롱하는 목소리가 메아리치는 것이 등 뒤로 들리고, 그림자를 꿰뚫는 듯한 수많은 불타는 눈을 느낄 수 있다. 웃음과 모욕은 자비롭게도 곧 잦아들고, 어둠숲의 묵직한 고요로 대체되었다. 당신은 탈출했다.
-; qstr_You_approach_a_heavi|You approach a heavily guarded region of the forest... ^^ You have to decide whether you venture forward on your own, or take some troops with you.
+; qstr_You_approach_a_heavi|You approach a heavily guarded region of the forest... ^^ You have to decide whether you venture forward on your own, or take some troops with you. ^Choose your actions carefully, because the more attention you attract, the better the sorcerer will be guarded.^Speed will be more important than heavy armor.
 ; qstr_You_have_a_good_chan|You have a good chance of avoiding the guards and slipping through unnoticed.
 ; qstr_You_may_have_a_chanc|You may have a chance of avoiding the guards.
 ; qstr_You_will_probably_ha|You will probably have to fight the guards.
 qstr_You_wait_for_darknes|어둠이 내리기를 기다린다...
 qstr_You_are_quickly_disc|당신은 적에게 금세 발각되었다.
 qstr_You_advance_stealthi|당신은 몸을 숨긴 채 숲 깊숙히 더 들어간다.
-qstr_You_have_evaded_the_|당신은 순찰대를 피해 폐허에 슬금슬금 다가간다!
-qstr_You_have_found_the_s|당신은 마술사를 발견했다!
 qstr_You_cannot_leave_unt|경비를 따돌리기 전까지는 도망칠 수 없다!
-qstr_Kill_him_quickly_bef|그가 도망치기 전에 죽여야한다!
 qstr_Enraged_by_the_death|당신은 {s4}의 죽음에 격노했고 {s3} 군대에 대한 복수를 맹세했다. 이제 다가올 날 동안 {s3}의 병력을 최대한 많이 파괴해야한다. 당신은 당신의 추종자들이 이 맹세의 증인이라는 것을 잘 알고 있으며, 당신은 맹세를 어기는 자로 알려지기를 원하지 않습니다. 이제 피의 연회를 벌일 시간입니다!
 qstr_flooded._Somebody_or|범람하고 있다. 누군가가, 혹은 무언가가 아이센 댐을 무너트렸음이 틀림 없다.
 qstr_destroyed._Only_smol|파괴되었다. 오직 그을은 폐허만 남아있다.
@@ -1159,6 +1171,8 @@ qstr_Breaking_camp...|캠프를 해체한다...
 ; qstr_Party_morale_is_low.|Party morale is low. Troops desert from your party.
 ; qstr_Desertion|Desertion
 ; qstr_{s1}_has_deserted_fr|{s1} has deserted from your party.
+; qstr_You_don_t_have_enoug|You don't have enough troops to guard all your prisoners. Their chance of escaping is increased.
+; qstr_{s1}_has_escaped_fro|{s1} has escaped from your party.
 qstr_You_have_left_{s1}.|당신은 {s1}을 떠났다.
 qstr_You_are_entering_{s1|당신은 {s1}을 지나는 중이다 ({s2}).
 qstr_You_are_entering_{s1}|당신은 {s1}을 지나는 중이다.
@@ -1540,7 +1554,7 @@ qstr_Lend_your_experience|당신의 경험 많은 군의관 {s3}을 {s1}에게 �
 qstr_No_commander_should_|어떤 지휘관에게도 이런 걸 자백할 의무는 없지만, {playername}, 하지만 나는 얼마전 내 병사들을 시찰하다 검을 어느쪽으로 잡아야할지도 모르는 자들을 보았소. 그들은 용맹함의 의미를 보여줄 누군가가 필요하오. {playername}, 당신은 명성 높은 전사이네. 나를 위해 병력을 좀 훈련시켜줄 수 없겠나? 내 마음속 깊이 감사하겠네.
 qstr_No_commander_should_h|어떤 지휘관에게도 이런 걸 자백할 의무는 없지만, {playername}, 하지만 나는 얼마전 내 병사들을 시찰하다 몇몇 무능한 병사들을 처형했다. 그들 뒤에 서서 강철들 들고 용기를 북돋아줄 누군가가 필요하다. {playername}, 너는 명성 높은 전사이다. 나를 위해 병력을 좀 훈련시켜 주겠나? 이 일로 네 가치를 높여줄 수 있다.
 qstr_{s9}_asked_you_to_rai|{s9}가 {reg1}를 {s14}명 훈련 시켜 그에게 인도하길 요청했다.
-qstr_{s9}_asked_you_to_hu|{s9}은 {s4}이름을 가진 탈주자를 추적하라고 말했다. 그는 지금 {s3}에 있는 것으로 알려져있다.
+; qstr_{s9}_asked_you_to_hu|{s9} asked you to hunt down a traitor named {s4}. He is currently believed to be at {s3}.
 qstr_{s9}_asked_you_to_defe|{s9}는 당신에게 세 그룹으로 나뉘어 {s3}로 향하는 난민들을 보호해달라 요청했다.
 qstr_{s9}_asked_you_to_hun|{s9}는 당신에게 세 그룹으로 나뉘어 {s3}로 향하는 난민들을 추격해 없애라 요청했다.
 qstr_{s9}_asked_you_to_ca|{s9}가 세 무리의 도망 노예들을 {s4}로 붙잡아 오기를 요청했다. 노예들은 {s3} 방향으로 도망칠 것이라 한다.
@@ -1699,8 +1713,21 @@ qstr_{s1}_Slaves|{s1} 노예들
 qstr_The_{s11}_of_{s10}_a|{s10}의 {s11}은 당신에게 {s13}으로 {s12}를 바래다달라 요청했습니다.
 qstr__Guards_slaughter_hi|경비! 저자를 죽여라!
 qstr_Slaughter_him_for_fr|저자를 베어 신선한 인육으로 만들어라!
+; qstr_near_the_smithy|near the smithy
+; qstr_near_the_local_autho|near the local authority
+; qstr_near_the_warehouse|near the warehouse
 qstr_This_is_{s5}_Command|여기 {s5}입니다, 사령관님.
 qstr_{s6}_This_place_and_|{s6} 이 장소와 주변 지역은 {s8}의 {s7}의 것이다.
+; qstr_Hear_now_commander._|Hear now, commander. I am currently out of assignment, yet I would rather meet our enemies in the field than wait for them to come here. I hear you're a capable leader. Would you have me?
+; qstr_My_party_was_wiped_o|My party was wiped out in the last battle and I don't want to be assigned to the next best fool. I hear you're a capable leader. Could you use another warrior?
+; qstr_{s9}_joined_your_par|{s9} joined your party
+; qstr_A_pity!_I_sure_would|A pity! I sure would have liked to fight in your party-
+; qstr_Too_bad_you_will_reg|Too bad, you will regret not taking me with you.
+; qstr_Lead_me_to_the_{s3}|Lead me to the {s3}
+; qstr_Lead_me_to_the_local|Lead me to the local authority
+; qstr_Lead_me_to_the_Lord_|Lead me to the Lord's hall
+; qstr_Lead_me_to_your_comm|Lead me to your commanders
+; qstr_Lead_me_to_the_capta|Lead me to the captain of the garrison
 qstr_Hey_scum!_I_can_fix_|이봐 얼간이! 내가 너의 주둥이를 고칠 수 있을 것 같은데.
 qstr_Watch_where_you_re_g|앞 똑바로 보고 다녀, 구더기 자식!
 qstr_I_don_t_like_your_fa|너 얼굴이 마음에 안 들어! 아마도 고칠 필요가 있을 것 같은데.

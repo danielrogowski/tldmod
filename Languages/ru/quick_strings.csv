@@ -2,6 +2,11 @@ qstr_Received_{reg0}_dama|Получено {reg0} урона.
 qstr_Gate_is_breached!|Ворота проломлены!
 qstr_Gate_opens..._You_ha|Врата открываются... Вы входите в самое сокровенное место в Средиземье!
 qstr_Secret_place_discove|Вы узнали о сокрытом месте!
+qstr_Nothing_of_interest.|Ничего интересного.
+qstr_No_inventory_space..|В инвентаре нет места...
+qstr_We_don_t_know_you_en|Мы недостаточно знаем тебя, чтобы дать тебе это...
+qstr_Take_it_friend_it_s_|Бери, друг, это твоё.
+qstr_Take_it_we_don_t_nee|Забирай, нам это всё равно не нужно.
 qstr_Next_Page|Следующая страница
 qstr_Action|Действия
 qstr_Mount|Сесть верхом
@@ -85,15 +90,18 @@ qstr_Proficiencies|Оружейные специализации
 qstr_1H_Weapons^2H_Weapon|Одноручное^Двуручное^Древковое^Лук^Арбалет^Метательное
 qstr_Equipment|Снаряжение
 qstr_The_Last_Days_Mod_Op|Настройки мода The Last Days
+qstr_War_Starts_after_Day|Война начнётся через (дней): 
 qstr_War_Starts_at_Level:|Война начинается на уровне:
 qstr_Battle_Formations_an|Формации и улучшенный ИИ в сражениях:
 qstr_Native|Оригинал
 qstr_TLD_FormAI__Original|TLD ИИ (Оригинал)
 qstr_TLD_New_FormAI|TLD новый ИИ
+qstr_Beta_Formations_Twea|Бета формации
 qstr_Siege_AI:__|ИИ осады:
 qstr_Basic__better_perfor|Базовый (лучшая производительность)
-qstr_Advanced|Продвинуться
+qstr_Advanced|Продвинутый
 qstr_Campaign_difficulty:|Сложность кампании:
+qstr_Brutal|Грубый
 qstr_Hard|Тяжело
 qstr_Default|Средняя
 qstr_Easy|Легко
@@ -103,6 +111,7 @@ qstr_Permanent_death_for_|Окончательная смерть полково
 qstr_Permanent_death_for_p|Окончательная смерть игрока (то есть ВАС!):
 qstr_Battle_morale_system|Система боевого духа:
 qstr_Animal_ambushes:__|Засады животных:
+qstr_Player_speed_buff_in|Повышение скорости игрока в городах:
 qstr_Fallen_rider_damage_|Сообщения об уроне упавшим наездникам:
 qstr_No_Messages|Скрыть сообщения
 qstr_Player_damage_only|Только урон нанесённый игроком
@@ -111,16 +120,15 @@ qstr_Preferred_Camera_Mod|Предпочтительный режим камер
 qstr_Default_Camera|Камера по умолчанию
 qstr_Free_Mode_Custom_Cam|Свободная настраиваемая камера
 qstr_Fixed_Over_The_Shoul|Закреплённая камера - на плече игрока
-qstr_Prevent_AI_from_taki|Запретить ИИ уходить в оборону:
 qstr_Brighter_Nights:__|Светлые ночи: 
 qstr_Done|Сделано
 qstr_Gameplay_Tweaks|Настройка геймплея... 
-qstr_Beta_Formations_Twea|Бета формации
-; qstr_Set_to_Native_if_you|Set to Native if you encounter any types of AI problems during battle.
-; qstr_Disable_cutscenes_if|Disable cutscenes if you encounter any crashes at the start of the war.
-; qstr_Campaign_Difficulty_a|Campaign Difficulty affects abundance of volunteers, lord party size, and strength income for allied factions.
-qstr_War_Will_Start_at_Le|Война начинается на уровне: {reg0}
-; qstr_Be_aware_that_many_q|Be aware that many quests and campaign mechanics scale with player level. Increasing this setting will give you more time to prepare, but will make the war unfold quicker.
+qstr_Set_to_Native_if_you|Установите режим Native, если вы столкнетесь с какими-либо проблемами с искусственным интеллектом во время боя.
+qstr_Disable_cutscenes_if|Отключите ролики, если вы столкнетесь с какими-либо сбоями при начале войны.
+qstr_Campaign_Difficulty_a|Сложность кампании влияет на количество добровольцев, размеры отрядов лордов, начальную силу фракции игрока, базовый прирост силы для союзных фракций и прирост силы от побед игрока.
+qstr_Please_be_aware_that|Пожалуйста, имейте в виду, что игра сбалансирована для уровня сложности по умолчанию. Другие настройки сложности не тестировались.
+qstr_Be_aware_that_many_q|Имейте в виду, что многие задания и механика кампаний меняются в зависимости от уровня игрока. Увеличение этого параметра даст вам больше времени на подготовку, но ускорит ход войны.
+qstr_Requires_TLD_NewForm|Требует TLD NewFormAI (Новый ИИ формаций)
 qstr_Troop_Tree|Древо развития войск
 qstr__Click_on_a_unit_for|(Нажмите на воина для подробностей)
 qstr_Weapons|Оружие
@@ -138,7 +146,7 @@ qstr_Extended_Formations_|Расширенные опции формаций и 
 qstr_Put_player_in_divisi|Поместить игрока в подразделение:
 qstr_None|нет
 qstr_Army_rotates_to_face|Войска поворачиваются лицом к врагу:
-qstr_Prevent_AI_from_takin|Запретить ИИ уходить в оборону:
+qstr_Prevent_AI_from_taki|Запретить ИИ уходить в оборону:
 qstr_AI_Controls_Troops_W|ИИ управляет войсками когда Игрок теряет сознание:
 qstr_You_gained_{reg0}_Re|Вы получили {reg0} Очков Снабжения фракции {s0}.
 qstr_You_lost_{reg0}_Reso|Вы потратили {reg0} Очков Снабжения фракции {s0}.
@@ -172,12 +180,17 @@ qstr_its|их
 qstr_[no_upkeep_costs]|[нет платы за содержание]
 qstr_Short_of_Resource_Po|Не хватает Очков Снабжения!
 qstr_{s10}_will_soon_reas|Держава {s10} в скором времени отзовёт своих воинов из вашего отряда!
+qstr_{s10}_has_reassigned|{s10} переназначил войска из вашего резерва.
 qstr_Superior_orders_from|Из державы {s11} пришёл приказ перераспределить войска:
 qstr_{reg12}_{s10}_left_t|{reg12} {s10} - эти воины покинули ваш отряд!
 qstr_Fangorn_claimed_{reg|Фангорн потребовал от вас жертву: среди ваших бойцов {reg0} убитых и {reg1} раненых!
 qstr_You_were_wounded_in_|Вы были ранены в Фангорне!
+qstr_Grimbold|Гримбольд
+qstr_Theodred|Теодред
+qstr_Gamling|Гамлинг
 qstr_{s1}_of_{s3}_was_def|{s1} из державы {s3} терпит поражение в битве.
 qstr_{s2}_have_razed_{s1}|Держава {s2} разорила {s1}!
+qstr_{s1}_Scouts|Разведчики {s1}
 qstr_Left_for_dead_but_mi|Вы были обречены на смерть, но чудесным образом спаслись: {reg1?{reg1} раз{reg2?:}:НИКОГДА}
 qstr_1_Res.Pt__{s2}_|1 Оч.Снаб. ({s2})
 qstr_{reg1}_Res.Pts__{s2}|{reg1} Оч.Снаб. ({s2})
@@ -236,7 +249,7 @@ qstr_+1_Intelligence|+1 к интеллекту
 qstr_+{reg1}_to_Spotting|+{reg1} к Слежению
 qstr__Scales_with_Wildcra|(Растёт с навыком единение с природой)
 qstr_Strengthens_all_Hero|Усиливает всех Героев
-; qstr_+4_to_First_Aid__Par|+4 to First Aid (Party)
+qstr_+4_to_First_Aid__Par|+4 к Первой Помощи (Отряд)
 qstr_lead_more_Uruks|Вести больше Уруков
 qstr_+1_to_Power_Throw|+1 к мощному броску
 qstr_Recruit_Black_Numeno|Набирайте черных нуменорцев из разных мест
@@ -280,6 +293,7 @@ qstr_{s0}^TOTAL:_{reg3}__|{s0}^ВСЕГО: {reg3} ({s2})
 qstr_^None|^нет
 qstr_near_the_Great_East_|близ Великого восточного тракта, заброшенной старой дороги
 qstr_near_what_is_left_of|близ почти исчезнувшей Старой лесной дороги, древнего гномьего тракта, проходившего через густой лес
+qstr_near_the_old_cross_r|рядом со старым перекрестком, где Итилиенский тракт пересекает дорогу в Осгилиат
 qstr_close_to_the_Hand_sh|близ изваяния в виде Длани Сарумана, указывающей в сторону башни Ортанк
 qstr_in_sight_of_the_maje|близ величественных крепостных стен Минас-Тирита, Белого Города
 qstr_in_sight_of_Edoras_t|вас заметили в Эдорасе, столице Рохана
@@ -290,7 +304,7 @@ qstr_in_sight_of_Dol_Guld|вас заметили в Дол Гулдуре, се
 qstr_on_the_green_pasture|на зелёных пастбищах и цветущих лугах, окружающих Дом Беорна
 qstr_on_the_shores_of_Lak|на берегах Зеркального Озера, у Восточных Врат Мории
 qstr_on_the_shores_of_the|на берегах Длинного Озера, недалеко у Эсгарота, Озёрного Города
-qstr_near_the_coast_of_Go|рядом с побережьем Гондора. Вы могли слышать отдалённый звук волн и крики чаек.
+qstr_near_the_coast_of_Go|рядом с побережьем Гондора. Вы слышите отдалённый плеск волн и крики чаек.
 qstr_in_the_outskirts_of_|на окраинах Осгилиата, бывшей столицы Гондора
 qstr_in_sight_of_the_entr|близ входа в Эребор, гномью твердыню
 qstr_in_sight_of_the_dark|в тени тёмной башни Ортанк
@@ -592,11 +606,12 @@ qstr_Either_would_be_a_gr|И то, и другое было бы для меня
 qstr_Gandalf_asked_you_to|Гэндальф попросил вас либо помочь Теодену защититься{s3}, либо выяснить, что происходит в Изенгарде.
 qstr_Ents|Энты
 qstr_Hail_{playername}!_I|Приветствую тебя, {playername}! Надеюсь, вы не ранены? Во всяком случае, я рад, что вы помогли моему другу Фангорну, или, как вы его знаете, Древобороду. Энты очень могущественны, но, скорее всего, они шли на верную гибель. Возможно, ты спас их от большой опасности, командир, и я рад этому. Я бы не хотел, чтобы древнейшие из живых существ покинули этот мир... нет, не сейчас... нет, надеюсь, не раньше, чем они снова увидят энтов.
-qstr_Missing_String|Отсутствующая строка
+qstr_I_did_what_I_could.|Я сделал все, что мог.
 qstr_Well_thank_you_{play|Что ж, спасибо, {playername}, и прощайте. Мы можем встретиться снова, до убывания луны!
 qstr_Hail_{playername}!_I_|Приветствую тебя, {playername}! Надеюсь, вы не ранены? Во всяком случае, похоже, вы направили свой клинок на верного врага. Ни один враг еще не брал Хорнбург, и, вероятно, никогда не возьмет - пока такие, как вы, защищают Хельмовы ворота, ручаюсь!
 qstr_Your_deed_has_greatl|Ваш поступок очень помог моему проекту, даже лучше, чем я мог надеяться или планировать. Прощайте, {playername}, и спасибо вам. Мы можем встретиться снова до заката луны!
-qstr_{Playername}_I_will_|{Playername}, сейчас я спрошу вас об одном. Вы считаетесь способным капитаном и послушным человеком; не одолели ли вас великие враги? Не задерживался ли ты слишком долго из осторожности или даже страха? Вот, теперь мы оказались в большей опасности, чем я мог предположить. Сила Рохана сломлена, ее люди рассеяны и лишены щитов: Хельмова Впадина пала. Деревья засохли безвременно, и ночь лежит над кузнечными кострами Изенгарда: энты Фангорнского леса мертвы или отброшены назад.
+qstr_{playername}_I_will_|{playername}, сейчас я задам тебе один вопрос. Ты считаешься способным капитаном и исполнительным человеком; побеждали ли тебя великие враги? Не слишком ли долго ты медлил из-за осторожности или даже страха? Смотри, теперь мы подвергаемся большей опасности, чем я мог предвидеть. Сила Рохана ослаблена, его народ рассеян и лишен защиты: Хельмово Ущелье пало. Деревья преждевременно засохли, и Тьма пришла из кузниц Изенгарда: энты леса Фангорн мертвы или изгнаны.\n\n
+qstr_I...|Я...
 qstr_You_have_failed_me_{|Ты подвел меня, {playername} - или, возможно, это я подвел тебя. Возможно, в моем замысле был какой-то изъян, какая-то грубая ошибка, которую я не заметил... Ужас Мордора наступает. Оставь меня, {playername}. Возможно, мы еще встретимся... а возможно, и нет.
 qstr_Bagginsssss..._Ssssh|Бэггинс-с-с-с-с... Ш-ш-ш-ш-шир...
 qstr_I..._don_t_know!|Я... ничего не знаю!
@@ -679,7 +694,6 @@ qstr_have_taken_measure_o|оценило текущую силу вашей фр
 qstr_loses_Faction_Streng|становится слабее, так как линии снабжения были нарушены.
 qstr_loses_Faction_Strengt|становится слабее после уничтожения их лагеря.
 qstr_gains_Faction_Streng|становится сильнее, когда расходится молва о вашей победе.
-qstr_Something_wrong_not_|Что-то не так, не хватает бойцов для разведывательного отряда.
 qstr_Raiders|Налётчики
 qstr_have_won_the_sea_bat|выиграли сражение на воде, деморализовав ваши отряды. Враг может получить превосходство из-за этого поражения и нападать чаще.
 qstr_loses_Faction_Strength|становится слабее после опустошительного рейда.
@@ -705,23 +719,16 @@ qstr_Inventory|Снаряжение
 qstr_Show_stats|Показать характеристики
 qstr_Show_item_details__|Показать информацию о предмете
 qstr_Troop_detail|Информация об отряде
-qstr_{s1}^|{s1}^
 qstr_{s1}Level:_{reg1}^|{s1}Уровень: {reg1}^
 qstr_{s1}Hit_Points:_{reg|{s1}Здоровье: {reg1}
 qstr_{s1}Atributes:_^___S|{s1}Характеристики: ^   Сила:^
-qstr_{s2}^{reg1}^|{s2}^{reg1}^
 qstr_{s1}___Agility:|{s1}   Ловкость:
-qstr_{s2}{reg1}|{s2}{reg1}
 qstr_{s1}Main_skills:_^|{s1}Основные навыки: ^
 qstr_{s1}___Power_Strike:|{s1}   Мощный удар:^
-qstr_{s2}{reg1}^|{s2}{reg1}^
 qstr_{s1}___Athletics:^|{s1}   Атлетика:^
 qstr_{s1}___Riding:^|{s1}   Верховая езда:^
-qstr_{s2}_^|{s2}-^
 qstr_{s1}___Power_Throw:^|{s1}   Мощный бросок:^
 qstr_{s1}___Power_Draw:^^|{s1}   Мощный выстрел:^^
-qstr_{s2}{reg1}^^|{s2}{reg1}^^
-qstr_{s2}_^^|{s2}-^^
 qstr_{s1}Weapons:^|{s1}Владение оружием:^
 qstr_{s1}___One_Handed:^|{s1}   Одноручное:^
 qstr_{s1}___Two_Handed:^|{s1}   Двуручное:^
@@ -730,7 +737,6 @@ qstr_{s1}___Archery:^|{s1}   Луки:^
 qstr_{s1}___Crossbow:^|{s1}   Арбалеты:^
 qstr_{s1}___Throwing:^|{s1}   Метательное:^
 qstr_{s1}___Slings:|{s1}   Пращи:
-qstr_{s2}_|{s2}-
 qstr__Click_on_the_troop_|(Нажмите на юнита чтобы повернуть его)^^Нажмите на элемент снаряжения^(шлем, броня, перчатки, ботинки)^ чтобы показать их.
 qstr_ready_bows_and_missi|приготовить луки и снаряды
 qstr_ready_side_arms|приготовить одноручное оружие
@@ -752,10 +758,30 @@ qstr_You_got_{reg1}_exper|У вас {reg1} опыта в обличье медв
 qstr_Your_ability_to_chan|Проявилась ваша способность к превращению, отныне вы можете ходить по диким тропам и как человек, и как медведь.
 qstr_You_change_back_to_h|Вы снова принимаете человеческий облик ...
 qstr_Refill_Ammunition|Пополнить боеприпасы
+qstr_Take_a_closer_look..|Взглянуть поближе...
+qstr_Look_around...|Осмотреться...
+qstr_You_see_the_Pelennor|Вы видите раскинувшийся перед вами Пеленнор. За ним едва различимы руины Осгилиата, бывшей столицы Гондора, при которой Минас Тирит был всего лишь крепостью. А далее на горизонте маячит зубчатая гряда гор Мордора, за которой царит глубокий мрак. Жители Белого города всегда живут в тени этой тьмы.
+qstr_As_you_look_from_the|Когда вы смотрите с высокого мыса острова вниз, туда, где Андуин, Великая река, разделяется на два рукава, вы понимаете, почему Кайр Андрос означает "Пенистый корабль".
+qstr_This_place_was_once_|Когда-то это место было убежищем эльфов, но сегодня о его наследии говорят только руины. Немногие до сих пор знают его истинное значение.
+qstr_Tirith_Aear_the_Sea_|Тирит Эар. Башня, Стерегущая Море - уже много веков медленные звуки её колокола указывают путь морякам.
+qstr_You_kneel_to_pay_you|Ты преклоняешь колени, чтобы выразить свое почтение павшим правителям этого прекрасного королевства. Рядом с тобой воительница Рохана поёт свою песню.. ^Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! ^Твоё сердце щемит, когда ты слышишь её слова.
+qstr_You_wonder_about_the|Вы удивляетесь двум рядам курганов перед воротами, но, будучи простым {s24}ом, не понимаете их значения.
+qstr_Alkarondas_Castle_of|Алькарондас, Морской Замок. Названный в честь знаменитого флагмана Ар-Фаразона, этот огромный черный корабль является гордостью корсарского флота и ужасом побережья Гондора.
+qstr_The_Mmakil_greatest_|Мумакил, величайшие звери этой эпохи! Ужасающие в сражениях, они несут в битву башни с лучниками.  Громовой рёв их хоботов, подобный военным трубам, заставит людей Гондора дрожать от страха.
+qstr_A_new_Power_is_risin|Поднимается новая Сила. Против неё не устоят старые союзы. Её победа близка, и тех, кто помогал ей, ждет богатая награда.
+qstr_As_you_explore_the_c|Исследуя пещеры под Кольцом Изенгарда, где тысячи орков работают на снабжение растущих армий Белой Руки, ты обретаешь уверенность в появлении новой державы и гибели старого мира.
+qstr_The_Ring_of_Isengard|Кольцо Изенгарда затоплено, его каменные стены лежат в руинах. Пройдёт некоторое время, прежде чем вся грязь Сарумана будет смыта и Изен снова очистится. ^Кто знает,  быть может, это место ещё превратится вновь в сад, наполненный деревьями, плодами и чистой водой.
+qstr_Amon_Hen_the_Hill_of|Амон Хен, холм Видения, с которого открывается превосходный вид на окружающие земли. Однако, если вы искали древнее возвышение в надежде получить подсказку на собственном пути, теперь вы понимаете, что решение всё же за вами.
+qstr_As_the_lights_begin_|Когда огни начинают мерцать и танцевать, ты видишь их: мрачные и злые, благородные и печальные лица. Многие лица горды и прекрасны, и тина запуталась в их серебристых волосах. Но все они тронуты тлением, все гниют, все мертвы.
+qstr_This_must_be_the_spi|Должно быть, это паучье гнездо. Не раздумывая, вы зажигаете факел и сжигаете паутину дотла.
+qstr_A_flock_of_ravens_ci|Вокруг тебя кружит стая воронов. Ты не понимаешь, о чем они говорят, какие новости принесли из дальних стран. И все же ты чувствуешь утешение, зная, что эти мудрые животные - давние друзья Короля под Горой.
+qstr_Looking_around_you_d|Оглядываясь вокруг, ты не понимаешь значимость этого места.
+qstr_Looking_around_you_f|Оглядываясь вокруг, ты чувствуешь, что недостаточно хорошо знаешь этих людей, чтобы понять значение этого места.
 qstr_Your_mount_stumbles!|Ваш скакун спотыкается! Кажется, он охромел.
 qstr_Bitten_by_your_own_w|Вас укусил собственный варг!
 qstr_You_weigh_too_much_f|Ваш вес слишком велик для низкорослой лошади!
 qstr_Your_mount_rears_ref|Ваш скакун несётся прочь, не подчиняясь вам!
+qstr_Delivered_{reg60}_da|Нанесено {reg60} урона.
 qstr_Cannot_Change_Camera|В режиме от первого лица, невозможно сменить режим камеры.
 qstr_Switch_Back_to_3rd_P|Вернитесь к виду от третьего лица, чтобы вращать камерой.
 qstr_Fixed_Custom_Camera|Закрепленная настраиваемая камера
@@ -766,23 +792,22 @@ qstr_Press_Ctrl_and_Up/Do|Нажмите Ctrl и клавиши со стрел�
 qstr_Fixed_Camera___Right|Закреплённая камера - правое плечо
 qstr_Fixed_Camera___Left_|Закреплённая камера - левое плечо
 qstr_Fixed_Camera___Cente|Закреплённая камера - центр
+qstr_The_Nazgul_retreats!|Назгул отступает!
 qstr_Shield_is_too_big_to|Щит слишком большой, чтобы его можно было использовать с луком.
-; qstr_{s7}_waves_at_you.|{s7} waves at you.
-; qstr_You_happen_upon_an_O|You happen upon an Old Guesthouse. As you inspect the weathered stone building, you notice a group of boys playing among the pillars, the only children you have seen in Minas Tirith.  One of them greets you and you wave back. Your heart is gladdened and you forget, for a brief moment, the sorrow of war.
+qstr_{s7}_waves_at_you.|{s7} машет тебе.
+qstr_You_happen_upon_an_O|Вы случайно натыкаетесь на Старый Гостевой дом. Рассматривая выветренную каменную кладку, вы замечаете группу мальчиков, играющих среди колонн - единственных детей, которых вы увидели в Минас-Тирите. Один из них приветствует вас, и вы машете в ответ. Ваше сердце наполняется радостью, и вы на мгновение забываете о горестях войны.
 qstr_You_look_through_Hen|Вы смотрите сквозь Хеннет Аннун, Окно Заката. Это поистине прекрасное зрелище восстанавливает вашу веру в Запад и сверхъестественные силы.
-; qstr_As_you_follow_the_st|As you follow the straight stairs, cut into the rock of the mountain, and then a second set of stairs, winding as it clings to the cliff-face, you realize that you should not pursue this path any further if you value your own life.
-; qstr_You_are_unable_to_en|You are unable to endure the horrors of the Dead City.
-; qstr_You_endure_the_horro|You endure the horrors of the Dead City and explore its innermost circles. The Silent Watchers recognise your boldness and don't oppose you. (You gained 1 Charisma.)
-; qstr_You_are_unable_to_end|You are unable to endure the horrors of the temple.
-; qstr_You_endure_the_horror|You endure the horrors of the unspeakable rituals in this sacred place. The cruel people of Rhun recognise the strength you have shown and some of their mightiest decide to join your party.
-; qstr_You_find_yourself_in|You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. This is no place for one such as you. Snarling, you make your retreat. When the Shadow has covered the world above, perhaps then, you may return here without fear...
-; qstr_You_find_yourself_in_|You find yourself in a deep cavern. Your hackles rise as you look around you, and you begin to feel a strange sense of danger. Raising your weapon high, you snarl your defiance at the unseen foe in this place. This may have been a place of wonder once... but now, with the true power you have gained, you realize you have nothing to fear from the forgotten past of a broken world.
-; qstr_With_trepidation_you|With trepidation, you look within the silver basin. The water shows you visions of horror; blood and terror and grief. You recoil... but then, the visions vanish and you see instead a clear night sky, with what seems to be a silver boat floating across the expanse. A sense of calm washes over you. Hope is not wholly gone.
-; qstr_The_Lady_s_garden_li|The Lady's garden lies peacefully in the bright daylight. You sense nothing out of the ordinary...
-; qstr_You_kneel_to_pay_you|You kneel to pay your respects to the fallen rulers of this fair realm. Beside you, a shield-maiden of Rohan raises her voice in song. Ne sceal hearpan sweg wigend weccean; ne winfaet gylden guma sceal healdan! Your heart aches to hear her words.
-; qstr_You_wonder_about_the|You wonder about the two rows of burial mounds in front of the gates, yet as a mere {s24}, you do not understand their significance.
-; qstr_Halt!_You_are_not_al|Halt! You are not allowed to enter here!
-; qstr_Halt!_You_are_not_all|Halt! You are not allowed to enter here without the Lady's leave!
+qstr_As_you_follow_the_st|Поднимаясь по прямой лестнице, вырубленной в скале, а затем по второй лестнице, вьющейся по склону утеса, вы понимаете, что вам не следует идти дальше по этому пути, если вы цените свою собственную жизнь.
+qstr_You_are_unable_to_en|Ты не в состоянии вынести ужасы Мертвого города.
+qstr_You_endure_the_horro|Ты пережил{/а} ужасы Мертвого города и исследовал{/а} его сокровенные уголки. Безмолвные Наблюдатели признают твою смелость и не противостоят тебе. (Ты получил{/а} +1 к Харизме.)
+qstr_You_are_unable_to_end|Ты не в состоянии вынести ужасы храма.
+qstr_You_endure_the_horror|Ты вытерпел{/а} ужасы невыразимых ритуалов в этом священном месте. Жестокие жители Руна осознают силу, которую ты продемонстрировал{/а}, и несколько самых могучих из них решают присоединиться к твоему отряду.
+qstr_You_find_yourself_in|Ты оказываешься в глубокой пещере. Когда ты оглядываешься по сторонам, у тебя встает дыбом шерсть, и ты начинаешь испытывать странное чувство опасности. Это не место для таких, как ты. Рыча, ты отступаешь. Когда Тень накроет мир наверху, возможно, тогда ты сможешь вернуться сюда без страха...\n\n
+qstr_You_find_yourself_in_|Ты оказываешься в глубокой пещере. Когда ты оглядываешься по сторонам, у тебя встает дыбом шерсть, и ты начинаешь испытывать странное чувство опасности. Высоко поднимая оружие, ты бросаешь вызов невидимому врагу. Возможно, когда-то это место было удивительным... но теперь, когда ты обрёл истинную силу, ты понимаешь, что тебе нечего бояться забытого прошлого разрушенного мира.\n\n
+qstr_With_trepidation_you|С трепетом вы заглядываете в серебряную чашу. Вода являет вам ужасные картины: кровь, ужас и скорбь. Вы отшатываетесь... но затем видения исчезают, и вместо них вы видите чистое ночное небо, по которому, как вам кажется, плывет серебряная лодка. Вас охватывает чувство спокойствия. Надежда еще не совсем угасла.\n\n
+qstr_The_Lady_s_garden_li|Сад Госпожи мирно раскинулся в ярком дневном свете. Вы не чувствуете ничего необычного...
+qstr_Halt!_You_are_not_al|Стой! Тебе запрещено сюда входить!
+qstr_Halt!_You_are_not_all|Стойте! Вам запрещено входить сюда без разрешения Госпожи!
 qstr_While_visiting_towns|Посещая города, поселки и лагеря, вы можете общаться с людьми, гуляющими вокруг. Члены разных фракций могут рассказывать разные вещи: одни позволят вам самим задать вопрос, другие поделятся интересными слухами. Они могут дать вам лучшее понимание их культуры и фракции, могут помочь найти секретные локации или поделятся советами и хитростями для путешествий по Диким землям и сражений в Войне Кольца.
 qstr_Cannot_leave_now.|Сейчас нельзя уйти.
 qstr_You_have_found_the_l|Вы нашли местную кузницу.
@@ -799,20 +824,12 @@ qstr_Formations_turned_OF|Формации выключены в настрой�
 qstr_Division_{reg1}_{s2}_g|Подразделение {reg1} {s2} движется к заданной позиции...
 qstr_Division_{reg1}_{s2}_f|Подразделение {reg1} {s2} строится в линию (сохранено).
 qstr_Division_{reg1}_{s2}_fo|Подразделение {reg1} {s2} строится в {reg0} линии (сохранено).
-qstr_Delivered_{reg60}_da|Нанесено {reg60} урона.
-qstr_DEBUG__Health_Regen_|DEBUG (Восст. здоровья): {s1} восстанавливает {reg0}% здоровья. = +{reg1}% СИЛ
+qstr_A_Nazgul_on_a_winged|Назгул на крылатой твари кружит над полем битвы!
 qstr_Your_bear_form_has_{|У вашей формы медведя {reg2}/{reg1} здоровья!
 qstr_Some_of_your_human_t|Некоторые из ваших человеческих воинов не боятся темноты.(Ночные воины не подвержены штрафам в ночное время)
 qstr_You_are_filled_with_|Вы наполняетесь яростью, когда видите врага (активен Берсерк).
 qstr_Your_mount_is_scared|Ваш скакун напуган {s5}!
 qstr_Your_mount_is_scared_|Ваш скакун напуган {s5}, но вы можете успокоить его!
-qstr_Nazgul_sweep!|Назгул атакует!
-qstr_You_and_your_horse_p|Вы и ваша лошадь в ужасе, крики назгула невыносимы!
-qstr_Your_horse_panics_th|Ваша лошадь несётся прочь, крики назгула невыносимы!
-qstr_You_cower_in_terror_|Вы сьёживаетесь от страха, крики назгула невыносимы!
-qstr_knocked_unconscious|оглушён
-qstr_Nazgul_diving_attack|Назгул спикировал на воина {s11}!
-qstr_{s11}_is_{s10}_in_th|{s11} {s10} во время нападения назгула!
 qstr_Received_{reg66}_dam|Получено {reg66} урона.
 qstr_You_yell_for_your_ho|Вы призываете вашего коня.
 qstr_You_do_not_need_to_r|Пока не требуется созыв ваших войск.
@@ -854,6 +871,8 @@ qstr_on_the_right_flank|на правом фланге
 qstr_through_the_center|через центр
 qstr_Attackers_charge_{s2|Противник атакует {s2}
 qstr_Attackers_charge_{s1|Противник атакует {s1}
+qstr_Hold_this_area_to_st|Удерживайте эту зону, чтобы пресечь прибытие подкреплений защитников!
+qstr_Defender_reinforceme|Точка подкрепления защитников захвачена!
 qstr_{s1}_rallied_to_your|{s1} перешел на вашу сторону благодаря навыку Харизма.
 qstr_Last_attacker_wave._|Это последняя волна нападавших. Вы хотите отступить?
 qstr_Attackers_almost_def|Враги практически разбиты. Вы хотите отступить?
@@ -865,9 +884,11 @@ qstr_Ballista:_turn_CURSO|Баллиста: повернуть КУРСОРОМ,
 qstr_Ballista:_out_of_ammo|Баллиста: кончились стрелы
 qstr_The_ladders_on_Deepi|Лестницы уже у Стены! Будьте начеку!
 qstr_THREE.._TWO..._ONE..|ТРИ... ДВА... ОДИН... В БОЙ!
-qstr_You_have_come_upon_t|Вы наткнулись на развалины Амон Хэн, Холм зрения. Гондорской сторожевой башни, на вершине которой находится Место Видения, вы чувствуете, что это место когда-то было великим, но давно уже забыто
-qstr_You_have_come_upon_th|Вы натолкнулись на Мёртвые Топи, место битвы при Дагорладе во время Войны Последнего Союза^^Болота поглотили то, что когда-то было травянистой равниной, и теперь единственная зелень - это мертвенно-бледные водоросли на тёмных, масляных поверхностях мрачных вод^^Мёртвая трава и гниющие тростники едва вырисовываются в тумане, как тени давно забытых лет, а в тёмных глубинах вод плавают тела людей, эльфов и орков^^Воздух вокруг холодный и влажный, вас пробирает озноб, когда встречаете мерцающие огоньки свечей в глазах эльфского трупа прямо под поверхностью воды
-qstr_You_have_entered_the|Вы вошли в лес Южного Темнолесья, когда-то известный как Великое Зеленолесье^^Крепость Дол Гулдур, находящаяся неподалеку, отбрасывает темную тень на лес. Здешние леса кажутся мёртвыми и болезненными. Древние дубы переполнены гнилью и грибком, а огромные запутанные паутины тянутся от ствола к стволу^^ Воздух вечно неподвижен, темен и душен, и кажется, что вы медленно задыхаетесь
+qstr_You_have_come_upon_t|Ты {набрёл/набрела} на руины Амон Хен, Обзорного Холма, гондорской сторожевой башни, на вершине которой находится Трон Видения.^^ Ты чувствуешь, что следует подняться на вершину и, возможно, нечто увиденное вдали озарит и подскажет тебе дальнейший путь.
+qstr_You_have_come_upon_th|Вы набрели на Мёртвые болота, место битвы при Дагорладе во время войны Последнего Союза^^ В темноте ночи вы видите огни, похожие на туманные языки пламени, медленно мерцающие над невидимыми свечами. Странная одержимость зовёт вас  следовать за ними, углубляясь в лабиринт луж и ручьев.
+qstr_You_have_come_upon_the|Вы попали на Мертвые болота, место битвы при Дагорладе во время войны Последнего Союза ^^ Болота поглотили то, что когда-то было травянистой равниной, и теперь единственной зеленью является налет багровых водорослей на темной маслянистой поверхности угрюмых вод. В сером свете дня вы не видите ничего, что могло бы вас заинтересовать.
+qstr_You_have_entered_the|Вы вошли в леса Южного Лихолесья, когда-то известного как Великое Зеленолесье ^^Лес кажется больным и полным разложения. Это место кишит пауками. Где-то здесь должно быть гнездо...
+qstr_You_have_found_the_G|Вы нашли Сверкающие пещеры, одно из чудес Северного мира.
 qstr_You_have_found_the_D|Вы нашли гномий склад, в котором могли быть легендарные копья. {s3} должен узнать об этом.
 qstr_Leave_the_Warehouse?|Покинуть склад?
 qstr_Leave_the_place_in_s|Тихо уйти из этого места?
@@ -885,10 +906,15 @@ qstr_The_guards_have_spott|Стражники обнаружили вас!
 qstr_Alarm_Level_is_now_at_|Включен уровень тревоги 2!
 qstr_Enemy_reinforcements_|Прибыло вражеское подкрепление.
 qstr_Venture_deeper_into_|Углубитесь в лес и найдите путь вперед.
+qstr_You_have_evaded_the_|Вы ускользнули от дозорных и подобрались к руинам. Найдите и убейте колдуна! Не позвольте стражам остановить вас.
+qstr_Kill_the_Sorcerer!|Убейте колдуна!
 qstr_The_sorcerer_has_fle|Колдун сбежал!
 qstr_Report_this_ill_news|Сообщите эту дурную весть Владычице.
-qstr_The_sorcerer_is_flee|Колдун убегает! Убейте его!
+qstr_You_have_been_spotte|Вас заметили! Сражайтесь!
+qstr_The_ritual_has_begun|Ритуал начался! Вы должны поторопиться, чтобы помешать ему!
 qstr_The_sorcerer_has_joi|Колдун вступил в бой! Убить его!
+qstr_The_sorcerer_is_flee|Колдун убегает! Убейте его!
+qstr_base_troop:_{reg77}_|базовый отряд: {reg77}, улучшенный: {reg78}
 qstr_The_sorcerer_is_dead|Колдун мёртв!
 qstr_The_battle_is_won!|Битва выиграна!
 qstr_A_band_of_tribal_orc|Появилась группа Диких орков!
@@ -921,6 +947,12 @@ qstr_Look_at_my_over_the_|Погляди, как красиво я выгляж�
 qstr_You_wish_old_man_my_|Как хочешь, старик, но мой ракурс с плеча противника красивее!
 qstr_You_should_really_se|Тебе действительно стоит посмотреть фотки наместника Денетора на Фэйсбуке, он потрясающий!
 qstr_Press_Space_to_conti|Нажмите Пробел, чтобы продолжить...
+qstr_BY_LEVEL_/_by_day|НА УРОВНЕ / в день
+qstr_by_level_/_BY_DAY|на уровне / В ДЕНЬ
+qstr_War_start_mode_can_o|Режим начала Войны можно установить только в начале игры; смотрите настройки для выбора уровня или даты.
+qstr_ON|ВКЛ
+qstr_OFF|ВЫКЛ
+qstr_If_you_are_new_to_TL|Если вы новичок в TLD, рекомендуется использовать обучающие сообщения
 qstr_{s24}__{reg13}____{r|{s24} ({reg13}) - {reg20} до следующего повышения^
 qstr_Influence:^_{reg11}_|Влияние:^ {reg11} (в державе {s16})^
 qstr_Resource_Points:^_{r|Очки снабжения:^ {reg12} (в державе {s16})^
@@ -953,21 +985,10 @@ qstr_{s2}^_________{s4}:_|{s2}^ {s4}: {reg1} ({s23})
 qstr__________Faction_str| Отчёт о силе фракций:^{s2}
 qstr_{s1}^^Factions_are_n|{s1}^^Когда сила фракции падает ниже {reg1}, враги начинают осаждать её города. 
 qstr_Savagery|Дикость
-qstr_{s2}^^{s5}^{s6}|{s2}^^{s5}^{s6}
 qstr_Traits_gained:^{s2}|Полученные трейты:^{s2}
 qstr_^^You_are_{s17}.|^^Вы {s17}.
 qstr_Assassins_in_the_cam|Наёмные убийцы проникли в лагерь, защищайтесь!
-qstr_Ally_party_size:_{re|Численность союзного отряда: {reg1} 
-qstr_Enemy_party_size:_{r|Численность вражеского отряда: {reg1} 
-qstr_Party_count:_{reg0}|Кол. участ.: {reg0}
-qstr_Party_position__{reg|Позиция группы ({reg2}, {reg3}).
-qstr_Party_size_increased|Размер отряда увеличен с {reg0} до {reg1}!
-qstr_Faction_strengths_re|Отчёт о силе фракций:^{s2}
-qstr_Attacking_enemy_part|Атакует вражеский отряд {s11}
-qstr_Unknown_{reg3}_|Неизвестн. ({reg3})
-qstr_ON|ВКЛ
 qstr_OFF__cheat_|ВЫКЛ (чит)
-qstr_OFF|ВЫКЛ
 qstr_All_messages|Все сообщения
 qstr_{reg0}__will_most_li|{reg0}
 qstr_{reg0}__could_possib|{reg0}
@@ -975,9 +996,6 @@ qstr_Normal|Нормально
 qstr_Defender_only|Только защитники 
 qstr_Halved|Вполовину меньше 
 qstr_Battles_only|Только битвы 
-qstr_Doubled|Удвоенный
-qstr_Tripled|Утроенный
-qstr_Quadrupled|Учетверенный
 qstr_You_drank_the_Ent_Wa|Вы выпили энтийской воды...
 qstr_You_used_the_Orc_Bre|Вы использовали отвар орков.
 qstr_You_and_your_compani|Вы и ваши компаньоны делают глоток Мирувора. Вы ощущаете свежесть и прилив сил
@@ -990,17 +1008,15 @@ qstr_wild|дикий
 qstr_goblins|гоблины
 qstr_lordless|Без лорда
 qstr_orc_stragglers|Бродячие орки
-qstr_You_camp_and_beat_th|Вы встаёте на лагерь, и бьете в Барабаны Бездны. Могучие звуки привлекают группу {s1}{s2}
-qstr_You_camp_and_beat_the|Ты разбиваешь лагерь и бьешь в Барабаны Бездны. Мощный звук привлекает группу {s1} {s2}.
-qstr_You_camp_and_beat_the_|Ты разбиваешь лагерь и бьешь в Барабаны Бездны. Слабый звук привлекает группу {s1} {s2}.
+qstr_You_camp_and_beat_th|Ты встаёшь лагерем и бьёшь в Барабаны Бездны. Могучие звуки привлекают группу {s1}{s2}
+qstr_You_camp_and_beat_the|Ты разбиваешь лагерь и бьёшь в Барабаны Бездны. Мощный звук привлекает группу {s1} {s2}.
+qstr_You_camp_and_beat_the_|Ты разбиваешь лагерь и бьёшь в Барабаны Бездны. Слабый звук привлекает группу {s1} {s2}.
 qstr_You_camp_and_try_to_|Ты разбиваешь лагерь и пытаешься бить в Барабаны Бездны, но никто не отвечает на твой жалкий зов.
 qstr_^^^A_great_victory!^|^^^Великая победа!^^^Так вот что значили все россказни о Фангорне...
 qstr_^^^Defeated...^^^Sca|^^^Поражение...^^^Раздавлен в древнем лесу Фангорн...В полном одиночестве...
 qstr_Troll_caged_in_wheel|Тролль посажен в клетку на колёсах.
 qstr_A_second_troll_is_ca|Ещё один тролль посажен в клетку на колёсах.
 qstr_Here_you_are.|Вы здесь.
-qstr_Player_was_moved_to_|Игрок был перемещён в {s10}.
-qstr_neutral_whereabouts|ничейное место
 qstr_any|любой
 qstr_woman|женщина
 qstr_gondor|гондор
@@ -1059,9 +1075,9 @@ qstr__This_castle_seems_t| This castle seems to belong to no one.
 qstr__Your_own_banner_flie| Your own banner flies over the town gates.
 qstr__You_see_the_banner_o| {s7} водрузил своё знамя над воротами этого города.
 qstr__The_townsfolk_here_| Местный народ провозгласил независимость города.
+qstr_Get_book.|Взять книгу.
 qstr_Go_to_the_secret_ent|Пройти в секретный вход в Морию.
 qstr_Search_for_a_secret_|Искать секретный вход в Морию.
-qstr_Get_book.|Взять книгу.
 qstr_The_{reg6?town_s:cas|Припасов {reg6?города:замка} хватит на {reg3} дней.
 qstr_The_{reg6?town_s:cast|Запасы {reg6?города:замка} истощились, и защитники начали голодать.
 qstr_You_re_preparing_to_|Вы готовитесь атаковать стены, работы должны закончиться через {reg9} часов.
@@ -1096,13 +1112,12 @@ qstr_the_Hall|чертоги правителя
 qstr_the_Great_Chamber_of|Великий зал Трора.
 qstr_Stay_indoors_for_som|Заночевать в этом поселении ({reg1} очков снабжения за ночь)
 qstr_Camp_outside_for_som|Встать лагерем у стен (бесплатно)
-; qstr_As_you_enter_the_vas|As you enter the vast caverns underneath the Ring of Isengard, where thousands of orcs work to supply the growing armies of the White Hand, you gain confidence in the rise of a new power and the demise of the old world.
-; qstr_You_have_found_the_G|You have found the Glittering Caves, one of the marvels of the Northern World.
-; qstr_As_the_party_member_|As the party member with the highest Bargainer skill ({reg2}), {reg3?you estimate:{s3} estimates} that it will take {reg4} hours to find the most notable persons in town. [Costs {reg5}/{reg6} influence]
-; qstr_You_have_already_fou|You have already found all persons of interest.
-; qstr_the_captain_of_the_g|the captain of the garrison, and the civil authority.
-; qstr_and_the_captain_of_t|and the captain of the garrison. As this place was recently captured, it has not civil authority.
-; qstr_You_also_heard_of_a_|You also heard of a healer, but you will have to find them on your own.
+qstr_You_are_not_allowed_|Тебе не разрешено входить.
+qstr_As_the_party_member_|Как член отряда с наибольшим навыком Торговли ({reg2}), {reg3?ты прикидываешь:{s3} прикидывает}, что на поиск самых известных людей в городе должно уйти {reg4} часов. [Стоит {reg5}/{reg6} влияния]
+qstr_You_have_already_fou|Вы уже нашли всех интересующих вас лиц.
+qstr_the_captain_of_the_g|капитан гарнизона и управляющий.
+qstr_and_the_captain_of_t|и капитан гарнизона. Поскольку это место было недавно захвачено, здесь нет управляющего.
+qstr_You_also_heard_of_a_|Вы также слышали о целителе, но его вам придется найти самостоятельно.
 qstr_{s4}_s_scouts_have_s|разведчики {s4} видели и доложили о вашей неудаче. Вы навлекли позор на {s4} , и ответственность за эту неудачу лежит только на вас.
 qstr_{s1}_s_Ship|Корабль {s1}
 qstr_Time_passes...|Проходит время...
@@ -1117,8 +1132,8 @@ qstr_two_scout_parties_an|две разведывательные партии �
 qstr_two_scout_parties_and|две разведывательные группы и рейдерская группа из {s3}
 qstr_three_scouts_two_for|три разведчика, два фуражира и патруль из {s3}
 qstr_three_scouts_two_rai|три разведчика, два рейдера и военный отряд из {s3}
-qstr_You_see_the_village_|Вы видите, как на деревню нападают бандиты. Вы просите большинство ваших войск, чтобы следить за другими рейдерами в то время как вы берете небольшую группу и подготовиться к защите жителей деревни.
-qstr_You_see_the_village_y|Вы видите деревню, на которою вам было поручено напасть. Вы и небольшая группа ваших рейдеров готовитесь напасть на деревню, чтобы не быть замеченным.
+qstr_You_see_the_village_|Вы видите, как на деревню нападают бандиты. Вы оставляете большую часть ваших войск следить за другими рейдерами, а сами берёте небольшую группу и готовитесь к защите деревни.
+qstr_You_see_the_village_y|Вы видите деревню, на которую вам было поручено совершить набег. Вы и небольшая группа ваших рейдеров готовитесь напасть на деревню так, чтобы вас не заметили.
 qstr_The_raiders_are_defe|Грабители разбиты! Те из них, которым посчастливилось остаться на ногах, улепётывают во тьму, из которой явились, устрашенные гневом жителей деревни и их новым защитником. 
 qstr_Try_as_you_might_you|Хоть вы и пытались, но всё же не смогли победить грабителей. Они сровняли деревню с землей, и увели оставшихся крестьян в рабство.
 qstr_The_village_has_been|Деревню сровняли с землей, а жителей захватили в плен. Тёмный Властелин будет удовлетворён.
@@ -1131,24 +1146,21 @@ qstr_You_drove_back_the_e|Вы отбросили назад вражеский 
 qstr_You_were_defeated_by|Вы потерпели поражение от перехватывающего флота и не смогли совершить набег на город!
 qstr_^^^^^^^You_come_upon|Вы натыкаетесь на беженцев, покидающих {s2} и направляющихся в {s3}. В основном это пожилые и информированные люди, сопровождаемые женщинами и детьми.Есть охрана, но ее недостаточно, чтобы защитить всех от набега.
 qstr_^^^^^^^You_come_upon_|^^^^^^ ^ Вы натыкаетесь на беженцев, которых вы отслеживаете с момента {s2}. Они, похоже, находятся на пути к {s3} и в основном являются старыми и информированными. Здесь мало охранников, но их недостаточно, чтобы помешать тебе и твоим людям убить их всех.
-qstr_^^At_last_the_Master|Наконец-то хозяин делает свой ход! Факелы горят ярко. Поблескивает острое оружие. Вы и ваши крепкие парни скоро получите приказ о походе. Ай, там будут бои, их будет много, и славы хватит на всех!Вы имеете честь быть вызванным на аудиенцию к господину в его башне. Вполне вероятно, что первым вашим приказом будет работа снаги-напасть на деревню здесь, подстеречь караван там. Но ты достаточно скоро докажешь свою правоту. Кто сказал, что вы не будете играть такую же большую роль, как любой командир {s2} в {s3}?Война началась; начинается падение человека и его союзников!
+qstr_^^At_last_the_Master|^^Наконец-то Хозяин делает свой ход! Факелы горят ярко. Поблескивает острое оружие. Ты и твои крепкие парни скоро получите приказ о походе. Ай, там будут бои, их будет много, и славы хватит на всех! ^^Ты имеешь честь быть вызванным на аудиенцию к господину в его башне. Вполне вероятно, что первыми приказами тебе поручат работу снаги - напасть на деревню здесь, подстеречь караван там. Но ты скоро проявишь себя. Кто сказал, что ты не будешь играть такую же большую роль, как любой командир {s2} в {s3}? ^^Война началась; начинается падение человека и его союзников!
 qstr_^^Your_head_suddenly|Твоя голова внезапно наполняется видением - пылающим глазом. Повсюду вокруг тебя твои воины останавливаются как вкопанные. Каким-то образом вы знаете в этот момент, что все вы слышите один и тот же призыв, видите одно и то же видение. Велико искусство глаза без век - велика сила Барад-Дура!.^ ^ Знание, невысказанное, входит в самые ваши кости. Время пришло. Темный Лорд приказывает - вы все пойдете на своих врагов в открытую войну. Придут приказы от {s2} в {s3}. Ваша роль поначалу будет не очень велика, но вы достаточно скоро покажете себя. Война началась, начинается падение Запада!
 qstr_You_defeated_{reg5}_|Вы победили {reg5} врагов и произвели впечатление на своего командира.
 qstr_You_defeated_{reg5}_e|Вы победили {reg5} противников.
 qstr_You_failed_to_defeat|Вам не удалось никого победить.
 qstr_The_sorcerer_slain_y|Колдун убит, вы и ваши спутники поспешно перевязываете раны и выскальзываете в ночь. Мерзкие голоса кричат вам в спину, и вы можете чувствовать множество горящих глаз, ищущих вас в тени. Вскоре гнев сменяется разочарованием, и звуки погони приглушаются, сменяясь привычной тяжелой тишиной Мирквуда. Вы сбежали
 qstr_The_sorcerer_slipped|Колдун выскользнул из твоих рук и скользнул в темноту своих владений. С сердцем, отягощенным неудачей, вы и ваши спутники поспешно перевязываете раны и уходите в ночь. Насмешливые голоса пронзительно кричат вам в спину, и вы можете почувствовать множество горящих глаз, пытающихся пронзить тени. Смех и оскорбления вскоре милосердно заглушаются, сменяясь обычным тяжелым молчанием Мирквуда. Вы сбежали.
-qstr_You_approach_a_heavi|Вы приближаетесь к тщательно охраняемому участку леса... ^^ Вы должны решить, рискнете ли вы идти вперед самостоятельно или возьмете с собой несколько солдат.
+qstr_You_approach_a_heavi|Вы приближаетесь к хорошо охраняемой части леса... ^^Ты долж{ен/на} решить, рискнёшь ли идти вперед самостоятельно или возьмёшь с собой несколько бойцов. ^Тщательно выбирай свои действия, потому что чем больше внимания привлечёшь, тем лучше будут охранять колдуна.^Скорость будет важнее тяжелой брони.
 qstr_You_have_a_good_chan|У вас есть хороший шанс избежать встречи с охранниками и проскользнуть незамеченным.
 qstr_You_may_have_a_chanc|Возможно, у вас есть шанс избежать встречи с охранниками.
 qstr_You_will_probably_ha|Вам, вероятно, придется сражаться с охранниками.
 qstr_You_wait_for_darknes|Вы ждёте наступления темноты...
 qstr_You_are_quickly_disc|Враг быстро обнаружил вас.
 qstr_You_advance_stealthi|Вы скрытно углубились в лес.
-qstr_You_have_evaded_the_|Вы избежали встреч с дозорными и подобрались к руинам!
-qstr_You_have_found_the_s|Вы нашли колдуна!
 qstr_You_cannot_leave_unt|Вы не сможете уйти, пока не скроетесь от стражи!
-qstr_Kill_him_quickly_bef|Убейте его, пока он не сбежал!
 qstr_Enraged_by_the_death|Разъяренный смертью {s4}, ты поклялся отомстить силам {s3}. Теперь вы должны уничтожить как можно больше войск {s3} в ближайшие дни. Вы прекрасно знаете, что ваши последователи были свидетелями этой клятвы, и вы не хотите, чтобы вас называли клятвопреступником. Теперь должна начаться оргия кровопускания!
 qstr_flooded._Somebody_or|затоплен. Кто-то или что-то разрушило Изенские плотины.
 qstr_destroyed._Only_smol|разрушено. Остались лишь дымящиеся руины.
@@ -1159,6 +1171,8 @@ qstr_Breaking_camp...|Сворачиваем лагерь...
 qstr_Party_morale_is_low.|Боевой дух отряда низок. Воины дезертируют из Вашего отряда.
 qstr_Desertion|Дезертирство
 qstr_{s1}_has_deserted_fr|{s1} дезертировал из Вашего отряда
+qstr_You_don_t_have_enoug|У Вас не хватает воинов для охраны всех Ваших пленных. Вероятность их побега увеличилась.
+qstr_{s1}_has_escaped_fro|{s1} сбегает из твоего отряда.
 qstr_You_have_left_{s1}.|Вы покинули регион {s1}.
 qstr_You_are_entering_{s1|Вы входите в регион {s1} ({s2}).
 qstr_You_are_entering_{s1}|Вы входите в регион {s1}.
@@ -1176,10 +1190,10 @@ qstr_You_must_follow_{s1}|{s1} хочет, чтобы вы следовали з
 qstr_You_must_follow_{s1}!|{s1} хочет, чтобы вы следовали за ним! Это последнее предупреждение!
 qstr_{s1}_parties_defeate|{s1} отряды уничтожены: {reg1} вне {reg2}
 qstr_{reg65}_Moria_and/or|{reg65} воинов Мории и/или Гундабада убито. (Счетчик обновляется каждый час)
-qstr_{reg65}_{s3}_troops_|{reg65} {s3} воинов убито. (Счетчик обновляется каждый час)
-qstr_{reg66}_{s5}_troops_|{reg66} {s5} воинов убито. (Счетчик обновляется каждый час)
-qstr_{reg67}_{s7}_{s8}_tr|{reg67} {s7} {s8} воинов убито. (Счетчик обновляется каждый час)
-qstr_{s8}_in_{s9}_asked_y|{s8} в {s9} попросил вас убить {reg67} {s10}.^ {reg68} {s11} убит. (Счетчик обновляется каждый час)
+qstr_{reg65}_{s3}_troops_|{reg65} {s3} воинов убито. (Счётчик обновляется каждый час)
+qstr_{reg66}_{s5}_troops_|{reg66} {s5} воинов убито. (Счётчик обновляется каждый час)
+qstr_{reg67}_{s7}_{s8}_tr|{reg67} {s7} {s8} убито. (Счётчик обновляется каждый час)
+qstr_{s8}_in_{s9}_asked_y|{s8} в {s9} попросил вас убить {reg67} {s10}.^ {reg68} {s11} убито. (Счётчик обновляется каждый час)
 qstr_{s1}_is_scouted.|{s1} разведан.
 qstr_{s2}_was_defeated!|Держава {s2} потерпела поражение!
 qstr_The_Age_of_Men_has_f|Эпоха Людей подошла к концу. Теперь Две Твердыни собирают оставшиеся войска и созывают союзников, чтобы решить, кто станет единственным правителем Средиземья!
@@ -1190,7 +1204,7 @@ qstr_In_a_desperate_attem|В отчаянной попытке спастись 
 qstr_The_forces_of_{s2}_e|Силы {s2} разбили Передовой лагерь в {s15}!
 qstr_The_hosts_of_{s2}_ma|Войска державы {s2} возвращаются на защиту своего отечества!
 qstr_{playername}_s_Reser|Резерв игрока
-qstr_Gondor_has_called_fo|Гондор звал на помощь!
+qstr_Gondor_has_called_fo|Гондор позвал на помощь!
 qstr_Gondor_is_accompanyi|Гондор сопровождает Маршала!
 qstr_{s5}_has_stopped_fol|{s5} перестал вас преследовать.
 qstr_You_have_{reg69}_all|Вы имеет {reg69} союзников, следующих за вами
@@ -1359,8 +1373,8 @@ qstr_The_surroundings_of_|Окрестности {s12} горят. Грабеж 
 qstr_The_surroundings_of_E|Окрестности Эсгарота горят. Грабеж был поистине великолепен!
 qstr_This_is_welcome_news|Это действительно приятная новость, {playername}. Мы были плохо подготовлены к таким смелым действиям Корсаров. Но благодаря вам Черные паруса были отогнаны, по крайней мере на время, и мы можем надеяться, что по крайней мере сегодня нанесем им удар. Примите нашу благодарность.
 qstr__Good_work_{playerna|Отличная работа, {playername}! Они проявили большую хитрость, чем полагали. Но эти Истерлинги, похоже, сражаются на лодках не так хорошо, как на лошадях! Возможно, нам тоже стоит подумать о создании собственного флота ... В любом случае, мы благодарим тебя, {playername}, от имени Эсгарота и всего народа Дейла.
-qstr_Even_from_here_we_co|Даже отсюда мы могли видеть пламя и чувствовать запах отчаяния наших врагов на ветру! Вы прекрасно справились, {playername}. Пусть ужас теперь поразит сердца каждого мужчины, женщины и ребенка в Гондоре, ибо теперь они знают, что даже их самые могущественные крепости не находятся вне пределов нашей досягаемости!
-qstr_Even_from_here_we_cou|Даже отсюда мы могли видеть пламя и чувствовать запах отчаяния наших врагов на ветру! Вы прекрасно справились, {playername}. Пусть ужас теперь поразит сердца всех мужчин, женщин и детей в Дейле, ибо теперь они знают, что даже их самые могущественные крепости находятся вне пределов нашей досягаемости!
+qstr_Even_from_here_we_co|Даже отсюда мы могли видеть пламя и чувствовать запах отчаяния наших врагов, доносимый ветром! Ты отлично справился, {playername}. Пусть теперь ужас поразит сердце каждого мужчины, женщины и ребенка в Гондоре, ибо теперь они знают, что даже их самые могущественные крепости находятся в пределах нашей досягаемости!
+qstr_Even_from_here_we_cou|Даже отсюда мы могли видеть пламя и чувствовать запах отчаяния наших врагов, доносимый ветром! Ты отлично справился, {имя игрока}. Пусть теперь ужас поразит сердце каждого мужчины, женщины и ребенка в Дейле, ибо теперь они знают, что даже их самые могущественные крепости находятся в пределах нашей досягаемости!
 qstr_My_lord_they_fell_up|Мой господин, они напали на нас с большими силами. Мы не смогли отразить атаку Корсаров.
 qstr_My_lord_they_fell_upo|Мой господин, они напали на нас с большими силами. Мы не смогли отразить атаку Руна.
 qstr_The_raid_on_{s12}_fa|Рейд на {s12} провалился, благодаря некомпетентности наших союзников!
@@ -1485,23 +1499,23 @@ qstr_We_are_at_war_with_{|Мы сражаемся против держав {s12
 qstr_We_are_at_war_with_{s|Мы сражаемся против держав {s12}. Правда, пока идут только мелкие стычки.
 qstr_we_are_not_too_conce|пока они нас мало заботят, так как мы сражаемся против тех врагов, которые недалеко от нас
 qstr__under_your_orders|, под вашим руководством
-qstr_{playername}_you_may|{playername}, возможно, вы видели хосты {s7}. Из всех капитанов, выстроившихся против нас, в настоящее время {s7} из {s8} завоевал наибольшую известность. Одного их присутствия на поле боя достаточно, чтобы подбодрить наших врагов и ослабить решимость наших союзников. {playername}, если вы хотите совершить великое дело в этой войне, сразите войско {s7} в открытом бою, на виду у всех! Так может возродиться надежда, и ужас наполнит сердца тех, кто пойдет против нас.
-qstr_Do_you_mark_how_our_|Вы заметили, как наши храбрейшие бойцы дрогнули при одном упоминании {s7} или {s8}? Великий воин, О да, способный капитан. Мы не можем допустить, чтобы это вышло из-под контроля! Везде, где показывается их лицо, наши линии изгибаются назад, и наши враги находят новое мужество. Этого не может быть. Я приказываю тебе, {playername}, бросить вызов и победить солдат {s7} в открытом бою. Видеть, как {s7} будет повержен вами, заморозит кровь и костный мозг его последователей и покажет нашим собственным войскам, что наши враги могут быть повержены!
-qstr_This_is_a_chance_for|Это шанс для меня показать свое качество. Я буду побеждать {s7} в глазах как врага, так и союзника.
-qstr_Accursed_be_those_wh|Да будут прокляты те, кто последует за мной в этот день, ибо я поражу их на глазах у всех!.{s7}
+qstr_{playername}_you_may|{playername}, возможно, ты видел{/а} воинство {s7}. Из всех полководцев, выступающих против нас, в настоящее время {s7} из {s8} завоевал наибольшую известность. Одного их присутствия на поле боя достаточно, чтобы приободрить наших врагов и ослабить решимость наших союзников. {playername}, если ты хочешь совершить великое деяние в этой войне, разгроми воинство {s7} в открытом бою, на виду у всех! Пусть возродится надежда, и ужас наполнит сердца тех, кто выступит против нас.
+qstr_Do_you_mark_how_our_|Ты заметил{/а}, как вздрагивают наши храбрейшие бойцы при одном упоминании о {s7} из {s8}?.. Великий воин, о да, способный полководец... Мы не можем допустить, чтобы это безумие росло! Везде, где показывается {s7}, наши ряды пятятся, а наши враги заново обретают храбрость. Этого не должно быть. Я приказываю тебе, {playername}}, бросить вызов солдатам {s7} и победить их в открытом бою. От того, что ты сразишь его, у его последователей кровь застынет в жилах, и мы покажем нашим собственным войскам, что наших врагов можно повергнуть!
+qstr_This_is_a_chance_for|Для меня это шанс проявить свои качества. Я разобью {s7} на глазах и у врагов, и у союзников.
+qstr_Accursed_be_those_wh|Да будут прокляты те, кто последует за {s7} в этот день, ибо я уничтожу их на глазах у всех!
 qstr_{s9}_wants_you_to_de|{s9} хочет, чтобы вы победили {s35} из {s36} в бою.
-qstr_I_humbly_ask_that_yo|Я смиренно прошу вас найти другого для этой задачи. Я не думаю, что смог бы лучше {s7} в бою.
-qstr_Mercy_I_crave!_To_fa|Пощади, я жажду Тебя! Столкнуться с {s7} в открытом бою-сущая глупость! Я не могу этого сделать!
+qstr_I_humbly_ask_that_yo|Я смиренно прошу вас найти кого-нибудь другого для выполнения этого задания. Не думаю, что я смог{/ла} бы превзойти {s7} в бою.
+qstr_Mercy_I_crave!_To_fa|Я молю о пощаде! Сражаться с {s7} в открытом бою - чистое безумие! Я не могу этого сделать!
 qstr_strong_warriors_from|сильные воины из {s7}
-qstr_champions_from_{s7}_|чемпионы из {s7}, сильнейшие в своей области
+qstr_champions_from_{s7}_|чемпионов из {s7}, сильнейших в бою
 qstr_{playername}_the_men|{playername}, в народе ходят слухи о жестокости войск неприятеля. Слухи об этих ужасах деморализуют людей. Нужно показать нашим людям, что им нечего бояться. Я хочу, чтобы ты бросил{/а} вызов и победил{/а} {reg22} {s6}.
 qstr_{playername}_I_want_|{playername}, я хочу, чтобы ты показал врагам нашу силу. Убей лично {reg22} {s6}! Сделай это и покажи врагам всю их ничтожность!
 qstr_I_will_do_what_you_a|Я сделаю то, о чем вы просили, и люди будут свидетелями.
 qstr_high_level_troops_fr|воинов высокого уровня из
-qstr_elite_level_troops_f|элитные войска уровня от
+qstr_elite_level_troops_f|элитных воинов из
 qstr_{s9}_wants_you_to_pe|{s9} хочет, чтобы вы лично победили {reg22} {s6} {s7}.
-qstr_I_want_you_to_person|Я хочу чтобы ты лично убил его
-qstr_I_want_you_and_your_|Я хочу, чтобы ты и твои люди убили меня
+qstr_I_want_you_to_person|Я хочу, чтобы ты лично убил{/а} 
+qstr_I_want_you_and_your_|Я хочу, чтобы ты и твои люди убили 
 qstr_{playername}_you_nee|{playername}, вам нужно заслужить мое уважение и уважение ваших людей. {s6} {reg22} {s7} солдат!
 qstr_{s9}_wants_you_to_per|{s9} хочет, чтобы вы лично убили {reg22} {s6} солдат.
 qstr_{s9}_wants_you_and_y|{s9} хочет, чтобы вы и ваши люди убили {reg22} {s6} солдат.
@@ -1540,7 +1554,7 @@ qstr_Lend_your_experience|{s1} одолжил вашего опытного ле
 qstr_No_commander_should_|Ни один полководец не признает такого, {playername}, но я проводил смотр своих воинов на днях и нашёл таких, которые не знают, с какого конца за меч браться. Им нужен кто-то, кто объяснит им, что к чему. Ты известн{ый/ая} воитель{/ница}, {playername}. Не натренируешь ли мне несколько бойцов? Я был бы очень тебе признателен.
 qstr_No_commander_should_h|Ни один полководец не признает такого, {playername}, но я проводил смотр своих воинов на днях - и в итоге казнил нескольких как непригодных к бою. Им нужен кто-то со стальными кулаками, кто смог бы вбить в них отвагу или прикончить, если ничего не выйдет. Ты известн{ый/ая} воитель{/ница}, {playername}. Не натренируешь ли мне несколько бойцов? Это и тебе принесёт выгоду.
 qstr_{s9}_asked_you_to_rai|{s9} просит вас натренировать {reg1} {s14} и привести их.
-qstr_{s9}_asked_you_to_hu|{s9} просит вас наказать беглого преступника по имени {s4}. По слухам, он бежал в {s3}.
+qstr_{s9}_asked_you_to_hu|{s9} просит выследить предателя по имени {s4}. По слухам, он находится в {s3}.
 qstr_{s9}_asked_you_to_defe|{s9} попросил вас защитить 3 группы беженцев на их пути к {s3}.
 qstr_{s9}_asked_you_to_hun|{s9} попросил вас выследить 3 группы беженцев на их пути к {s3}.
 qstr_{s9}_asked_you_to_ca|{s9} просит вас поймать три группы беглых рабов и вернуть их обратно в {s4}, живыми и относительно здоровыми. По словам полководца, все рабы направляются в {s3}.
@@ -1555,7 +1569,7 @@ qstr_We_have_reports_that_a|Есть сведения, что враг стяг�
 qstr_My_spies_tell_me_of_|Соглядатаи сообщают о большом войске, которое идёт на сбор в {s13}. Этим слабакам никогда не справиться с нами и нашими слугами, но узнать, сколько их там, не повредило бы. Я хочу, чтобы ты поехал{/а} в {s13}, осмотрел{/а} там всю округу и выведал{/а} столько, сколько сможешь.
 qstr_{s9}_asked_you_to_sco|{s9} просит разведать окрестности поселения {s13}.
 qstr_We_have_reports_of_s|У нас есть сообщения об активности противника вблизи {s13}. Наши разведчики пока не смогли подобраться достаточно близко и выведать всё о перемещениях врага. Я хочу, чтобы вы собрали разведывательный отряд, подошли достаточно близко к {s13} и отправили разведчиков. Я также дам вам несколько новобранцев, но вы не должны посылать их одних.
-qstr_My_spies_tell_me_the|Мои шпионы говорят мне, что враг что-то замышляет в {s13}. Наши трусливые разведчики пока не смогли подобраться достаточно близко и сказать нам что-нибудь важное. Я хочу, чтобы вы набрали свою разведывательную группу, подошли достаточно близко к {s13} и отправили войнов на разведку. И убедитесь, чтобы они не повернули обратно и не сбежали! Я отдам Вам этих новобранцев, они не должны погибнуть.
+qstr_My_spies_tell_me_the|Мои шпионы сообщают мне, что враг что-то замышляет в {s13}. Нашим трусливым разведчикам пока не удалось подобраться достаточно близко и сообщить нам что-либо важное. Я хочу, чтобы ты набрал{/а} свой собственный разведывательный отряд, подобрал{ся/ась} достаточно близко к {s13} и оставил{/а} их там. Проследи, чтобы они не развернулись и не сбежали! Я дам тебе этих новобранцев - их не хватятся.
 qstr_{s9}_asked_you_to_di|{s9} приказал вам отправить отряд разведчиков к {s13}.^Натренируйте {reg1} бойцов {s15}, из которых, хотя бы один {s14}, подберитесь поближе к {s13} и поговорите с {s14}.
 qstr_We_need_to_take_the_|Мы должны перенести театр войны на земли врага, {playername}. Это можно сделать, уничтожая вражеские патрули и нарушая сообщение между войсками противника. Я хочу, чтобы ты уничтожил{/а} {reg1} отрядов, известных как "{s13}". Это поможет нам перехватить инициативу.
 qstr_We_need_to_grind_dow|Мы должны стереть в порошок наших жалких врагов, {playername}. Их патрули и обозы стали вести себя слишком нагло, как мне кажется. Я хочу, чтобы ты уничтожил{/а} {reg1} отрядов, известных как "{s13}". Так ты преподашь противнику хороший урок.
@@ -1631,14 +1645,14 @@ qstr_Our_Golden_Valley_gi|Наша золотая долина изобильн�
 qstr_I_shall_keep_that_in|Я буду иметь это в виду. ^^Хантаниэль, ава мариё!
 qstr_That_may_be_so_some_|Это возможно, многие пути мира ныне искривлены.^^ Боэ и 'ваэн!
 qstr_I_seldom_wander_far_|Я редко забредаю так далеко от дома. Уходи как можно скорее. Здесь ещё могут рыскать гоблины неподалёку.
-qstr_What_do_you_want?|Что вы хотите?
-; qstr_Greetings._What_can_|Greetings. What can I do for you?
+qstr_What_do_you_want?|Чего ты хочешь?
+qstr_Greetings._What_can_|Приветствую. Что я могу для тебя сделать?
 qstr_Who_are_you?_A_mere_|- А ты кто такой? Всего лишь {s25}? У меня нет времени на таких, как ты! Оставь меня в покое! {s2}
-qstr_What?_You_come_to_me|Что? Вы пришли ко мне и не знаете, что я делаю? Посмотри вокруг себя.^^ Видишь ли ты кровь? Ты слышишь этот плач? Чувствуете ли вы их боль? Вот что я делаю! Я ломаю вещи, чтобы снова сделать их лучше! Если ты придешь ко мне сломленный и страдающий, я смогу сделать тебя лучше!
+qstr_What?_You_come_to_me|Что? Ты приходишь ко мне и не знаешь, что я делаю? Оглянись вокруг.^^ Ты видишь кровь? Ты слышишь плач? Ты чувствуешь их боль? Это то, что я делаю! Я ломаю вещи, чтобы снова сделать их лучше! Если ты придешь ко мне сломленный и страдающий, я смогу помочь тебе!
 qstr_I_am_a_healer._Come_|Я-целитель. Приходите ко мне, когда вы или ваши товарищи серьезно ранены, и я сделаю все, что в моих силах, чтобы залечить ваши раны.
-; qstr_You_have_found_the_loca|You have found the local healer
+qstr_You_have_found_the_loca|Ты наш{ёл/ла} местного целителя
 qstr__Costs_500_Resource_|(Затраты 500 Ресурс, 5 Влияние)
-qstr_Ha!_I_can_see_that!_|Ха! Я же вижу это! Да, я могу это сделать.. Кроме твоей крови, это не бесплатно! {s2}
+qstr_Ha!_I_can_see_that!_|Ха! Я вижу! Да, я могу это сделать... ^Не бесплатно, нет. Придётся расстаться не только с частью своей крови, хех! {s2}
 qstr_Yes_I_see_that._We_c|Да, я вижу это. Да, мы можем помочь вам, но мне нужно будет послать за некоторыми ингредиентами. {s2}
 qstr__Costs_1000_Resource_|(Стоимость 1000 Ресурсов, 10 Влияние)
 qstr_I_ll_have_my_worms_d|Я попрошу своих червей разобраться с тобой. Они не самые лучшие, но иногда им удается выполнить свою работу. Скажи мне, когда они тебе понадобятся. {s2}
@@ -1699,8 +1713,21 @@ qstr_{s1}_Slaves|{s1} Рабы
 qstr_The_{s11}_of_{s10}_a|{s11} поселения {s10} попросил вас сопроводить {s12} в {s13}.
 qstr__Guards_slaughter_hi| Стража, забейте его на мясо!
 qstr_Slaughter_him_for_fr|Нам нужна свежая человечинка! Зарежьте его!
+qstr_near_the_smithy|возле кузницы
+qstr_near_the_local_autho|возле управляющего
+qstr_near_the_warehouse|возле хранилища
 qstr_This_is_{s5}_Command|Это {s5}, господин.
 qstr_{s6}_This_place_and_|{s6} Этим поселением и его окрестностями владеет {s7} из державы {s8}.
+qstr_Hear_now_commander._|Слушай, командир. В настоящее время мне нечем заняться, и я предпочел бы встретиться с нашими врагами в поле, чем ждать, пока они придут сюда. Я слышал, ты способный лидер. Возьмёшь меня с собой?
+qstr_My_party_was_wiped_o|Мой отряд был уничтожен в последней битве, и я не хочу быть следующей жертвой. Я слышал, ты способный лидер. Нужен тебе ещё один боец?
+qstr_{s9}_joined_your_par|{s9} присоединяется к отряду
+qstr_A_pity!_I_sure_would|Жаль! Я бы с удовольствием сражался в твоём отряде.
+qstr_Too_bad_you_will_reg|Очень жаль, ты ещё пожалеешь, что не взял{/а} меня с собой.
+qstr_Lead_me_to_the_{s3}|Отведи меня в {s3}
+qstr_Lead_me_to_the_local|Отведи меня к местным властям
+qstr_Lead_me_to_the_Lord_|Отведи меня в Зал Властителя
+qstr_Lead_me_to_your_comm|Отведи меня к своим командирам
+qstr_Lead_me_to_the_capta|Отведи меня к капитану гарнизона
 qstr_Hey_scum!_I_can_fix_|Слышь, мразь! Я тебе щас челюсть на место вправлю!
 qstr_Watch_where_you_re_g|Гляди, куда прёшь, тварь!
 qstr_I_don_t_like_your_fa|Не нравится мне твоя рожа! Кажись, нужно её маленько подправить!

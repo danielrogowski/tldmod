@@ -5,7 +5,10 @@ mno_faction_intros|Pelajari tentang faksi di Dunia Tengah
 mno_go_bback|Kembali
 menu_start_phase_2|^^^^^ Dunia Tengah. Bayangan sedang tumbuh di Timur, ^ dan hal-hal kegelapan yang telah lama bersembunyi muncul ke muka. ^ Rakyat merdeka bersiap untuk perang, yang mana belum terlihat untuk masa. ^ Manusia, Elf, dan para Orc; Semuanya akan ikut bagian. ^^ Apa bagian, bagian apa yang masih harus dilihat...
 mno_go_forth|Pergilah ke jalan yang kamu pilih...
+; mno_change_war_start_mode|War Starts:  {s7}
+; mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|Tukar TLD opsi.
+; mno_see_info_pages|TLD game concepts.
 menu_start_game_3|^^^^^^^^Pilih skenariomu:
 mno_custom_battle_scenario_1|Skirmish, Faksi Gondor vs Harad
 mno_custom_battle_scenario_12|Pilih faksi untuk bertempur
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|Lihat biaya pemeliharaan/gaji.
 mno_view_character_report|Lihat laporan karakter.
 mno_view_party_size_report|Lihat laporan ukuran parti.
 mno_view_morale_report|Lihat laporan moral parti.
-mno_view_character_report_02|Cek status NPC.
 mno_view_faction_strengths_report|Lihat laporan kekuatan fraksi.
 mno_view_traits_report|Lihat traits.
 mno_resume_travelling|Lanjutkan perjalanan.
@@ -47,7 +49,6 @@ mno_continue_dot|Lanjutkan.
 menu_custom_battle_durin_end|^^^^^^Sungguh perjuangan yang heroik, namun pada akhirnya berakhir tragis.^^ Kamu dan rekanmu telah membunuh {reg5} musuh.^kamu sendiri berhasil menghabisi {reg7} musuh ketika sedang bertempur.
 mno_replay_cbd|Ulang kembali pertempuran.
 mno_continue_dot_cbd|Lanjutkan.
-mno_dot_go_back|Kembali.
 menu_start_good|^^^^^^^^^^Pilih ras kamu:
 mno_start_ma|MANUSIA
 mno_start_el|ELF
@@ -113,7 +114,6 @@ mno_start_2_bn|Di Benteng Necromancer, DOL GULDUR
 menu_choose_gender|Apa kelaminmu?
 mno_start_male|Pria
 mno_start_female|Perempuan
-mno_proc|Terus lanjut
 menu_start_as_one|^^^^^^^^^^Tentara seperti apakah kamu?
 mno_start_default|Menjadi seperti {s23} (Bawaan)
 mno_start_up1|Menjadi seperti {s21} (Mudah)
@@ -127,8 +127,8 @@ mno_camp_action|Menggunakan suatu barang.
 mno_camp_wait_here|Berkemah sejenak disini.
 mno_camp_options|Tukar TLD opsi.
 mno_Dev_Menu|Menu Developer
-menu_dev_menu|Berikut merupakan Opsi Development yang menyediakan cheat/sarana lain dalam bermain.^^ Tetapi perlu diingat, bahwa aksi ini akan berdampak kepada perubahan event, trigger, dan campaign berlangsung yang mungkin menyebabkan error ketika bermain.^^ Gunakan dengan resiko ditanggung sendiri! ^^ Selain itu, ketika melaporkan sebuah bug, mohon informasikan kepada kami bahwa kamu sedang menggunakan Menu Dev.
-mno_Cheat_enable|Aktifkan Cheat/MOD opsi
+; menu_dev_menu|These are development options that give you a lot of cheats/tools to play with.^^ However, this will result in some WIP events, triggers, campaign changes that could be game breaking.^^ Use at your own risk! ^^ Also, when reporting bugs, please tell us that you are using the Dev Menu.
+mno_cheat_enable|Aktifkan Cheat/MOD opsi
 menu_game_options|^^^^^^^^Pilih pada opsi untuk mengaktifkan:
 mno_game_options_war_level_start|Perang Dimulai pada Level: {s1}
 mno_game_options_restrict_items|Perlengkapan pemain yang dibatasi: {s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|Ketentuan kekuatan pengepungan yang dibutuhkan: {s7}
 mno_strat_tweaks_siege_relax_rate|Pengepungan str. permintaan. tingkat relaksasi: {reg1}
 mno_strat_tweaks_regen_rate|Tingkat pemulihan kekuatan: {s7}
 mno_strat_tweaks_siege_regen_limit|Pemulihan kekuatan faksi disesuaikan pada: {reg1}
-mno_strat_tweaks_influence_gain_rate|Tingkat perolehan reputasi: {s7}
-mno_strat_tweaks_rank_gain_rate|Tingkat perolehan rank: {s7}
+; mno_strat_tweaks_influence_gain_rate|Influence gain rate: {reg0}%
+; mno_strat_tweaks_rank_gain_rate|Rank gain rate: {reg0}%
 mno_strat_tweaks_back|Kembali ke menu tweak.
 menu_camp_action|^^^^^^^^^     Barang apa?
 mno_camp_drink_water|Teguklah Air Ent!
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|{s1} masih dikepung. Dengan bendera {s2} berkiba
 mno_talk_to_siege_commander|Minta pertemuan dengan komandan.
 mno_join_siege_with_allies|Bergabunglah dengan serangan berikutnya.
 mno_join_siege_stay_back|Perintahkan tentara Anda untuk bergabung dalam serangan berikutnya tanpa Anda.
-menu_moria_must_escape|^^Buku tersebut sepertinya menceritakan upaya terakhir para kurcaci untuk bermukim kembali di Moria. Upaya yang tampaknya berakhir dengan kematian yang mengerikan bagi semua yang terlibat. Saat membaca buku ini, Anda menemukan kata 'perak sejati'! Mempelajari halaman-halamannya kamu tiba-tiba mengerti bahwa itu adalah deskripsi simpanan kurcaci di suatu tempat di tingkat yang lebih rendah. Hah! Bukankah keren untuk mengungkap mithril kurcaci yang telah lama hilang!? ^Anda dengan bersemangat mengikuti petunjuk, memasuki terowongan sempit yang berkelok-kelok dan turun... ^...^Setelah beberapa jam pencarian tanpa hasil, Anda memahami bahwa Anda tersesat jauh di Moria dan perlu mencari jalan keluar.
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|Temukan jalan keluarmu!
 menu_castle_outside|Kamu berada di luar {s2}.{s11} {s3} {s4}
-mno_moria_enter|Kembali ke aula utama Moria melalui pintu masuk rahasia
-mno_moria_enter_door|Masuk ke Moria.
 mno_cheat_steal_book_door|Dapatkan bukunya
+; mno_moria_enter|Return into main hall of Moria through the secret entrance
+mno_moria_enter_door|Masuk ke Moria.
 mno_castle_start_siege|Kepung {reg6?town:castle}.
 mno_castle_leave|Pergi.
 menu_castle_besiege|Anda mengepung {s1}. {s2} {s3}
@@ -305,6 +305,7 @@ mno_town_prison_door|Ke Tempat Latihan
 mno_talk_to_castle_commander|Kunjungi Barak {s61}.
 mno_speak_with_elder|Bicaralah dengan {s6}.
 ; mno_town_ask|Ask around for persons of import...
+; mno_player_initiate_siege|Attack the {reg6?town:castle}...
 mno_isengard_underground|Pergi ke gua bawah tanah.
 mno_isengard_underground_door|Pergi ke gua bawah tanah
 mno_tirith_toplevel|Naik ke tingkat teratas.
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^Anda telah mengikuti rumor tersebut dan menemukan {s1}.
 mno_explore|Jelajahi tempat
 menu_ring_hunter_lair|^^^^Anda telah mengikuti jejak Pemburu Cincin melalui Hutan Mirkwood dan telah tiba di {s1}. Anda melihat mereka bersiap-siap untuk pergi dengan membawa peti.
 mno_attack_lair|Serang mereka sekarang.
-mno_leave_bandit_lair|Tinggalkan sekarang.
 menu_gondor_reinforcement_event|^^^^^Suar Gondor menyala, Minas Tirith meminta bantuan!^^Para penguasa wilayah selatan sekarang akan bergerak ke utara untuk mempertahankan Kota Putih melawan kegelapan yang akan datang.
 mno_gondor_reinforcement_event_close|Tutup
 menu_gondor_beacons|Anda melihat {s1}, salah satu suar peringatan Gondor, yang digunakan untuk membunyikan alarm di Gondor utara dan selatan.
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|Tutup
 menu_center_besieged_event|^^^^^Kurir telah tiba dengan melaporkan bahwa {s1} telah dikepung oleh {s2} of {s3}.
 mno_center_besieged_event_close|Tutup
 menu_guardian_party_spawned|^^^^^Pengintai melaporkan bahwa {s6} mengumpulkan pasukan besar di sekitar {s7}, dalam upaya terakhir untuk mempertahankan ibu kota.
+mno_guardian_party_spawned_close|Tutup
 mno_intro_next|Lanjutkan
 mno_start_defend_caravan|Pertahankan Karavan itu!
 mno_start_raid_caravan|Jarah Karavan tersebut!
@@ -391,7 +392,6 @@ mno_leave_refugees|Tinggalkan mereka untuk sekarang...
 mno_evil_war_tut_continue|Lanjutkan...
 menu_alternate_training_fight|Kamu akan menghadapi lawan {reg5}. Apakah kamu siap?
 mno_training_continue|Mulai latihan...
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|Coba lagi...
 mno_alternate_training_finish|Tinggalkan arena...
 menu_custom_battle_choose_faction1|^^^^^^^^^^Pilih kelebihan dan faksimu:
@@ -415,7 +415,7 @@ mno_cb_mordor3|Haradrim
 mno_cb_mordor4|Easterlings
 mno_cb_mordor5|Moria
 mno_cb_mordor6|Gundabad
-mno_cb_mordor7|Rhun
+; mno_cb_mordor7|Rhûn
 mno_cb_mordor8|Corsairs
 mno_rescue_mission|Menyelinap ke sarang penyihir di bawah naungan malam.
 mno_next_rescue_scene_door|Lanjutkan ke depan!
@@ -437,7 +437,6 @@ mno_leave_pyre|Tinggalkan tumpukan kayu itu.
 menu_town_ruins|Saat Kamu mendekat, Kamu melihat bahwa {s1} adalah {s2}
 mno_ruin_menu_0|Jelajahi tempat
 mno_ruin_leave|Tinggalkan...
-menu_premutiny|tidak ada
 menu_death|Kamu telah terbunuh. Meskipun perang masih berlangsung, kamu tidak akan lagi menjadi bagian darinya.
 menu_animal_ambush|Kamu dan teman pendampingmu seketika terpisah dari rombongan grupmu, di mana tiba-tiba...
 menu_animal_ambush_success|{s2} {reg0?fall:falls} di hadapan Kamu seperti gandum yang disabit! Segera semua penyerang Kamu tergeletak di lantai, terluka atau mati. {s3}
@@ -445,15 +444,7 @@ menu_animal_ambush_fail|Hewan-hewan itu menggigit dan mencabik-cabikmu{reg0?,: d
 menu_isengard_flooding|^^^^^@Anda dikelilingi oleh musuh mati dan sekutu yang menang, termasuk Ent; mereka mengaum, menggelegar, dan terompet, hingga batu-batu pecah dan berjatuhan di sekeliling Menara Orthanc. Mereka bagaikan angin kencang yang menderu-deru, mematahkan pilar-pilar, melemparkan longsoran batu-batu besar ke dalam lubang-lubang, melemparkan lempengan-lempengan batu besar ke udara seperti dedaunan... Ini belum pernah Anda lihat sebelumnya.^^ Bregalad -- atau Quickbeam, sebagai Anda kenal dia -- datang dan berhenti sejenak untuk mengatakan, '{playername}! Gudang! Jauhi Menara -- kami akan segera menghancurkan bendungan dan membawa Isen ke lembah ini, untuk sementara waktu. Menurutku, kamu akan merasa sangat sulit untuk tetap berdiri di sini!' Segera, ikuti nasihatnya dan segera menjauh dari Orthanc.^^ Sekitar tengah malam, Isengard mulai dipenuhi sungai dan kolam hitam yang menjalar. Anda pasti menggigil saat melihat asap dan uap membubung di pilar-pilar besar, dan gulungan uap besar membubung dan meliuk-liuk di sekitar Menara, hingga menyerupai puncak awan yang tinggi, menyala di bawah dan diterangi cahaya bulan di atas. Kemarahan para Ent lambat, namun memiliki kekuatan yang tak tertahankan...
 mno_isengard_continue|Lanjutkan
 menu_build_your_scene|Anda dapat membuat adegan pertempuran Anda sendiri, menggunakan salah satu slot yang disediakan di bawah dan mode edit game (Anda perlu mengaktifkan mode edit di opsi layar peluncuran M&B terlebih dahulu, lalu tekan Ctrl+E dalam adegan untuk mengakses mode edit). Anda kemudian dapat mengirimkan adegan yang Anda buat (yaitu, file sco dari folder TLD/SceneObj) ke tim pengembang TLD, dan jika adegan Anda bagus, adegan tersebut dapat muncul di rilis selanjutnya sebagai salah satu medan pertempuran acak!^^ Coba tentukan yang mana wilayah di peta yang Anda inginkan untuk menampilkan adegan Anda.^ Beberapa petunjuk: hindari perairan dalam, pegunungan curam, dan tempat-tempat lain yang tidak dapat dilewati, kecuali Anda adalah pembuat adegan berpengalaman dan tahu cara melarang pasukan AI berjalan di tempat yang tidak Anda inginkan, dan buat AI mesh di tempat lain.^ (Entri #0-1 untuk penyerang, #4 untuk pemain bertahan, jangan sentuh #5-8
-; mno_scene1|Plain Big (file scn custom 1.sco)
-; mno_scene2|Plain Med (file scn custom 2.sco)
-; mno_scene3|Plain Small (file scn custom 3.sco)
-mno_scene4|Steppe Luas (file scn custom 4.sco)
-mno_scene5|Stepa Sedang (file scn custom 5.sco)
-mno_scene6|Stepa Kecil (file scn custom 6.sco)
-mno_scene7|Hutan Lebat (file scn custom 7.sco)
-mno_scene8|Hutan Sedang (file scn custom 8.sco)
-mno_scene9|Hutan Kecil (file scn custom 9.sco)
 mno_back_3dot|Kembali...
 mno_back|Kembali.
 mno_next|Lanjut...
+; mno_previous|Previous...

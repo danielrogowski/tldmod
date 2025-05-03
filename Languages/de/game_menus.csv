@@ -5,7 +5,10 @@ mno_faction_intros|Lerne mehr über die Völker von Mittelerde
 mno_go_bback|Zurück
 menu_start_phase_2|^^^^^ Mittelerde. Ein Schatten regt sich im Osten, ^ und dunkle Geheimnisse, die lange verborgen lagen, offenbaren sich. ^ Die freien Völker bereiten sich auf einen Krieg vor. Einen Krieg, wie ihn die Welt seit einem Zeitalter nicht gesehen hat. ^ Menschen, Elben, Zwerge und Orks; sie alle werden ihre Rolle spielen. ^^ Welche dies jedoch sein wird, kann nur die Zukunft zeigen...
 mno_go_forth|Betritt nun den Pfad deines Schicksals...
+mno_change_war_start_mode|Kriegsbeginn:  {s7}
+mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|TLD-Optionen ändern.
+mno_see_info_pages|TLD Spielkonzepte
 menu_start_game_3|^^^^^^^^Wähle ein Szenario:
 mno_custom_battle_scenario_1|Gefecht; Reiche von Gondor vs. Harad
 mno_custom_battle_scenario_12|Wähle die Fraktionen für das Gefecht
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|Unterhaltskosten betrachten.
 mno_view_character_report|Betrachte Charakterbericht
 mno_view_party_size_report|Betrachte Truppengröße-Bericht
 mno_view_morale_report|Betrachte Truppenmoral-Bericht
-mno_view_character_report_02|NPC Statuscheck
 mno_view_faction_strengths_report|Betrachte Fraktionsstärken-Bericht
 mno_view_traits_report|Betrachte Merkmale
 mno_resume_travelling|Weiterreisen
@@ -47,7 +49,6 @@ mno_continue_dot|Fortsetzen
 menu_custom_battle_durin_end|^^^^^^Es war ein beachtenswerter letzter Kampf, aber zum Scheitern verurteilt.^^ Du und deine Kampfgefährten erschlugt {reg5} Feinde.^Du selbst erschlugst {reg7} Feinde in diesem Kampf.
 mno_replay_cbd|Dieses Gefecht noch einmal spielen.
 mno_continue_dot_cbd|Fortsetzen.
-mno_dot_go_back|. Zurück
 menu_start_good|^^^^^^^^^^Wählt Eure Art:
 mno_start_ma|MENSCH
 mno_start_el|ELB
@@ -113,7 +114,6 @@ mno_start_2_bn|In der Festung des Nekromanten, DOL GULDUR
 menu_choose_gender|^^^^^^^^^^Dein Geschlecht?
 mno_start_male|Männlich
 mno_start_female|Weiblich
-mno_proc|Wie gewohnt verfahren
 menu_start_as_one|^^^^^^^^^^Was für ein Soldat bist du?
 mno_start_default|Werde ein {s23} (Standard)
 mno_start_up1|Werde ein {s21} (Einfach)
@@ -127,8 +127,8 @@ mno_camp_action|Einen Gegenstand verwenden.
 mno_camp_wait_here|Für einige Zeit Rast machen.
 mno_camp_options|TLD-Optionen ändern.
 mno_Dev_Menu|Entwickler-Cheats
-menu_dev_menu|Diese Entwickleroptionen bieten dir einige Cheats und Werkzeuge, um dich auszuprobieren.^^ Allerdings kann dies zu unvorhersehbaren Ereignissen und Balance-veränderungen führen, die deinen Spielstand unspielbar machen könnten.^^ Nutzung auf eigenes Risiko!^^ Wenn du uns Bugs und Fehler berichtest, teile uns unbedingt mit, ob du Entwicklercheats benutzt hast.
-mno_Cheat_enable|Cheat/Modding-Optionen aktivieren.
+menu_dev_menu|Dies sind Entwickleroptionen, die dir eine Menge Cheats/Tools zum Spielen geben.^^ Allerdings wird dies zu einigen WIP-Ereignissen, Auslösern und Kampagnenänderungen führen, die das Spiel zerstören könnten.^^ Benutzung auf eigene Gefahr! ^^ Wenn du Bugs meldest, sagt uns bitte, falls du das Dev-Menü benutzt hast.
+mno_cheat_enable|Cheat/Modding-Optionen aktivieren.
 menu_game_options|^^^^^^^^Wähle ein Option um umzuschalten:
 mno_game_options_war_level_start|Krieg beginnt bei Spielerlevel: {s1}
 mno_game_options_restrict_items|Eingeschränkte Spielerausrüstung: {s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|Stärkevoraussetzungen für Belagerungen: {s7}
 mno_strat_tweaks_siege_relax_rate|Lockerungsrate für Stärkevoraussetzungen für Belagerungen: {reg1}
 mno_strat_tweaks_regen_rate|Stärke-Regenerationsrate: {s7}
 mno_strat_tweaks_siege_regen_limit|Fraktionen erholen sich langsamer, wenn unter: {reg1}
-mno_strat_tweaks_influence_gain_rate|Einflusssteigerungsrate: {s7}
-mno_strat_tweaks_rank_gain_rate|Rangsteigerungsrate: {s7}
+mno_strat_tweaks_influence_gain_rate|Einfluss-Steigerungsrate: {reg0}%
+mno_strat_tweaks_rank_gain_rate|Rang-Steigerungsrate: {reg0}%
 mno_strat_tweaks_back|Zurück zum Optimierungs-Menü.
 menu_camp_action|^^^^^^^^^ Welchen Gegenstand?
 mno_camp_drink_water|Trink das Entwasser!
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|{s1} bleibt belagert. Die Banner von {s2} wehen 
 mno_talk_to_siege_commander|Bitte darum, den Befehlshaber zu treffen.
 mno_join_siege_with_allies|Schließe dich dem nächsten Angriff an.
 mno_join_siege_stay_back|Befiehl deinen Truppen, sich dem nächsten Angriff ohne dich anzuschließen.
-menu_moria_must_escape|^^Das Buch scheint vom letzten Versuch der Zwerge zu berichten, Moria wieder zu besiedeln. Ein Versuch, der offensichtlich mit dem grauenvollen Tod aller Beteiligter endete. Beim Durchlesen des Buches stößt du auf das Wort 'Wahrsilber'! Das Studieren der Seiten lässt dich plötzlich verstehen, dass es sich um Beschreibungen zwergischer Vorkommen irgendwo auf den unteren Ebenen handelt! Ha! Wäre es nicht großartig, das seit langem verlorene Mithril der Zwerge zu erschürfen? ^Begierig folgst du der Wegbeschreibung in einen eng verschlungenen Tunnel, der hinab führt... ^...^Nach einigen Stunden fruchtloser Suche erkennst du, dass du dich in den Tiefen Morias verirrt hast und nun einen Weg nach draußen finden musst.
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|Finde einen Weg hinaus!
 menu_castle_outside|Du befindest dich außerhalb von {s2}.{s11} {s3} {s4}
+mno_cheat_steal_book_door|Nimm das Buch
 mno_moria_enter|Kehre durch den geheimen Eingang in die Haupthalle Morias zurück
 mno_moria_enter_door|Betrete Moria.
-mno_cheat_steal_book_door|Nimm das Buch
 mno_castle_start_siege|Belagere die {reg6?Stadt:Feste}.
 mno_castle_leave|Verlassen
 menu_castle_besiege|Du belagerst {s1}. {s2} {s3}
@@ -305,6 +305,7 @@ mno_talk_to_healer|Sprich mit {s40}.
 mno_talk_to_castle_commander|Besuche die Kasernen von {s61}
 mno_speak_with_elder|Sprich mit dem {s6}.
 mno_town_ask|Erkundige dich nach den wichtigsten Leuten...
+mno_player_initiate_siege|Greife {reg6?town:castle} an...
 mno_isengard_underground|Gehe zu den unterirdischen Höhlen.
 mno_isengard_underground_door|Gehe hinab in die Gruben
 mno_tirith_toplevel|Klettere auf die höchste Ebene.
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^Du bist den Gerüchten gefolgt and hast {s1} entdeckt. 
 mno_explore|Erkunde diesen Ort.
 menu_ring_hunter_lair|^^^^Du bist der Spur durch den Düsterwald gefolgt und hast den {s1} gefunden. Sie bereiten sich gerade vor, mit einer Truhe aufzubrechen.
 mno_attack_lair|Jetzt angreifen!
-mno_leave_bandit_lair|Vorerst zurückziehen.
 menu_gondor_reinforcement_event|^^^^^Die Leuchtfeuer von Gondor brennen, Minas Tirith ruft nach Hilfe!^^Die Herren der südlichen Lehen werden nun nach Norden marschieren und die Weiße Stadt gegen die einbrechende Finsternis verteidigen.
 mno_gondor_reinforcement_event_close|Schließen
 menu_gondor_beacons|Du blickst auf {s1}, eines der Leuchtfeuer von Gondor, welche im nördlichen und südlichen Gondor Gefahr anzeigen.
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|Schließen
 menu_center_besieged_event|^^^^^Ein Bote trifft ein und berichtet, dass {s1} durch {s2} von {s3} belagert wird.
 mno_center_besieged_event_close|Schließen
 menu_guardian_party_spawned|^^^^^Späher berichten, dass {s6} eine große Armee in der Nähe von {s7} versammelt, um eine letzte Verteidigungslinie zu bilden.
+mno_guardian_party_spawned_close|Schließen
 mno_intro_next|Fortsetzen...
 mno_start_defend_caravan|Verteidige den Kaufmannszug!
 mno_start_raid_caravan|Überfalle den Kaufmannszug!
@@ -391,7 +392,6 @@ mno_leave_refugees|Vorerst zurückziehen...
 mno_evil_war_tut_continue|Fortsetzen...
 menu_alternate_training_fight|Du wirst {reg5} Gegnern gegenüber stehen. Bist du bereit?
 mno_training_continue|Beginne die Ausbildung...
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|Versuche es noch einmal...
 mno_alternate_training_finish|Verlasse den Ausbildungsplatz...
 menu_custom_battle_choose_faction1|^^^^^^^^^^Wähle deine Seite und Vorteil:
@@ -415,12 +415,12 @@ mno_cb_mordor3|Haradrim
 mno_cb_mordor4|Ostlinge
 mno_cb_mordor5|Moria
 mno_cb_mordor6|Gundabad
-mno_cb_mordor7|Rhun
+mno_cb_mordor7|Rhûn
 mno_cb_mordor8|Korsaren
 mno_rescue_mission|Schleiche im Schutz der Nacht in das Lager des Zauberers.
 mno_next_rescue_scene_door|Weitergehen!
 mno_pick_troops1|Wähle Gefährten für die Mission, {reg0} ausgewählt
-menu_pick_troops|Wen willst du auf die Schleichmission mitnehmen? ^Nur deine flinkesten Truppen und Gefährten können dich hier begleiten. ^Als das Truppmitglied mit der besten Wildkunde-Fähigkeit, { reg65?rät {s1}:entscheidest du}, dass du bis zu {reg11} Begleiter mitnehmen kannst. ^^Du hast {reg0} Begleiter ausgewählt.
+menu_pick_troops|Wen willst du auf die Schleichmission mitnehmen? ^Nur deine flinksten Truppen und Gefährten können dich hier begleiten. ^Als das Truppmitglied mit der besten Wildkunde-Fähigkeit, {reg65?rät {s1}:entscheidest du}, dass du bis zu {reg11} Begleiter mitnehmen kannst. ^^Du hast {reg0} Begleiter ausgewählt.
 mno_go_forward|Beende die Gefährtenauswahl und fahre fort.
 menu_burial_mound|Du näherst dich dem Grabhügel von {s1} von {s2}, getötet im Kampf gegen {s28}. Er wurde mit den schartigen Waffen seiner gefallenen Feinde überhäuft.
 mno_pay_respects|Knie nieder und zoll deinen Respekt.
@@ -437,23 +437,14 @@ mno_leave_pyre|Verlasse den Scheiterhaufen.
 menu_town_ruins|Als du dich näherst, siehst du, dass {s1} {s2}.
 mno_ruin_menu_0|Erkunde den Ort.
 mno_ruin_leave|Verlassen...
-menu_premutiny|none
 menu_death|Du wurdest getötet. Auch wenn der Krieg andauert, wirst du nicht länger Teil davon sein.
 menu_animal_ambush|Du und deine Gefährten finden sich vom Rest der Truppen getrennt, als plötzlich...
 menu_animal_ambush_success|Die {s2} {reg0?fallen:fällt} vor dir wie die Fliegen! Schon bald liegen all deine Angreifer am Boden, verwundet oder tot. {s3}
 menu_animal_ambush_fail|Die Tiere beißen und reißen an dir{reg0?,: und deine{reg2?n,:m,} Gefährten}, aber zum Glück konnten sie abgewehrt werden. Hoffentlich greifen sie nicht erneut an.
 menu_isengard_flooding|^^^^^@Du bist von toten Feinden und triumphierenden Verbündeten umgeben, einschließlich der Ents; sie brüllen, dröhnen und trompeten, bis Steine knacken und um den Turm von Orthanc umherfallen. Sie sind wie ein heulender Sturm, der Säulen bricht, Lawinen von Felsbrocken in die Schächte wirft und riesige Steinplatten wie Blätter in die Luft wirft... So etwas hast Du noch nie gesehen. Bregalad - oder Quickbeam, wie er auch genannt wird - kommt vorbei und bleibt nur stehen, um zu sagen: "{playername}! Vorsicht! Halte dich fern vom Turm - wir werden bald den Damm brechen und den Isen für kurze Zeit in dieses Tal bringen. Ich denke, es wird schwer für dich, hierzubleiben" Schnell befolgst du seinen Rat und eilst weg vom Orthanc.^^ Gegen Mitternacht füllt sich Isengart mit schwarzen kriechenden Strömen und Pfützen. Du kannst nicht anders, als zu zittern, als du Rauch und Dampf in großen Säulen aufsteigen siehst. Eine große Spirale aus Dampf um den Turm herum steigt auf und schlängelt sich, bis sie einem hohen Gipfel aus Wolken ähnelt, unten feurig und oben im Mondlicht. Der Zorn der Ents ist langsam, aber besitzt eine unwiderstehliche Kraft...
 mno_isengard_continue|Fortsetzen
-menu_build_your_scene|Du kannst hier dein eigenes Schlachtfeld erstellen, indem du eine der Optionen unten und den Editiermodus verwendest: Schalte ihn zunächst im M&B-Launcher ein, betritt eine der Scenen unten und drücke Strg+E. Du kannst fertige eigene Szenen (also die sco-Dateien im Ordner TLD/SceneObj) an das TLD-Entwicklerteam einreichen und vielleicht tauchen sie in späteren Versionen als Zufallsschlachtfelder auf!^^ Gib möglichst genau an, in welcher Gegend auf der Karte deine Szene auftauchen soll.^ Hinweise: Vermeide tiefes Wasser, steile Berge und andere unpassierbare Orte, es sei denn, du weißt, wie du die AI daran hinderst, diese zu betreten. Erstelle auch ein AI-Mesh.^ (Die Eintrittspunkte "Entry #0-1" sind für die Angreifer, #4 für die Verteidiger, lass #5-8 unverändert.)
-mno_scene1|Ebene groß (Datei scn_custom_1.sco)
-mno_scene2|Ebene Mittel (Datei scn_custom_2.sco)
-mno_scene3|Ebene klein (Datei scn_custom_3.sco)
-mno_scene4|Steppe groß (Datei scn_custom_4.sco)
-mno_scene5|Steppe mittel (Datei scn_custom_5.sco)
-mno_scene6|Steppe klein (Datei scn_custom_6.sco)
-mno_scene7|Wald groß (Datei scn_custom_7.sco)
-mno_scene8|Wald mittel (Datei scn_custom_8.sco)
-mno_scene9|Wald klein ((Datei scn_custom_9.sco)
+menu_build_your_scene|Du kannst hier dein eigenes Schlachtfeld erstellen, indem du eine der Optionen unten und den Editiermodus verwendest: Schalte ihn zunächst im M&B-Launcher ein, betritt eine der Szenen unten und drücke Strg+E. Du kannst fertige eigene Szenen (also die sco-Dateien im Ordner TLD/SceneObj) an das TLD-Entwicklerteam einreichen und vielleicht tauchen sie in späteren Versionen als Zufallsschlachtfelder auf!^^ Gib möglichst genau an, in welcher Gegend auf der Karte deine Szene auftauchen soll.^ Hinweise: Vermeide tiefes Wasser, steile Berge und andere unpassierbare Orte, es sei denn, du weißt, wie du die AI daran hinderst, diese zu betreten. Erstelle auch ein AI-Mesh.^ (Die Eintrittspunkte "Entry #0-1" sind für die Angreifer, #4 für die Verteidiger, lass #5-8 unverändert.)
 mno_back_3dot|Zurück...
 mno_back|Zurück.
 mno_next|Weiter...
+mno_previous|Vorherige...

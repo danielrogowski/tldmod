@@ -95,7 +95,7 @@ bright_nights= ((is_a_wb_mt==1) and [
   (ti_after_mission_start, 0, 2,
     [ (eq, "$bright_nights", 1),
       (is_currently_night),
-      (neg|party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), # Make it dark during Saruman Storm
+      #(neg|party_slot_eq, "p_main_party", slot_party_battle_encounter_effect, SARUMAN_STORM), # Make it dark during Saruman Storm
       ],[
       (set_fixed_point_multiplier, 1000),
       (set_startup_ambient_light,44,92,134), #27,46,67 
@@ -1150,6 +1150,14 @@ tld_siege_battle_scripts =  ((is_a_wb_mt==1) and [
 tld_common_peacetime_scripts = [
 	#tld_fix_viewpoint,
 	tld_player_cant_ride,
+     ] + (is_a_wb_mt==1 and [
+    tld_move_ai,
+    tld_ai_kicking,
+    tld_ai_is_kicked,
+    tld_melee_ai,
+    hp_shield_init,
+    hp_shield_trigger,
+    ] or []) + [ 
 	dungeon_darkness_effect,
   reset_fog,
 ] + custom_tld_bow_to_kings + bright_nights + fade + reward_birds_wb + khams_custom_player_camera + nazgul_flying +((is_a_wb_mt==1) and tld_bow_shield + tld_animated_town_agents + tld_positional_sound_props + tld_points_of_interest or [] )#Custom Cam triggers
@@ -1377,7 +1385,7 @@ mission_templates = [ # not used in game
      (2,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),(3,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),
      (4,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),(5,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),
      (6,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),(7,mtef_scene_source|mtef_team_0,af_override_horse,0,1,pilgrim_disguise),
-     (8 ,mtef_scene_source,af_override_horse,0,1,[]),
+     (8 ,mtef_visitor_source,af_override_horse,0,1,[]),
      (9 ,mtef_visitor_source,af_override_horse,0,1,[]),(10,mtef_visitor_source,af_override_horse,0,1,[]),(11,mtef_visitor_source,af_override_horse,0,1,[]),(12,mtef_visitor_source,af_override_horse,0,1,[]),(13,mtef_scene_source,0,0,1,[]),(14,mtef_scene_source,0,0,1,[]),(15,mtef_scene_source,0,0,1,[]),
      (16,mtef_visitor_source,af_castle_warlord,0,1,[]),(17,mtef_visitor_source,af_castle_warlord,0,1,[]),(18,mtef_visitor_source,af_castle_warlord,0,1,[]),(19,mtef_visitor_source,af_castle_warlord,0,1,[]),(20,mtef_visitor_source,af_castle_warlord,0,1,[]),(21,mtef_visitor_source,af_castle_warlord,0,1,[]),(22,mtef_visitor_source,af_castle_warlord,0,1,[]),(23,mtef_visitor_source,af_override_horse,0,1,[]),
      (24,mtef_visitor_source,af_override_horse,0,1,[]),(25,mtef_visitor_source,af_override_horse,0,1,[]),(26,mtef_visitor_source,af_override_horse,0,1,[]),(27,mtef_visitor_source,af_override_horse,0,1,[]),(28,mtef_visitor_source,af_override_horse,0,1,[]),(29,mtef_visitor_source,af_override_horse,0,1,[]),(30,mtef_visitor_source,af_override_horse,0,1,[]),(31,mtef_visitor_source,af_override_horse,0,1,[]),
@@ -1388,6 +1396,8 @@ mission_templates = [ # not used in game
     tld_common_wb_muddy_water+
 	#birds+			  
     tld_common_peacetime_scripts +[
+
+    (ti_on_agent_spawn, 0, 0, [],[(store_trigger_param_1, ":agent_no"),(agent_get_troop_id, ":troop_no", ":agent_no"),(is_between, ":troop_no", kingdom_heroes_begin, kingdom_heroes_end), (call_script, "script_init_town_agent", ":agent_no")]),
        
 	(1, 0, ti_once, [],[ # set walkers, music and ambient sounds
 			(get_player_agent_no, "$current_player_agent"),
@@ -1635,7 +1645,8 @@ mission_templates = [ # not used in game
                (check_quest_active, "qst_hunt_down_fugitive"),
                (neg|check_quest_succeeded, "qst_hunt_down_fugitive"),
                (neg|check_quest_failed, "qst_hunt_down_fugitive"),
-               (quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_current_state, 1),
+               (quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_target_center, "$current_town"),
+               (neg|quest_slot_ge, "qst_hunt_down_fugitive", slot_quest_current_state, 9), #this is to make sure that the player has talked to the fugitive first
                (quest_get_slot, ":quest_object_troop", "qst_hunt_down_fugitive", slot_quest_object_troop),
                (try_begin),
                  (call_script, "script_cf_troop_agent_is_alive", ":quest_object_troop"),
@@ -1652,11 +1663,68 @@ mission_templates = [ # not used in game
 	(ti_on_leave_area, 0, 0,[(try_begin),(eq, "$g_defending_against_siege", 0),(assign,"$g_leave_town",1),(try_end)],[]),
 	(3, 0, 0, [(call_script, "script_tick_town_walkers")], []),
 	(2, 0, 0, [(call_script, "script_center_ambiance_sounds")], []),
-	(1, 0, ti_once, [
+
+    ##### FUGITIVE
+    #move fugitive to location of smith, trader or mayor, this needs to be in a timed trigger, or otherwise the randomization does not work
+    (1, 0, ti_once, [(check_quest_active, "qst_hunt_down_fugitive"),(quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_target_center, "$current_town"),],[
+        (try_for_agents, ":agent_no"),
+            (agent_get_troop_id, ":troop_no", ":agent_no"),
+            (is_between, ":troop_no", trp_fugitive_man, trp_spy), 
+            (store_random_in_range, ":entry", 10, 13),
+            # (assign, reg78, ":entry"),
+            # (display_message, "@entry: {reg78}"),
+            (quest_set_slot, qst_hunt_down_fugitive, slot_quest_current_state, ":entry"),
+            (quest_set_slot, qst_hunt_down_fugitive, slot_quest_target_troop, ":agent_no"), #use this slot to store the agent
+            (entry_point_get_position, pos4, ":entry"),
+            (copy_position, pos5, pos4),
+            (position_move_y, pos5, 500),
+            (position_move_x, pos5, 200),
+            ] + ((is_a_wb_mt==1) and [
+            (call_script, "script_lookat", pos5, pos4),
+             ] or []) + [
+            (agent_set_position, ":agent_no", pos5),
+        (try_end),
+        ]),
+
+    ] + ((is_a_wb_mt==1) and [
+    #fugitive behavior
+    (3, 0, 1, [(check_quest_active, "qst_hunt_down_fugitive"),(quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_target_center, "$current_town"),], 
+    [(quest_get_slot, ":quest_agent", "qst_hunt_down_fugitive", slot_quest_target_troop), #use this slot to store the agent
+    (quest_get_slot, ":quest_troop", "qst_hunt_down_fugitive", slot_quest_object_troop),
+    (troop_get_slot, ":base_hp_shield", ":quest_troop", slot_troop_hp_shield),
+    (try_begin),
+        (quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_current_state, 1), #fighting
+        (agent_get_slot, ":cur_hp_shield", ":quest_agent", slot_agent_hp_shield),
+        (lt, ":cur_hp_shield", ":base_hp_shield"),
+        (store_random_in_range, ":chance", 0, ":base_hp_shield"),
+        (lt, ":cur_hp_shield", ":chance"),
+        (entry_point_get_position, pos5, 9),
+        (agent_set_speed_modifier, ":quest_agent", 120),
+        (agent_set_speed_modifier, "$current_player_agent", 100),
+        #(agent_set_scripted_destination, ":quest_agent", pos5),
+        (agent_start_running_away, ":quest_agent", pos5),
+        (quest_set_slot, "qst_hunt_down_fugitive", slot_quest_current_state, 2), #fleeing
+    (else_try),
+        (quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_current_state, 2), #fleeing
+        (entry_point_get_position, pos5, 9),
+        (agent_get_position, pos6, ":quest_agent"),
+        (get_distance_between_positions, ":dist", pos5, pos6),
+        (le, ":dist", 200),
+        (team_set_relation, 2, 3, 0),
+        (team_set_relation, 2, 0, 0),
+        (team_set_relation, 3, 0, 0),
+        (agent_set_speed_modifier, ":quest_agent", 100),
+    (try_end),  
+    ]),
+     ] or []) + [
+             
+    #fugitive kill check
+    (1, 0, ti_once, [
 			(check_quest_active, "qst_hunt_down_fugitive"),
 			(neg|check_quest_succeeded, "qst_hunt_down_fugitive"),
 			(neg|check_quest_failed, "qst_hunt_down_fugitive"),
-			(quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_current_state, 1),
+            (quest_slot_eq, "qst_hunt_down_fugitive", slot_quest_target_center, "$current_town"),
+			(neg|quest_slot_ge, "qst_hunt_down_fugitive", slot_quest_current_state, 9),
 			(quest_get_slot, ":quest_object_troop", "qst_hunt_down_fugitive", slot_quest_object_troop),
 			(assign, ":not_alive", 0),
 			(try_begin),
@@ -2295,6 +2363,10 @@ mission_templates = [ # not used in game
         (replace_scene_props, "spr_troop_rider", "spr_empty"),	
         (replace_scene_props, "spr_troop_civ_walker", "spr_empty"),
         (replace_scene_props, "spr_troop_messenger", "spr_empty"),
+        (replace_scene_props, "spr_secret_guardian", "spr_empty"),
+        (replace_scene_props, "spr_secret_viewpoint", "spr_empty"),
+        (replace_scene_props, "spr_secret_point_of_interest", "spr_empty"),
+        (replace_scene_props, "spr_secret_loot_prop", "spr_empty"),
         (try_for_range, ":prop", spr_troop_civ_lying, spr_troop_priest+1), #remove town agents
             (replace_scene_props, ":prop", "spr_empty"),
         (try_end),        
@@ -2631,12 +2703,12 @@ mission_templates = [ # not used in game
       (eq, "$battle_won", 1),
       (faction_slot_eq,"$players_kingdom",slot_faction_side,faction_side_good),
       (jump_to_menu, "mnu_starting_quest_victory_good"),
-      (display_message, "@battle won triggered - Good"),
+      (display_message, "@{!}battle won triggered - Good"),
       (finish_mission),
     (else_try),
       (eq, "$battle_won", 1),
       (jump_to_menu, "mnu_starting_quest_victory_evil"),
-      (display_message, "@battle won triggered - Evil"),
+      (display_message, "@{!}battle won triggered - Evil"),
       (finish_mission),
     (else_try), 
       (main_hero_fallen),
@@ -2698,7 +2770,7 @@ mission_templates = [ # not used in game
       (eq, "$battle_won", 1),
       (faction_slot_eq,"$players_kingdom",slot_faction_side,faction_side_good),
       (jump_to_menu, "mnu_starting_quest_victory_elves"),
-      (display_message, "@battle won triggered - Good"),
+      (display_message, "@{!}battle won triggered - Good"),
       (finish_mission),
     (else_try), 
       (main_hero_fallen),
@@ -2758,7 +2830,7 @@ mission_templates = [ # not used in game
       (this_or_next|eq,"$players_kingdom", fac_harad),
       (             eq,"$players_kingdom", fac_khand),
       (jump_to_menu, "mnu_starting_quest_victory_easterlings"),
-     # (display_message, "@battle won triggered - Easterlings"),
+     # (display_message, "@{!}battle won triggered - Easterlings"),
       (finish_mission),
     (else_try), 
       (main_hero_fallen),
@@ -2798,7 +2870,7 @@ mission_templates = [ # not used in game
     (try_end)]),
       
   (ti_before_mission_start, 0, 0, [],[(team_set_relation, 0, 1, -1),(team_set_relation, 0, 2, 0),(team_set_relation, 1, 2, 0)]),
-  (0, 0, ti_once, [],[(call_script, "script_music_set_situation_with_culture", mtf_sit_arena)]),
+  (0, 0, ti_once, [],[(call_script, "script_music_set_situation_with_culture", mtf_sit_fight)]),
 
     (0.3, 0, 0, [], [ # spectators cheer
     (try_for_agents,":agent"),
@@ -2875,8 +2947,8 @@ mission_templates = [ # not used in game
   (0, 0, ti_once, 
   [
     #(str_store_troop_name, s1, reg20),
-    #(display_message, "@DEBUG: Enemy to spawn: {s1}"),
-    #(display_message, "@DEBUG: Enemies to spawn: {reg21}"),
+    #(display_message, "@{!}DEBUG: Enemy to spawn: {s1}"),
+    #(display_message, "@{!}DEBUG: Enemies to spawn: {reg21}"),
 
     # Make enemies charge...
     (set_show_messages, 0),
@@ -4563,6 +4635,7 @@ mission_templates = [ # not used in game
     (assign,"$g_presentation_battle_active", 0),
     (assign,"$telling_counter",0),
     (assign, "$reinforcements_arrived", 0),
+    (assign, "$att_reinforcements_needed", 0),
     (call_script, "script_music_set_situation_with_culture", mtf_sit_siege),
     (assign, "$defender_team"  , 0),(assign, "$attacker_team"  , 1),
     (assign, "$defender_team_2", 2),(assign, "$attacker_team_2", 3),
@@ -4892,6 +4965,7 @@ mission_templates = [ # not used in game
   (0, 0, 10, [  (assign, ":continue", 1), 
                 (store_mission_timer_a,":mission_time"),
                 (ge,":mission_time",20),
+                (lt,"$defender_reinforcement_stage", 100), #needed for control
                 (try_begin), #limit defender reinforcements if player is attacker, so sieges don't drag on
                     (get_player_agent_no, ":player"),
                     (neg|agent_is_defender, ":player"),
@@ -4942,6 +5016,7 @@ mission_templates = [ # not used in game
             #block spawn point
             (neg|troop_slot_eq,"trp_no_troop",":slot",-2),
             (neg|agent_is_defender,":player_agent"),
+            (agent_is_alive, ":player_agent"),
             (entry_point_get_position, pos10, ":entry_number"),
             (agent_get_position, pos0, ":player_agent"),
             (get_distance_between_positions, ":dist", pos0, pos10),
@@ -4971,6 +5046,7 @@ mission_templates = [ # not used in game
             (try_for_agents, ":friends", pos0, 1500),
                 (agent_is_alive, ":friends"),
                 (agent_is_human, ":friends"),
+                (neq, ":friends", ":player_agent"),
                 (neg|agent_is_defender, ":friends"),
                 (agent_get_combat_state, ":agent_cs", ":friends"),
                 (eq, ":agent_cs", 0),
@@ -5131,7 +5207,7 @@ mission_templates = [ # not used in game
 
     #update player team
     ] + (is_a_wb_mt==1 and [
-  (3, 0, 0,[],
+  (3, 0, 0,[(eq,"$battle_won",0),],
     [(store_mission_timer_a,":mission_time"),
     (get_player_agent_no, ":player_agent"),
     (agent_get_position, pos1, ":player_agent"), 
@@ -5179,10 +5255,10 @@ mission_templates = [ # not used in game
     (try_end),
   ]),
 
-     ] or []) + [
+
 
     #After-reinforcement check: Any side almost depleted? Ask player to retreat or clean up remainders.
-   (3, 0, 0, [(ge, "$reinforcements_arrived",1),],
+   (3, 0, 0, [(store_mission_timer_a,":mission_time"),(gt, ":mission_time", 120),],
      [(store_normalized_team_count,":num_defenders",0),
      (store_normalized_team_count,":num_attackers",1),
      (get_player_agent_no, ":player_agent"),
@@ -5195,22 +5271,25 @@ mission_templates = [ # not used in game
     (else_try),  
         (lt, ":num_attackers", 7),
         (try_begin),
-            (eq, "$reinforcements_arrived", 1), #if attacker reinforcement
+            (this_or_next|eq, "$reinforcements_arrived", 1), #if attacker reinforcement
+            (ge,"$attacker_reinforcement_stage",19),
+            (eq, "$att_reinforcements_needed", 0), #this global is otherwise unused in sieges, so let's just use it here
             (neg|agent_is_defender, ":player_agent"), 
             (agent_is_alive, ":player_agent"),
             #(display_message, "@attackers almost defeated!"),
             (question_box,"@Attackers almost defeated. Do you want to retreat?"),
+            (assign, "$att_reinforcements_needed", 1),
         (else_try),
+            (agent_is_defender, ":player_agent"), 
+            (set_show_messages, 0),
             (try_for_agents, ":agent_no"),
                 (agent_is_alive, ":agent_no"),
                 (neg|agent_is_defender, ":agent_no"),
                 (neq, ":agent_no", ":player_agent"),
-            ] + (is_a_wb_mt==1 and [
-                (agent_fade_out, ":agent_no"),
-            ] or [
+                (agent_fade_out, ":agent_no"), #fade them out first, kill them afterwards
                 (agent_deliver_damage_to_agent, ":agent_no", ":agent_no", 1000),
-            ]) + [
             (try_end),
+            (set_show_messages, 1),
             (display_message, "@The remaining attackers disperse!"),
         (try_end),
     (else_try),     
@@ -5218,20 +5297,21 @@ mission_templates = [ # not used in game
         (this_or_next|neg|agent_is_defender, ":player_agent"),
         (main_hero_fallen),
         (display_message, "@The remaining defenders escape from the siege!"),
+        (assign,"$defender_reinforcement_stage",100),
+        (set_show_messages, 0),
         (try_for_agents, ":agent_no"),
             (agent_is_alive, ":agent_no"),
             (agent_is_defender, ":agent_no"),
-        ] + (is_a_wb_mt==1 and [
-            (agent_fade_out, ":agent_no"),
-        ] or [
+            (agent_fade_out, ":agent_no"), #fade them out first, kill them afterwards
             (agent_deliver_damage_to_agent, ":agent_no", ":agent_no", 1000),
-        ]) + [
         (try_end),
+        (set_show_messages, 1),
     (try_end),
     (assign, "$reinforcements_arrived",0),
    ]),
 
-
+     ] or []) + [
+     
    ## This block calls the script to move archers to archer positions. 
    ## In TLD, attacker archers are asked to hold ground in entry point 60, 61, and 62 if the right,left, center flanks have NOT been taken by the attackers
 
@@ -5851,7 +5931,7 @@ mission_templates = [ # not used in game
     ],tld_common_wb_muddy_water+[
 	(0, 0, ti_once, [], [(eq, "$g_tld_training_mode", abm_gauntlet),(start_presentation, "prsnt_gauntlet")]),
 	(0, 0, ti_once, [], [#(play_sound, "snd_arena_ambiance", sf_looping),
-							(call_script, "script_music_set_situation_with_culture", mtf_sit_arena)]),
+							(call_script, "script_music_set_situation_with_culture", mtf_sit_fight)]),
 	# terrible workaround for the buggy? add_visitors_to_current_scene
 	(0.2, 0, 0, [(eq, "$g_tld_training_mode", abm_gauntlet)],
 		[(store_add, ":enemies", "$g_tld_training_wave", 2),
@@ -6114,7 +6194,7 @@ mission_templates = [ # not used in game
 		(try_end)]),
 			
 	(ti_before_mission_start, 0, 0, [],[(team_set_relation, 0, 1, -1),(team_set_relation, 0, 2, 0),(team_set_relation, 1, 2, 0)]),
-	(0, 0, ti_once, [],[(call_script, "script_music_set_situation_with_culture", mtf_sit_arena)]),
+	(0, 0, ti_once, [],[(call_script, "script_music_set_situation_with_culture", mtf_sit_fight)]),
     (0.3, 0, 0, [], [ # spectators cheer
 		(try_for_agents,":agent"),
 			(agent_get_entry_no,reg1,":agent"),(neq,reg1,0),(neq,reg1,1), # main guys do not cheer
@@ -6200,8 +6280,13 @@ mission_templates = [ # not used in game
      ],
     tld_common_wb_muddy_water+
     tld_common_battle_scripts+[
-	common_battle_mission_start,
+    (ti_before_mission_start, 0, 0, [],[
+        (team_set_relation, 0, 2, 1),
+        (team_set_relation, 1, 3, 1),
+        (call_script, "script_change_banners_and_chest"),
+	]),
 	(0, 0, ti_once,[ (assign, "$defender_team", 0),(assign, "$attacker_team", 1),(assign, "$defender_team_2", 2),(assign, "$attacker_team_2", 3)], []),
+    
 	common_custom_battle_tab_press,
 	common_custom_battle_question_answered,
 	common_inventory_not_available,
@@ -6467,7 +6552,7 @@ mission_templates = [ # not used in game
 	common_custom_battle_question_answered,
 	common_inventory_not_available,
   (5, 0, ti_once, [], [
-    (tutorial_message, "@Press F3 to start the battle.",0,8)]),
+    (tutorial_message, "@{!}Press F3 to start the battle.",0,8)]),
 	(0, 0, ti_once, [],[
 		(assign, "$g_battle_result", 0),
 		(assign, "$defender_team", 0),
@@ -6517,7 +6602,7 @@ mission_templates = [ # not used in game
 ]),
 ("legendary_place_visit",0,-1,
  "You visit a legendary place.",
-    [(0,mtef_scene_source|mtef_team_0,0,0,1,[]),(1,mtef_scene_source|mtef_team_0,af_override_horse,0,1,[]),(16,mtef_scene_source|mtef_team_0,0,0,1,[]),
+    [(0,mtef_scene_source|mtef_team_0,af_override_horse,0,1,[]),(1,mtef_scene_source|mtef_team_0,af_override_horse,0,1,[]),(16,mtef_scene_source|mtef_team_0,0,0,1,[]),
      (17,mtef_scene_source|mtef_team_0,0,0,1,[]),(18,mtef_scene_source|mtef_team_0,0,0,1,[]),(19,mtef_scene_source|mtef_team_0,0,0,1,[]),
      ],tld_common_wb_muddy_water+fade+tld_common_peacetime_scripts+[
     
@@ -6525,36 +6610,92 @@ mission_templates = [ # not used in game
     (0,0,ti_once,[],[(music_set_situation, 0),]), #no music
     (2, 0, 0, [(call_script, "script_center_ambiance_sounds")], []),
 	  
-    (0,0,ti_once,[],
-      [(try_begin),
-        (is_currently_night),
-        (play_sound, "$bs_night_sound", sf_looping),
-			 (else_try),
-         (play_sound, "$bs_day_sound",   sf_looping),
-			 (try_end),
+    (1,0,ti_once,[], [
+        (try_begin),
+          (is_currently_night),
+          (play_sound, "$bs_night_sound", sf_looping|sf_2d),
+        (else_try),
+          (play_sound, "$bs_day_sound", sf_looping|sf_2d),
+        (try_end),
         (assign, "$temp_2", 0), #for spawn control on scene props, particle effects etc.    
         ]),
-
+        
+    ] + (is_a_wb_mt==1 and [
      (10, 0, ti_once, [], [ # Kham - Give legendary place description
+        (set_fixed_point_multiplier, 100),
         (try_begin),
           (eq, "$g_encountered_party", "p_legend_amonhen"),
+          (tutorial_message, "@You have come upon the ruins of Amon Hen, the Hill of Sight, a Gondorian watch-tower atop which rests the Seat of Seeing.^^You feel that you should seek the high-seat and maybe gain a glimpse of far-sight that may counsel you on your further course.",0,12), 
           (party_slot_eq, "p_legend_amonhen", slot_legendary_visited, 0),
-          (tutorial_message, "@You have come upon the ruins of Amon Hen, the Hill of Sight, a Gondorian watch-tower atop which rests the Seat of Seeing^^You sense that this place was once great but has long been forgotten",0,12),
           (add_xp_as_reward, 250),
           (party_set_slot, "p_legend_amonhen", slot_legendary_visited, 1),
         (else_try),
           (eq, "$g_encountered_party", "p_legend_deadmarshes"),
-          (party_slot_eq, "p_legend_deadmarshes", slot_legendary_visited, 0),
-          (tutorial_message, "@You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^The marshlands have swallowed up what was once a grassy plain, and now the only green is the scum of livid weed on the dark greasy surfaces of the sullen waters^^Dead grasses and rotting reeds loom up in the mists like ragged shadows of long forgotten summers, and bodies of men, elves, and orcs float in the murky depths^^The air feels cold and clammy, and you can't help but shiver as you see candle-lights flickering in the eyes of an elf corpse just beneath the water's surface",0,12),
-          (add_xp_as_reward, 250),
-          (party_set_slot, "p_legend_deadmarshes", slot_legendary_visited, 1),
+          (try_begin),
+            (is_currently_night),
+            (play_sound, "snd_ghost_ambient_long", sf_vol_1),
+            (tutorial_message, "@You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^ In the darkness of night, you see lights like misty flames flickering slowly above unseen candles. Oddly compelled, you follow them deeper into the maze of puddles and streams.",0,12),            
+            (entry_point_get_position, pos11, 2),
+            (set_spawn_position, pos11),
+            (spawn_scene_prop, "spr_secret_viewpoint"),
+            (prop_instance_set_scale, reg0, 17000, 17000 , 11000),
+            (party_slot_eq, "p_legend_deadmarshes", slot_legendary_visited, 0),
+            (add_xp_as_reward, 250),
+            (party_set_slot, "p_legend_deadmarshes", slot_legendary_visited, 1),
+          (else_try),
+            (neg|is_currently_night),
+            (tutorial_message, "@You have come upon the Dead Marshes, site of the battle of Dagorlad during the War of the Last Alliance^^The marshlands have swallowed up what was once a grassy plain, and now the only green is the scum of livid weed on the dark greasy surfaces of the sullen waters. ^^In the grey light of day, you don't see anything that catches your interest.",0,12),
+          (try_end),
         (else_try),
-          (eq, "$g_encountered_party", "p_legend_mirkwood"),
-          (party_slot_eq, "p_legend_mirkwood", slot_legendary_visited, 0),
-          (tutorial_message, "@You have entered the woods of Southern Mirkwood, once known as Greenwood the Great^^The fortress of Dol Guldur is nearby and it casts a dark shadow over the forest. The woods here feel sickly and full of decay. Ancient oak trees are overrun with rot and fungus and great tangling webs stretch from trunk to trunk^^ The air is everlastingly still and dark and stuffy, and it feels like you are slowly being suffocated",0,12),
-          (add_xp_as_reward, 250),
-          (party_set_slot, "p_legend_mirkwood", slot_legendary_visited, 1),
+            (eq, "$g_encountered_party", "p_legend_mirkwood"),
+            (tutorial_message, "@You have entered the woods of Southern Mirkwood, once known as Greenwood the Great^^The woods feel sickly and full of decay. The place is crawling with spiders. There must be a nest around here somewhere...",0,12),
+            (party_slot_eq, "p_legend_mirkwood", slot_legendary_visited, 0),
+            (add_xp_as_reward, 250),
+            (party_set_slot, "p_legend_mirkwood", slot_legendary_visited, 1),
+        (else_try),
+            (eq, "$g_encountered_party", "p_town_hornburg"),
+            (tutorial_message, "@You have found the Glittering Caves, one of the marvels of the Northern World.", 0, 10),
+            (agent_get_item_slot, ":item", "$current_player_agent", 1),
+            (agent_unequip_item, "$current_player_agent", ":item"),
+            (agent_equip_item, "$current_player_agent", itm_torch, 1),
+            (agent_set_wielded_item, "$current_player_agent", itm_torch),
+            (scene_slot_eq, "scn_hornburg_castle", slot_scene_visited, 0),
+            (add_xp_as_reward, 200),
+            (call_script, "script_change_player_relation_with_center", "$current_town", 3),                       
+            (scene_set_slot, "scn_hornburg_castle", slot_scene_visited, 1),
         (try_end)]),
+    
+    #custom effects    
+    (1,0,0,[],[
+    (set_fixed_point_multiplier, 100),
+    (get_player_agent_no, "$current_player_agent"),
+    (try_begin),
+        (eq, "$g_encountered_party", "p_legend_deadmarshes"),
+        (is_currently_night),
+        (try_for_prop_instances, ":instance_no", -1, somt_object),
+            (prop_instance_get_scene_prop_kind, ":prop_kind", ":instance_no"),
+            (is_between, ":prop_kind", spr_dead_marshes_a, spr_dead_marshes_e+1),
+            (store_random_in_range, ":rand", 0, 100),
+            (lt, ":rand", 25),
+            (prop_instance_get_position, pos6, ":instance_no"),
+            (store_random_in_range, ":height", 50, 150),
+            (position_set_z, pos6, ":height"),
+            (particle_system_burst, "psys_candle_light_small", pos6, 30),
+        (try_end),
+    (else_try), 
+        (store_random_in_range, ":rand", 0, 100),
+        (lt, ":rand", 3),
+        (eq, "$g_encountered_party", "p_legend_mirkwood"),
+        (agent_get_position, pos6, "$current_player_agent"),
+        (store_random_in_range, ":x", -1000, 1000),
+        (store_random_in_range, ":y", -1000, -500), #behind the player
+        (position_move_x, pos6, ":x"),
+        (position_move_y, pos6, ":y"),
+        (play_sound_at_position, "snd_spider_die", pos6),
+    (try_end),
+    ]),
+
+    ] or []) + [
 ]),
 ( "tld_erebor_dungeon",0,-1,"Default town visit",
     [(0,mtef_visitor_source|mtef_team_0,af_override_horse,0,1,[]),
@@ -6766,21 +6907,21 @@ mission_templates = [ # not used in game
 			(eq, ":hp", 100), # healthy agents can patrol
 			(agent_set_speed_limit,":enemy",4),
 			(agent_get_position, pos32, ":enemy"),
-			(try_for_range, "$positions", 1, 21),
-				(get_distance_between_positions, "$position_distance", "$positions", pos32),
+			(try_for_range, "$positions", 1, 21), #Invain: Why do we need a global for this?
+				(get_distance_between_positions, "$position_distance", "$positions", pos32), #Invain: Why do we need a global for this?
 				(neg|gt, "$position_distance", 400),
-				(agent_get_slot, "$last_agent_position", ":enemy", 10),
+				(agent_get_slot, "$last_agent_position", ":enemy", 10), #Invain: Why do we need a global for this? Also use a named slot for better clarity.
 				(store_current_scene, reg45),
-				(try_begin),
-					(eq, reg45, "$rescue_stealth_scene_1"),
-					(neg|eq, "$active_rescue", 4),
-					(call_script, "script_mt_sneak_1", ":enemy"),
+				(try_begin), #are these unused? Sorcerer mission sets  "$active_rescue" = 5
+					(eq, reg45, "$rescue_stealth_scene_1"), #Invain: Why do we need a global for this?
+					(neg|eq, "$active_rescue", 4), #Invain: Why do we need a global for this?
+					(call_script, "script_mt_sneak_1", ":enemy"), #this is used for sorcerer
 				(else_try),
-					(eq, reg45, "$rescue_stealth_scene_2"),
+					(eq, reg45, "$rescue_stealth_scene_2"), #unused
 					(neg|eq, "$active_rescue", 4),
 					(call_script, "script_mt_sneak_2", ":enemy"),
 				(else_try),
-					(eq, "$active_rescue", 4),
+					(eq, "$active_rescue", 4), #unused
 					(call_script, "script_isen_sneak_1", ":enemy"),
 				(try_end),
 				(try_begin),
@@ -7025,14 +7166,22 @@ mission_templates = [ # not used in game
 	(22 ,mtef_visitor_source|mtef_team_2 ,af_override_horse, aif_start_alarmed, 1,[]),(23 ,mtef_visitor_source|mtef_team_2 ,af_override_horse, aif_start_alarmed, 1,[]), 
 	(24 ,mtef_visitor_source|mtef_team_2 ,af_override_horse, aif_start_alarmed, 1,[]),(25 ,mtef_visitor_source|mtef_team_2 ,af_override_horse, aif_start_alarmed, 1,[]), 
 	(26 ,mtef_visitor_source|mtef_team_2 ,af_override_horse, aif_start_alarmed, 1,[]) 
-	],tld_common_wb_muddy_water+tld_common_battle_scripts+[ 	
-	(0,0,ti_once,[],[ (call_script, "script_infiltration_mission_synch_agents_and_troops"),
-						  (call_script, "script_infiltration_mission_set_hit_points"),
-						  (call_script, "script_wounded_hero_cap_mission_health")]),
-	(2,0,0, [], [(call_script, "script_infiltration_mission_update_companion_casualties")]),
-	(1,4,ti_once,[(main_hero_fallen)],
-	[
-	(try_begin),
+	],tld_common_wb_muddy_water+tld_siege_battle_scripts+[ 	
+	
+    (0,0,ti_once,[],[   
+        (call_script, "script_infiltration_mission_synch_agents_and_troops"),
+        (call_script, "script_infiltration_mission_set_hit_points"),
+        (call_script, "script_wounded_hero_cap_mission_health"),
+        (team_set_relation, 1, 2, 0),
+        (team_set_relation, 2, 1, 0),
+        (team_give_order, 1, 0, mordr_follow),
+    ]),
+
+    (2,0,ti_once, [], [(tutorial_box, "@You have evaded the patrols and crept close to the ruins. Find and kill the sorcerer! Do not let the guards stop you.", "@Kill the Sorcerer!"),]),	
+    (2,0,0, [], [(call_script, "script_infiltration_mission_update_companion_casualties")]),
+	
+    (1,4,ti_once,[(main_hero_fallen)],
+	[(try_begin),
 		(neg|check_quest_succeeded, "qst_mirkwood_sorcerer"),
 		(display_message, "@The_sorcerer_has_fled!", 4294901760),
 		(display_message, "@Report_this_ill_news_to_the_Lady_at_once.", 4294901760),
@@ -7044,109 +7193,186 @@ mission_templates = [ # not used in game
 	(finish_mission),
 	]),
 
-    #reinforcements
-	(5,0, ti_once, [
-		  (try_for_agents, ":agent"),
-			(agent_is_ally|neg, ":agent"),
-			(agent_is_alive, ":agent"),
-			(agent_get_troop_id, ":troop", ":agent"),
-			(eq, ":troop", "trp_black_numenorean_sorcerer"),
-			(agent_get_slot, ":slot1", ":agent", 1),
-		  (try_end),
-		  (ge, ":slot1", 3),
-		],[
-		 (try_begin),
-			(ge, "$meta_alarm", 9),
-			(set_visitor, 21, "$guard_troop8", 0),(set_visitor, 22, "$guard_troop8", 0),(set_visitor, 23, "$guard_troop8", 0),(set_visitor, 24, "$guard_troop8", 0),(set_visitor, 25, "$guard_troop8", 0),
-		 (else_try),
-			(is_between, "$meta_alarm", 6, 9),
-			(set_visitor, 21, "$guard_troop3", 0),(set_visitor, 22, "$guard_troop3", 0),(set_visitor, 23, "$guard_troop3", 0),(set_visitor, 24, "$guard_troop3", 0),(set_visitor, 25, "$guard_troop3", 0),
-		 (else_try),
-			(is_between, "$meta_alarm", 5, 7),
-			(set_visitor, 21, "$guard_troop2", 0),(set_visitor, 22, "$guard_troop2", 0),(set_visitor, 23, "$guard_troop2", 0),(set_visitor, 24, "$guard_troop2", 0),(set_visitor, 25, "$guard_troop2", 0),
-		 (try_end),
-		 (reset_mission_timer_a)]),
+    #activate teams when approaching sorcerer position
+    (1,0,ti_once,[
+        (set_fixed_point_multiplier, 100),
+        (entry_point_get_position, pos5, 30),
+        (get_player_agent_no, ":player_agent"),
+        (agent_get_position, pos6, ":player_agent"),
+        # (get_distance_between_positions, reg78, pos6, pos5),
+        # (display_message, "@distance: {reg78}"),
+        (assign, ":activate_teams", 0),
+        (try_for_agents, ":agent_no", pos5, 3500),
+			(agent_is_alive, ":agent_no"), 
+			(agent_is_ally, ":agent_no"),
+            ] + (is_a_wb_mt==1 and [
+            (agent_is_in_line_of_sight, ":agent_no", pos5),
+            ] or []) + [
+            (assign, ":activate_teams", 1),
+        (try_end),
+        (eq, ":activate_teams", 1),
+        ],
+    [
+    (display_message, "@You have been spotted! Fight!"),
+    (team_set_relation, 1, 2, -1),
+    (team_set_relation, 2, 1, -1),
+    (get_player_agent_no, ":player_agent"),
+    (agent_play_sound, ":player_agent", "snd_evil_horn"),
+    ]),
 
-	(5,0,0, [],  [
-		(try_for_agents, ":agent"),
+	(1,0,0, [(store_mission_timer_a, ":time"), (gt, ":time", 6),],  [ 
+		
+        (get_player_agent_no, ":player_agent"),
+        (set_fixed_point_multiplier, 100),
+        
+        (try_for_agents, ":agent"),
 			(agent_is_ally|neg, ":agent"),
 			(agent_is_alive, ":agent"),
 			(agent_get_troop_id, ":troop", ":agent"),
 			(eq, ":troop", "trp_black_numenorean_sorcerer"),
-			(agent_get_slot, ":slot1", ":agent", 1),
-			
+			(agent_get_slot, ":slot1", ":agent", slot_agent_status), #0=base; 1=chanting; 2=activated; 3=fleeing; 4=fighting
+			(agent_get_position, pos4, ":agent"),
+            
+            (assign, ":numenemies", 0), #check for nearby guards
+            (assign, ":player_near", 0),
+            (try_for_agents, ":enemies"),
+                (agent_is_alive, ":enemies"),
+                (agent_is_ally|neg, ":enemies"),
+                (agent_get_position, pos5, ":enemies"),
+                (get_distance_between_positions, ":dist", pos4, pos5),
+                (le, ":dist", 2000),
+                (val_add, ":numenemies", 1),
+            (else_try),
+                (eq, ":enemies", ":player_agent"),
+                (agent_get_position, pos5, ":enemies"),
+                (get_distance_between_positions, ":distance_player", pos4, pos5),
+                (le, ":distance_player", 1000),
+                (assign, ":player_near", 1),
+            (try_end),
+            
+            # simplify this bit:
+            # 1 number of guards depends on stealth_results or meta_alarm
+            # 2 sorcerer always joins the fight when player is nearby or number of allies lower
+            # 3 sorcerer flees when hp shield is low and numer of allies low (set status), set slot_agent_target_entry_point
+            # 4 check for sorcerery reaching slot_agent_target_entry_point, make him stop and fight when nearby, spawn guards, reset hp shield, go back to 3
+            
             (try_begin),
 				(eq, ":slot1", 0),
-				(entry_point_get_position, pos5, 30),
+				(entry_point_get_position, pos5, 10),
 				(agent_set_scripted_destination, ":agent", pos5),
+                (entry_point_get_position, pos5, 30),
+                ] + (is_a_wb_mt==1 and [
+                (agent_set_look_target_position, ":agent", pos5),
+                ] or []) + [
                 (agent_play_sound, ":agent", "snd_ghost_ambient_long"),
-				(agent_set_slot, ":agent", 1, 1),
-			(else_try),
+				(agent_set_slot, ":agent", slot_agent_status, 1),
+                (agent_set_slot, ":agent", slot_agent_target_entry_point, 16), #for fleeing
+                #(agent_set_slot, ":agent", slot_agent_hp_shield, 300),
+                (display_message, "@The ritual has begun! You must hasten to disturb it!", color_bad_news),	
+			(else_try), #fighting
+				(eq, ":slot1", 1),
+                (this_or_next|lt, ":numenemies", 2),
+                (this_or_next|neg|agent_slot_ge, ":agent", slot_agent_hp_shield, 450),
+                (eq, ":player_near", 1),
+                (agent_set_slot, ":agent", slot_agent_status, 2), #activate sorcerer
+                (agent_clear_scripted_mode, ":agent"),
+                (agent_set_animation, ":agent", "anim_cancel_ani_stand"),
+                (display_message, "@The_sorcerer_has_joined_the_fight!_Kill_him!", color_bad_news),	
+                (stop_all_sounds, 0),
+			(else_try), #chanting
 				(eq, ":slot1", 1),
 				(agent_set_animation, ":agent", "anim_cheer_player"),
-                (particle_system_burst, "psys_scene_fog_black", pos5, 100),
-		        	#(play_sound, snd_ghost_ambient_long, 0), #spooky
-				(assign, ":numenemies", 0),
-				(try_for_agents, ":enemies"),
-					(agent_is_alive, ":enemies"),
-					(agent_is_ally|neg, ":enemies"),
-					(val_add, ":numenemies", 1),
-				(try_end),
-				(try_begin),
-                    (val_div, ":numenemies", "$stealth_results"), #normalize enemy count
-					(neg|gt, ":numenemies", 10), 
-					(agent_set_slot, ":agent", 1, 2), #activate sorcerer
-				(else_try),
-                    (get_player_agent_no, ":player_agent"),
-                    (agent_get_position, pos7, ":player_agent"),
-                    (get_distance_between_positions, ":dist", pos5, pos7),
-                    (le, ":dist", 500),
-                    (agent_set_slot, ":agent", 1, 2), #activate sorcerer
-                    #(display_message, "@player is close"),
-				(try_end),
-			(else_try),
+                (entry_point_get_position, pos5, 30),
+                (particle_system_burst, "psys_scene_fog_black", pos5, 100),                
+			(else_try), #fleeing
 				(eq, ":slot1", 2),
-				(store_random, ":rnd", 4),
-				(try_begin),
-					(neg|ge, ":rnd", 2),
-					(entry_point_get_position, pos6, 31),
-                       ] + (is_a_wb_mt==1 and [
-                       (agent_start_running_away, ":agent", pos6),
-                       ] or [(agent_set_scripted_destination, ":agent", pos6),]) + [
-                    (agent_set_speed_limit, ":agent", 5),
-					(display_message, "@The_sorcerer_is_fleeing!_Kill_him!", 4294967040),
-					(agent_set_slot, ":agent", 1, 3),
-                    (agent_set_slot, ":agent", slot_agent_hp_shield, 0),
-                    (stop_all_sounds, 0),
-				(else_try),
-					(ge, ":rnd", 2),
-					(agent_clear_scripted_mode, ":agent"),
-                    (display_message, "@The_sorcerer_has_joined_the_fight!_Kill_him!", 4294967040),			  
-					(agent_set_slot, ":agent", 1, 4),
-                    (agent_set_slot, ":agent", slot_agent_hp_shield, 50),
-                    (stop_all_sounds, 0),
-				(try_end),
-			(else_try),
+                (this_or_next|lt, ":numenemies", 2), #sorcerer can flee if hurt OR if only one ally nearby OR of player is too far away
+                (this_or_next|neg|agent_slot_ge, ":agent", slot_agent_hp_shield, 30),
+                (neq, ":player_near", 1),
+                (store_mul, ":score", ":numenemies", 10),
+                (store_agent_hit_points, ":health", ":agent", 0),
+                (val_add, ":score", ":health"),
+                (store_random_in_range, ":chance_flee", 0, 130),
+                (gt, ":chance_flee", ":score"),
+                (agent_get_slot, ":target_entry", ":agent", slot_agent_target_entry_point),
+                (entry_point_get_position, pos6, ":target_entry"),
+                   ] + (is_a_wb_mt==1 and [
+                   (agent_start_running_away, ":agent", pos6),
+                   ] or [(agent_set_scripted_destination, ":agent", pos6),]) + [
+                (agent_set_speed_limit, ":agent", 7), #make him slow for 1 second so it's easier to land a hit
+                (display_message, "@The_sorcerer_is_fleeing!_Kill_him!", color_bad_news),
+                #(agent_play_sound, ":agent", "snd_horror_scream_man"),
+                (agent_set_slot, ":agent", slot_agent_status, 3),
+                (agent_set_slot, ":agent", slot_agent_hp_shield, 0),
+                
+                #spawn reinforcements
+                (store_random_in_range, ":rand", 0, 3),
+                (try_begin),
+                    (ge, ":rand", 0), (assign, ":base_troop", trp_i2_mordor_orc),            
+                    (ge, ":rand", 1), (assign, ":base_troop", trp_i2_mordor_num_renegade),
+                    (ge, ":rand", 2), (assign, ":base_troop", trp_a2_guldur_orc_tracker),
+                (try_end),
+                (store_character_level, ":player_level", "trp_player"),        
+                #(val_sub, ":player_level", 15), #mininum level for this mission
+                (val_div, ":player_level", 4),
+                (assign, reg77, ":base_troop"),
+                (try_for_range, ":unused", 0, ":player_level"),
+                    (troop_get_upgrade_troop, ":upgrade_troop", ":base_troop", 0),
+                    (gt, ":upgrade_troop", 0),
+                    (assign, ":base_troop", ":upgrade_troop"),
+                (try_end),
+                (assign, reg78, ":base_troop"),
+                (display_message, "@base troop: {reg77}, upgrade: {reg78}"),
+                #number of enemies depends on meta_alarm
+                (store_div, ":num_reinforces", "$meta_alarm", 3),
+                (val_add, ":num_reinforces", 1),
+                (set_visitors, ":target_entry", ":base_troop", ":num_reinforces"),
+                
+                (team_set_order_position, 2, grc_everyone, pos6),
+                (team_give_order, 2, grc_everyone, mordr_stand_ground),
+			(else_try), #checkpoint
 				(eq, ":slot1", 3),
-				(agent_get_position, pos7, ":agent"),
-				(get_distance_between_positions, ":dist", pos6, pos7),
-				(neg|ge, ":dist", 500),
-				(display_message, "@The_sorcerer_has_fled!", 4294901760),
-				(display_message, "@Report_this_ill_news_to_the_Lady_at_once.", 4294901760),
+                (agent_set_speed_limit, ":agent", 12),
+                (store_agent_hit_points, ":health", ":agent", 0),
+                (val_add, ":health", 10),
+                (val_clamp, ":health", 60, 100),
+                 ] + (is_a_wb_mt==1 and [
+                (agent_set_speed_modifier, ":agent", ":health"),
+                ] or []) + [ 
+                (agent_get_slot, ":target_entry", ":agent", slot_agent_target_entry_point),
+                (entry_point_get_position, pos6, ":target_entry"),
+				(get_distance_between_positions, ":dist", pos6, pos4),
+				(lt, ":dist", 300),
+                (agent_set_slot, ":agent", slot_agent_status, 2),
+                (agent_set_slot, ":agent", slot_agent_hp_shield, 31),
+                (val_add, ":target_entry", 1),
+                (agent_set_slot, ":agent", slot_agent_target_entry_point, ":target_entry"),
+                (lt, ":target_entry", 20), #not reached the final entry                
+                (eq, ":player_near", 1),
+                   ] + (is_a_wb_mt==1 and [
+                   (agent_stop_running_away, ":agent"),
+                   ] or [(agent_clear_scripted_mode, ":agent"),]) + [                
+                (team_give_order, 2, grc_everyone, mordr_charge),
+            (else_try),
+                (eq, ":slot1", 3),
+                (assign, ":flee", 0),
+                (try_begin),
+                    (ge, ":target_entry", 20), #reached final entry?
+                    (lt, ":dist", 300),
+                    (neq, ":player_near", 1),
+                    (assign, ":flee", 1),
+                (else_try),
+                    (ge, ":distance_player", 10000),
+                    (assign, ":flee", 1),
+                (try_end),
+                (eq, ":flee", 1),
+				(display_message, "@The_sorcerer_has_fled!", color_bad_news),
+				(display_message, "@Report_this_ill_news_to_the_Lady_at_once.", color_bad_news),
 				(quest_set_slot,"qst_mirkwood_sorcerer",slot_quest_current_state,3),
 				(call_script, "script_fail_quest","qst_mirkwood_sorcerer"),
-				(agent_set_slot, ":agent", 1, 4),
+				(agent_set_slot, ":agent", slot_agent_status, 4),
 				(set_mission_result, -1),
 				(finish_mission),
-            ] + (is_a_wb_mt==1 and [
-            (else_try),
-                (get_player_agent_no, ":player_agent"),
-                (agent_get_position, pos7, ":player_agent"),
-                (agent_get_position, pos5, ":agent"),
-                (get_distance_between_positions, ":dist", pos5, pos7),
-                (le, ":dist", 500),
-                (agent_stop_running_away, ":agent"),
-            ] or []) + [
 			(try_end),
 		(try_end)]),
 
@@ -7158,7 +7384,7 @@ mission_templates = [ # not used in game
 			(agent_get_troop_id, ":troop", ":deadenemy"),
 			(eq, ":troop", "trp_black_numenorean_sorcerer"),
 			(quest_set_slot,"qst_mirkwood_sorcerer",slot_quest_current_state,2),
-			(display_message, "@The_sorcerer_is_dead!", 4294967040),
+			(display_message, "@The_sorcerer_is_dead!", color_good_news),
 			(call_script, "script_succeed_quest","qst_mirkwood_sorcerer"),
             (finish_mission,5), #InVain So you don't have to search for the remaining enemies once the sorcerer's dead																	   
 			(eq,"$rescue_stage",1), #dummy usage of global var
@@ -7179,7 +7405,7 @@ mission_templates = [ # not used in game
 		(assign, "$battle_won", 1),
 		(set_mission_result, 1),
 		(display_message, "@The battle is won!"),
-        (display_message, "@Venture deeper into the forest and find a way onward."),
+        #(display_message, "@Venture deeper into the forest and find a way onward."),
 		(call_script, "script_infiltration_mission_update_companion_casualties"),
 		],[
 		(quest_set_slot,"qst_mirkwood_sorcerer",slot_quest_current_state,2),
@@ -9125,7 +9351,7 @@ tld_remove_riderless_animals,
       
       (0, 0, ti_once, [],
         [
-          (call_script, "script_music_set_situation_with_culture", mtf_sit_arena),
+          (call_script, "script_music_set_situation_with_culture", mtf_sit_fight),
       ]),
       
       (1, 4, ti_once, [

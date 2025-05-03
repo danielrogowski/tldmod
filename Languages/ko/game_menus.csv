@@ -5,7 +5,10 @@ mno_faction_intros|중간계의 세력들에 대해 알아봅시다.
 mno_go_bback|돌아가기
 menu_start_phase_2|^^^^^중간계. 동쪽의 암운은 짙어지고,^ 암흑의 족속들은 오랜 은둔을 끝내고 나오고 있다.^ 자유민들은 그들이 이제껏 보지 못 한 전쟁을 준비하고 있다.^인간, 요정, 난쟁이 그리고 오르크들은 그들의 역할을 행할것이다.^^다만, 어떠한 역할인가는 앞으로 지켜봐야 할 것이리라...
 mno_go_forth|당신이 선택한 길을 따라 앞으로 가십시오...
+; mno_change_war_start_mode|War Starts:  {s7}
+; mno_toggle_tutorial|Pop-Up Tutorials:  {s7}
 mno_change_tld_options|제 3세계 옵션 변경
+; mno_see_info_pages|TLD game concepts.
 menu_start_game_3|^^^^^^^당신의 이야기를 선택하세요:
 mno_custom_battle_scenario_1|교전, 곤도르 vs 하라드
 mno_custom_battle_scenario_12|전투를 위한 진영을 선택하세요.
@@ -35,7 +38,6 @@ mno_view_upkeep_costs|유지비 보기
 mno_view_character_report|캐릭터 정보 보기
 mno_view_party_size_report|부대크기 보기
 mno_view_morale_report|부대 사기 보기
-mno_view_character_report_02|NPC 상태 확인
 mno_view_faction_strengths_report|세력 군사력 보고서 보기
 mno_view_traits_report|특성 보기
 mno_resume_travelling|계속 여행한다
@@ -47,7 +49,6 @@ mno_continue_dot|계속
 menu_custom_battle_durin_end|^^^^^^영광스러운 항전이었으나 끝내 패배했습니다.^^ 당신과 당신의 동료들은 {reg5}  명의 적을 쓰러트렸고, 당신은 전투 중에 {reg7} 명의 적을 직접 쓰러트렸습니다.
 mno_replay_cbd|전투 다시 하기
 mno_continue_dot_cbd|계속
-mno_dot_go_back|. 돌아간다
 menu_start_good|^^^^^^^^^^당신의 종족을 선택하세요:
 mno_start_ma|인간
 mno_start_el|요정
@@ -113,7 +114,6 @@ mno_start_2_bn|강령술사의 숲. 돌 굴두르.
 menu_choose_gender|^^^^^^^^^^성별은?
 mno_start_male|남자
 mno_start_female|여자
-mno_proc|일반적으로 진행
 menu_start_as_one|^^^^^^^^^^당신의 병종은 무엇입니까?
 mno_start_default|{s23}되기 (기본)
 mno_start_up1|{s21}되기 (쉬움)
@@ -127,8 +127,8 @@ mno_camp_action|물품 사용
 mno_camp_wait_here|캠프를 차려 시간을 보낸다
 mno_camp_options|제 3세계 옵션 변경
 mno_Dev_Menu|개발자 메뉴
-menu_dev_menu|여기서는 다양한 치트와 툴과 같은 추가 옵션을 사용할 수 있습니다.^^ 그러나, 아직 실험중인 이벤트나 트리거,캠페인은 게임을 망가트릴 수 있습니다.^^ 위험이 있다는 점을 알아두세요! ^^ 또한, 버그를 신고하려면 Dev 메뉴를 이용해주세요.
-mno_Cheat_enable|치트키/모드변경 옵션 사용
+; menu_dev_menu|These are development options that give you a lot of cheats/tools to play with.^^ However, this will result in some WIP events, triggers, campaign changes that could be game breaking.^^ Use at your own risk! ^^ Also, when reporting bugs, please tell us that you are using the Dev Menu.
+mno_cheat_enable|치트키/모드변경 옵션 사용
 menu_game_options|^^^^^^^변경을 위해 옵션 클릭
 mno_game_options_war_level_start|전쟁이 다음 레벨에 시작됩니다: {s1}
 mno_game_options_restrict_items|제한된 플레이어 장비:{s7}
@@ -160,8 +160,8 @@ mno_strat_tweaks_siege_reqs|공성에 필요한 힘 요구량:{s7}
 mno_strat_tweaks_siege_relax_rate|공성에 필요한 힘과 휴식 비율 : {reg1}
 mno_strat_tweaks_regen_rate|힘 회복 비율:{s7}
 mno_strat_tweaks_siege_regen_limit|{reg1} 에서 진영의 체력 회복 속도가 더뎌집니다. 
-mno_strat_tweaks_influence_gain_rate|영향력 획득 비율: {s7}
-mno_strat_tweaks_rank_gain_rate|지위 획득 비율: {s7}
+; mno_strat_tweaks_influence_gain_rate|Influence gain rate: {reg0}%
+; mno_strat_tweaks_rank_gain_rate|Rank gain rate: {reg0}%
 mno_strat_tweaks_back|조정 메뉴로 돌아가기
 menu_camp_action|^^^^^^^^^어떤 물건을 선택하시겠습니까?
 mno_camp_drink_water|엔트워터를 마신다!
@@ -255,12 +255,12 @@ menu_besiegers_camp_with_allies|{s1}은 포위된 상태입니다. {s2}의 깃�
 mno_talk_to_siege_commander|사령관과 면담 요청
 mno_join_siege_with_allies|다음 공격에 참가
 mno_join_siege_stay_back|당신 없이 다음 전투에 참전하라고 명령
-menu_moria_must_escape|^^이 책은 모리아에 정착한 난쟁이의 마지막 시도에 대한 기록으로 보입니다. 시도에 참여한 모두는 분명히 명백한 죽음으로 끝났습니다. 책을 정독하면서, 당신은 우연히 '진정한 은' 이라는 단어를 발견했습니다! 당신은 페이지를 연구하다 그것들이 지하 어딘가에 난쟁이들이 숨겨둔 것에 대한 서술임을 갑자기 깨달았습니다. 하! 오래전 잃어버린 난쟁이의 미스릴이 발견된다면 끝내주지 않을까요? ^당신은 열심히 책의 지시를 따라, 바람 부는 좁은 터널 아래로 내려갔습니다...^...^수색에 몇 시간을 헛되이 보낸 후 당신은 모리아에서 길을 잃었고 나갈 길을 찾아야 한다는 것을 깨달았습니다.
+; menu_moria_must_escape|^^The book seems to give the account of the last attempt of dwarves to resettle in Moria, which apparently ended with gruesome death for all involved. As you ponder their dark fate,  you suddenly hear harsh cries and the hurrying sound of many feet.^ They are coming!^  Quickly leaving the chamber, you notice that the sounds come from the hall. You have no choice but to flee in the other direction,  into a narrow winding tunnel and down...  ^...^After a couple of hours you understand that you are lost deep in Moria and need to find a way out.
 mno_moria_exit_scene|나갈 길을 찾는다!
 menu_castle_outside|당신은 {s2}의 야외에 있습니다.{s11} {s3} {s4}
-mno_moria_enter|비밀 입구를 통해 모리아의 본관으로 돌아가기
-mno_moria_enter_door|모리아에 입장
 mno_cheat_steal_book_door|책을 읽는다.
+; mno_moria_enter|Return into main hall of Moria through the secret entrance
+mno_moria_enter_door|모리아에 입장
 mno_castle_start_siege|{reg6?town:castle} 포위하기
 mno_castle_leave|떠나기
 menu_castle_besiege|당신은 {s1}을 포위하고 있습니다. {s2} {s3}
@@ -305,6 +305,7 @@ mno_trade_with_horse_merchant|말 상인과 거래
 mno_talk_to_castle_commander|{s61}의 병영을 방문
 mno_speak_with_elder|{s6}와(과) 대화
 ; mno_town_ask|Ask around for persons of import...
+; mno_player_initiate_siege|Attack the {reg6?town:castle}...
 mno_isengard_underground|지하 선술집에 들어가기
 mno_isengard_underground_door|지하 동굴로 들어가기.
 mno_tirith_toplevel|꼭대기층으로 올라가기
@@ -348,7 +349,6 @@ menu_legendary_place|^^^^당신은 소문을 따라 {s1}을 찾아냈다. 당신
 mno_explore|이 장소 탐험하기
 menu_ring_hunter_lair|^^^^당신은 어둠숲 속 반지 추적자들의 흔적을 따라갔고 {s1}에 도착했고 그들이 상자를 들고 떠나려는 것을 목격했습니다.
 mno_attack_lair|지금 그들을 공격하자
-mno_leave_bandit_lair|지금은 떠나자
 menu_gondor_reinforcement_event|^^^^^곤도르의 봉화대에 불이 지펴졌군요,  미나스 티리스에 도움이 필요합니다!^^ 남쪽 영지의 군주들은 백색도시에 다가오는 어둠의 무리로부터 미나스 티리스를 구원하기 위해 북쪽을 향할것입니다.
 mno_gondor_reinforcement_event_close|닫기
 menu_gondor_beacons|당신은 곤도르의 봉화중 하나이자, 북부와 남부 곤도르에 신호를 보내기 위해 사용돼었던 {s1}을 방문했습니다.
@@ -362,6 +362,7 @@ mno_player_added_to_allow_follow_close|닫기
 menu_center_besieged_event|^^^^^전령이 당신에게 황급히 달려와 {s3}의 {s2}가 {s1}을 포위하고 있다고 보고했습니다.
 mno_center_besieged_event_close|닫기
 menu_guardian_party_spawned|^^^^^전령이 {s6}이 수도를 방어하기 위한 최후의 시도로 거대한 군세를 {s7}에 집결시키고 있다 보고했습니다.
+mno_guardian_party_spawned_close|닫기
 mno_intro_next|계속...
 mno_start_defend_caravan|캐러밴을 지키자!
 mno_start_raid_caravan|캐러밴을 습격하자!
@@ -391,7 +392,6 @@ mno_leave_refugees|잠시 놔둔다...
 mno_evil_war_tut_continue|계속...
 menu_alternate_training_fight|자네는 {reg5}명의 상대와 맞서야 하네. 준비 되었는가?
 mno_training_continue|훈련을 시작한다...
-menu_alternate_training_conclusion|{s5}
 mno_alternate_training_retry|다시 도전한다...
 mno_alternate_training_finish|투기장을 떠난다...
 menu_custom_battle_choose_faction1|^^^^^^^^^^당신의 진영과 이점을 선택하세요:
@@ -415,7 +415,7 @@ mno_cb_mordor3|하라드인
 mno_cb_mordor4|동부인들
 mno_cb_mordor5|모리아
 mno_cb_mordor6|군다바드
-mno_cb_mordor7|룬
+; mno_cb_mordor7|Rhûn
 mno_cb_mordor8|해적
 mno_rescue_mission|어둠이 보호해줄 때 마술사의 은신처를 수색하세요.
 mno_next_rescue_scene_door|계속 전진하라!
@@ -437,7 +437,6 @@ mno_leave_pyre|장작더미를 떠나기
 menu_town_ruins|당신이 다가갔을때, 당신은 {s1}이 {s2}임을 확인했습니다.
 mno_ruin_menu_0|이 장소 탐험하기
 mno_ruin_leave|떠나기
-menu_premutiny|없음
 menu_death|당신은 죽었습니다. 전쟁은 계속되고 있지만 당신은 이제 거기에 끼지 못합니다.
 menu_animal_ambush|당신과 당신의 동료들은 나머지 일행과 떨어져 있다는 것을 알아차렸습니다, 그리고 갑자기...
 menu_animal_ambush_success|{s2}들은 당신 앞에 낫에 잘린 벼이삭마냥 {reg0?쓰러졌습니다:쓰러졌습니다} !  곧 당신을 공격한 이들은 전부 죽거나 기절해 쓰러져 있습니다. {s3}
@@ -445,15 +444,7 @@ menu_animal_ambush_fail|짐승들이 당신{reg0?,: 그리고 당신 동료{reg2
 ; menu_isengard_flooding|^^^^^@You are surrounded by dead foes and triumphant allies, including the Ents; they roar, and boom, and trumpet, until stones crack and fall all around the Tower of Orthanc. They are like a howling gale, breaking pillars, hurling avalanches of boulders down the shafts, tossing up huge slabs of stone into the air like leaves... It is like nothing you have ever seen.^^ Bregalad -- or Quickbeam, as you know him -- comes striding by, and pauses only to say, '{playername}! Ware! Keep away from the Tower -- we shall soon break the dam and bring the Isen into this valley, for a little while. You will find it very hard to stay standing here, I think!' Quickly, you take his advice and hasten away from Orthanc.^^ At about midnight, Isengard begins to fill up with black creeping streams and pools. You cannot help but shiver as you see smoke and steam rising in great pillars, and a great coil of vapour rising and snaking around the Tower, until it resembles a tall peak of cloud, fiery underneath and moonlit above. The wrath of the Ents is slow, but possesses an irresistible force...
 ; mno_isengard_continue|Continue
 menu_build_your_scene|아래에 제공된 슬롯 중 하나와 게임 편집 모드를 사용하여 자신만의 전투 장면을 만들 수 있습니다(먼저 M&B 화면 옵션에서 편집 모드를 ON으로 전환한 다음 장면 내에서 Ctrl+E를 눌러 편집 모드에 액세스해야 합니다). 그런 다음 작성한 장면(예: TLD/SceneObj 폴더의 sco 파일)을 TLD의 개발 팀에 제출할 수 있으며, 장면이 좋으면 이후 릴리스에서 랜덤 배틀그라운드 중 하나로 나타날 수 있습니다!^^ 지도에서 장면을 표시할 영역을 지정합니다.^ 몇 가지 힌트: 여러분이 장면 제작자가 아니어서 AI 부대가 원하지 않는 곳을 걷지 못하게 하는 방법을 알지 못한다면 깊은 물, 가파른 산 및 기타 통행할 수 없는 장소를 피하고 AI 메쉬를 다른 장소에 만들 수 있습니다.^ (0-1번 항목은 공격자, 4번 항목은 수비수, 5-8번 항목은 터치하지 마십시오.
-mno_scene1|Plain Big (file scn custom 1.sco)
-mno_scene2|Plain Med (file scn custom 2.sco)
-mno_scene3|Plain Small (file scn custom 3.sco)
-mno_scene4|Steppe Big (file scn custom 4.sco)
-mno_scene5|Steppe Med (file scn custom 5.sco)
-mno_scene6|Steppe Small (file scn custom 6.sco)
-mno_scene7|Forest Big (file scn custom 7.sco)
-mno_scene8|Forest Med (file scn custom 8.sco)
-mno_scene9|Forest Small (file scn custom 9.sco)
 mno_back_3dot|돌아가기...
 mno_back|돌아간다.
 mno_next|다음으로...
+; mno_previous|Previous...

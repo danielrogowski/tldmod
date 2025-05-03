@@ -7,7 +7,7 @@ qst_raise_troops_text|{s9} tě požádal, abys vytrénoval {reg1} {s14} a přive
 qst_escort_messenger|Doprovoď posla do {s14}
 qst_escort_messenger_text|Nic.
 qst_hunt_down_fugitive|Zabij {s4}
-qst_hunt_down_fugitive_text|{s9} tě požádal, abys zabil uprchlíka jménem {s4}. Právě je v {s3}. 
+; qst_hunt_down_fugitive_text|{s9} asked you to hunt down the traitor named {s4}. He is currently believed to be at {s3}.
 qst_bring_back_runaway_serfs|Přiveď zpět uprchlé otroky.
 qst_bring_back_runaway_serfs_text|{s9} tě požádal, abys přivedl do {s2} zpět tři skupiny uprchlých otroků. Říkal, že všechny tři skupiny musí utíkat směrem k {s3}.
 qst_follow_spy|Následuj špeha k setkání. 
@@ -61,7 +61,7 @@ qst_troublesome_bandits|Dopadni gobliny, kteří dělají problémy.
 qst_troublesome_bandits_text| {s9} z {s4} tě požádal, aby si ulovil gobliny v okolí města.
 qst_deal_with_looters|Postarej se o klanové skřety.
 qst_deal_with_looters_text|Stařešina z {s4} tě požádal, aby si se vypořádal s několika tlupami divokých orků okolo {s4}.
-; qst_deal_with_night_bandits|Deal with Night Bandits
+qst_deal_with_night_bandits|Vypořádej se s nočními bandity
 qst_deal_with_night_bandits_text|Stařešina {s14} tě požádal aby jsi se vypořádal s nočními bandity v {s14}
 qst_deliver_food|Zásobuj {s3}  {reg5} jednotkami jídla.
 qst_deliver_food_text|{s9} z {s3} tě požádal, aby si mu přinesl {reg5} jednotek jídla do 10 dnů.
@@ -78,27 +78,4 @@ qst_deliver_gift_text|Byl jsi požádán o doručení {s4} z {s1} do {s3} z {s2}
 qst_ring_hunters|Lovci prstenů
 qst_ring_hunters2|Lovci prstenů - Splněno
 qst_deliver_message_hobbit|Týkající se Hobbitů 
-qst_blank_quest_01|Ochraň uprchlíky
-qst_blank_quest_02|Zabij uprchlíky
-qst_blank_quest_03|Námořní bitva
-qst_blank_quest_04|Zabij {s35} {s6} {s7}
-qst_blank_quest_05|Zabij {s35} {s36} jednotek.
-qst_blank_quest_06|V bitvě porazte {s35}.
-
-
-
-
-
-
-
-
-
-qst_blank_quest_16|Posílit střed
-qst_blank_quest_17|Pobij {reg22} {s6} v bitvách
-
-
-
-
-qst_guardian_party_quest|Poslední vzdor Železného pasu
-qst_quests_end|Konec úkolu
 qst_quests_end_text|.

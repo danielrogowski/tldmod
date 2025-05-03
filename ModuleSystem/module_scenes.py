@@ -235,7 +235,7 @@ scenes = [
 ("mordor_castle_a"      ,sf_indoors,"interior_castle_mordor_a"      , "bo_interior_castle_mordor_a" , (-100,-100),(100,100),-100,"0",[],[]),
 ("mordor_castle_b"      ,sf_indoors,"interior_castle_morgul"      , "bo_interior_castle_gondor_d" , (-100,-100),(100,100),-100,"0",[],["player_chest"]),
 
-("rhun_south_camp_center"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x0000000730001d9300031ccb0000156f000048ba0000361c",[],[],"outer_terrain_flat"),
+("rhun_south_camp_center"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000003a0001d9300031ccb0000156f000048ba0000361c",[],[],"outer_terrain_rohan"),
 
   ] + (is_a_wb_scene==1 and [
 ("rhun_north_camp_center"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000001a0000500000d2348000032a500003c7f00007714",[],[],"outer_terrain_steppe"), #by Aiden
@@ -273,9 +273,9 @@ scenes = [
 ("morannon_castle",sf_generate,"none","none",(0,0),(100,100),-100,"0x00000007300005004009c5a200000f5200005bd50000739d",[],["player_chest"],"outer_mountains2west_mordor"),
 
 # Legendary places
-("amon_hen"   ,sf_generate,"none","none",(0,0),(100,100),-100,"0x0000000630000500000c2304000003ce000047ca0000794b",[],[],"outer_terrain_osgiliath_9"),
-("deadmarshes",sf_generate|sf_auto_entry_points|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x0000000730050d0d0002d4b300000e2f000027d200005f66",[],[],"outer_terrain_flat"),
-("mirkwood"   ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000000bc62c90d0002308c000048850000786900001ef5",[],[],"outer_terrain_forest"),
+("amon_hen"   ,sf_generate,"none","none",(0,0),(100,100),-100,"0x00000002a0000500400c2304000003ce800047ca0000794b",[],[],"outer_terrain_osgiliath_9"),
+("deadmarshes",sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x0000000730050d0d0002d4b300000e2f000027d200005f66",[],[],"outer_terrain_flat"),
+("mirkwood"   ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x000000004002c90d0002308c00006cac0000786900001ef5",[],[],"outer_terrain_forest"),
 ("fangorn"    ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000000bc62c90d0002308c000048850000786900001ef5",[],[],"outer_terrain_forest"),
 
 # Siege scenes
@@ -491,7 +491,7 @@ scenes = [
 ("harad_camp_siege"      ,sf_generate|sf_muddy_water,"none", "none",(0,0),(100,100),-100,"0x0000000020040de3000699aa00005234000048ba000004b5",[],["player_chest"],"New_outer_mountains2east_ithilien"),
 ("khand_camp_siege"      ,sf_generate|sf_muddy_water,"none", "none",(0,0),(100,100),-100,"0x0000000020040de3000699aa00005234000048ba000004b5",[],["player_chest"],"outer_terrain_rohan"),
 ("north_rhun_camp_siege" ,sf_generate|sf_muddy_water,"none", "none",(0,0),(100,100),-100,"0x00000001200005000006d9e10000065c00004b3400000dfd",[],["player_chest"],"outer_terrain_rohan"),
-("rhun_south_camp_siege"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x0000000730001d9300031ccb0000156f000048ba0000361c",[],[],"outer_terrain_flat"),
+("rhun_south_camp_siege"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000003a0001d9300031ccb0000156f000048ba0000361c",[],[],"outer_terrain_rohan"),
 
   ] + (is_a_wb_scene==1 and [
 ("rhun_north_camp_siege"         ,sf_generate|sf_muddy_water,"none","none",(0,0),(100,100),-100,"0x00000001a0000500000d2348000032a500003c7f00007714",[],[],"outer_terrain_steppe"), #by Aiden

@@ -41,7 +41,7 @@ dlga_hobbit_merry_talk_met:close_window|Merhaba, Bay Merry.
 dlga_hobbit_pippin_talk_met:close_window|Merhaba, Bay Pippin.
 dlga_start:hd_defense_01|İyi ki burada bulunuyorsun, {playername}. Ben Aragorn, Arathorn'un oglu, ve Isildur'un Varisiyim - işte, işte Batı'nın Alevi, savaşta taşıdıgım Anduril. Kırık olan Kılıç tekrar parlıyor! Saruman'ın güçlerinin bu duvarlara ulaşması uzun sürmeyecek. Şimdi sana sesleniyorum, yardımını benden esirgeme ve Rohirrim'i, Mark'ın Efendisi'nin şerefi için savun. Bu, kılıçlarımızı bir araya getirdigimiz saat olsun!
 dlga_start:hd_defense_01.1|Mae lovannen! Buradaki durum pek iç açıcı görünmüyor, {playername}, ancak seninle birlikte oldugumuz için biraz daha iyi. Gellon len covad. Ben Mirkwood'lu Legolas, ve bu yeri pek sevmesem de, Saruman'ın yaklaşan ordularını daha da az sevmekteyim. Keşke burada yüz tane daha akrabam olsaydı! Çok azız, çok az. Komutan, yardımına ihtiyacımız olacak, belki de ormanın içindeki birkaç yapraktan ibaret olabiliriz. Gel, sana yaylarımızın en faydalı olacagı yeri göstereyim.
-dlga_start:hd_defense_01.2|Seni görmek gerçekten büyük bir sevinç, dost! Ben Gimli, Gloin'in oglu. Üzerimize gelen büyük bir düşman ordusu var, ama baltam elimde huzursuz ve senin de aynı hissiyatı taşıdıgını biliyorum! Bize kesilmesi için orc boynu ve baltamızı sallamak için alan ver, birlikte onlara korkunun gerçek anlamını ögretecegiz. Saglam ayaklar ve sert baltalar, bizi gecenin içinden taşıyacak olan budur! Ai oi! İkimiz için yeterince düşman var. Baruk Khazaˆd! Khazaˆd ai-meˆnu!
+; dlga_start:hd_defense_01.2|Right glad am I to see you, kinsman! I am Gimli, son of Gloin. It is a great host that comes now against us, but my axe is restless in my hand, and I know you feel the same! Give us a row of orc-necks to hew and room to swing, and together we shall teach them the meaning of fear. Stout feet and hard axes, that is what will carry us through the night! Ai oi! There are enough for both of us. Baruk Khazâd! Khazâd ai-mênu!
 dlga_hd_defense_01:close_window|Şimdi bir süre dinlenelim. Düşman akşam olmadan burada olacak.\n 
 dlga_start:aragorn_thanks_hd|{playername}, seni hâlâ hayatta görmek sevindirici. Adamlar savaştan yorgun, ancak senin sayende yeni bir günün doguşunu gördüler. Daglı adamlar teslim oldular ve kendi sebep oldukları kötülügü onarmak için çalıştırılacaklar; umarım daha sonra kendi topraklarına geri dönerler. Onlar Saruman tarafından kolayca aldatıldı, çok şeyleri alındı ve geri verilmesi gereken çok şey var; onlar için daha sonra neler yapılabilecegini görecegiz.\n \n \n 
 dlga_aragorn_thanks_hd:close_window|Umarım yollarımız bir kez daha kesişir, {playername}. Şimdilik hoşça kal, ben en acilen yola çıkıyorum. Sabahın ilk ışıklarıyla arkadaşlarım ve ben gitmeliyiz, ve bu vadinin ötesine karanlık bir yol izlemeliyiz. {playername}, kötü zamanlar , ama senin cesaretin bütün özgür halkların kalbini kuzeyden güneye kadar sevindiriyor. Yigitçe savaş, ve belki gölgelerin ötesinde tekrar buluşabiliriz!
@@ -159,7 +159,7 @@ dlga_ziggy_no:close_window.1|Pekala, Komutan.
 dlga_ziggy_yes:ziggy_choose_prisoners|Mükemmel. Bu örneklerden hangisini verirsiniz?
 dlga_ziggy_choose_prisoners:ziggy_no|Sunmak istedigim hiçbir şey yok.
 dlga_ziggy_chosen_prisoner:ziggy_ritual|Teşekkürler Komutan! Bir an... ah evet, bu düzgünce yapmalı... Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
-dlga_ziggy_chosen_prisoner:ziggy_ritual.1|Burada neyimiz var? Gururlu, uyumsuzlar? Korku, olması gerektigi gibi mi? Şimdi size korku için bir neden vereyim mi? Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
+; dlga_ziggy_chosen_prisoner:ziggy_ritual.1|What have we here? Proud, defiant? Fearful, as you should be? Now shall I give you a reason for fear, indeed! Agannūlo burudan kinum! Kadō nakh, îdô ugru-dalad dâira!
 dlga_ziggy_ritual:ziggy_ritual_succeed|Oh evet, evet ! Bak, komutan, Zigûrphel’in başardıklarına dikkat edin, sen Angband kurtlarını tanıyor musun, Draugluin ya da Valinor Hound'u Huan'a çeviren güçlü Carcharoth, tıpkı Karanlık Lord'un esir ruhunu kendi amaçları için uygun bir kaba çevirip yakalayabilmesi gibi, ben de daha küçük bir ruhu bagladım ve bize büyük bir gölge canavarı olarak gösterdim. Bu Draugluin'in ilk kanı kadar büyük degil tabiki, hiçbir şey gibi ama hizmet edecektir.
 dlga_ziggy_ritual:ziggy_ritual_succeed.1|Düşmanı dize getirmek her zaman zevklidir. 
 dlga_ziggy_ritual:ziggy_choose_prisoners|Ach! Bu çok zayıftı! Degersiz! Bana daha güçlü bir tane ver, Komutan, başarısız olmayacak bir tane!
@@ -190,7 +190,6 @@ dlga_player_hire_trolls_take:player_hire_trolls_how_many|Bu sana {reg21} nüfuza
 dlga_player_hire_trolls_take:close_window.2|Fikrimi degiştirdim.
 dlga_player_hire_trolls_how_many:player_hire_troll_buy_done|Korkunç bir canavar. Ve şimdi, benim!
 dlga_player_hire_trolls_how_many:player_hire_troll_armoured|Onları koruyan demir saclarla daha iyi savaşacaklar. Öyleyse yap!
-dlga_player_hire_troll_armoured:player_hire_trolls_how_many|{s55}
 dlga_player_hire_trolls_how_many:player_hire_troll_buy_not_enough|Fikrimi degiştirdim.
 dlga_player_hire_troll_buy_not_enough:close_window|Zamanımı harcıyorsun...
 dlga_player_hire_troll_buy_done:close_window|Şimdi bu büyük adama iyi bakın, o da size iyi bakacaktır! Ha!
@@ -233,7 +232,9 @@ dlga_party_encounter_lord_hostile_attacker_2:close_window|Saldırmayın! Teslim 
 dlga_party_encounter_lord_hostile_attacker_2:close_window.1|Seninle sonuna kadar savaşacagız.
 dlga_party_encounter_offer_dont_fight:close_window|Sana bir iyilik borçluyum degil mi? Pekala o zaman. Bu seferlik gitmene izin veriyorum
 dlga_party_encounter_offer_dont_fight:close_window.1|Ha-ha. Ama ben savaşmak istiyorum.
-dlga_start:close_window.13|Uzak dur, aşşaglık dilenci.
+; dlga_start:close_window.13|Mmmh...
+; dlga_start:close_window.14|The lord is in deep thought and must not be disturbed!
+dlga_start:close_window.15|Uzak dur, aşşaglık dilenci.
 dlga_start:lord_start|Eger benim cesur şampiyonum degilse, {playername}...
 dlga_start:lord_start.1|Seni tekrar görmek güzel {playername}...
 dlga_start:lord_start.2|Tekrar karşılaştık, {playername}...
@@ -276,7 +277,6 @@ dlga_lord_start:lord_generic_mission_completed.5|Adamlarınız savaştaki cesare
 dlga_lord_start:kill_quest_failed|Senden yapmanı istedigim şeyi başaramadıgını duydum. Hayal kırıklıgına ugradım, {playername}.
 dlga_lord_start:lord_generic_mission_completed.6|Ordunuz savaştaki cesaretinize şahit oldu, {playername}. Saygımı kazandınız.
 dlga_kill_quest_failed:close_window|Bir daha ki sefer daha iyi yapacagım.
-dlga_lord_start:lord_follow_spy_completed|{s4}
 dlga_lord_start:lord_follow_spy_half_completed|Seni aptal! İKİ mahkum istedim,  {playername} --- bana getirdigin şey yararsız eksik bir adam! Bu casusun bildigi her şeyi zaten biliyorum, peşinde oldugum elebaşıydı. İşte burada, yarım iş yarım ödüle layıktır. Al şunu ve kaybol.
 dlga_lord_start:lord_follow_spy_half_completed.1|Senden iki mahkum istedim, {playername}, bir degil. İki. Gene de ikiliden önemli olanı ele geçirmişsin, casusun elebaşı. Diger casus buraya dönmeye cesaret edemez ve hizmet ettigi kimse artık, ne kadar işe yaramaz oldugunu kendi kanıtlayacak. Eli boş dönmenden iyidir. Yine de sana söz verdigim ödülün yarısını verdigim takdirde anlayacagını düşünüyorum çünkü yarım iş, yarım ödül...
 dlga_lord_start:lord_follow_spy_failed|Gerçekten, {playername}, koca bir beceriksizden başka bir şey degilsin. Hem casusu hem de onun şefini yakalayamamak başarısızlık adına hayret verici yeni bir boyut yarattı. Sana teklif ettigim tüm ödülleri unut. Onu kazanacak hiçbir şey yapmadın.
@@ -294,6 +294,7 @@ dlga_lord_start:lord_hunt_refugees_failed|{playername}, casuslarımız, {reg1}  
 dlga_lord_hunt_refugees_failed:lord_hunt_refugees_failed_1|Çok hızlıydılar efendim. Onları izlemekte başarısız oldum.
 dlga_lord_hunt_refugees_failed_1:lord_pretalk|Hasta ve sakatları bile yenemiyorsan belki de dünyayı önünde diz çöktürecek orduları komuta edecek kadar iyi degilsindir. Defol ve sana ikinci bir şans vermem için dua et.
 dlga_lord_start:lord_generic_mission_completed.9|Kahretsin, bunu başardın, {playername}. Tüm köleler geri döndü ve hasat için hazırlanmakla meşguller. Ödülünü kesinlikle hak ettin. Övgülerimle beraber al bunu.
+; dlga_lord_start:lord_generic_mission_completed.10|Well done, but you've done it, {playername}. The slaves are back and they're busy preparing for the harvest. I guess you had to kill some of them in order to make the others obey. Can't be helped, but I'll only reward you for those that have returned, not the ones you left rotting in the wilderness.
 dlga_lord_start:lord_bring_back_runaway_serfs_failed|{playername}, sabırlı bir şekilde kölelerimi bekledim, ama hala hiçbiri geri dönmedi. Bir açıklaman var mı? Önemsiz hayvanlar tarafından alt mı edildin  yoksa yalnızca beceriksiz biri misin?
 dlga_lord_bring_back_runaway_serfs_failed:lord_bring_back_runaway_serfs_failed_1a|Beni affedin, {s65}, köleler yılan balıgı kadar kaypaklardı.
 dlga_lord_bring_back_runaway_serfs_failed_1a:lord_pretalk|Hmph, başarısızlık için buna bahane denemez bile, {playername}. Şimdi izninle, hepimiz açlıktan ölmeden önce tarlaları sürecek yeni adamlar yakalamalıyım.
@@ -362,13 +363,9 @@ dlga_tell_dorwinion_sack:tell_dorwinion_sack_2|Çok ilginç. Bu eski çuval, yal
 dlga_tell_dorwinion_sack_2:tell_dorwinion_sack_3|Ayrıca çuvalın içinde bu Rhun migferini de buldum. Bu bize mızraklara ne oldugu hakkında daha çok bilgi verebilir mi?
 dlga_tell_dorwinion_sack_3:lord_pretalk|Karavanlar genellikle yol boyunca soyulurlar. Bu Migfer bir Rhun gözcüsünden. Güneye dogru Rhun Denizi'ne kadar nehri takip edin ve Dorwinion'a giden ticaret yollarını arayın, aradıgınızı bulabilirsiniz. NOT: BU GÖREV HENÜZ TAMAMLANMAMIŞTIR.DEVAM EDECEKTİR.
 dlga_lord_talk:lord_healer_wound_ask|Sizin muhteşem bir şifacı oldugunuzu duydum. Dogru mudur bu? Bana yardım edebilir misiniz? 
-dlga_lord_healer_wound_ask:lord_pretalk|{s1}
-dlga_lord_healer_wound_ask:lord_healer_wound_ask_check|{s1}
 dlga_lord_healer_wound_ask_check:lord_healer_wound_heal|Ben ve ordum, iyileşmek için zamandan çok daha fazlasını gerektiren yaralara sahibiz. Bizleri iyileştirebilir misiniz?
 dlga_lord_healer_wound_ask_check:lord_healer_injured_ask|Ben ve ordum yaralandık ve onların bizi iyileştirmesini beklemek için zamanımız yok. Bize yardım saglayabilir misiniz?
 dlga_lord_healer_wound_ask_check:lord_pretalk|Hayır, şimdi degil.
-dlga_lord_healer_wound_heal:lord_healers_wound_check|{s1}
-dlga_lord_healer_injured_ask:lord_healers_injured_check|{s1}
 dlga_lord_healers_injured_check:lord_healers_injured_heal|Evet, lütfen devam et.
 dlga_lord_healers_wound_check:lord_healers_wound_heal|Evet, lütfen devam et.
 dlga_lord_healers_wound_check:lord_pretalk|Hayır, şimdi degil.
@@ -378,7 +375,7 @@ dlga_ring_hunters_start:ring_hunters_check|{playername}, harika işler yaptını
 dlga_ring_hunters_check:ring_hunters_1|Evet efendim. İyi egitimli,dayanıklı adamlardan oluşan bir birligim var. Her şey için hazırız.
 dlga_ring_hunters_check:ring_hunters_check_failed|Korkarım ki yok efendim.
 dlga_ring_hunters_check_failed:lord_pretalk|Henüz bu göreve hazır degilsin demek, {playername}. Git ve daha fazla asker topla.
-dlga_ring_hunters_1:ring_hunters_2|Mükemmel. Kuzeyde son zamanlarda köylere baskın düzenleyen, her türden Yüzük arayan ve gezginleri pusuya düşüren haydutları avlayarak görevlerine son vermelisin. Son yagmalamalarından sonra ortaya çıkan iki grup bildirdi. Birincisi, Kuyutorman'ın saçaklarında yer alan yerlerine ganimetleri ile geri dönüyor. Digeri, kalabalık bir grup olarak Beorn'un Evine dogru ilerler ve engelsiz bırakılırsa olabileceklerden korkuyorum.
+; dlga_ring_hunters_1:ring_hunters_2|Excellent. The North has recently been plagued by a marauding band of outlaws who raid villages and ambush travellers, searching for rings of any kind.^^   You are to hunt these bandits down and put an end to their quest. Survivors of their last pillaging have reported two groups.^^   The first is returning with loot to their encampment on the eaves of Mirkwood. The other advances towards Beorn's House in great numbers and I fear what may happen if they are left unimpeded.
 dlga_ring_hunters_2:ring_hunters_what|Efendim, neyi arıyor olabilirler?
 dlga_ring_hunters_2:ring_hunters_accept|'Yüzük Hırsızları'nı durdurmak için ne gerekiyorsa yapacagım, Lordum.
 dlga_ring_hunters_2:ring_hunters_reject|Henüz böyle bir göreve hazır degilim.
@@ -577,12 +574,12 @@ dlga_lord_mission_mirkwood_sorcerer_1:lord_mission_mirkwood_sorcerer_2|Onu Kuyut
 dlga_lord_mission_mirkwood_sorcerer_2:lord_pretalk|Emredersiniz, Leydim. bu kötülügü ortadan kaldırmak için elimden geleni yapacagım.
 dlga_lord_mission_mirkwood_sorcerer_2:lord_mission_mirkwood_sorcerer_rejected|Bagışlayın, leydim. İnsanlarınızın bu derdine yardım etmeden önce ilgilenmem gereken başka acil işlerim var.
 dlga_lord_mission_mirkwood_sorcerer_rejected:lord_pretalk|Anladım, {playername}. Ama çok uzun sürmesin, onun büyüsüne karşı koymaya çalışmak beni yoruyor.
-dlga_lord_tell_mission:lord_mission_deliver_message|{s13}'e bir mektup göndermem gerekiyor. Kendisi şu an {s4} topraklarında olmalı. Eger o yöne gideceksen, mektubu ona teslim edebilir misin? Mektup 30 gün içerisinde onun elinde olmalı.
+; dlga_lord_tell_mission:lord_mission_deliver_message|I need to send a letter to {s13} who should be currently at {s4}. If you will be heading towards there, would you deliver it to {reg11?her:him}? The letter needs to be in {reg11?her:his} hands in 30 days.
 dlga_lord_mission_deliver_message:lord_mission_deliver_message_accepted|Elbette, zaten {s4} civarından geçmek niyetindeydim, sıkıntı olmaz.
 dlga_lord_mission_deliver_message:lord_mission_deliver_message_rejected|Bu yakınlarda {s13} ile görüşecegimi pek sanmıyorum,  {s65}. Başka biriyle göndermeniz daha iyi olur.
-dlga_lord_mission_deliver_message_accepted:close_window|Sana bir teşekkür borçluyum {playername}. İşte Mektup.{s13}'ü  görünce ona iyi dileklerimi de ilet.
+; dlga_lord_mission_deliver_message_accepted:close_window|I appreciate it, {playername}. Here's the letter. Give my regards to {s13} when you see {reg11?her:him}.
 dlga_lord_mission_deliver_message_rejected:lord_pretalk|Ah tamam o zaman, eminim bu iş için bir başkasını bulurum.
-dlga_lord_tell_mission:lord_mission_deliver_message.1|{s15}'ten {s13}'e bir mektup göndermem gerekiyor. Kendisi şu an {s4} topraklarında olmalı. Eger o yöne gideceksen, mektubu ona teslim edebilir misin? Mektup 40 gün içerisinde elinde olmalı.
+; dlga_lord_tell_mission:lord_mission_deliver_message.1|I need to deliver a letter to {s13} of {s15}, who must be at {s4} currently. If you are going towards there, would you deliver my letter to  {reg11?her:him}? The letter needs to reach  {reg11?her:him} in 40 days.
 dlga_lord_tell_mission:lord_mission_told|Acil bir mesele var... Ulagımın {s14}'deki komutanlarıma savaş planlarımızla ilgili rapor ulaştırması gerekiyor. Yolculugu yoldaki bir çok tehlike yüzünden bir kaç kez ertelendi, ancak bu kez mutlaka gitmek zorunda. onun en azından iyi korundugundan emin olmak istiyorum. Sana fazlasıyla güveniyorum, {playername}. Eger ona {s14}'e kadar eşlik edip sag salim vardıgından emin olursan, sana minnettar olurum.
 dlga_lord_tell_mission:lord_mission_told.1|Burada eski bir arkadaşım var, yaşlı bir savaşçı, kendisi çok hasta. Eski bir savaş yarasından hastalık kapmış, ve eger bir cerraha görünmezse kurtulmasına imkan yok. Bu adam benim için degerli, {playername}, ama aynı zamanda bir domuz kadar inatçı. Doktorlara güvenmedigi için hiç kimsenin yarasına bakmasın izin vermiyor. Duyduguma göre yanında yetenekli bir cerrah varmış. Eger cerrahının gelip bakmasına izin verirsen, belki {reg3?o:o} bir operasyon için rızasını alabilir. Lütfen, eger bu istegimi yerine getirirsen sana borçlu kalırım.
 dlga_lord_tell_mission_raise_troops:lord_tell_mission_raise_troops_2|Ne kadar adama ihtiyacın var?
@@ -594,7 +591,7 @@ dlga_lord_mission_raise_troops_told:lord_mission_raise_troops_rejected|Bu günle
 dlga_lord_mission_raise_troops_accepted:close_window|Omuzlarımdan büyük bir yükü kaldırdın, {playername}. Çavuşlarıma, acemileri gönderip senin komutana vermelerini söyleyecegim. Ayrıca masrafları karşılamak için sana biraz avans verecegim. Al, bu kese işini görecektir. Yardımın için teşekkür ederim.
 dlga_lord_mission_raise_troops_alternate:close_window|Bu ilginç bir teklif, {playername}. Çavuşlarıma askerleri egitim sahasına göndermelerini söyleyecegim. Hadi gidin ve adam olana kadar kırbaçlayın onları. İzliyor olacagım. Yardımın için teşekkürler.
 dlga_lord_mission_raise_troops_rejected:lord_pretalk|Ah, elbette. Tam da bekledigim gibi. Peki, o zaman sana iyi şanslar
-dlga_lord_tell_mission:lord_mission_hunt_down_fugitive_told|Yardım edebilecegin bir şey var, {s4} olarak bilinen bir kanunsuz ile ilgili bir sorun. Korumalarımdan birini öldürdü ve o zamandan beri yargılanmaktan kaçıyor. Aldıgımız haberlere göre kaçak {s3} bölgesinde görülmüş. Eger onu avlayıp hak ettigi adaleti saglarsan, karşılıgında seni ödüllendirecegim.
+; dlga_lord_tell_mission:lord_mission_hunt_down_fugitive_told|I have something you could help with, an issue with the traitor known as {s4}.  He moves from place to place, spreading the insidious poison of doubt. He sows fear and undermines the resolve of our warriors.  He acts on behalf of our enemies, that much is certain. Yet so far he has always been able to slip from my grasp.  There has been news recently that he has been seen at {s3}.  You might be able to hunt him down and deliver him swift justice, and I'll reward you in turn.
 dlga_lord_mission_hunt_down_fugitive_told:lord_mission_hunt_down_fugitive_accepted|Öyleyse onu yakalayacagım ve onu infaz edecegim.
 dlga_lord_mission_hunt_down_fugitive_told:lord_mission_hunt_down_fugitive_rejected|Onun arkasından koşturamayacak kadar meşgulüm.
 dlga_lord_mission_hunt_down_fugitive_accepted:close_window|Bu Harika, {playername}. Sana minnettar kalacagım,ve tabi ki bu kahramanlıgın unutulmaycak. Peki, iyi avlanmalar.
@@ -647,7 +644,7 @@ dlga_start:castle_guard_players|Emirleriniz, Kumandanım?
 dlga_castle_guard_players:close_window|Kapıyı aç.İçeri girecegim.
 dlga_castle_guard_players:close_window.1|Boşver
 dlga_start:castle_guard_sneaked_intro_1|Çekil önümden,sefil! Seni leş!
-dlga_start:close_window.14|Sabrımı taşırmadan buradan defol aşagılık dilenci !
+dlga_start:close_window.16|Sabrımı taşırmadan buradan defol aşagılık dilenci !
 dlga_castle_guard_sneaked_intro_1:castle_guard_sneaked_intro_2|Salona girmek ve lordla konuşmak istiyorum.
 dlga_castle_guard_sneaked_intro_1:close_window|[Ayrıl]
 dlga_castle_guard_sneaked_intro_2:close_window|Sen aklını mı kaçırdın,  {adam/kadın}? Dilenciler buraya giremez. Hemen defol yoksa seni saglam döverim.
@@ -724,8 +721,10 @@ dlga_woodelf_help_2:woodelf_help_3.1|Sen? Tabi ki öylesin! Yetenekli bir savaş
 dlga_woodelf_help_3:close_window|Sana İyi yolculuklar dilerim, Torbal. Eminim ki tekrar karşılaşacagız.
 dlga_healers_meet:healer_who|Ne yapıyorsun?.
 dlga_healers_meet:healers_ask|Yardımına ihtiyacım var.
+; dlga_healers_ask:healers_ask_2|What can I do for you, friend?
 dlga_healers_ask_2:healer_wound_ask|Yoldaşlarımın ve benim iyileşmesi için zamandan daha fazlasına ihtiyaç duyan ciddi yaralarımız var. Yaralarımızı iyileştirebilir misin?
 dlga_healers_ask_2:healer_injured_ask|Ben ve ordum yaralandık ve onların bizi iyileştirmesini beklemek için zamanımız yok. Bize yardım saglayabilir misiniz?
+dlga_healers_ask_2:close_window|Hiçbir şey.
 dlga_healers_meet:close_window|Hiçbir şey.
 dlga_healers_injured_check:healers_injured_heal|Evet, lütfen devam et.
 dlga_healers_wound_check:healers_wound_heal|Evet, lütfen devam et.
@@ -741,8 +740,8 @@ dlga_sad_elf_2:sad_elf_choice|Ah, denizden ve ötesinden hikayeler. (Lordum/Leyd
 dlga_sad_elf_choice:sad_elf_leave|Acını hissediyorum. Bu savaş için yapman gerekeni yaptın. Gidebilirsin.
 dlga_sad_elf_choice:sad_elf_no|Elfler Orta-Dunyayı karanlıga terk etmemeliler. İçinde bulundugumuz bu savaşta kendimiz için mücadele etmiyoruz ve herkes kendine düşen rolü üstlenmek zorunda. Ayrılmana izin veremem. [Liderlik Kontrolü]
 dlga_sad_elf_leave:close_window|Teşekkür ederim, {lordum/leydim}!^^Denize, Denize! Beyaz martılar şakıyor,^Rüzgar esiyor, ve beyaz köpükler uçuşuyor.^Batıya, uzak batıya, oval güneşin battıgı yere.
-dlga_start:close_window.15|Tam zamanında geldin.Şimdi birliklerimize katıl ve düşmana bir ders verelim.
-dlga_start:close_window.16|Bize karşı savaşarak büyük bir hata yapıyorsun.
+dlga_start:close_window.17|Tam zamanında geldin.Şimdi birliklerimize katıl ve düşmana bir ders verelim.
+dlga_start:close_window.18|Bize karşı savaşarak büyük bir hata yapıyorsun.
 dlga_start:ally_thanks_meet|Düzgünce tanıştıgımızı düşünmüyorum arkadaşım.Sen benim hayarımı kurtardın ve ben hala senin ismini bilmiyorum...
 dlga_start:ally_thanks_meet.1|Yardımın burada çok hoş karşılandı yabancı. Benim adım {s1}. Seninkini ögrenebilir miyim?
 dlga_start:ally_thanks_meet.2|Yardımın için teşekkürler, yabancı. Daha dogru düzgün tanışamadık bile degil mi? Adın nedir?
@@ -750,13 +749,13 @@ dlga_ally_thanks_meet:ally_thanks_meet_2|Benim adım {playername}.
 dlga_ally_thanks_meet_2:close_window|İçten selamlarımla {playername}. Benim adım {s1} ve sana hep borçlu kalacagım. Eger sana yardım edebilecegim herhangi bir konu varsa, söylemen yeterli.
 dlga_ally_thanks_meet_2:close_window.1|Tanıştıgımıza memnun oldum {playername}. Sana bu yaptıgın için borçluyum. Umuyorum ki bir gün bunun karşılıgını ödemek için bir yol bulacagım.
 dlga_ally_thanks_meet_2:close_window.2|Tanıştıgımıza memnun oldum {playername}. Ben {s1}.Yardımın için teşekkürler ve umarım tekrar karşılaşırız.
-dlga_start:close_window.17|Yine kellemizi kurtardın, {playername}! Kesinlikle sen arkadaşlardan en iyisisin.{s43}
-dlga_start:close_window.18|Tam zamanında geldin, {playername}. En derinden teşekkürlerimle!{s43}
-dlga_start:close_window.19|Tam zamanında geldin, {playername}. Yardımını unutmayacagım.{s43}
-dlga_start:close_window.20|Seni görmek güzel! {playername}. {s43}
-dlga_start:close_window.23|Yardımınız için teşekkürler, kumandan. Orada {reg1?hayatımızı:hayatımı} kurtardın.
-dlga_start:close_window.24|Yardımınız için teşekkürler komutan. Bazı şeyler bizim için pek iyi gitmiyordu fakat daha sonra siz geldiniz ve her şey degişti.
-dlga_start:close_window.25|Yardımınız için teşekkürler, komutan. Yakınımızda olmanız büyük şans.
+dlga_start:close_window.19|Yine kellemizi kurtardın, {playername}! Kesinlikle sen arkadaşlardan en iyisisin.{s43}
+dlga_start:close_window.20|Tam zamanında geldin, {playername}. En derinden teşekkürlerimle!{s43}
+dlga_start:close_window.21|Tam zamanında geldin, {playername}. Yardımını unutmayacagım.{s43}
+dlga_start:close_window.22|Seni görmek güzel! {playername}. {s43}
+dlga_start:close_window.25|Yardımınız için teşekkürler, kumandan. Orada {reg1?hayatımızı:hayatımı} kurtardın.
+dlga_start:close_window.26|Yardımınız için teşekkürler komutan. Bazı şeyler bizim için pek iyi gitmiyordu fakat daha sonra siz geldiniz ve her şey degişti.
+dlga_start:close_window.27|Yardımınız için teşekkürler, komutan. Yakınımızda olmanız büyük şans.
 dlga_start:freed_hero_answer|Beni özgür bıraktıgın için sana borçluyum dostum.
 dlga_freed_hero_answer:freed_hero_answer_1|Hiçbir yere gitmiyorsun. Benim esirim olacaksın!
 dlga_freed_hero_answer_1:close_window|Tüh. Şansım hiç degişmeyecek mi?
@@ -771,11 +770,13 @@ dlga_defeat_hero_answer_1:close_window|Seni kahrolası. Buna pişman olacaksın.
 dlga_defeat_hero_answer:defeat_hero_answer_2|Bu seferlik gitmekte özgürsün, fakat bir daha önüme çıkma.
 dlga_defeat_hero_answer_2:close_window|Tekrar görüşecegiz.
 dlga_start:fugitive_1|Evet, ne istiyorsun?
-dlga_fugitive_1:fugitive_2|Adı {s4} olan bir kaçagı arıyorum. Sen onun özelliklerine uyuyorsun.
+; dlga_fugitive_1:fugitive_2|I am looking for a {s3} by the name of {s4}. You fit his description.
 dlga_fugitive_1:close_window|Birşey yok. Rahatsız ettigim için üzgünüm.
 dlga_fugitive_2:fugitive_3|Ne hakkında konuştugunu bilmiyorum. Beni başka biriyle karıştırmış olmalısın.
 dlga_fugitive_3:fugitive_4|O zaman kılıcını yere at. Masumsan, korkacak birşeyin olmaması gerek. Şimdi birlikte kaptan muhafızın yanında gidecegiz ve kimin aklı karışmış görecegiz.
 dlga_fugitive_4:close_window|Seni kahrolası. Hiçbir yere gidemezsin!
+; dlga_start:fugitive_5|So, I caught you at last!
+; dlga_fugitive_5:close_window|You are mistaken. We caught you!
 dlga_start:follow_spy_talk|İyi günler. Hava çok güzel degil mi? Şimdi kusuruma bakmazsanız gitmek zorundayım.
 dlga_follow_spy_talk:follow_spy_talk_2|{s1} adına tutuklusunuz!
 dlga_follow_spy_talk_2:close_window|Beni canlı ele geçiremeyeceksin!
@@ -785,12 +786,15 @@ dlga_spy_partners_talk:spy_partners_talk_2|{s1}'in adına, Tutuklusun!
 dlga_spy_partners_talk_2:close_window|Önce bizimle savaşmanız gerekecek!
 dlga_spy_partners_talk:close_window|Boş ver beni. Sadece geçiyordum.
 dlga_start:runaway_serf_intro_1|İyi gunler lordum 
-dlga_runaway_serf_intro_1:runaway_serf_intro_2|Kaçmakta oldugunuz {s4} tarafından gönderildim. Eger şimdi dönerseniz sizi cezalandırmayacak.
-dlga_runaway_serf_intro_2:runaway_serf_intro_3|Yüce efendim. {s1}'deki hayatımız dayanılmazdı. Bütün gün çalışıp yine de yataga aç gidiyorduk. İnsan gibi davranılacagımız {s6}'ya gidiyoruz, orada yeni bir hayata başlayacagız.
-dlga_runaway_serf_intro_3:runaway_serf_go_back|Kölelikten kaçarak kanunlarımıza karşı geldiniz. Hemen {s1}'e geri dönüyorsunuz!
-dlga_runaway_serf_go_back:close_window|Peki efendim. Nasıl isterseniz. {s5}'e geri dönüyoruz.
-dlga_start:runaway_serf_talk_caught|İyi günler efendim. {s5}'e geri dönüyorduk ama korkarım yolumuzu kaybettik.
-dlga_runaway_serf_talk_caught:runaway_serf_go_back|Benim sabrımı sınama. Hemen geri dönüyorsun!
+; dlga_runaway_serf_intro_1:runaway_serf_intro_2|I have been sent by {s4} whom you are running from. {reg11?She:He} will hold back {reg11?her:his} wrath and spare your lifes if you return now.
+; dlga_runaway_serf_intro_2:runaway_serf_intro_3|Have mercy! Going back to {s1} means certain death.{s4} will make us toil until we die of exhaustion, or he will put us to the stake immediately.
+; dlga_runaway_serf_intro_3:runaway_serf_go_back|And this will be all that you maggots deserve. You will go back to {s1}, or I have you slaughtered here and now!
+; dlga_runaway_serf_intro_3:runaway_serf_slaughter|I see. I think I will have to teach you lot a lesson in order to make you obey. Slaughter him!
+; dlga_runaway_serf_go_back:close_window|All right {reg11?mistress:master}. As you wish. We'll head back to {s5} now.
+; dlga_start:runaway_serf_talk_caught|Good day {reg11?mistress:master}. We were heading back to {s5}, but I am afraid we lost our way.
+; dlga_runaway_serf_talk_caught:runaway_serf_go_back|Do not test my patience. You are going back now! (Charisma)
+; dlga_runaway_serf_talk_caught:runaway_serf_slaughter|I see. I think I will have to teach you lot a lesson not to lose your way again. Slaughter him!
+dlga_runaway_serf_slaughter:close_window|Bir gün hesabını vereceksin... Aaa-ghgllr!...
 dlga_start:runaway_serf_talk_again_return|{s5}'e geri dönüyoruz efendim.
 dlga_runaway_serf_talk_again_return:runaway_serf_talk_again_return_2|Acele et. Ne kadar erken dönersen o kadar iyi.
 dlga_runaway_serf_talk_again_return:runaway_serf_talk_again_return_2.1|Güzel. Devam et.
@@ -845,7 +849,7 @@ dlga_trainer_choose_weapon_player:trainer_begin_training.3|Oklar.
 dlga_trainer_choose_weapon_player:trainer_begin_training.4|Fırlatılabilir silahlar.
 dlga_trainer_choose_weapon_player:trainer_pretalk|Hiç biri, fikrimi degiştirdim.
 dlga_trainer_begin_training:close_window|Çok güzel, işte oldu. İlk önce egitimini tamamla, daha sonra geri gel ve benimle konuş.
-dlga_start:close_window.26|Uzak dur, aşşaglık dilenci.
+dlga_start:close_window.28|Uzak dur, aşşaglık dilenci.
 dlga_start:mayor_begin|İyi günler, lordum.
 dlga_start:mayor_talk|Merhaba yabancı, {s9}'da yeni gibi görünüyorsun. Ben bu kasabanın lonca başkanıyım.
 dlga_start:mayor_begin.1|İyi günler, {playername}.
@@ -931,8 +935,8 @@ dlga_merchant_quest_brief:escort_merchant_caravan_quest_brief|{s8}'e bir erzak k
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_taken|Pekala. ikmal koluna eşlik edecegim.
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_stall|Korkarımki o kadar askerim yok.
 dlga_escort_merchant_caravan_quest_brief:merchant_quest_stall.1|Üzgünüm. Şu an bunu yapamam.
-dlga_start:close_window.27|Yolun geri kalanında kendimizi koruyabiliriz. Teşekkürler.
-dlga_start:close_window.28|Neredeyse vardık {s21}. Yolun geri kalanında kendimizi koruyabiliriz. Bize eşlik ettigin için sagol. Yolun açık olsun. ^^[ {reg14} kadar {s14} Kaynak Puanı kazandın]
+dlga_start:close_window.29|Yolun geri kalanında kendimizi koruyabiliriz. Teşekkürler.
+dlga_start:close_window.30|Neredeyse vardık {s21}. Yolun geri kalanında kendimizi koruyabiliriz. Bize eşlik ettigin için sagol. Yolun açık olsun. ^^[ {reg14} kadar {s14} Kaynak Puanı kazandın]
 dlga_start:merchant_caravan_intro_1|Selamlar. Sen yolda bize eşlik edecek kişisin sanırım?
 dlga_merchant_caravan_intro_1:merchant_caravan_intro_2|Evet. İsmim {playername}. Size {s1}'e kadar eşlik edecegim.
 dlga_merchant_caravan_intro_2:escort_merchant_caravan_talk|Peki, yalnız gitmeyecegimizi bilmek güzel. Şimdi ne yapmamızı istersin?
@@ -982,7 +986,7 @@ dlga_prisoner_chat_3:prisoner_slaughter|Bir sonraki yemegimiz sen oluyorsun!{s20
 dlga_prisoner_chat_4:close_window|Hı hı, sanki deneyebilecek durumdayım da? Defol!
 dlga_prisoner_slaughter:prisoner_slaughter_02|Birgün bedel ödeyeceksin!
 dlga_prisoner_slaughter:close_window|Bir gün hesabını vereceksin... Aaa-ghgllr!...
-dlga_start:close_window.29|Uzak dur, aşşaglık dilenci.
+dlga_start:close_window.31|Uzak dur, aşşaglık dilenci.
 dlga_start:town_merchant_talk|Selamlar, komutanım. Size nasıl hizmet edebilirim?
 dlga_start:town_merchant_talk.1|İyi günler, senin için ne yapabilirim?
 dlga_town_merchant_talk:trade_requested_weapons|Yeni ekipmanlar talep etmek istiyorum. Dükkanında olanları göster bana.
@@ -1007,38 +1011,39 @@ dlga_town_merchant_talk:merchant_gossip|Söyle bana, bugünlerde insanlar nelerd
 dlga_town_merchant_talk:close_window|Güle Güle
 dlga_start:town_dweller_talk|Efendim?
 dlga_start:town_dweller_talk.1|İyi günler, Kumandanım.
-dlga_town_dweller_talk:town_dweller_ask_fugitive|{s4} namına bir firariyi arıyorum. Burada olabilecegi söylendi.
-dlga_town_dweller_ask_fugitive:close_window|Bir sürü yabancı gelip geçer bizim kasabadan. Eger burada saklanıyorsa, etrafa bakarsan mutlaka bulursun onu.
+; dlga_town_dweller_talk:town_dweller_ask_fugitive|I am looking for a man named {s4}. Have you seen a stranger here who is acting suspiciously and spreading lies about the war?
+; dlga_town_dweller_ask_fugitive:close_window|Well, I saw a suspicious stranger {s5}. If you are lucky, you may still find him there.
 dlga_town_dweller_talk:town_dweller_ask_info|Bu kasaba hakkında bana ne anlatabilirsin?
 dlga_town_dweller_talk:town_dweller_ask_info.1|Bu yer hakkında bana ne anlatabilirsin?
 dlga_town_dweller_talk:town_dweller_talk|Buralarda hayat nasıl?
 dlga_town_dweller_talk:town_dweller_ask_rumor|Buralardaki son söylentiler nedir?
 dlga_town_dweller_ask_rumor:town_dweller_talk|Senin ilgini çekecek bir şey var mı bilmiyorum.
+; dlga_town_dweller_ask_join:town_dweller_ask_join_yes|Yes, I could indeed use another hand. Get ready to leave!
+; dlga_town_dweller_ask_join:town_dweller_ask_join_no|No, I have no use for you.
+; dlga_town_dweller_ask_join_yes:close_window|Very well, I will gather my things and join your party.
+; dlga_town_dweller_talk:town_dweller_ask_directions|Can you help me find a place?
+; dlga_town_dweller_ask_directions:town_dweller_ask_directions2|What are you looking for?
+dlga_town_dweller_ask_directions2:close_window|Boşver.
+; dlga_town_dweller_ask_directions3:close_window|I know where that is. Follow me.
 dlga_town_dweller_brawl:town_dweller_brawl_confirm|Beni tehdit mi ediyorsun? Muhafızlar senin gibi tiplerin yüzünü göstermesini sabırsızlıkla bekliyorlar.
 dlga_town_dweller_brawl_confirm:close_window|Ciddi misin? Nelerin varmış bir görelim.
 dlga_town_dweller_brawl_confirm:close_window.1|Hayır, seni başka biri sanmıştım.
 dlga_town_dweller_talk:close_window|[Ayrıl]
+; dlga_start:close_window.32|Get lost!
+; dlga_start:close_window.33|Leave me alone!
 dlga_start:player_castle_guard_talk|Evet, Kumandanım?
 dlga_player_castle_guard_talk:player_castle_guard_talk_2|Nöbet nasıl gidiyor asker?
 dlga_player_castle_guard_talk_2:player_castle_guard_talk_3|Asayiş berkemal kumandanım. Rapor edilecek bir şey yok.
 dlga_player_castle_guard_talk_3:close_window|İyi, gözlerini açık tutmaya devam et.
-dlga_start:close_window.30|İyi günler,Kumandan. {s10}'da bulunmanız güzel.
-dlga_start:close_window.31|Buralarda terbiyeni takındıgın sürece bir sıkıntımız olmaz.
+; dlga_start:close_window.34|Good day, {s24}. It's good having you here in {s10}.
+dlga_start:close_window.35|Buralarda terbiyeni takındıgın sürece bir sıkıntımız olmaz.
 dlga_start:hall_guard_easter_egg|Ah, gece yarısını şimdi geçti. Biliyor musun, pek görülmeyen bir şey oldu bu yakınlarda - duymak ister misin?
 dlga_hall_guard_easter_egg:hall_guard_easter_egg_scene|Evet, lütfen devam et.
 dlga_hall_guard_easter_egg:close_window|Hayır, dedikodular zerre umrumda degil.
 dlga_hall_guard_easter_egg_scene:close_window|Şey.. son zamanlarda sıradışı bir grup ortalardaydı: Bir insan, bir cüce ve bir elf, ve sonra da...
-dlga_start:hall_guard_talk|Emirleriniz, Kumandanım?
-dlga_start:close_window.32|Nöbet sırasında konuşmamız gerekiyor, Kumandan.
-dlga_hall_guard_talk:hall_guard_duty|Görevde kalın ve beni görmeye biri gelirse haber verin.
-dlga_hall_guard_duty:close_window|Emredersiniz, Kumandanım. Nasıl arzu ederseniz.
-dlga_hall_guard_talk:hall_guard_arrest|Senden bu adamı hemen tutuklamanı istiyorum!
-dlga_hall_guard_arrest:hall_guard_arrest_2|Kimin tutuklanmasını istiyorsun, Kumandan?
-dlga_hall_guard_arrest_2:close_window|Ah, siz bana bakmayın bu aralar kafam güzel gençler.
-dlga_hall_guard_arrest_2:close_window.1|Boşver. Anlaşma için başka bir yol bulacagım.
+dlga_start:close_window.36|Nöbet sırasında konuşmamız gerekiyor, Kumandan.
 dlga_enemy_defeated:close_window|Arggh! Bundan nefret ediyorum.
 dlga_party_relieved:close_window|Bu piçlerin karşısında bize yardım ettigin için teşekkür ederim.
-dlga_start:battle_reason_stated|İçkimi kafatasından yudumlayacagım!
 dlga_member_chat_00:close_window.1|^^HIRRR!^^
 dlga_member_chat_00:close_window.2|^^Grrrrr.....^^
 dlga_member_chat_00:regular_member_talk|Emirleriniz, Kumandanım?
@@ -1069,32 +1074,33 @@ dlga_party_reinforce:party_reinforce_end.2|Ne yazık ki bana birlikte destek sag
 dlga_party_reinforce_check:party_reinforce_check_1|Ordu listesini kontrol etmeme izin ver.
 dlga_party_reinforce_check_1:party_reinforce_end|Demek fikrini degiştirdin...^Anlıyorum.
 dlga_party_reinforce_check_1:party_reinforce_end.1|Bu askerlerin bize bir faydası yok. ^Geri al onları.
-dlga_start:close_window.33|Senin yüzünden geç kalacagım! Büyücüler asla geç kalmaz!
-dlga_start:close_window.34|O... çagırıyoooor...
+dlga_start:close_window.37|Senin yüzünden geç kalacagım! Büyücüler asla geç kalmaz!
+dlga_start:close_window.38|Senin yüzünden geç kalacagım! Büyücüler asla geç kalmaz!
+dlga_start:close_window.39|O... çagırıyoooor...
 dlga_start:secret_guardian_let_through|Dur!
 dlga_secret_guardian_let_through:secret_guardian_let_through1|Ben {playername}, {s24}. Geçmeme izin ver!
 dlga_secret_guardian_let_through1:close_window|Evet kumandanım, geçebilirsiniz.
-dlga_start:close_window.36|Ordaki! Hayatta mısın? İyi! Bir sopa sallayamazsın! Bunu al!
+dlga_start:close_window.41|Ordaki! Hayatta mısın? İyi! Bir sopa sallayamazsın! Bunu al!
 dlga_start:ori_choose_1|İyi savaştın kuzen! Şu ana kadar nasıl hayatta kaldıgını bilmiyorum. Son zamanlarda bize katıldıgını hatırlıyorum, tüm bunlardan önce... Balin düşmeden önce... Nerelisiniz?
 dlga_ori_choose_1:ori_choose_finish|Ben bir izciydim, Ayı halkının yakınındaki ormanlara yollandım. Geçenlerde Balin'in grubunu duydum ve ona katıldım.
 dlga_ori_choose_1:ori_choose_finish.1|Uzaktan bir kuzenim, uzak madenlerden usta bir korumayım. Sonrasında Balin'i duydum ve ona katıldım.
 dlga_ori_choose_1:ori_choose_finish.2|Demir Tepeler'den, savaş ustalarından ve barış zamanında bir madenci olanlardan geliyorum. Balin'i duydum ve katıldım, daha fazla ork öldürmek istiyordum.
 dlga_ori_choose_finish:close_window|Bilmek güzel! Bunları buldum, geçmişinize uygun olarak. Savunmamızı burada tutacagız ve onlardan çogunun canını alacagız!
-dlga_start:close_window.37|Bu paslı yetenekleri kullanıyor gibisin, ha? İşte, bunun bir kısmını al. Daha iyi hissetmeni saglayacak. Daha fazla ork geliyor!
-dlga_start:close_window.38|Şu tozlu şeyi çıkar ve bunu giy. Seni daha iyi korur. Bu orklar sert ısırıyor!
-dlga_start:close_window.39|Büyük birşey geliyor! Hazır olun!
-dlga_start:close_window.40|Onlardan çok fazla var... ancak biz cüceleriz!
-dlga_start:close_window.41|Bu orklar hazinelerle dolu bir magara açtılar. İşte buldugum bazı şeyler, bunları al ve devam et.
-dlga_start:close_window.42|Hayır... Onları duydum... dışarıdalar! Her yerdeler!
-dlga_start:close_window.43|Burada... Lordumuz Balin'in... bunların hepsine degersin...
+dlga_start:close_window.42|Bu paslı yetenekleri kullanıyor gibisin, ha? İşte, bunun bir kısmını al. Daha iyi hissetmeni saglayacak. Daha fazla ork geliyor!
+dlga_start:close_window.43|Şu tozlu şeyi çıkar ve bunu giy. Seni daha iyi korur. Bu orklar sert ısırıyor!
+dlga_start:close_window.44|Büyük birşey geliyor! Hazır olun!
+dlga_start:close_window.45|Onlardan çok fazla var... ancak biz cüceleriz!
+dlga_start:close_window.46|Bu orklar hazinelerle dolu bir magara açtılar. İşte buldugum bazı şeyler, bunları al ve devam et.
+dlga_start:close_window.47|Hayır... Onları duydum... dışarıdalar! Her yerdeler!
+dlga_start:close_window.48|Burada... Lordumuz Balin'in... bunların hepsine degersin...
 dlga_start:party_encounter_hostile_attacker|Bize karşı hiçbir şansın yok. Şimdi teslim ol ya da hepinizi gebertiriz...
 dlga_party_encounter_hostile_attacker:close_window|Saldırmayın! Teslim oluyoruz.
 dlga_party_encounter_hostile_attacker:close_window.1|Seninle sonuna kadar savaşacagız!
 dlga_start:party_encounter_hostile_defender|Ne istiyorsun?
 dlga_party_encounter_hostile_defender:party_encounter_hostile_ultimatum_surrender|Teslim ol yada öl!
 dlga_party_encounter_hostile_defender:close_window|Hiçbir şey. Seni kendi halinde bırakıyorum.
-dlga_start:close_window.45|* sessizce sana bakar *
-dlga_start:battle_reason_stated|İçkimi kafatasından yudumlayacagım!
+dlga_start:close_window.50|* sessizce sana bakar *
+dlga_start:battle_reason_stated|Teslim ol yada öl. Seçim senin.
 dlga_battle_reason_stated:close_window|Senden korkmuyorum. Savaşacagım.
 dlga_start:free|Evet, Senin için ne yapabilirim?
 dlga_free:view_char_requested|Bana kendinden bahset.
